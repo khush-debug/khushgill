@@ -630,7 +630,7 @@ body {
   box-shadow: 0 0 10px #10B981;
 }
 
-/* --- High-Energy 3D Scroll-Up Spin & Zoom-Out Portrait Physics --- */
+/* --- Minimal & Clean 3D Scroll-Up Spin & Zoom-Out Portrait Physics --- */
 .perspective-container {
   perspective: 1200px;
   transform-style: preserve-3d;
@@ -641,19 +641,30 @@ body {
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 #portrait-card.is-spinning-up {
-  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95),
-              0 0 50px rgba(16, 185, 129, 0.5),
-              0 0 70px rgba(99, 102, 241, 0.4);
-  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95),
+              0 0 35px rgba(255, 255, 255, 0.1),
+              0 0 20px rgba(161, 161, 170, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 #portrait-backglow {
   will-change: opacity, transform;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Flow Art / Story Scroll Pinning & 3D Layering */
+[data-flow-section] {
+  position: relative;
+  width: 100%;
+}
+
+.flow-art-container {
+  will-change: transform;
+  transform-origin: bottom left;
 }
 
 /* Floating Navbar Scrolled Elevation */

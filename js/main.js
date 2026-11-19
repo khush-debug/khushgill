@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. PHOTO 3D TILT & CRAZY SCROLL-UP SPIN + ZOOM-OUT PHYSICS
+  // 3. PHOTO 3D TILT & MINIMAL CLEAN SCROLL-UP SPIN + ZOOM-OUT PHYSICS
   // ==========================================
   const portraitCard = document.getElementById('portrait-card');
   const portraitBackglow = document.getElementById('portrait-backglow');
@@ -137,12 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let mouseTiltY = 0;
   let lastScrollY = window.scrollY || document.documentElement.scrollTop;
 
-  // Track upward scroll to trigger 3D spin and zoom out
+  // Track upward scroll to trigger minimal, clean 3D spin and zoom out
   const triggerScrollUpSpin = (velocity) => {
-    const clampedVelocity = Math.min(80, Math.max(6, velocity));
-    spinTorque += clampedVelocity * 1.5;
-    // Zoom out: shrinks proportionally to upward scroll speed
-    photoScale = Math.max(0.68, photoScale - (clampedVelocity * 0.007));
+    // Subtle, elegant velocity clamp
+    const clampedVelocity = Math.min(25, Math.max(2, velocity));
+    // Minimal spin torque: subtle micro-rotation (up to ~10-14 degrees max)
+    spinTorque = Math.min(6, spinTorque + clampedVelocity * 0.22);
+    // Minimal clean zoom out: slight scale down to ~0.95 (effortless & non-distracting)
+    photoScale = Math.max(0.95, photoScale - (clampedVelocity * 0.0018));
     
     if (portraitCard) {
       portraitCard.classList.add('is-spinning-up');
@@ -152,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wheel detection (immediate response on trackpad / mousewheel scroll up)
   window.addEventListener('wheel', (e) => {
     if (e.deltaY < -2) {
-      triggerScrollUpSpin(Math.abs(e.deltaY) * 0.45);
+      triggerScrollUpSpin(Math.abs(e.deltaY) * 0.25);
     }
   }, { passive: true });
 
@@ -161,55 +163,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentScrollY = window.scrollY || document.documentElement.scrollTop;
     const deltaY = currentScrollY - lastScrollY;
     if (deltaY < -2) {
-      triggerScrollUpSpin(Math.abs(deltaY));
+      triggerScrollUpSpin(Math.abs(deltaY) * 0.5);
     }
     lastScrollY = currentScrollY;
   }, { passive: true });
 
-  // Physics animation loop for smooth spin deceleration and spring recovery
+  // Physics animation loop for smooth deceleration and spring recovery
   function updatePortraitPhysics() {
     if (portraitCard) {
-      if (spinTorque > 0.1 || Math.abs(photoScale - 1.0) > 0.002 || Math.abs(spinAngleY % 360) > 0.5) {
-        // Accumulate spin rotation
+      if (spinTorque > 0.05 || Math.abs(photoScale - 1.0) > 0.001 || Math.abs(spinAngleY) > 0.15) {
+        // Accumulate subtle spin rotation
         spinAngleY += spinTorque;
-        // Friction dampening
-        spinTorque *= 0.91;
-        // Spring scale back to 1.0
-        photoScale += (1.0 - photoScale) * 0.08;
+        // Smooth deceleration friction
+        spinTorque *= 0.88;
+        // Spring scale smoothly back to 1.0
+        photoScale += (1.0 - photoScale) * 0.09;
 
-        // When slowing down, smoothly settle spin angle back to 0
-        if (spinTorque < 0.3) {
-          const remainder = spinAngleY % 360;
-          if (Math.abs(remainder) > 0.5) {
-            spinAngleY -= remainder * 0.15;
-          } else {
+        // Smoothly settle spin angle cleanly back to 0
+        if (spinTorque < 0.1) {
+          spinAngleY += (0 - spinAngleY) * 0.14;
+          if (Math.abs(spinAngleY) < 0.2) {
             spinAngleY = 0;
             spinTorque = 0;
             if (portraitCard) portraitCard.classList.remove('is-spinning-up');
           }
         }
 
-        portraitCard.style.transform = `perspective(1000px) rotateY(${spinAngleY.toFixed(1)}deg) rotateZ(${(spinAngleY * 0.04).toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
+        portraitCard.style.transform = `perspective(1000px) rotateY(${spinAngleY.toFixed(1)}deg) rotateZ(${(spinAngleY * 0.03).toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
 
         if (portraitBackglow) {
-          const glowOpacity = Math.min(0.85, 0.25 + (spinTorque * 0.025));
-          const glowScale = Math.min(1.25, 1.0 + (1.0 - photoScale) * 0.85);
+          const glowOpacity = Math.min(0.7, 0.4 + (spinTorque * 0.03));
           portraitBackglow.style.opacity = glowOpacity.toFixed(2);
-          portraitBackglow.style.transform = `scale(${glowScale.toFixed(2)})`;
         }
       } else if (isMouseOverPortrait) {
         // Interactive 3D mouse tilt while hovering at rest
         portraitCard.style.transform = `perspective(1000px) rotateX(${mouseTiltX.toFixed(1)}deg) rotateY(${mouseTiltY.toFixed(1)}deg) scale(1.02)`;
         if (portraitBackglow) {
-          portraitBackglow.style.opacity = '0.5';
-          portraitBackglow.style.transform = 'scale(1.04)';
+          portraitBackglow.style.opacity = '0.6';
         }
       } else {
         // Resting neutral state
         portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
         if (portraitBackglow) {
-          portraitBackglow.style.opacity = '0.25';
-          portraitBackglow.style.transform = 'scale(1)';
+          portraitBackglow.style.opacity = '0.45';
         }
       }
     }
@@ -818,5 +814,60 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.querySelectorAll('.reveal:not(.is-visible)').forEach(makeVisible);
   }, 1000);
+
+
+  // ==========================================
+  // 13. FLOW ART / STORY SCROLL SYSTEM (GSAP ScrollTrigger)
+  // Applied to all sections EXCEPT Experience (#experience)
+  // ==========================================
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    try {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.innerWidth < 768;
+
+      if (!prefersReducedMotion && !isMobile) {
+        const flowSections = Array.from(
+          document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
+        );
+
+        flowSections.forEach((section, i) => {
+          section.style.zIndex = i + 1;
+          const inner = section.querySelector('.flow-art-container');
+          if (!inner) return;
+
+          if (i > 0) {
+            gsap.set(inner, { rotation: 16, transformOrigin: 'bottom left' });
+            gsap.to(inner, {
+              rotation: 0,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'top 20%',
+                scrub: 0.8,
+              },
+            });
+          }
+
+          // Pin sections during transition (except Experience which flows uninterrupted)
+          if (i < flowSections.length - 1) {
+            ScrollTrigger.create({
+              trigger: section,
+              start: 'bottom bottom',
+              end: 'bottom top',
+              pin: true,
+              pinSpacing: false,
+            });
+          }
+        });
+
+        ScrollTrigger.refresh();
+      }
+    } catch (err) {
+      console.warn('FlowArt ScrollTrigger suppressed:', err);
+    }
+  }
 
 });
