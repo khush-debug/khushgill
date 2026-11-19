@@ -427,25 +427,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
   // 10. SCROLL-DRIVEN ANIMATIONS & BI-DIRECTIONAL REVEAL SYSTEM
-  // Amplified 10x: Dramatic 3D momentum, flowing levitation,
-  // and real-time morphing wavy-to-normal headline stroke
+  // ==========================================
+  // 10. SCROLL-DRIVEN ANIMATIONS & REVEAL SYSTEM
+  // Buttery smooth, fast and snappy, zero lag, no black screen glitches
   // ==========================================
   const scrollProgressBar = document.getElementById('scroll-progress');
   const mainHeader = document.querySelector('header');
   const parallaxCards = document.querySelectorAll('.folder-card, .stack-card, .milestone-card');
   const expSection = document.getElementById('experience');
-  const headlineMorphWave = document.getElementById('headline-morph-wave');
   const expTimelinePath = document.getElementById('experience-timeline-path');
   const orb1 = document.getElementById('ambient-orb-1');
   const orb2 = document.getElementById('ambient-orb-2');
   let ticking = false;
 
-  // Real-time continuous scroll physics loop
+  // Real-time continuous scroll physics loop (lightweight & 120fps optimized)
   const onScrollFrame = () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const vh = window.innerHeight;
-    const vCenter = vh / 2;
+    const vCenter = vh * 0.5;
 
     // 1. Top Progress Bar
     if (scrollProgressBar) {
@@ -455,39 +455,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Header backdrop elevation
     if (mainHeader) {
-      if (scrollTop > 40) {
+      if (scrollTop > 30) {
         mainHeader.classList.add('is-scrolled');
       } else {
         mainHeader.classList.remove('is-scrolled');
       }
     }
 
-    // 3. Ambient Flowing Background Orbs
+    // 3. Ambient Flowing Background Orbs (soft, GPU-accelerated drift)
     if (orb1) {
-      orb1.style.transform = `translate3d(${scrollTop * 0.08}px, ${scrollTop * 0.18}px, 0)`;
+      orb1.style.transform = `translate3d(${scrollTop * 0.04}px, ${scrollTop * 0.08}px, 0)`;
     }
     if (orb2) {
-      orb2.style.transform = `translate3d(${-scrollTop * 0.06}px, ${-scrollTop * 0.14}px, 0)`;
+      orb2.style.transform = `translate3d(${-scrollTop * 0.03}px, ${-scrollTop * 0.06}px, 0)`;
     }
 
-    // 4. 10x Dramatic 3D Spatial Parallax & Tilt on Cards
+    // 4. Subtle, buttery smooth floating depth on cards (optimized for laptop trackpads)
     parallaxCards.forEach(card => {
       const rect = card.getBoundingClientRect();
-      if (rect.bottom > -150 && rect.top < vh + 150) {
-        const cardCenter = rect.top + rect.height / 2;
-        const normalized = (cardCenter - vCenter) / vCenter; // -1 to +1
+      if (rect.bottom > 0 && rect.top < vh) {
+        const normalized = (rect.top + rect.height * 0.5 - vCenter) / vCenter;
         const clamped = Math.max(-1, Math.min(1, normalized));
-        
-        // 10x more dramatic 3D tilt and floating depth
-        const rotateX = clamped * -11; // Dramatic tilt towards viewer
-        const translateY = clamped * 26; // Fluid floating momentum
-        const scale = 1 + (1 - Math.abs(clamped)) * 0.038; // Breaths into center focus
-        const sheenY = 50 + (clamped * 45); // Dynamic specular lighting
-
-        card.style.setProperty('--scroll-rx', `${rotateX.toFixed(2)}deg`);
-        card.style.setProperty('--scroll-ty', `${translateY.toFixed(1)}px`);
-        card.style.setProperty('--scroll-scale', `${scale.toFixed(3)}`);
-        card.style.setProperty('--sheen-y', `${sheenY.toFixed(1)}%`);
+        const translateY = clamped * 6; // feather-light 6px glide
+        card.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
       }
     });
 
@@ -498,10 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const p = Math.min(1, Math.max(0, rawProgress));
 
       // Continuous morphing wavy-to-normal line on scroll:
-      // Starts 3x bold (7.5px) and deeply wavy; flattens into normal (2.5px) trajectory curve
+      // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
       if (expTimelinePath) {
-        const extraWave = (1 - p) * 45; // Wavy to normal
-        const tlStroke = 2.5 + (1 - p) * 5.0; // 7.5px bold down to 2.5px normal
+        const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
+        const tlStroke = 2.5 + (1 - p) * 2.5; // Smooth stroke transition
         const yC1 = 110 + extraWave;
         const yC2 = 20 - extraWave;
         const yC3 = 100 + extraWave;
@@ -509,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
 
         expTimelinePath.setAttribute('d', tlPathD);
-        expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(2));
+        expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
       }
 
       // Automatically advance active milestone (0 -> 1 -> 2 -> 3) based on which card is being viewed
@@ -534,26 +524,37 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleScroll, { passive: true });
   onScrollFrame();
 
-  // Bi-directional IntersectionObserver (triggers enter when in view, resets when out)
+  // Rock-solid Reveal System: Elements animate in quickly and STAY visible (never glitched or blank)
   const revealElements = document.querySelectorAll('.reveal, .node-pulse');
+
+  // Immediately mark anything already in or near viewport as visible
+  const initialVh = window.innerHeight;
+  revealElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < initialVh * 1.15) {
+      el.classList.add('is-visible');
+    }
+  });
 
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-        } else {
-          // Reset when element leaves the viewport so scrolling back re-triggers fluidly
-          entry.target.classList.remove('is-visible');
+          revealObserver.unobserve(entry.target); // Once revealed, stays rock-solid visible!
         }
       });
     }, {
       root: null,
-      rootMargin: '20px 0px 20px 0px',
-      threshold: 0.08
+      rootMargin: '80px 0px 80px 0px',
+      threshold: 0.02
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach(el => {
+      if (!el.classList.contains('is-visible')) {
+        revealObserver.observe(el);
+      }
+    });
   } else {
     // Graceful fallback for older environments
     revealElements.forEach(el => el.classList.add('is-visible'));
