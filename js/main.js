@@ -491,35 +491,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 5. Experience Section: 3x Bolder Wavy Line morphing to Normal Clean Curve on Scroll
-    if (expSection) {
+    // 5. Experience Section: Line animated while scrolling/viewing/selecting on the folders below
+    if (expSection && !isUserInteracting) {
       const rect = expSection.getBoundingClientRect();
-      // Progress: 0 when entering viewport, 1 when headline is centered/past top
-      const rawProgress = (vh - rect.top) / (vh * 0.85);
+      const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
       const p = Math.min(1, Math.max(0, rawProgress));
 
-      // A) Headline Morphing Wave:
-      // Starts 3x bolder (8px) and deeply wavy; morphs to normal (2.5px) and smooth baseline on scroll
-      if (headlineMorphWave) {
-        // Amplitude: 24px deep wave at p=0, drops to 0px (smooth/normal) at p=1
-        const waveAmp = (1 - p) * 24;
-        // Stroke: starts at 8px (3.2x normal bold), drops to 2.5px normal
-        const strokeW = 2.5 + (1 - p) * 5.5;
-
-        const y1 = 20 - waveAmp;
-        const d = `M 0 20 Q 40 ${y1.toFixed(1)}, 80 20 T 160 20 T 240 20 T 320 20`;
-        headlineMorphWave.setAttribute('d', d);
-        headlineMorphWave.setAttribute('stroke-width', strokeW.toFixed(2));
-      }
-
-      // B) Trajectory Timeline Path:
-      // Starts 3x bold (7.5px) with exaggerated deep undulating peaks; morphs to normal 2.5px curve
+      // Continuous morphing wavy-to-normal line on scroll:
+      // Starts 3x bold (7.5px) and deeply wavy; flattens into normal (2.5px) trajectory curve
       if (expTimelinePath) {
-        const timelineProgress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * 0.65)));
-        const strokeOffset = 1200 * (1 - timelineProgress);
+        const extraWave = (1 - p) * 45; // Wavy to normal
         const tlStroke = 2.5 + (1 - p) * 5.0; // 7.5px bold down to 2.5px normal
-
-        const extraWave = (1 - p) * 45; // Deep exaggerated wave flattening to normal
         const yC1 = 110 + extraWave;
         const yC2 = 20 - extraWave;
         const yC3 = 100 + extraWave;
@@ -528,7 +510,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         expTimelinePath.setAttribute('d', tlPathD);
         expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(2));
-        expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+      }
+
+      // Automatically advance active milestone (0 -> 1 -> 2 -> 3) based on which card is being viewed
+      if (p > 0.08) {
+        const activeIdx = Math.min(3, Math.max(0, Math.floor((p - 0.08) / 0.22)));
+        if (activeIdx !== currentActiveMilestone) {
+          setTimelineActiveMilestone(activeIdx, false);
+        }
       }
     }
 
@@ -569,5 +558,124 @@ document.addEventListener('DOMContentLoaded', () => {
     // Graceful fallback for older environments
     revealElements.forEach(el => el.classList.add('is-visible'));
   }
+
+
+  // ==========================================
+  // 11. TIMELINE LINE ANIMATION WHILE SCROLLING / VIEWING / SELECTING FOLDERS
+  // ==========================================
+  const milestoneCards = document.querySelectorAll('.milestone-card');
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  const timelineTracer = document.getElementById('timeline-tracer');
+  const timelineTracerHalo = document.getElementById('timeline-tracer-halo');
+
+  const nodePositions = [
+    { x: 50, y: 60, progress: 0.08 },
+    { x: 340, y: 38, progress: 0.38 },
+    { x: 600, y: 82, progress: 0.68 },
+    { x: 950, y: 60, progress: 1.0 }
+  ];
+
+  let currentActiveMilestone = 0;
+  let isUserInteracting = false;
+  let userInteractionTimeout = null;
+
+  function setTimelineActiveMilestone(index, sound = true) {
+    if (index < 0 || index >= nodePositions.length) return;
+    currentActiveMilestone = index;
+    const target = nodePositions[index];
+
+    // Move glowing tracer orb along SVG curve
+    if (timelineTracer) {
+      timelineTracer.setAttribute('cx', target.x);
+      timelineTracer.setAttribute('cy', target.y);
+      timelineTracer.classList.remove('opacity-0');
+      timelineTracer.classList.add('opacity-100');
+    }
+    if (timelineTracerHalo) {
+      timelineTracerHalo.setAttribute('cx', target.x);
+      timelineTracerHalo.setAttribute('cy', target.y);
+      timelineTracerHalo.classList.remove('opacity-0');
+      timelineTracerHalo.classList.add('opacity-30');
+    }
+
+    // Animate glowing line progress to that node
+    if (expTimelinePath) {
+      const totalLength = expTimelinePath.getTotalLength ? expTimelinePath.getTotalLength() : 1000;
+      const strokeOffset = totalLength * (1 - target.progress);
+      expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+    }
+
+    // Update active node in SVG
+    timelineNodes.forEach((node, i) => {
+      if (i === index) {
+        node.classList.add('is-active');
+      } else {
+        node.classList.remove('is-active');
+      }
+    });
+
+    // Update active card below
+    milestoneCards.forEach((card, i) => {
+      if (i === index) {
+        card.classList.add('is-active-milestone');
+      } else {
+        card.classList.remove('is-active-milestone');
+      }
+    });
+
+    if (sound && typeof playClickSound === 'function') {
+      playClickSound(480 + index * 120, 'triangle');
+    }
+  }
+
+  // Bind hover and click interactions on milestone cards/folders below
+  milestoneCards.forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      isUserInteracting = true;
+      clearTimeout(userInteractionTimeout);
+      setTimelineActiveMilestone(index, true);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      clearTimeout(userInteractionTimeout);
+      userInteractionTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, 1800);
+    });
+
+    card.addEventListener('click', () => {
+      isUserInteracting = true;
+      clearTimeout(userInteractionTimeout);
+      setTimelineActiveMilestone(index, true);
+      userInteractionTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, 3500);
+    });
+  });
+
+  // Bind hover and click interactions directly on the SVG timeline nodes
+  timelineNodes.forEach((node, index) => {
+    node.addEventListener('mouseenter', () => {
+      isUserInteracting = true;
+      clearTimeout(userInteractionTimeout);
+      setTimelineActiveMilestone(index, true);
+    });
+
+    node.addEventListener('mouseleave', () => {
+      clearTimeout(userInteractionTimeout);
+      userInteractionTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, 1800);
+    });
+
+    node.addEventListener('click', () => {
+      isUserInteracting = true;
+      clearTimeout(userInteractionTimeout);
+      setTimelineActiveMilestone(index, true);
+    });
+  });
+
+  // Default active milestone on initial load
+  setTimelineActiveMilestone(0, false);
 
 });
