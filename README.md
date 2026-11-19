@@ -60,4 +60,4 @@ git add .
 git commit -m "feat: portfolio release"
 git push origin main
 ```
-Then connect your repository `khush-debug/Khushman-Gill` on [vercel.com](https://vercel.com) for instant global deployment.
+Then connect your repository `khush-debug/khushgill` on [vercel.com](https://vercel.com) for instant global deployment.
