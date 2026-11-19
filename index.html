@@ -35,10 +35,10 @@
             mono: ['"JetBrains Mono"', 'monospace']
           },
           maxWidth: {
-            '7xl': '1800px',
-            'screen-2xl': '1800px',
-            'screen-3xl': '1920px',
-            'wide': '1920px'
+            '7xl': '1720px',
+            'screen-2xl': '1720px',
+            'screen-3xl': '1880px',
+            'wide': '1720px'
           }
         }
       }
@@ -57,15 +57,15 @@
   <!-- Sleek Top Scroll Progress Indicator -->
   <div id="scroll-progress"></div>
 
-  <!-- Ambient Background Spotlight (Desktop only for max mobile 120fps smoothness) -->
-  <div id="ambient-spotlight" class="hidden md:block pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
+  <!-- Ambient Background Spotlight -->
+  <div id="ambient-spotlight" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
 
-  <!-- Floating Atmospheric Flowing Ambient Orbs (Desktop only for GPU efficiency) -->
-  <div id="ambient-orb-1" class="hidden md:block pointer-events-none fixed -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-transparent blur-[120px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
-  <div id="ambient-orb-2" class="hidden md:block pointer-events-none fixed top-1/2 -right-40 w-[650px] h-[650px] rounded-full bg-gradient-to-tl from-purple-600/10 via-zinc-400/5 to-transparent blur-[140px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
+  <!-- Floating Atmospheric Flowing Ambient Orbs (10x Dramatic Depth) -->
+  <div id="ambient-orb-1" class="pointer-events-none fixed -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-transparent blur-[120px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
+  <div id="ambient-orb-2" class="pointer-events-none fixed top-1/2 -right-40 w-[650px] h-[650px] rounded-full bg-gradient-to-tl from-purple-600/10 via-zinc-400/5 to-transparent blur-[140px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
 
-  <!-- Noise Overlay for Cinematic Texture (Desktop only) -->
-  <div class="hidden md:block fixed inset-0 pointer-events-none z-10 opacity-[0.035] bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <!-- Noise Overlay for Cinematic Texture -->
+  <div class="fixed inset-0 pointer-events-none z-10 opacity-[0.035] bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
   <!-- FLOATING PILL NAVBAR -->
   <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl">
@@ -140,11 +140,11 @@
   <main class="relative z-20">
 
     <!-- ==================== HERO SECTION (Matching 00:00 - 00:10 of Reference Video) ==================== -->
-    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-20 sm:pt-24 pb-6 md:pb-8 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto overflow-hidden">
+    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-24 pb-8 md:pb-12 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden lg:min-h-[88vh]">
       <div data-flow-inner class="flow-art-container w-full h-full flex flex-col justify-between">
       
       <!-- Top Decorative Monospace Brackets / Metadata (Frame 00:01) -->
-      <div class="reveal reveal-fade flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-2 sm:pt-4 select-none">
+      <div class="reveal reveal-fade flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-4 select-none">
         <div class="flex items-center gap-2">
           <span class="text-zinc-300 font-bold">©2026</span>
           <span class="text-zinc-600">/</span>
@@ -156,7 +156,7 @@
       </div>
 
       <!-- Hero Centerpiece: Giant Kinetic Scramble Headline (Frame 00:02 - 00:06) -->
-      <div class="reveal reveal-scale hero-headline-container my-auto py-4 md:py-6 text-center select-none">
+      <div class="reveal reveal-scale hero-headline-container my-auto py-6 md:py-8 text-center select-none">
         <div class="hero-headline-row gap-2 sm:gap-3 md:gap-4">
           <span class="hero-bracket">&lt;</span>
           <h1 id="scramble-heading" class="uppercase drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
@@ -170,7 +170,7 @@
       </div>
 
       <!-- Asymmetrical 3-Column Profile Section (Frame 00:08 - 00:10) -->
-      <div id="about" class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 xl:gap-10 items-center pt-6 md:pt-8 border-t border-white/10">
+      <div id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center pt-6 md:pt-10 border-t border-white/10">
         
         <!-- Column 1: Left Bio & Current Focus -->
         <div class="reveal reveal-left md:col-span-4 flex flex-col justify-between space-y-6">
@@ -372,11 +372,11 @@
     </section>
 
     <!-- ==================== TECH STACK & COMPETENCY BENTO (Matching 00:11 - 00:12) ==================== -->
-    <section id="stack" data-flow-section class="relative w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 md:py-5 overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full px-5 py-7 sm:px-8 sm:py-9 md:px-10 md:py-10 lg:px-12 lg:py-12">
+    <section id="stack" data-flow-section class="pt-1 pb-14 md:pb-20 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Section Header -->
-      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 01 • CAPABILITIES</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Tech Stack & Expertise</h2>
@@ -526,11 +526,11 @@
     </section>
 
     <!-- ==================== FEATURED PROJECTS (Matching 00:13 - 00:15 - macOS Physical Folder Cards) ==================== -->
-    <section id="projects" data-flow-section class="relative w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 md:py-5 overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full px-5 py-7 sm:px-8 sm:py-9 md:px-10 md:py-10 lg:px-12 lg:py-12">
+    <section id="projects" data-flow-section class="pt-1 pb-14 md:pb-20 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Section Header -->
-      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 02 • WORK & CASE STUDIES</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Featured Projects</h2>
@@ -743,7 +743,7 @@
     </section>
 
     <!-- ==================== EXPERIENCE & MILESTONES (Matching 00:16 - Curved Bezier Timeline) ==================== -->
-    <section id="experience" class="relative w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-10 md:py-14 border-t border-white/10">
+    <section id="experience" class="py-12 md:py-20 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto border-t border-white/10">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4">
@@ -956,8 +956,8 @@
     </section>
 
     <!-- ==================== FOOTER & "SEE YOU AROUND" (Matching 00:17 - 00:18) ==================== -->
-    <footer id="contact" data-flow-section class="relative w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-3 pb-10 overflow-hidden bg-black">
-      <div data-flow-inner class="flow-art-container w-full px-5 py-7 sm:px-8 sm:py-9 md:px-10 md:py-10 lg:px-12 lg:py-12">
+    <footer id="contact" data-flow-section class="relative pt-1 pb-12 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden bg-black">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Faded Giant Watermark Typography in Background: "KHUSHMAN" -->
       <div class="reveal reveal-fade absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">

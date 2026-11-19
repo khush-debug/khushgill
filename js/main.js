@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!scrambleHeading) return;
     let iteration = 0;
     const interval = setInterval(() => {
-      scrambleHeading.textContent = targetText
+      scrambleHeading.innerText = targetText
         .split('')
         .map((letter, idx) => {
           if (idx < iteration) {
@@ -148,16 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetAngleY = null;     // Programmatic flip target (e.g. 180deg or 0deg)
   let lastUserInteractionTime = performance.now(); // Idle timer for auto-resetting to normal
 
-  let isPhysicsRunning = false;
-
-  // Wake physics loop on-demand; auto-sleeps when settled to save 100% idle CPU/GPU on mobile
-  const wakePortraitPhysics = () => {
-    if (!isPhysicsRunning && portraitCard) {
-      isPhysicsRunning = true;
-      requestAnimationFrame(updatePortraitPhysics);
-    }
-  };
-
   // Track upward scroll to trigger subtle spin torque
   const triggerScrollUpSpin = (velocity) => {
     if (isDragging || targetAngleY !== null) return;
@@ -165,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const clampedVelocity = Math.min(16, Math.max(2, velocity));
     spinVelocityY = Math.min(10, spinVelocityY + clampedVelocity * 0.3);
     photoScale = Math.max(0.96, photoScale - (clampedVelocity * 0.0015));
-    wakePortraitPhysics();
   };
 
   // Scroll / Wheel detection (works with momentum scroll)
@@ -190,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
       hasDragged = false;
       targetAngleY = null;
       spinVelocityY = 0;
-      wakePortraitPhysics();
     }, { passive: true });
 
     portraitScene.addEventListener('touchmove', (e) => {
@@ -217,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         lastDragX = touch.clientX;
         lastDragTime = now;
-        wakePortraitPhysics();
       }
     }, { passive: false });
 
@@ -229,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (portraitCard && Math.abs(spinVelocityY) > 2) {
         portraitCard.classList.add('is-spinning-up');
       }
-      wakePortraitPhysics();
     }, { passive: true });
 
     // Trackpad / Mouse Drag manual spinning on Laptop & PC
@@ -247,7 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
       targetAngleY = null;
       spinVelocityY = 0;
       portraitScene.classList.add('is-dragging');
-      wakePortraitPhysics();
     });
 
     window.addEventListener('mousemove', (e) => {
@@ -273,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       lastDragX = e.clientX;
       lastDragTime = now;
-      wakePortraitPhysics();
     });
 
     window.addEventListener('mouseup', () => {
@@ -282,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lastUserInteractionTime = performance.now();
         spinVelocityY = Math.max(-14, Math.min(14, spinVelocityY));
         portraitScene.classList.remove('is-dragging');
-        wakePortraitPhysics();
       }
     });
 
@@ -293,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAngleY += e.deltaX * 0.35;
         spinVelocityY = Math.max(-12, Math.min(12, e.deltaX * 0.2));
         targetAngleY = null;
-        wakePortraitPhysics();
       }
     }, { passive: true });
   }
@@ -308,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
       targetAngleY = nearestBase + 180;
       spinVelocityY = 0;
       if (typeof playClickSound === 'function') playClickSound(880, 'triangle');
-      wakePortraitPhysics();
     });
   }
 
@@ -321,111 +302,96 @@ document.addEventListener('DOMContentLoaded', () => {
       targetAngleY = nearestBase;
       spinVelocityY = 0;
       if (typeof playClickSound === 'function') playClickSound(660, 'sine');
-      wakePortraitPhysics();
     });
   }
 
   // Unified 3D Physics Animation Loop: Butter-smooth motion & auto-return to normal when idle
   function updatePortraitPhysics() {
-    if (!portraitCard) {
-      isPhysicsRunning = false;
-      return;
-    }
+    if (portraitCard) {
+      const now = performance.now();
+      const idleElapsed = now - lastUserInteractionTime;
 
-    const now = performance.now();
-    const idleElapsed = now - lastUserInteractionTime;
-
-    // 1. Programmatic Flip interpolation (when button clicked)
-    if (targetAngleY !== null) {
-      const diff = targetAngleY - currentAngleY;
-      currentAngleY += diff * 0.12;
-      currentAngleX *= 0.88;
-      if (Math.abs(diff) < 0.15) {
-        currentAngleY = targetAngleY;
-        targetAngleY = null;
-      }
-    } 
-    // 2. Momentum & Inertia Decay (when user flicked / spinned card)
-    else if (!isDragging && !isTouchActive) {
-      if (Math.abs(spinVelocityY) > 0.02) {
-        currentAngleY += spinVelocityY;
-        spinVelocityY *= 0.89; // Smooth, premium friction
-        if (Math.abs(spinVelocityY) < 0.03) {
-          spinVelocityY = 0;
-          portraitCard.classList.remove('is-spinning-up');
+      // 1. Programmatic Flip interpolation (when button clicked)
+      if (targetAngleY !== null) {
+        const diff = targetAngleY - currentAngleY;
+        currentAngleY += diff * 0.12;
+        currentAngleX *= 0.88;
+        if (Math.abs(diff) < 0.15) {
+          currentAngleY = targetAngleY;
+          targetAngleY = null;
         }
-      }
+      } 
+      // 2. Momentum & Inertia Decay (when user flicked / spinned card)
+      else if (!isDragging && !isTouchActive) {
+        if (Math.abs(spinVelocityY) > 0.02) {
+          currentAngleY += spinVelocityY;
+          spinVelocityY *= 0.89; // Smooth, premium friction
+          if (Math.abs(spinVelocityY) < 0.03) {
+            spinVelocityY = 0;
+            if (portraitCard) portraitCard.classList.remove('is-spinning-up');
+          }
+        }
 
-      // 3. AUTO-RETURN TO NORMAL WHEN IDLE:
-      if (Math.abs(spinVelocityY) < 0.05 && idleElapsed > 1300) {
-        const normalizedAngle = ((currentAngleY % 360) + 360) % 360;
-        const isViewingBack = normalizedAngle > 80 && normalizedAngle < 280;
+        // 3. AUTO-RETURN TO NORMAL WHEN IDLE:
+        // Automatically and smoothly returns card to upright front-facing portrait
+        // when nobody is interacting with it.
+        if (Math.abs(spinVelocityY) < 0.05 && idleElapsed > 1300) {
+          // Check if user is currently viewing the back face (between 80 and 280 deg mod 360)
+          const normalizedAngle = ((currentAngleY % 360) + 360) % 360;
+          const isViewingBack = normalizedAngle > 80 && normalizedAngle < 280;
 
-        if (!isViewingBack || idleElapsed > 4500) {
-          const targetNormal = Math.round(currentAngleY / 360) * 360;
-          const diffNormal = targetNormal - currentAngleY;
+          // If viewing back, give user 4.5 seconds to view/click socials, then smoothly return to front
+          if (!isViewingBack || idleElapsed > 4500) {
+            // Target normal upright front face (nearest multiple of 360)
+            const targetNormal = Math.round(currentAngleY / 360) * 360;
+            const diffNormal = targetNormal - currentAngleY;
 
-          currentAngleY += diffNormal * 0.055;
-          currentAngleX += (0 - currentAngleX) * 0.07;
+            // Gentle, buttery smooth spring to normal
+            currentAngleY += diffNormal * 0.055;
+            currentAngleX += (0 - currentAngleX) * 0.07;
 
-          if (Math.abs(diffNormal) < 0.05 && Math.abs(currentAngleX) < 0.05) {
-            currentAngleY = 0; // Reset to perfect 0
-            currentAngleX = 0;
+            // Clean snap when settled
+            if (Math.abs(diffNormal) < 0.05 && Math.abs(currentAngleX) < 0.05) {
+              currentAngleY = 0; // Reset to perfect 0
+              currentAngleX = 0;
+            }
+          } else {
+            // Smoothly align to clean 180-deg back face while viewing
+            const targetBack = Math.floor(currentAngleY / 360) * 360 + 180;
+            const diffBack = targetBack - currentAngleY;
+            currentAngleY += diffBack * 0.06;
+            currentAngleX += (0 - currentAngleX) * 0.07;
           }
         } else {
-          const targetBack = Math.floor(currentAngleY / 360) * 360 + 180;
-          const diffBack = targetBack - currentAngleY;
-          currentAngleY += diffBack * 0.06;
-          currentAngleX += (0 - currentAngleX) * 0.07;
+          // Recover vertical tilt smoothly while decelerating
+          currentAngleX *= 0.88;
         }
-      } else {
-        currentAngleX *= 0.88;
+      }
+
+      // 4. Spring recovery for scale
+      photoScale += (1.0 - photoScale) * 0.08;
+
+      // 5. Apply 3D matrix transformation
+      portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY.toFixed(2)}deg) rotateX(${currentAngleX.toFixed(2)}deg) scale(${photoScale.toFixed(3)})`;
+
+      // 6. Dynamic Metallic Specular Reflection on Back Face
+      if (portraitReflection) {
+        const normalizedAngle = ((currentAngleY % 360 + 360) % 360);
+        const sheenAngle = 100 + (normalizedAngle * 0.45);
+        const sheenOpacity = Math.min(0.9, Math.max(0.4, 0.4 + Math.sin((normalizedAngle * Math.PI) / 180) * 0.4));
+        portraitReflection.style.background = `linear-gradient(${sheenAngle.toFixed(1)}deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.7) 48%, rgba(236,72,153,0.35) 62%, rgba(16,185,129,0.35) 78%, rgba(255,255,255,0) 100%)`;
+        portraitReflection.style.opacity = sheenOpacity.toFixed(2);
+      }
+
+      // 7. Backglow intensity tracks spin velocity & rotation
+      if (portraitBackglow) {
+        const glowOpacity = Math.min(0.85, 0.4 + (Math.abs(spinVelocityY) * 0.03));
+        portraitBackglow.style.opacity = glowOpacity.toFixed(2);
       }
     }
-
-    // 4. Spring recovery for scale
-    photoScale += (1.0 - photoScale) * 0.08;
-
-    // 5. Apply 3D matrix transformation
-    portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY.toFixed(2)}deg) rotateX(${currentAngleX.toFixed(2)}deg) scale(${photoScale.toFixed(3)})`;
-
-    // 6. Dynamic Metallic Specular Reflection on Back Face
-    if (portraitReflection) {
-      const normalizedAngle = ((currentAngleY % 360 + 360) % 360);
-      const sheenAngle = 100 + (normalizedAngle * 0.45);
-      const sheenOpacity = Math.min(0.9, Math.max(0.4, 0.4 + Math.sin((normalizedAngle * Math.PI) / 180) * 0.4));
-      portraitReflection.style.background = `linear-gradient(${sheenAngle.toFixed(1)}deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.7) 48%, rgba(236,72,153,0.35) 62%, rgba(16,185,129,0.35) 78%, rgba(255,255,255,0) 100%)`;
-      portraitReflection.style.opacity = sheenOpacity.toFixed(2);
-    }
-
-    // 7. Backglow intensity tracks spin velocity & rotation
-    if (portraitBackglow) {
-      const glowOpacity = Math.min(0.85, 0.4 + (Math.abs(spinVelocityY) * 0.03));
-      portraitBackglow.style.opacity = glowOpacity.toFixed(2);
-    }
-
-    // 8. SLEEP STATE CHECK: When settled and idle, stop RAF to save 100% idle CPU & GPU
-    const isAtRest = !isDragging && !isTouchActive && targetAngleY === null
-      && Math.abs(spinVelocityY) === 0
-      && Math.abs(currentAngleX) < 0.02
-      && Math.abs(photoScale - 1.0) < 0.005
-      && (Math.abs(currentAngleY % 360) < 0.05 || Math.abs((currentAngleY - 180) % 360) < 0.05)
-      && idleElapsed > 1400;
-
-    if (isAtRest) {
-      if (Math.abs(currentAngleY % 360) < 1) currentAngleY = 0;
-      currentAngleX = 0;
-      photoScale = 1.0;
-      portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY}deg) rotateX(0deg) scale(1)`;
-      isPhysicsRunning = false;
-      return; // SLEEP! No more frames scheduled until next user action!
-    }
-
     requestAnimationFrame(updatePortraitPhysics);
   }
-
-  // Wake on load to settle nicely into place, then sleep
-  wakePortraitPhysics();
+  requestAnimationFrame(updatePortraitPhysics);
 
 
   // ==========================================
@@ -657,21 +623,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 7. AMBIENT MOUSE SPOTLIGHT FOLLOWER (Desktop only, passive)
+  // 7. AMBIENT MOUSE SPOTLIGHT FOLLOWER
   // ==========================================
-  if (window.innerWidth >= 768) {
-    window.addEventListener('mousemove', (e) => {
-      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-    }, { passive: true });
-  }
+  window.addEventListener('mousemove', (e) => {
+    document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+    document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+  });
 
 
   // ==========================================
-  // 8. SCROLLSPY & FLOATING NAV ACTIVE STATE (Integrated into throttled RAF loop below)
+  // 8. SCROLLSPY & FLOATING NAV ACTIVE STATE
   // ==========================================
   const sections = document.querySelectorAll('section, footer');
   const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
 
 
   // ==========================================
@@ -870,38 +854,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 3. Ambient Flowing Background Orbs (Desktop only, soft GPU-accelerated drift)
-      if (window.innerWidth >= 768) {
-        if (orb1) orb1.style.transform = `translate3d(${scrollTop * 0.03}px, ${scrollTop * 0.05}px, 0)`;
-        if (orb2) orb2.style.transform = `translate3d(${-scrollTop * 0.02}px, ${-scrollTop * 0.04}px, 0)`;
+      // 3. Ambient Flowing Background Orbs (soft, GPU-accelerated drift)
+      if (orb1) {
+        orb1.style.transform = `translate3d(${scrollTop * 0.04}px, ${scrollTop * 0.08}px, 0)`;
+      }
+      if (orb2) {
+        orb2.style.transform = `translate3d(${-scrollTop * 0.03}px, ${-scrollTop * 0.06}px, 0)`;
       }
 
-      // 4. Throttled Scrollspy Active Nav Indicator
-      if (navLinks && navLinks.length > 0 && sections && sections.length > 0) {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 140;
-          const sectionHeight = section.clientHeight;
-          if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-          }
-        });
-        if (current) {
-          navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${current}`) {
-              link.classList.add('active');
-            } else {
-              link.classList.remove('active');
-            }
-          });
+      // 4. Subtle, buttery smooth floating depth on cards (optimized for laptop trackpads)
+      parallaxCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < vh) {
+          const normalized = (rect.top + rect.height * 0.5 - vCenter) / vCenter;
+          const clamped = Math.max(-1, Math.min(1, normalized));
+          const translateY = clamped * 6; // feather-light 6px glide
+          card.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
         }
-      }
+      });
 
-      // 5. Experience Section: Glowing Tracer & Neon Rail (Desktop & Mobile)
+      // 5. Experience Section: Line animated while scrolling/viewing/selecting (Desktop & Mobile)
       if (expSection && !isUserInteracting) {
         const rect = expSection.getBoundingClientRect();
         const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
         const p = Math.min(1, Math.max(0, rawProgress));
+
+        // Continuous morphing wavy-to-normal line on Desktop SVG:
+        // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
+        if (expTimelinePath) {
+          const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
+          const tlStroke = 2.5 + (1 - p) * 2.5; // Smooth stroke transition
+          const yC1 = 110 + extraWave;
+          const yC2 = 20 - extraWave;
+          const yC3 = 100 + extraWave;
+          const yC4 = 20 - extraWave;
+          const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
+
+          expTimelinePath.setAttribute('d', tlPathD);
+          expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
+        }
 
         // Animated Glowing Neon Progress Rail on Mobile:
         if (mobileTimelineBeam && window.innerWidth < 1024) {
@@ -995,18 +986,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 13. FLOW ART / STORY SCROLL SYSTEM (GSAP ScrollTrigger)
   // Applied to all sections EXCEPT Experience (#experience)
-  // Zero screen-shaking, buttery smooth physical card-sheet layering
+  // Zero screen-shaking, buttery smooth rotational scroll entrance
   // ==========================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     try {
       gsap.registerPlugin(ScrollTrigger);
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isMobile = window.innerWidth < 768;
 
-      // On Desktop/Laptop: execute buttery smooth card-deck scrub
-      // On Mobile: rely on native direct-to-GPU compositor scrolling with zero scrub lag!
-      if (!prefersReducedMotion && !isMobile) {
+      if (!prefersReducedMotion) {
+        const isMobile = window.innerWidth < 768;
+        const rotationAngle = isMobile ? 6 : 12;
+        const scrubRate = isMobile ? 0.35 : 0.6;
+
         const flowSections = Array.from(
           document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
         );
@@ -1017,27 +1009,21 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!inner) return;
 
           if (i > 0) {
-            gsap.set(inner, { 
-              rotation: 1.75, 
-              y: 28, 
-              transformOrigin: '50% 100%' 
-            });
+            gsap.set(inner, { rotation: rotationAngle, transformOrigin: 'bottom left' });
             gsap.to(inner, {
               rotation: 0,
-              y: 0,
-              ease: 'power2.out',
+              ease: 'power1.out',
               scrollTrigger: {
                 trigger: section,
-                start: 'top 95%',
-                end: 'top 25%',
-                scrub: 0.45,
+                start: 'top bottom',
+                end: isMobile ? 'top 10%' : 'top 15%',
+                scrub: scrubRate,
               },
             });
           }
         });
 
         ScrollTrigger.refresh();
-        window.addEventListener('load', () => ScrollTrigger.refresh());
       }
     } catch (err) {
       console.warn('FlowArt ScrollTrigger suppressed:', err);
