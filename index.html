@@ -33,6 +33,12 @@
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace']
+          },
+          maxWidth: {
+            '7xl': '1720px',
+            'screen-2xl': '1720px',
+            'screen-3xl': '1880px',
+            'wide': '1720px'
           }
         }
       }
@@ -62,7 +68,7 @@
   <div class="fixed inset-0 pointer-events-none z-10 opacity-[0.035] bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
   <!-- FLOATING PILL NAVBAR -->
-  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-4xl">
+  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl">
     <nav class="nav-glass flex items-center justify-between px-4 py-2.5 rounded-full border border-white/10 shadow-2xl backdrop-blur-xl bg-black/60 transition-all duration-300">
       
       <!-- Brand & Active Status -->
@@ -131,7 +137,7 @@
   <main class="relative z-20">
 
     <!-- ==================== HERO SECTION (Matching 00:00 - 00:10 of Reference Video) ==================== -->
-    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-24 pb-6 md:pb-8 px-6 max-w-7xl mx-auto overflow-hidden">
+    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-24 pb-8 md:pb-12 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden lg:min-h-[88vh]">
       <div data-flow-inner class="flow-art-container w-full h-full flex flex-col justify-between">
       
       <!-- Top Decorative Monospace Brackets / Metadata (Frame 00:01) -->
@@ -161,15 +167,15 @@
       </div>
 
       <!-- Asymmetrical 3-Column Profile Section (Frame 00:08 - 00:10) -->
-      <div id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-6 md:pt-8 border-t border-white/10">
+      <div id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center pt-6 md:pt-10 border-t border-white/10">
         
         <!-- Column 1: Left Bio & Current Focus -->
         <div class="reveal reveal-left md:col-span-4 flex flex-col justify-between space-y-6">
           <div>
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">Khushman.</span>
             </h2>
-            <p class="mt-2 text-sm text-zinc-400 leading-relaxed font-normal">
+            <p class="mt-3 text-sm lg:text-base text-zinc-400 leading-relaxed font-normal">
               Business strategist, technologist, and digital venture builder. Focused on engineering high-conversion platforms, scalable e-commerce systems, and applied AI workflows.
             </p>
           </div>
@@ -193,7 +199,7 @@
             <div id="portrait-backglow" class="absolute -inset-2 bg-gradient-to-br from-zinc-700 via-zinc-800 to-black rounded-3xl blur-2xl opacity-45 group-hover:opacity-75 transition duration-700"></div>
             
             <!-- Card Frame (Interactive 3D Spin & Zoom-Out on Scroll Up) -->
-            <div id="portrait-card" class="relative w-72 sm:w-80 h-[420px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl">
+            <div id="portrait-card" class="relative w-72 sm:w-80 lg:w-[340px] xl:w-[370px] 2xl:w-[400px] h-[420px] lg:h-[460px] xl:h-[490px] 2xl:h-[520px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl">
               <img id="user-headshot" src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover object-[center_18%] contrast-105 transition-all duration-700 group-hover:scale-105">
               
               <!-- Subtle Vignette & Sheen -->
@@ -223,10 +229,10 @@
         <!-- Column 3: Right Impact Statement & CTA Actions -->
         <div class="reveal reveal-right stagger-2 md:col-span-4 flex flex-col justify-between space-y-6">
           <div class="space-y-4">
-            <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight leading-snug">
+            <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight leading-snug">
               I build practical business solutions that turn complex ideas into high-margin reality.
             </h3>
-            <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            <p class="text-xs sm:text-sm lg:text-base text-zinc-400 leading-relaxed">
               Combining a disciplined commerce foundation, technical engineering execution, and creative visual mastery to build websites and ventures that deliver tangible revenue and prestige.
             </p>
           </div>
@@ -253,8 +259,8 @@
     </section>
 
     <!-- ==================== TECH STACK & COMPETENCY BENTO (Matching 00:11 - 00:12) ==================== -->
-    <section id="stack" data-flow-section class="pt-1 pb-14 md:pb-18 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-10">
+    <section id="stack" data-flow-section class="pt-1 pb-14 md:pb-20 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-4">
@@ -268,7 +274,7 @@
       </div>
 
       <!-- Bento Grid (Categorized Disciplines) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         
         <!-- Card 1: Web Development & Architecture -->
         <div class="stack-card reveal stagger-1 group">
@@ -407,8 +413,8 @@
     </section>
 
     <!-- ==================== FEATURED PROJECTS (Matching 00:13 - 00:15 - macOS Physical Folder Cards) ==================== -->
-    <section id="projects" data-flow-section class="pt-1 pb-14 md:pb-18 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-10">
+    <section id="projects" data-flow-section class="pt-1 pb-14 md:pb-20 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-4">
@@ -428,7 +434,7 @@
       </div>
 
       <!-- 4 Physical macOS Folder Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-4">
 
         <!-- FOLDER 1: Lally Computers (Flagship Live Production Website) -->
         <div class="folder-card reveal stagger-1 group" data-project="lally">
@@ -624,7 +630,7 @@
     </section>
 
     <!-- ==================== EXPERIENCE & MILESTONES (Matching 00:16 - Curved Bezier Timeline) ==================== -->
-    <section id="experience" class="py-12 md:py-16 px-6 max-w-7xl mx-auto border-t border-white/10">
+    <section id="experience" class="py-12 md:py-20 px-4 sm:px-8 lg:px-12 xl:px-16 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto border-t border-white/10">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-8 gap-4">
@@ -696,7 +702,7 @@
         </svg>
 
         <!-- Node Details Cards Placed Along Desktop Timeline -->
-        <div class="grid grid-cols-4 gap-6 mt-4">
+        <div class="grid grid-cols-4 gap-6 lg:gap-8 mt-4">
           
           <!-- Milestone 1 -->
           <div class="milestone-card reveal stagger-1 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all cursor-pointer group" data-milestone-index="0">
@@ -805,15 +811,15 @@
     </section>
 
     <!-- ==================== FOOTER & "SEE YOU AROUND" (Matching 00:17 - 00:18) ==================== -->
-    <footer id="contact" data-flow-section class="relative pt-1 pb-12 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden bg-black">
-      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-10">
+    <footer id="contact" data-flow-section class="relative pt-1 pb-12 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden bg-black">
+      <div data-flow-inner class="flow-art-container w-full p-6 sm:p-8 md:p-12 lg:p-14">
       
       <!-- Faded Giant Watermark Typography in Background: "KHUSHMAN" -->
       <div class="reveal reveal-fade absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">
         KHUSHMAN
       </div>
 
-      <div class="max-w-7xl mx-auto px-2 sm:px-4 relative z-10">
+      <div class="w-full relative z-10">
         
         <!-- Social Profiles Strip -->
         <div class="reveal flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4 text-xs font-mono">

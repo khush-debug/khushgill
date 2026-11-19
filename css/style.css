@@ -102,7 +102,7 @@ body {
 }
 
 #scramble-heading {
-  font-size: clamp(1.6rem, 5.2vw, 4.8rem);
+  font-size: clamp(1.6rem, 5.2vw, 5.8rem);
   line-height: 1.1;
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -120,7 +120,7 @@ body {
 .hero-bracket {
   font-family: monospace;
   font-weight: 300;
-  font-size: clamp(1.5rem, 4.2vw, 4rem);
+  font-size: clamp(1.5rem, 4.2vw, 4.8rem);
   line-height: 1;
   color: #52525b; /* zinc-600 */
   flex-shrink: 0;
@@ -507,11 +507,16 @@ body {
   to { opacity: 1; }
 }
 
-/* Fallback Tailwind Utility replacements if offline */
-.max-w-7xl { max-width: 80rem; }
-.max-w-4xl { max-width: 56rem; }
+/* Full-size Laptop & PC container utilities */
+.max-w-7xl { max-width: 1720px; width: 100%; }
+.max-w-wide { max-width: 1720px; width: 100%; }
+@media (min-width: 1536px) {
+  .max-w-7xl { max-width: 1880px; }
+  .max-w-wide { max-width: 1880px; }
+}
+.max-w-4xl { max-width: 64rem; }
 .max-w-md { max-width: 28rem; }
-.max-w-2xl { max-width: 42rem; }
+.max-w-2xl { max-width: 48rem; }
 
 /* ==========================================================================
    SCROLL REVEAL & BUTTERY MOTION SYSTEM
