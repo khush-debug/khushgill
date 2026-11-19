@@ -709,9 +709,9 @@ body {
   width: 100%;
 }
 
-/* Base separation border and elevated surface on flow sections (except hero which is top of page) */
+/* Base separation border and elevated surface on flow sections (compact modern breathing room) */
 [data-flow-section]:not(#hero) {
-  padding-top: 2.25rem;
+  padding-top: 0.5rem;
 }
 
 [data-flow-section]:not(#hero) .flow-art-container {
@@ -748,7 +748,7 @@ body {
 /* Mobile Optimizations: Fluid Card Borders & Full Touch Support */
 @media (max-width: 768px) {
   [data-flow-section]:not(#hero) {
-    padding-top: 1.25rem;
+    padding-top: 0.35rem;
   }
 
   [data-flow-section]:not(#hero) .flow-art-container {
