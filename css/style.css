@@ -508,11 +508,11 @@ body {
 }
 
 /* Full-size Laptop & PC container utilities */
-.max-w-7xl { max-width: 1720px; width: 100%; }
-.max-w-wide { max-width: 1720px; width: 100%; }
+.max-w-7xl { max-width: 1800px; width: 100%; }
+.max-w-wide { max-width: 1920px; width: 100%; }
 @media (min-width: 1536px) {
-  .max-w-7xl { max-width: 1880px; }
-  .max-w-wide { max-width: 1880px; }
+  .max-w-7xl { max-width: 1920px; }
+  .max-w-wide { max-width: 100%; }
 }
 .max-w-4xl { max-width: 64rem; }
 .max-w-md { max-width: 28rem; }
@@ -776,8 +776,8 @@ body {
 
 /* ==========================================================================
    FLOW ART / STORY SCROLL: PHYSICAL CARD DECK STACKING & SEPARATION BORDER
-   Gives each section an elevated physical border, rounded corners, and top
-   breathing space so after scrolling it sits like an elevated luxury sheet
+   Gives each section an elevated physical border, rounded corners, and clean
+   rhythmic spacing so after scrolling it layers like an elevated luxury sheet
    ========================================================================== */
 
 [data-flow-section] {
@@ -785,20 +785,15 @@ body {
   width: 100%;
 }
 
-/* Base separation border and elevated surface on flow sections (compact modern breathing room) */
-[data-flow-section]:not(#hero) {
-  padding-top: 0.5rem;
-}
-
 [data-flow-section]:not(#hero) .flow-art-container {
   background: #09090b;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  box-shadow: 0 -25px 60px -10px rgba(0, 0, 0, 0.95), 
-              0 0 35px rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-top-left-radius: 1.75rem;
+  border-top-right-radius: 1.75rem;
+  box-shadow: 0 -20px 50px -10px rgba(0, 0, 0, 0.95), 
+              0 0 30px rgba(255, 255, 255, 0.03);
   position: relative;
   overflow: hidden;
 }
@@ -808,30 +803,28 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: 12%;
-  right: 12%;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
   pointer-events: none;
   z-index: 10;
 }
 
 .flow-art-container {
   will-change: transform;
-  transform-origin: bottom left;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Mobile Optimizations: Fluid Card Borders & Full Touch Support */
 @media (max-width: 768px) {
-  [data-flow-section]:not(#hero) {
-    padding-top: 0.35rem;
-  }
-
   [data-flow-section]:not(#hero) .flow-art-container {
-    border-top: 1.5px solid rgba(255, 255, 255, 0.24);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    box-shadow: 0 -18px 45px rgba(0, 0, 0, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
+    box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.95);
   }
 }
 
