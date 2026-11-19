@@ -364,11 +364,20 @@ body {
 }
 
 /* Base Scroll Reveal Classes - Snappy, Buttery Smooth, Never Glitching */
+@keyframes autoRevealFallback {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Failsafe: if JS is interrupted or slow, CSS guarantees elements become visible */
+  animation: autoRevealFallback 0.4s ease-out 1.2s forwards;
   will-change: opacity, transform;
 }
 

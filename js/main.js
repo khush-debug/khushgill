@@ -426,148 +426,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 10. SCROLL-DRIVEN ANIMATIONS & BI-DIRECTIONAL REVEAL SYSTEM
-  // ==========================================
-  // 10. SCROLL-DRIVEN ANIMATIONS & REVEAL SYSTEM
-  // Buttery smooth, fast and snappy, zero lag, no black screen glitches
-  // ==========================================
-  const scrollProgressBar = document.getElementById('scroll-progress');
-  const mainHeader = document.querySelector('header');
-  const parallaxCards = document.querySelectorAll('.folder-card, .stack-card, .milestone-card');
-  const expSection = document.getElementById('experience');
-  const expTimelinePath = document.getElementById('experience-timeline-path');
-  const orb1 = document.getElementById('ambient-orb-1');
-  const orb2 = document.getElementById('ambient-orb-2');
-  let ticking = false;
-
-  // Real-time continuous scroll physics loop (lightweight & 120fps optimized)
-  const onScrollFrame = () => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const vh = window.innerHeight;
-    const vCenter = vh * 0.5;
-
-    // 1. Top Progress Bar
-    if (scrollProgressBar) {
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      scrollProgressBar.style.width = `${progress}%`;
-    }
-
-    // 2. Header backdrop elevation
-    if (mainHeader) {
-      if (scrollTop > 30) {
-        mainHeader.classList.add('is-scrolled');
-      } else {
-        mainHeader.classList.remove('is-scrolled');
-      }
-    }
-
-    // 3. Ambient Flowing Background Orbs (soft, GPU-accelerated drift)
-    if (orb1) {
-      orb1.style.transform = `translate3d(${scrollTop * 0.04}px, ${scrollTop * 0.08}px, 0)`;
-    }
-    if (orb2) {
-      orb2.style.transform = `translate3d(${-scrollTop * 0.03}px, ${-scrollTop * 0.06}px, 0)`;
-    }
-
-    // 4. Subtle, buttery smooth floating depth on cards (optimized for laptop trackpads)
-    parallaxCards.forEach(card => {
-      const rect = card.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < vh) {
-        const normalized = (rect.top + rect.height * 0.5 - vCenter) / vCenter;
-        const clamped = Math.max(-1, Math.min(1, normalized));
-        const translateY = clamped * 6; // feather-light 6px glide
-        card.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
-      }
-    });
-
-    // 5. Experience Section: Line animated while scrolling/viewing/selecting on the folders below
-    if (expSection && !isUserInteracting) {
-      const rect = expSection.getBoundingClientRect();
-      const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
-      const p = Math.min(1, Math.max(0, rawProgress));
-
-      // Continuous morphing wavy-to-normal line on scroll:
-      // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
-      if (expTimelinePath) {
-        const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
-        const tlStroke = 2.5 + (1 - p) * 2.5; // Smooth stroke transition
-        const yC1 = 110 + extraWave;
-        const yC2 = 20 - extraWave;
-        const yC3 = 100 + extraWave;
-        const yC4 = 20 - extraWave;
-        const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
-
-        expTimelinePath.setAttribute('d', tlPathD);
-        expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
-      }
-
-      // Automatically advance active milestone (0 -> 1 -> 2 -> 3) based on which card is being viewed
-      if (p > 0.08) {
-        const activeIdx = Math.min(3, Math.max(0, Math.floor((p - 0.08) / 0.22)));
-        if (activeIdx !== currentActiveMilestone) {
-          setTimelineActiveMilestone(activeIdx, false);
-        }
-      }
-    }
-
-    ticking = false;
-  };
-
-  const handleScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(onScrollFrame);
-      ticking = true;
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  onScrollFrame();
-
-  // Rock-solid Reveal System: Elements animate in quickly and STAY visible (never glitched or blank)
-  const revealElements = document.querySelectorAll('.reveal, .node-pulse');
-
-  // Immediately mark anything already in or near viewport as visible
-  const initialVh = window.innerHeight;
-  revealElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < initialVh * 1.15) {
-      el.classList.add('is-visible');
-    }
-  });
-
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target); // Once revealed, stays rock-solid visible!
-        }
-      });
-    }, {
-      root: null,
-      rootMargin: '80px 0px 80px 0px',
-      threshold: 0.02
-    });
-
-    revealElements.forEach(el => {
-      if (!el.classList.contains('is-visible')) {
-        revealObserver.observe(el);
-      }
-    });
-  } else {
-    // Graceful fallback for older environments
-    revealElements.forEach(el => el.classList.add('is-visible'));
-  }
-
-
-  // ==========================================
-  // 11. TIMELINE LINE ANIMATION WHILE SCROLLING / VIEWING / SELECTING FOLDERS
+  // 10. TIMELINE STATE & INTERACTIVE CONTROLLERS
+  // (Declared first to eliminate any Temporal Dead Zone errors)
   // ==========================================
   const milestoneCards = document.querySelectorAll('.milestone-card');
   const timelineNodes = document.querySelectorAll('.timeline-node');
   const timelineTracer = document.getElementById('timeline-tracer');
   const timelineTracerHalo = document.getElementById('timeline-tracer-halo');
+  const expTimelinePath = document.getElementById('experience-timeline-path');
+  const expSection = document.getElementById('experience');
 
   const nodePositions = [
     { x: 50, y: 60, progress: 0.08 },
@@ -601,9 +468,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate glowing line progress to that node
     if (expTimelinePath) {
-      const totalLength = expTimelinePath.getTotalLength ? expTimelinePath.getTotalLength() : 1000;
-      const strokeOffset = totalLength * (1 - target.progress);
-      expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+      try {
+        const totalLength = expTimelinePath.getTotalLength ? expTimelinePath.getTotalLength() : 1000;
+        const strokeOffset = totalLength * (1 - target.progress);
+        expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+      } catch (err) {}
     }
 
     // Update active node in SVG
@@ -678,5 +547,153 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Default active milestone on initial load
   setTimelineActiveMilestone(0, false);
+
+
+  // ==========================================
+  // 11. SCROLL-DRIVEN ANIMATIONS & PHYSICS LOOP
+  // ==========================================
+  const scrollProgressBar = document.getElementById('scroll-progress');
+  const mainHeader = document.querySelector('header');
+  const parallaxCards = document.querySelectorAll('.folder-card, .stack-card, .milestone-card');
+  const orb1 = document.getElementById('ambient-orb-1');
+  const orb2 = document.getElementById('ambient-orb-2');
+  let ticking = false;
+
+  const onScrollFrame = () => {
+    try {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const vh = window.innerHeight;
+      const vCenter = vh * 0.5;
+
+      // 1. Top Progress Bar
+      if (scrollProgressBar) {
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgressBar.style.width = `${progress}%`;
+      }
+
+      // 2. Header backdrop elevation
+      if (mainHeader) {
+        if (scrollTop > 30) {
+          mainHeader.classList.add('is-scrolled');
+        } else {
+          mainHeader.classList.remove('is-scrolled');
+        }
+      }
+
+      // 3. Ambient Flowing Background Orbs (soft, GPU-accelerated drift)
+      if (orb1) {
+        orb1.style.transform = `translate3d(${scrollTop * 0.04}px, ${scrollTop * 0.08}px, 0)`;
+      }
+      if (orb2) {
+        orb2.style.transform = `translate3d(${-scrollTop * 0.03}px, ${-scrollTop * 0.06}px, 0)`;
+      }
+
+      // 4. Subtle, buttery smooth floating depth on cards (optimized for laptop trackpads)
+      parallaxCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < vh) {
+          const normalized = (rect.top + rect.height * 0.5 - vCenter) / vCenter;
+          const clamped = Math.max(-1, Math.min(1, normalized));
+          const translateY = clamped * 6; // feather-light 6px glide
+          card.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
+        }
+      });
+
+      // 5. Experience Section: Line animated while scrolling/viewing/selecting on the folders below
+      if (expSection && !isUserInteracting) {
+        const rect = expSection.getBoundingClientRect();
+        const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
+        const p = Math.min(1, Math.max(0, rawProgress));
+
+        // Continuous morphing wavy-to-normal line on scroll:
+        // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
+        if (expTimelinePath) {
+          const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
+          const tlStroke = 2.5 + (1 - p) * 2.5; // Smooth stroke transition
+          const yC1 = 110 + extraWave;
+          const yC2 = 20 - extraWave;
+          const yC3 = 100 + extraWave;
+          const yC4 = 20 - extraWave;
+          const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
+
+          expTimelinePath.setAttribute('d', tlPathD);
+          expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
+        }
+
+        // Automatically advance active milestone (0 -> 1 -> 2 -> 3) based on which card is being viewed
+        if (p > 0.08) {
+          const activeIdx = Math.min(3, Math.max(0, Math.floor((p - 0.08) / 0.22)));
+          if (activeIdx !== currentActiveMilestone) {
+            setTimelineActiveMilestone(activeIdx, false);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Scroll frame error suppressed:', err);
+    }
+
+    ticking = false;
+  };
+
+  const handleScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(onScrollFrame);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  onScrollFrame();
+
+
+  // ==========================================
+  // 12. ROCK-SOLID REVEAL SYSTEM
+  // Elements animate in quickly and STAY visible permanently
+  // Zero black screens, guaranteed failsafe
+  // ==========================================
+  const revealElements = document.querySelectorAll('.reveal, .node-pulse');
+
+  function makeVisible(el) {
+    el.classList.add('is-visible');
+  }
+
+  // 1. Immediately mark all elements on or near initial screen as visible
+  const initialVh = window.innerHeight;
+  revealElements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < initialVh * 1.25) {
+      makeVisible(el);
+    }
+  });
+
+  // 2. IntersectionObserver for elements as they enter viewport
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          makeVisible(entry.target);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '100px 0px 100px 0px',
+      threshold: 0.01
+    });
+
+    revealElements.forEach(el => {
+      if (!el.classList.contains('is-visible')) {
+        revealObserver.observe(el);
+      }
+    });
+  } else {
+    revealElements.forEach(makeVisible);
+  }
+
+  // 3. Failsafe safety fallback: Guarantee every element is 100% visible after 1 second
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(makeVisible);
+  }, 1000);
 
 });
