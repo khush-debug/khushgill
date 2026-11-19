@@ -205,11 +205,11 @@
             <div id="portrait-card" class="relative w-72 sm:w-80 lg:w-[340px] xl:w-[370px] 2xl:w-[400px] h-[420px] lg:h-[460px] xl:h-[490px] 2xl:h-[520px] rounded-2xl shadow-2xl transition-shadow duration-300" style="transform-style: preserve-3d;">
               
               <!-- FRONT FACE: Editorial Headshot & Quick Controls -->
-              <div class="card-face card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden border border-white/20 bg-zinc-950">
+              <div class="card-face card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-zinc-950">
                 <img id="user-headshot" src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover object-[center_18%] contrast-105 pointer-events-none select-none">
                 
-                <!-- Subtle Vignette & Sheen -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none"></div>
+                <!-- Seamless Soft Vignette (Ultra-smooth gradient, zero harsh lines or banding) -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none"></div>
 
                 <!-- Top Monogram Badge & 3D Flip Trigger -->
                 <div class="absolute top-4 inset-x-4 z-10 flex items-center justify-between">
@@ -223,16 +223,16 @@
                   </button>
                 </div>
 
-                <!-- Bottom Interactive Action / Photo Upload Trigger -->
-                <div class="absolute bottom-4 inset-x-4 z-10 flex items-center justify-between p-2.5 rounded-xl bg-black/70 border border-white/15 backdrop-blur-md">
-                  <div class="flex flex-col">
-                    <span class="text-xs font-bold text-white">Khushman Gill</span>
-                    <span class="text-[10px] text-zinc-400 font-mono">Drag / Swipe to Spin 360°</span>
+                <!-- Bottom Floating Badges (Seamless pills, no box dividing line across photo, no swap button) -->
+                <div class="absolute bottom-4 inset-x-4 z-10 flex items-center justify-between pointer-events-none select-none">
+                  <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-mono font-medium text-zinc-200">Khushman Gill</span>
                   </div>
-                  <label for="photo-upload-input" class="cursor-pointer text-[10px] font-mono font-semibold text-zinc-300 hover:text-white bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded-md transition-colors" title="Change photo with yours">
-                    Swap Photo ✎
-                  </label>
-                  <input id="photo-upload-input" type="file" accept="image/*" class="hidden">
+                  <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md text-[10px] font-mono text-zinc-300">
+                    <span>Spin 360°</span>
+                    <span class="text-emerald-400 font-bold">↻</span>
+                  </div>
                 </div>
               </div>
 

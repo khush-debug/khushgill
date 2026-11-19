@@ -146,12 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let hasDragged = false;
   let isTouchActive = false;
   let targetAngleY = null;     // Programmatic flip target (e.g. 180deg or 0deg)
+  let lastUserInteractionTime = performance.now(); // Idle timer for auto-resetting to normal
 
   // Track upward scroll to trigger subtle spin torque
   const triggerScrollUpSpin = (velocity) => {
     if (isDragging || targetAngleY !== null) return;
-    const clampedVelocity = Math.min(20, Math.max(2, velocity));
-    spinVelocityY = Math.min(12, spinVelocityY + clampedVelocity * 0.35);
+    lastUserInteractionTime = performance.now();
+    const clampedVelocity = Math.min(16, Math.max(2, velocity));
+    spinVelocityY = Math.min(10, spinVelocityY + clampedVelocity * 0.3);
     photoScale = Math.max(0.96, photoScale - (clampedVelocity * 0.0015));
   };
 
@@ -171,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dragStartY = touch.clientY;
       lastDragX = touch.clientX;
       lastDragTime = performance.now();
+      lastUserInteractionTime = performance.now();
       isDragging = true;
       isTouchActive = true;
       hasDragged = false;
@@ -180,22 +183,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     portraitScene.addEventListener('touchmove', (e) => {
       if (!isTouchActive || !e.touches || !e.touches[0]) return;
+      lastUserInteractionTime = performance.now();
       const touch = e.touches[0];
       const deltaX = touch.clientX - lastDragX;
       const totalDeltaX = touch.clientX - dragStartX;
       const totalDeltaY = touch.clientY - dragStartY;
 
       // If user is dragging horizontally to spin the card
-      if (Math.abs(totalDeltaX) > 6 && Math.abs(totalDeltaX) > Math.abs(totalDeltaY) * 0.6) {
+      if (Math.abs(totalDeltaX) > 5 && Math.abs(totalDeltaX) > Math.abs(totalDeltaY) * 0.55) {
         hasDragged = true;
         if (e.cancelable) e.preventDefault(); // Stop page scroll while spinning card
-        currentAngleY += deltaX * 0.85;
-        currentAngleX = Math.max(-14, Math.min(14, -totalDeltaY * 0.12));
+        currentAngleY += deltaX * 0.68;
+        const targetTiltX = Math.max(-10, Math.min(10, -totalDeltaY * 0.08));
+        currentAngleX += (targetTiltX - currentAngleX) * 0.22;
 
         const now = performance.now();
         const dt = now - lastDragTime;
         if (dt > 0) {
-          spinVelocityY = (deltaX / dt) * 16;
+          const instantVel = (deltaX / dt) * 14;
+          spinVelocityY = spinVelocityY * 0.35 + instantVel * 0.65;
         }
         lastDragX = touch.clientX;
         lastDragTime = now;
@@ -205,7 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
     portraitScene.addEventListener('touchend', () => {
       isTouchActive = false;
       isDragging = false;
-      spinVelocityY = Math.max(-25, Math.min(25, spinVelocityY));
+      lastUserInteractionTime = performance.now();
+      spinVelocityY = Math.max(-14, Math.min(14, spinVelocityY));
       if (portraitCard && Math.abs(spinVelocityY) > 2) {
         portraitCard.classList.add('is-spinning-up');
       }
@@ -222,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dragStartY = e.clientY;
       lastDragX = e.clientX;
       lastDragTime = performance.now();
+      lastUserInteractionTime = performance.now();
       targetAngleY = null;
       spinVelocityY = 0;
       portraitScene.classList.add('is-dragging');
@@ -229,21 +237,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
+      lastUserInteractionTime = performance.now();
       const deltaX = e.clientX - lastDragX;
       const totalDeltaX = e.clientX - dragStartX;
       const totalDeltaY = e.clientY - dragStartY;
 
-      if (Math.abs(totalDeltaX) > 4) {
+      if (Math.abs(totalDeltaX) > 3) {
         hasDragged = true;
       }
 
-      currentAngleY += deltaX * 0.75;
-      currentAngleX = Math.max(-14, Math.min(14, -totalDeltaY * 0.1));
+      currentAngleY += deltaX * 0.55;
+      const targetTiltX = Math.max(-10, Math.min(10, -totalDeltaY * 0.07));
+      currentAngleX += (targetTiltX - currentAngleX) * 0.22;
 
       const now = performance.now();
       const dt = now - lastDragTime;
       if (dt > 0) {
-        spinVelocityY = (deltaX / dt) * 16;
+        const instantVel = (deltaX / dt) * 14;
+        spinVelocityY = spinVelocityY * 0.35 + instantVel * 0.65;
       }
       lastDragX = e.clientX;
       lastDragTime = now;
@@ -252,7 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mouseup', () => {
       if (isDragging) {
         isDragging = false;
-        spinVelocityY = Math.max(-25, Math.min(25, spinVelocityY));
+        lastUserInteractionTime = performance.now();
+        spinVelocityY = Math.max(-14, Math.min(14, spinVelocityY));
         portraitScene.classList.remove('is-dragging');
       }
     });
@@ -260,8 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trackpad 2-finger horizontal swipe
     portraitScene.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaX) > 2) {
-        currentAngleY += e.deltaX * 0.45;
-        spinVelocityY = Math.max(-18, Math.min(18, e.deltaX * 0.25));
+        lastUserInteractionTime = performance.now();
+        currentAngleY += e.deltaX * 0.35;
+        spinVelocityY = Math.max(-12, Math.min(12, e.deltaX * 0.2));
         targetAngleY = null;
       }
     }, { passive: true });
@@ -271,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (flipToBackBtn) {
     flipToBackBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      lastUserInteractionTime = performance.now();
       // Snap to nearest 180-degree back face
       const nearestBase = Math.round(currentAngleY / 360) * 360;
       targetAngleY = nearestBase + 180;
@@ -282,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (flipToFrontBtn) {
     flipToFrontBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      lastUserInteractionTime = performance.now();
       // Snap to nearest 360-degree front face
       const nearestBase = Math.round(currentAngleY / 360) * 360;
       targetAngleY = nearestBase;
@@ -290,40 +305,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Unified 3D Physics Animation Loop
+  // Unified 3D Physics Animation Loop: Butter-smooth motion & auto-return to normal when idle
   function updatePortraitPhysics() {
     if (portraitCard) {
+      const now = performance.now();
+      const idleElapsed = now - lastUserInteractionTime;
+
       // 1. Programmatic Flip interpolation (when button clicked)
       if (targetAngleY !== null) {
         const diff = targetAngleY - currentAngleY;
-        currentAngleY += diff * 0.14;
+        currentAngleY += diff * 0.12;
         currentAngleX *= 0.88;
-        if (Math.abs(diff) < 0.2) {
+        if (Math.abs(diff) < 0.15) {
           currentAngleY = targetAngleY;
           targetAngleY = null;
         }
       } 
       // 2. Momentum & Inertia Decay (when user flicked / spinned card)
-      else if (!isDragging) {
-        if (Math.abs(spinVelocityY) > 0.04) {
+      else if (!isDragging && !isTouchActive) {
+        if (Math.abs(spinVelocityY) > 0.02) {
           currentAngleY += spinVelocityY;
-          spinVelocityY *= 0.93; // Smooth friction
-          if (Math.abs(spinVelocityY) < 0.05) {
+          spinVelocityY *= 0.89; // Smooth, premium friction
+          if (Math.abs(spinVelocityY) < 0.03) {
             spinVelocityY = 0;
             if (portraitCard) portraitCard.classList.remove('is-spinning-up');
           }
         }
-        // Recover vertical tilt smoothly
-        currentAngleX *= 0.88;
+
+        // 3. AUTO-RETURN TO NORMAL WHEN IDLE:
+        // Automatically and smoothly returns card to upright front-facing portrait
+        // when nobody is interacting with it.
+        if (Math.abs(spinVelocityY) < 0.05 && idleElapsed > 1300) {
+          // Check if user is currently viewing the back face (between 80 and 280 deg mod 360)
+          const normalizedAngle = ((currentAngleY % 360) + 360) % 360;
+          const isViewingBack = normalizedAngle > 80 && normalizedAngle < 280;
+
+          // If viewing back, give user 4.5 seconds to view/click socials, then smoothly return to front
+          if (!isViewingBack || idleElapsed > 4500) {
+            // Target normal upright front face (nearest multiple of 360)
+            const targetNormal = Math.round(currentAngleY / 360) * 360;
+            const diffNormal = targetNormal - currentAngleY;
+
+            // Gentle, buttery smooth spring to normal
+            currentAngleY += diffNormal * 0.055;
+            currentAngleX += (0 - currentAngleX) * 0.07;
+
+            // Clean snap when settled
+            if (Math.abs(diffNormal) < 0.05 && Math.abs(currentAngleX) < 0.05) {
+              currentAngleY = 0; // Reset to perfect 0
+              currentAngleX = 0;
+            }
+          } else {
+            // Smoothly align to clean 180-deg back face while viewing
+            const targetBack = Math.floor(currentAngleY / 360) * 360 + 180;
+            const diffBack = targetBack - currentAngleY;
+            currentAngleY += diffBack * 0.06;
+            currentAngleX += (0 - currentAngleX) * 0.07;
+          }
+        } else {
+          // Recover vertical tilt smoothly while decelerating
+          currentAngleX *= 0.88;
+        }
       }
 
-      // 3. Spring recovery for scale
-      photoScale += (1.0 - photoScale) * 0.1;
+      // 4. Spring recovery for scale
+      photoScale += (1.0 - photoScale) * 0.08;
 
-      // 4. Apply 3D matrix transformation
-      portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY.toFixed(1)}deg) rotateX(${currentAngleX.toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
+      // 5. Apply 3D matrix transformation
+      portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY.toFixed(2)}deg) rotateX(${currentAngleX.toFixed(2)}deg) scale(${photoScale.toFixed(3)})`;
 
-      // 5. Dynamic Metallic Specular Reflection on Back Face
+      // 6. Dynamic Metallic Specular Reflection on Back Face
       if (portraitReflection) {
         const normalizedAngle = ((currentAngleY % 360 + 360) % 360);
         const sheenAngle = 100 + (normalizedAngle * 0.45);
@@ -332,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         portraitReflection.style.opacity = sheenOpacity.toFixed(2);
       }
 
-      // 6. Backglow intensity tracks spin velocity & rotation
+      // 7. Backglow intensity tracks spin velocity & rotation
       if (portraitBackglow) {
         const glowOpacity = Math.min(0.85, 0.4 + (Math.abs(spinVelocityY) * 0.03));
         portraitBackglow.style.opacity = glowOpacity.toFixed(2);
@@ -379,37 +430,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 4. PHOTO SWAP & LOCALSTORAGE PERSISTENCE
+  // 4. PORTRAIT PHOTO VERIFICATION
   // ==========================================
   const userHeadshot = document.getElementById('user-headshot');
-  const photoUploadInput = document.getElementById('photo-upload-input');
-
-  // Load saved custom photo if explicitly uploaded by user
-  const savedPhoto = localStorage.getItem('khushman_avatar_custom');
-  if (savedPhoto && userHeadshot) {
-    userHeadshot.src = savedPhoto;
-  }
-
-  if (photoUploadInput) {
-    photoUploadInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const dataUrl = event.target.result;
-          if (userHeadshot) {
-            userHeadshot.src = dataUrl;
-            try {
-              localStorage.setItem('khushman_avatar_custom', dataUrl);
-              showToast('Photo customized & saved!');
-            } catch (err) {
-              showToast('Photo updated!');
-            }
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+  if (userHeadshot && !userHeadshot.getAttribute('src')) {
+    userHeadshot.src = 'assets/khushman.jpg';
   }
 
 
