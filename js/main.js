@@ -156,11 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const userHeadshot = document.getElementById('user-headshot');
   const photoUploadInput = document.getElementById('photo-upload-input');
 
-  // Load saved photo if exists
-  const savedPhoto = localStorage.getItem('khushman_avatar');
+  // Load saved custom photo if explicitly uploaded by user
+  const savedPhoto = localStorage.getItem('khushman_avatar_custom');
   if (savedPhoto && userHeadshot) {
     userHeadshot.src = savedPhoto;
-    userHeadshot.classList.remove('grayscale'); // reveal in full resolution
   }
 
   if (photoUploadInput) {
@@ -172,9 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const dataUrl = event.target.result;
           if (userHeadshot) {
             userHeadshot.src = dataUrl;
-            userHeadshot.classList.remove('grayscale');
             try {
-              localStorage.setItem('khushman_avatar', dataUrl);
+              localStorage.setItem('khushman_avatar_custom', dataUrl);
               showToast('Photo customized & saved!');
             } catch (err) {
               showToast('Photo updated!');
