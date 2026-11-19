@@ -567,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 10. TIMELINE STATE & INTERACTIVE CONTROLLERS
   // (Declared first to eliminate any Temporal Dead Zone errors)
+  // Supports both Desktop Curved Bezier SVG & Mobile Animated Glowing Neon Rail
   // ==========================================
   const milestoneCards = document.querySelectorAll('.milestone-card');
   const timelineNodes = document.querySelectorAll('.timeline-node');
@@ -574,6 +575,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineTracerHalo = document.getElementById('timeline-tracer-halo');
   const expTimelinePath = document.getElementById('experience-timeline-path');
   const expSection = document.getElementById('experience');
+
+  const mobileTimelineBeam = document.getElementById('mobile-timeline-beam');
+  const mobileTimelineTracer = document.getElementById('mobile-timeline-tracer');
+  const mobileMilestoneCards = document.querySelectorAll('.mobile-milestone');
 
   const nodePositions = [
     { x: 50, y: 60, progress: 0.08 },
@@ -591,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentActiveMilestone = index;
     const target = nodePositions[index];
 
-    // Move glowing tracer orb along SVG curve
+    // Move glowing tracer orb along SVG curve (Desktop)
     if (timelineTracer) {
       timelineTracer.setAttribute('cx', target.x);
       timelineTracer.setAttribute('cy', target.y);
@@ -605,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timelineTracerHalo.classList.add('opacity-30');
     }
 
-    // Animate glowing line progress to that node
+    // Animate glowing line progress to that node (Desktop)
     if (expTimelinePath) {
       try {
         const totalLength = expTimelinePath.getTotalLength ? expTimelinePath.getTotalLength() : 1000;
@@ -614,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {}
     }
 
-    // Update active node in SVG
+    // Update active node in SVG (Desktop)
     timelineNodes.forEach((node, i) => {
       if (i === index) {
         node.classList.add('is-active');
@@ -623,14 +628,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update active card below
-    milestoneCards.forEach((card, i) => {
-      if (i === index) {
+    // Update active cards across BOTH Desktop and Mobile
+    milestoneCards.forEach((card) => {
+      const cardIdx = card.dataset.milestoneIndex !== undefined 
+        ? parseInt(card.dataset.milestoneIndex, 10) 
+        : Array.from(card.parentNode.children).indexOf(card);
+      if (cardIdx === index) {
         card.classList.add('is-active-milestone');
       } else {
         card.classList.remove('is-active-milestone');
       }
     });
+
+    // Animate Mobile Glowing Rail & Pulsing Tracer
+    if (mobileTimelineBeam && mobileMilestoneCards.length > 0) {
+      const activeMobileCard = document.querySelector(`.mobile-milestone[data-milestone-index="${index}"]`);
+      if (activeMobileCard) {
+        const topOffset = activeMobileCard.offsetTop + 20;
+        mobileTimelineBeam.style.height = `${topOffset}px`;
+        if (mobileTimelineTracer) {
+          mobileTimelineTracer.style.top = `${topOffset}px`;
+        }
+      }
+    }
 
     if (sound && typeof playClickSound === 'function') {
       playClickSound(480 + index * 120, 'triangle');
@@ -739,13 +759,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // 5. Experience Section: Line animated while scrolling/viewing/selecting on the folders below
+      // 5. Experience Section: Line animated while scrolling/viewing/selecting (Desktop & Mobile)
       if (expSection && !isUserInteracting) {
         const rect = expSection.getBoundingClientRect();
         const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
         const p = Math.min(1, Math.max(0, rawProgress));
 
-        // Continuous morphing wavy-to-normal line on scroll:
+        // Continuous morphing wavy-to-normal line on Desktop SVG:
         // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
         if (expTimelinePath) {
           const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
@@ -758,6 +778,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
           expTimelinePath.setAttribute('d', tlPathD);
           expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
+        }
+
+        // Animated Glowing Neon Progress Rail on Mobile:
+        if (mobileTimelineBeam && window.innerWidth < 1024) {
+          const mobileContainer = document.getElementById('mobile-timeline-container');
+          if (mobileContainer) {
+            const containerHeight = mobileContainer.clientHeight;
+            const beamHeight = Math.min(containerHeight, Math.max(28, p * containerHeight));
+            mobileTimelineBeam.style.height = `${beamHeight}px`;
+            if (mobileTimelineTracer) {
+              mobileTimelineTracer.style.top = `${beamHeight}px`;
+            }
+          }
         }
 
         // Automatically advance active milestone (0 -> 1 -> 2 -> 3) based on which card is being viewed

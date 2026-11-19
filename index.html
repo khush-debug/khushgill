@@ -759,50 +759,82 @@
         </div>
       </div>
 
-      <!-- MOBILE / TABLET TIMELINE: Elegant Vertical Line -->
-      <div class="lg:hidden relative border-l-2 border-white/10 ml-4 space-y-10 pl-6 py-2">
+      <!-- MOBILE / TABLET TIMELINE: Animated Glowing Neon Rail & Interactive Milestone Cards -->
+      <div id="mobile-timeline-container" class="lg:hidden relative ml-3 pl-8 py-2 space-y-6">
         
-        <!-- Mobile Item 1 -->
-        <div class="relative reveal reveal-left stagger-1">
-          <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-4 border-black"></span>
-          <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block">2024 — PRESENT</span>
-          <h4 class="text-base font-bold text-white mt-0.5">Web Strategy & Product Lead</h4>
-          <div class="text-xs text-zinc-300 font-medium">Lally Computers</div>
+        <!-- Background Spine Track -->
+        <div class="absolute left-1.5 top-3 bottom-6 w-0.5 bg-white/10 rounded-full"></div>
+
+        <!-- Animated Glowing Progress Beam (Morphs & draws as you scroll) -->
+        <div id="mobile-timeline-beam" class="absolute left-1.5 top-3 w-1 -translate-x-[1px] bg-gradient-to-b from-emerald-400 via-teal-400 to-indigo-500 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.8)] transition-all duration-300 ease-out" style="height: 14%;"></div>
+
+        <!-- Pulsing Mobile Tracer Head -->
+        <div id="mobile-timeline-tracer" class="absolute left-1.5 top-3 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full pointer-events-none transition-all duration-300 ease-out" style="top: 24px;">
+          <span class="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative block w-4 h-4 rounded-full bg-emerald-500 border-2 border-black shadow-[0_0_10px_#10B981]"></span>
+        </div>
+
+        <!-- Mobile Milestone Card 1: 2024 - Present -->
+        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-1 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="0">
+          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-white transition-colors"></span>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">2024 — PRESENT</span>
+            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
+          </div>
+          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Web Strategy & Product Lead</h4>
+          <div class="text-xs text-zinc-300 font-medium mt-0.5">Lally Computers</div>
           <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Engineered the commercial computer retail platform. Managed product showcase, deployment, and digital conversion funnel.
+            Designed, built, and launched the commercial computer retail platform. Managed layout engineering, product presentation, and ongoing Vercel deployment.
           </p>
         </div>
 
-        <!-- Mobile Item 2 -->
-        <div class="relative reveal reveal-left stagger-2">
-          <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
-          <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">ACADEMIC RIGOR</span>
-          <h4 class="text-base font-bold text-white mt-0.5">Commerce & IT Specialization</h4>
-          <div class="text-xs text-zinc-300 font-medium">Akal Academy • 88% X / 87% XII</div>
+        <!-- Mobile Milestone Card 2: Academic Rigor -->
+        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-2 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="1">
+          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">ACADEMIC RIGOR</span>
+            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
+          </div>
+          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Commerce & IT Specialization</h4>
+          <div class="text-xs text-zinc-300 font-medium mt-0.5">Akal Academy • 88% X / 87% XII</div>
           <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Consistently superior academic standing in CBSE Commerce, Accountancy, Economics, and 4-Year IT (IT 802).
+            Top-tier performance: 88% (Class X) and 87% (Class XII CBSE Commerce) with 4-year formal IT specialization (IT 802), Accountancy, and Economics.
           </p>
         </div>
 
-        <!-- Mobile Item 3 -->
-        <div class="relative reveal reveal-left stagger-3">
-          <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
-          <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">DISTINCTION</span>
-          <h4 class="text-base font-bold text-white mt-0.5">English Olympiad — 2nd Position</h4>
-          <div class="text-xs text-zinc-300 font-medium">Competitive Silver Medalist</div>
+        <!-- Mobile Milestone Card 3: Distinction -->
+        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-3 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="2">
+          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">DISTINCTION</span>
+            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
+          </div>
+          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">English Olympiad Silver Medal</h4>
+          <div class="text-xs text-zinc-300 font-medium mt-0.5">2nd Position • Competitive</div>
           <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Awarded 2nd position in English Olympiad, proving high-caliber articulation, synthesis, and verbal precision.
+            Demonstrated linguistic mastery, critical analytical synthesis, and persuasive communication on a high-stakes competitive stage.
           </p>
         </div>
 
-        <!-- Mobile Item 4 -->
-        <div class="relative reveal reveal-left stagger-4">
-          <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
-          <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">LEADERSHIP & LANGUAGES</span>
-          <h4 class="text-base font-bold text-white mt-0.5">Athletics & Tri-Lingual Articulation</h4>
-          <div class="text-xs text-zinc-300 font-medium">Competitive Football • English, Punjabi, Hindi</div>
+        <!-- Mobile Milestone Card 4: Leadership & Agility -->
+        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-4 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="3">
+          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">LEADERSHIP & LANGUAGES</span>
+            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
+          </div>
+          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Athletics & Tri-Lingual Articulation</h4>
+          <div class="text-xs text-zinc-300 font-medium mt-0.5">Football & Inter-House Cups</div>
           <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Competitive athletic resilience, decisive action under pressure, and fluent cross-cultural fluency.
+            Competitive tournament football forging grit and crisis decision-making. Fluent in English, Punjabi, and Hindi for cross-market commerce.
           </p>
         </div>
 

@@ -677,6 +677,25 @@ body {
   box-shadow: 0 0 10px #10B981;
 }
 
+/* Mobile Milestone Active States & Animated Rail */
+.mobile-milestone.is-active-milestone {
+  border-color: rgba(16, 185, 129, 0.75) !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  box-shadow: 0 12px 30px -5px rgba(16, 185, 129, 0.25), 0 0 20px rgba(16, 185, 129, 0.15) !important;
+  transform: translateX(4px) !important;
+}
+
+.mobile-milestone.is-active-milestone .mobile-timeline-node {
+  background-color: #10B981 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.95), 0 0 4px #FFFFFF !important;
+  transform: scale(1.3) !important;
+}
+
+.mobile-milestone.is-active-milestone .mobile-timeline-node span {
+  background-color: #09090B !important;
+}
+
 /* --- Minimal & Clean 3D Scroll-Up Spin & Zoom-Out Portrait Physics --- */
 .perspective-container {
   perspective: 1200px;
