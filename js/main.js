@@ -695,10 +695,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMilestoneCards = document.querySelectorAll('.mobile-milestone');
 
   const nodePositions = [
-    { x: 50, y: 60, progress: 0.08 },
-    { x: 340, y: 38, progress: 0.38 },
-    { x: 600, y: 82, progress: 0.68 },
-    { x: 950, y: 60, progress: 1.0 }
+    { x: 125, y: 42, progress: 0.125 },
+    { x: 375, y: 32, progress: 0.375 },
+    { x: 625, y: 52, progress: 0.625 },
+    { x: 887, y: 38, progress: 1.0 }
   ];
 
   let currentActiveMilestone = 0;
@@ -880,15 +880,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const p = Math.min(1, Math.max(0, rawProgress));
 
         // Continuous morphing wavy-to-normal line on Desktop SVG:
-        // Starts bold (5px) and wavy; settles into clean (2.5px) trajectory curve
+        // Graceful subtle wave that settles into clean trajectory curve through card centers
         if (expTimelinePath) {
-          const extraWave = (1 - p) * 25; // Gentle, smooth wave to normal
-          const tlStroke = 2.5 + (1 - p) * 2.5; // Smooth stroke transition
-          const yC1 = 110 + extraWave;
-          const yC2 = 20 - extraWave;
-          const yC3 = 100 + extraWave;
-          const yC4 = 20 - extraWave;
-          const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
+          const extraWave = (1 - p) * 10;
+          const tlStroke = 3 + (1 - p) * 1.5;
+          const yC1 = 32 - extraWave;
+          const yC2 = 52 + extraWave;
+          const tlPathD = `M 40 42 C 85 42, 95 42, 125 42 C 210 42, 290 ${yC1.toFixed(1)}, 375 32 C 460 32, 540 ${yC2.toFixed(1)}, 625 52 C 710 52, 790 38, 887 38 C 930 38, 950 38, 970 38`;
 
           expTimelinePath.setAttribute('d', tlPathD);
           expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(1));
@@ -996,7 +994,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!prefersReducedMotion) {
         const isMobile = window.innerWidth < 768;
-        const rotationAngle = isMobile ? 6 : 12;
+        const rotationAngle = isMobile ? 1.5 : 2.5;
         const scrubRate = isMobile ? 0.35 : 0.6;
 
         const flowSections = Array.from(

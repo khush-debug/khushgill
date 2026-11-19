@@ -78,7 +78,7 @@ body {
 
 /* --- Hero Kinetic Typography: Locked Single-Line Layout, Zero Shaking --- */
 .hero-headline-container {
-  min-height: 140px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,21 +88,29 @@ body {
 
 @media (max-width: 640px) {
   .hero-headline-container {
-    min-height: 100px;
+    min-height: 65px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-headline-container {
+    min-height: 90px;
   }
 }
 
 .hero-headline-row {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
   flex-wrap: nowrap !important;
   white-space: nowrap !important;
+  width: auto;
   max-width: 100%;
 }
 
 #scramble-heading {
-  font-size: clamp(1.6rem, 5.2vw, 5.8rem);
+  font-size: clamp(1.4rem, 4.1vw, 4.2rem);
   line-height: 1.1;
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -120,7 +128,7 @@ body {
 .hero-bracket {
   font-family: monospace;
   font-weight: 300;
-  font-size: clamp(1.5rem, 4.2vw, 4.8rem);
+  font-size: clamp(1.3rem, 3.4vw, 3.6rem);
   line-height: 1;
   color: #52525b; /* zinc-600 */
   flex-shrink: 0;
@@ -787,7 +795,7 @@ body {
 
 /* Base separation border and elevated surface on flow sections (compact modern breathing room) */
 [data-flow-section]:not(#hero) {
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 [data-flow-section]:not(#hero) .flow-art-container {
@@ -795,10 +803,10 @@ body {
   border-top: 1.5px solid rgba(255, 255, 255, 0.2);
   border-left: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  box-shadow: 0 -25px 60px -10px rgba(0, 0, 0, 0.95), 
-              0 0 35px rgba(255, 255, 255, 0.04);
+  border-top-left-radius: 1.75rem;
+  border-top-right-radius: 1.75rem;
+  box-shadow: 0 -18px 45px -8px rgba(0, 0, 0, 0.95), 
+              0 0 30px rgba(255, 255, 255, 0.03);
   position: relative;
   overflow: hidden;
 }
@@ -824,14 +832,14 @@ body {
 /* Mobile Optimizations: Fluid Card Borders & Full Touch Support */
 @media (max-width: 768px) {
   [data-flow-section]:not(#hero) {
-    padding-top: 0.35rem;
+    padding-top: 0.15rem;
   }
 
   [data-flow-section]:not(#hero) .flow-art-container {
     border-top: 1.5px solid rgba(255, 255, 255, 0.24);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    box-shadow: 0 -18px 45px rgba(0, 0, 0, 0.95);
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
+    box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.95);
   }
 }
 
