@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 2. KINETIC TEXT SCRAMBLE ROTATOR
+  // 2. KINETIC TEXT SCRAMBLE ROTATOR (ZERO-SHAKE)
   // ==========================================
   const scrambleHeading = document.getElementById('scramble-heading');
   const titles = [
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'E-COMMERCE ARCHITECT'
   ];
   let titleIndex = 0;
-  const chars = '!<>-_\\/[]{}—=+*^?#________';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#%&*';
 
   function scrambleText(targetText, callback) {
     if (!scrambleHeading) return;
@@ -839,6 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 13. FLOW ART / STORY SCROLL SYSTEM (GSAP ScrollTrigger)
   // Applied to all sections EXCEPT Experience (#experience)
+  // Zero screen-shaking, buttery smooth rotational scroll entrance
   // ==========================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     try {
@@ -848,8 +849,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!prefersReducedMotion) {
         const isMobile = window.innerWidth < 768;
-        const rotationAngle = isMobile ? 8 : 15;
-        const scrubRate = isMobile ? 0.45 : 0.8;
+        const rotationAngle = isMobile ? 6 : 12;
+        const scrubRate = isMobile ? 0.35 : 0.6;
 
         const flowSections = Array.from(
           document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
@@ -864,24 +865,13 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.set(inner, { rotation: rotationAngle, transformOrigin: 'bottom left' });
             gsap.to(inner, {
               rotation: 0,
-              ease: 'none',
+              ease: 'power1.out',
               scrollTrigger: {
                 trigger: section,
                 start: 'top bottom',
-                end: isMobile ? 'top 14%' : 'top 20%',
+                end: isMobile ? 'top 10%' : 'top 15%',
                 scrub: scrubRate,
               },
-            });
-          }
-
-          // Pin sections during transition (except Experience which flows uninterrupted)
-          if (i < flowSections.length - 1) {
-            ScrollTrigger.create({
-              trigger: section,
-              start: 'bottom bottom',
-              end: 'bottom top',
-              pin: true,
-              pinSpacing: false,
             });
           }
         });

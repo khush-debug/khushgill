@@ -76,13 +76,55 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- Hero Kinetic Typography --- */
+/* --- Hero Kinetic Typography: Locked Single-Line Layout, Zero Shaking --- */
+.hero-headline-container {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  contain: layout;
+}
+
+@media (max-width: 640px) {
+  .hero-headline-container {
+    min-height: 100px;
+  }
+}
+
+.hero-headline-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  max-width: 100%;
+}
+
 #scramble-heading {
+  font-size: clamp(1.6rem, 5.2vw, 4.8rem);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  white-space: nowrap !important;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
   background: linear-gradient(180deg, #ffffff 20%, #a1a1aa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
-  letter-spacing: -0.04em;
+  transition: opacity 0.2s ease;
+  will-change: contents;
+}
+
+.hero-bracket {
+  font-family: monospace;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 4.2vw, 4rem);
+  line-height: 1;
+  color: #52525b; /* zinc-600 */
+  flex-shrink: 0;
+  user-select: none;
 }
 
 .perspective-container {
