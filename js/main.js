@@ -124,134 +124,223 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. PHOTO 3D TILT & MINIMAL CLEAN SCROLL-UP SPIN + ZOOM-OUT PHYSICS
+  // 3. PHOTO 3D INTERACTIVE CONTROLLER: MANUAL TOUCH & TRACKPAD SPIN
+  // Real-time finger/trackpad rotation, inertia physics, 3D flip, and shiny specular reflection
   // ==========================================
+  const portraitScene = document.getElementById('portrait-scene');
   const portraitCard = document.getElementById('portrait-card');
   const portraitBackglow = document.getElementById('portrait-backglow');
-  
-  let spinTorque = 0;
-  let spinAngleY = 0;
-  let photoScale = 1.0;
-  let isMouseOverPortrait = false;
-  let mouseTiltX = 0;
-  let mouseTiltY = 0;
-  let lastScrollY = window.scrollY || document.documentElement.scrollTop;
+  const portraitReflection = document.getElementById('portrait-reflection');
+  const flipToBackBtn = document.getElementById('flip-to-back-btn');
+  const flipToFrontBtn = document.getElementById('flip-to-front-btn');
 
-  // Track upward scroll to trigger minimal, clean 3D spin and zoom out
+  let currentAngleY = 0;       // Continuous 360-degree rotation angle
+  let currentAngleX = 0;       // Subtle vertical tilt (-15deg to +15deg)
+  let spinVelocityY = 0;       // Angular momentum velocity
+  let photoScale = 1.0;        // Spring scale
+  let isDragging = false;      // Dragging state
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let lastDragX = 0;
+  let lastDragTime = 0;
+  let hasDragged = false;
+  let isTouchActive = false;
+  let targetAngleY = null;     // Programmatic flip target (e.g. 180deg or 0deg)
+
+  // Track upward scroll to trigger subtle spin torque
   const triggerScrollUpSpin = (velocity) => {
-    // Subtle, elegant velocity clamp
-    const clampedVelocity = Math.min(25, Math.max(2, velocity));
-    // Minimal spin torque: subtle micro-rotation (up to ~10-14 degrees max)
-    spinTorque = Math.min(6, spinTorque + clampedVelocity * 0.22);
-    // Minimal clean zoom out: slight scale down to ~0.95 (effortless & non-distracting)
-    photoScale = Math.max(0.95, photoScale - (clampedVelocity * 0.0018));
-    
-    if (portraitCard) {
-      portraitCard.classList.add('is-spinning-up');
-    }
+    if (isDragging || targetAngleY !== null) return;
+    const clampedVelocity = Math.min(20, Math.max(2, velocity));
+    spinVelocityY = Math.min(12, spinVelocityY + clampedVelocity * 0.35);
+    photoScale = Math.max(0.96, photoScale - (clampedVelocity * 0.0015));
   };
 
-  // Wheel detection (immediate response on trackpad / mousewheel scroll up)
+  // Scroll / Wheel detection (works with momentum scroll)
   window.addEventListener('wheel', (e) => {
-    if (e.deltaY < -2) {
-      triggerScrollUpSpin(Math.abs(e.deltaY) * 0.25);
+    if (e.deltaY < -4) {
+      triggerScrollUpSpin(Math.abs(e.deltaY) * 0.15);
     }
   }, { passive: true });
 
-  // Scroll detection (works with momentum scroll, keys, and touch swipe up)
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY || document.documentElement.scrollTop;
-    const deltaY = currentScrollY - lastScrollY;
-    if (deltaY < -2) {
-      triggerScrollUpSpin(Math.abs(deltaY) * 0.5);
-    }
-    lastScrollY = currentScrollY;
-  }, { passive: true });
+  // Mobile Touch manual dragging / spinning
+  if (portraitScene) {
+    portraitScene.addEventListener('touchstart', (e) => {
+      if (!e.touches || !e.touches[0]) return;
+      const touch = e.touches[0];
+      dragStartX = touch.clientX;
+      dragStartY = touch.clientY;
+      lastDragX = touch.clientX;
+      lastDragTime = performance.now();
+      isDragging = true;
+      isTouchActive = true;
+      hasDragged = false;
+      targetAngleY = null;
+      spinVelocityY = 0;
+    }, { passive: true });
 
-  // Mobile Touch detection (swiping down to move towards top triggers minimal clean spin on mobile)
-  let touchStartClientY = 0;
-  window.addEventListener('touchstart', (e) => {
-    if (e.touches && e.touches[0]) {
-      touchStartClientY = e.touches[0].clientY;
-    }
-  }, { passive: true });
+    portraitScene.addEventListener('touchmove', (e) => {
+      if (!isTouchActive || !e.touches || !e.touches[0]) return;
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lastDragX;
+      const totalDeltaX = touch.clientX - dragStartX;
+      const totalDeltaY = touch.clientY - dragStartY;
 
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches && e.touches[0]) {
-      const currentY = e.touches[0].clientY;
-      const deltaTouch = currentY - touchStartClientY;
-      // When dragging downwards (page scrolls UP):
-      if (deltaTouch > 4) {
-        triggerScrollUpSpin(deltaTouch * 0.35);
+      // If user is dragging horizontally to spin the card
+      if (Math.abs(totalDeltaX) > 6 && Math.abs(totalDeltaX) > Math.abs(totalDeltaY) * 0.6) {
+        hasDragged = true;
+        if (e.cancelable) e.preventDefault(); // Stop page scroll while spinning card
+        currentAngleY += deltaX * 0.85;
+        currentAngleX = Math.max(-14, Math.min(14, -totalDeltaY * 0.12));
+
+        const now = performance.now();
+        const dt = now - lastDragTime;
+        if (dt > 0) {
+          spinVelocityY = (deltaX / dt) * 16;
+        }
+        lastDragX = touch.clientX;
+        lastDragTime = now;
       }
-      touchStartClientY = currentY;
-    }
-  }, { passive: true });
+    }, { passive: false });
 
-  // Physics animation loop for smooth deceleration and spring recovery
+    portraitScene.addEventListener('touchend', () => {
+      isTouchActive = false;
+      isDragging = false;
+      spinVelocityY = Math.max(-25, Math.min(25, spinVelocityY));
+      if (portraitCard && Math.abs(spinVelocityY) > 2) {
+        portraitCard.classList.add('is-spinning-up');
+      }
+    }, { passive: true });
+
+    // Trackpad / Mouse Drag manual spinning on Laptop & PC
+    portraitScene.addEventListener('mousedown', (e) => {
+      // Don't hijack if clicking directly on link or button
+      if (e.target.closest('a, button, input, label')) return;
+      if (e.button !== 0) return; // Only primary button
+      isDragging = true;
+      hasDragged = false;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      lastDragX = e.clientX;
+      lastDragTime = performance.now();
+      targetAngleY = null;
+      spinVelocityY = 0;
+      portraitScene.classList.add('is-dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - lastDragX;
+      const totalDeltaX = e.clientX - dragStartX;
+      const totalDeltaY = e.clientY - dragStartY;
+
+      if (Math.abs(totalDeltaX) > 4) {
+        hasDragged = true;
+      }
+
+      currentAngleY += deltaX * 0.75;
+      currentAngleX = Math.max(-14, Math.min(14, -totalDeltaY * 0.1));
+
+      const now = performance.now();
+      const dt = now - lastDragTime;
+      if (dt > 0) {
+        spinVelocityY = (deltaX / dt) * 16;
+      }
+      lastDragX = e.clientX;
+      lastDragTime = now;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        spinVelocityY = Math.max(-25, Math.min(25, spinVelocityY));
+        portraitScene.classList.remove('is-dragging');
+      }
+    });
+
+    // Trackpad 2-finger horizontal swipe
+    portraitScene.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > 2) {
+        currentAngleY += e.deltaX * 0.45;
+        spinVelocityY = Math.max(-18, Math.min(18, e.deltaX * 0.25));
+        targetAngleY = null;
+      }
+    }, { passive: true });
+  }
+
+  // Explicit 3D Flip Buttons
+  if (flipToBackBtn) {
+    flipToBackBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Snap to nearest 180-degree back face
+      const nearestBase = Math.round(currentAngleY / 360) * 360;
+      targetAngleY = nearestBase + 180;
+      spinVelocityY = 0;
+      if (typeof playClickSound === 'function') playClickSound(880, 'triangle');
+    });
+  }
+
+  if (flipToFrontBtn) {
+    flipToFrontBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Snap to nearest 360-degree front face
+      const nearestBase = Math.round(currentAngleY / 360) * 360;
+      targetAngleY = nearestBase;
+      spinVelocityY = 0;
+      if (typeof playClickSound === 'function') playClickSound(660, 'sine');
+    });
+  }
+
+  // Unified 3D Physics Animation Loop
   function updatePortraitPhysics() {
     if (portraitCard) {
-      if (spinTorque > 0.05 || Math.abs(photoScale - 1.0) > 0.001 || Math.abs(spinAngleY) > 0.15) {
-        // Accumulate subtle spin rotation
-        spinAngleY += spinTorque;
-        // Smooth deceleration friction
-        spinTorque *= 0.88;
-        // Spring scale smoothly back to 1.0
-        photoScale += (1.0 - photoScale) * 0.09;
-
-        // Smoothly settle spin angle cleanly back to 0
-        if (spinTorque < 0.1) {
-          spinAngleY += (0 - spinAngleY) * 0.14;
-          if (Math.abs(spinAngleY) < 0.2) {
-            spinAngleY = 0;
-            spinTorque = 0;
+      // 1. Programmatic Flip interpolation (when button clicked)
+      if (targetAngleY !== null) {
+        const diff = targetAngleY - currentAngleY;
+        currentAngleY += diff * 0.14;
+        currentAngleX *= 0.88;
+        if (Math.abs(diff) < 0.2) {
+          currentAngleY = targetAngleY;
+          targetAngleY = null;
+        }
+      } 
+      // 2. Momentum & Inertia Decay (when user flicked / spinned card)
+      else if (!isDragging) {
+        if (Math.abs(spinVelocityY) > 0.04) {
+          currentAngleY += spinVelocityY;
+          spinVelocityY *= 0.93; // Smooth friction
+          if (Math.abs(spinVelocityY) < 0.05) {
+            spinVelocityY = 0;
             if (portraitCard) portraitCard.classList.remove('is-spinning-up');
           }
         }
+        // Recover vertical tilt smoothly
+        currentAngleX *= 0.88;
+      }
 
-        portraitCard.style.transform = `perspective(1000px) rotateY(${spinAngleY.toFixed(1)}deg) rotateZ(${(spinAngleY * 0.03).toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
+      // 3. Spring recovery for scale
+      photoScale += (1.0 - photoScale) * 0.1;
 
-        if (portraitBackglow) {
-          const glowOpacity = Math.min(0.7, 0.4 + (spinTorque * 0.03));
-          portraitBackglow.style.opacity = glowOpacity.toFixed(2);
-        }
-      } else if (isMouseOverPortrait) {
-        // Interactive 3D mouse tilt while hovering at rest
-        portraitCard.style.transform = `perspective(1000px) rotateX(${mouseTiltX.toFixed(1)}deg) rotateY(${mouseTiltY.toFixed(1)}deg) scale(1.02)`;
-        if (portraitBackglow) {
-          portraitBackglow.style.opacity = '0.6';
-        }
-      } else {
-        // Resting neutral state
-        portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-        if (portraitBackglow) {
-          portraitBackglow.style.opacity = '0.45';
-        }
+      // 4. Apply 3D matrix transformation
+      portraitCard.style.transform = `perspective(1200px) rotateY(${currentAngleY.toFixed(1)}deg) rotateX(${currentAngleX.toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
+
+      // 5. Dynamic Metallic Specular Reflection on Back Face
+      if (portraitReflection) {
+        const normalizedAngle = ((currentAngleY % 360 + 360) % 360);
+        const sheenAngle = 100 + (normalizedAngle * 0.45);
+        const sheenOpacity = Math.min(0.9, Math.max(0.4, 0.4 + Math.sin((normalizedAngle * Math.PI) / 180) * 0.4));
+        portraitReflection.style.background = `linear-gradient(${sheenAngle.toFixed(1)}deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.7) 48%, rgba(236,72,153,0.35) 62%, rgba(16,185,129,0.35) 78%, rgba(255,255,255,0) 100%)`;
+        portraitReflection.style.opacity = sheenOpacity.toFixed(2);
+      }
+
+      // 6. Backglow intensity tracks spin velocity & rotation
+      if (portraitBackglow) {
+        const glowOpacity = Math.min(0.85, 0.4 + (Math.abs(spinVelocityY) * 0.03));
+        portraitBackglow.style.opacity = glowOpacity.toFixed(2);
       }
     }
     requestAnimationFrame(updatePortraitPhysics);
   }
   requestAnimationFrame(updatePortraitPhysics);
-
-  // Mouse tilt on portrait card
-  if (portraitCard) {
-    portraitCard.addEventListener('mousemove', (e) => {
-      isMouseOverPortrait = true;
-      const rect = portraitCard.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      mouseTiltX = ((y - centerY) / centerY) * -12;
-      mouseTiltY = ((x - centerX) / centerX) * 12;
-    });
-
-    portraitCard.addEventListener('mouseleave', () => {
-      isMouseOverPortrait = false;
-      mouseTiltX = 0;
-      mouseTiltY = 0;
-    });
-  }
 
 
   // ==========================================
