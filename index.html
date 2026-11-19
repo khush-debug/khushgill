@@ -140,8 +140,8 @@
   <main class="relative z-20">
 
     <!-- ==================== HERO SECTION (Matching 00:00 - 00:10 of Reference Video) ==================== -->
-    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-16 sm:pt-18 md:pt-20 pb-3 sm:pb-5 md:pb-6 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-14 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full h-full flex flex-col justify-between">
+    <section id="hero" data-flow-section class="relative flex flex-col justify-between pt-16 sm:pt-18 md:pt-20 pb-3 sm:pb-5 md:pb-6 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full h-full flex flex-col justify-between p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
       
       <!-- Top Decorative Monospace Brackets / Metadata (Frame 00:01) -->
       <div class="reveal reveal-fade flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-2 sm:pt-3 select-none">
@@ -195,16 +195,14 @@
           </div>
         </div>
 
-        <!-- Mobile Side-by-Side Flex Wrapper: On mobile, photo is on left and text is on right. On desktop, md:contents dissolves it into 3-column grid -->
-        <div class="flex flex-row items-center gap-3 xs:gap-4 sm:gap-6 md:contents">
-          <!-- Column 2: Center Editorial Portrait Card (Interactive 3D Manual Touch & Trackpad Spin) -->
-          <div class="reveal reveal-scale stagger-1 md:col-span-4 flex-shrink-0 flex justify-center select-none">
-            <div id="portrait-scene" class="relative group cursor-grab active:cursor-grabbing perspective-container touch-none">
-              <!-- Ambient Card Backglow (Minimalist Black-Grey Obsidian Aura) -->
-              <div id="portrait-backglow" class="absolute -inset-2 sm:-inset-3 bg-gradient-to-br from-zinc-700 via-zinc-800 to-black rounded-3xl blur-2xl opacity-45 group-hover:opacity-75 transition duration-700 pointer-events-none"></div>
-              
-              <!-- 3D Two-Sided Spinnable Card Frame -->
-              <div id="portrait-card" class="relative w-[130px] xs:w-[155px] sm:w-[185px] md:w-[260px] lg:w-[275px] xl:w-[310px] 2xl:w-[350px] h-[190px] xs:h-[220px] sm:h-[265px] md:h-[330px] lg:h-[350px] xl:h-[380px] 2xl:h-[430px] rounded-2xl shadow-2xl transition-shadow duration-300" style="transform-style: preserve-3d;">
+        <!-- Column 2: Center Editorial Portrait Card (Interactive 3D Manual Touch & Trackpad Spin) -->
+        <div class="reveal reveal-scale stagger-1 md:col-span-4 flex justify-center select-none">
+          <div id="portrait-scene" class="relative group cursor-grab active:cursor-grabbing perspective-container touch-none">
+            <!-- Ambient Card Backglow (Minimalist Black-Grey Obsidian Aura) -->
+            <div id="portrait-backglow" class="absolute -inset-2.5 sm:-inset-3 bg-gradient-to-br from-zinc-700 via-zinc-800 to-black rounded-3xl blur-2xl opacity-45 group-hover:opacity-75 transition duration-700 pointer-events-none"></div>
+            
+            <!-- 3D Two-Sided Spinnable Card Frame (Clean Mobile Fitting Matching Third Photo) -->
+            <div id="portrait-card" class="relative w-[280px] xs:w-[300px] sm:w-[320px] md:w-[260px] lg:w-[275px] xl:w-[310px] 2xl:w-[350px] h-[350px] xs:h-[370px] sm:h-[390px] md:h-[330px] lg:h-[350px] xl:h-[380px] 2xl:h-[430px] rounded-2xl shadow-2xl transition-shadow duration-300" style="transform-style: preserve-3d;">
                 
                 <!-- FRONT FACE: Editorial Headshot & Quick Controls -->
                 <div class="card-face card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-zinc-950">
@@ -214,32 +212,32 @@
                   <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
 
                   <!-- Top Monogram Badge & 3D Flip Trigger -->
-                  <div class="absolute top-2.5 sm:top-4 inset-x-2.5 sm:inset-x-4 z-10 flex items-center justify-between">
-                    <div class="flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
-                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white"></span>
-                      <span class="text-[9px] sm:text-[11px] font-mono font-bold text-white tracking-widest">KG</span>
+                  <div class="absolute top-4 inset-x-4 z-10 flex items-center justify-between">
+                    <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
+                      <span class="w-2 h-2 rounded-full bg-white"></span>
+                      <span class="text-[11px] font-mono font-bold text-white tracking-widest">KG</span>
                     </div>
-                    <button id="flip-to-back-btn" type="button" class="flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 hover:border-emerald-400/50 text-zinc-200 hover:text-white backdrop-blur-md text-[9px] sm:text-[11px] font-mono font-medium transition-all shadow-lg active:scale-95" title="Flip card to direct socials">
-                      <span class="hidden xs:inline">Socials </span><span>3D</span>
+                    <button id="flip-to-back-btn" type="button" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 hover:border-emerald-400/50 text-zinc-200 hover:text-white backdrop-blur-md text-[11px] font-mono font-medium transition-all shadow-lg active:scale-95" title="Flip card to direct socials">
+                      <span>Socials 3D</span>
                       <span class="text-emerald-400 font-bold">↻</span>
                     </button>
                   </div>
 
                   <!-- Bottom Floating Badges (Seamless pills, no box dividing line across photo, no swap button) -->
-                  <div class="absolute bottom-2.5 sm:bottom-4 inset-x-2 sm:inset-x-4 z-10 flex items-center justify-between pointer-events-none select-none">
-                    <div class="flex items-center gap-1 px-1.5 py-0.5 sm:px-3 sm:py-1.5 rounded-full bg-black/70 border border-white/10 backdrop-blur-md">
+                  <div class="absolute bottom-4 inset-x-4 z-10 flex items-center justify-between pointer-events-none select-none">
+                    <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      <span class="text-[9px] sm:text-xs font-mono font-medium text-zinc-200 truncate max-w-[65px] xs:max-w-none">Khushman</span>
+                      <span class="text-xs font-mono font-medium text-zinc-200">Khushman Gill</span>
                     </div>
-                    <div class="flex items-center gap-1 px-1.5 py-0.5 sm:px-3 sm:py-1.5 rounded-full bg-black/70 border border-white/10 backdrop-blur-md text-[8px] sm:text-[10px] font-mono text-zinc-300">
-                      <span class="hidden xs:inline">Spin </span><span>360°</span>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md text-[10px] font-mono text-zinc-300">
+                      <span>Spin 360°</span>
                       <span class="text-emerald-400 font-bold">↻</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- BACK FACE: Shiny Reflective Luxury Surface with Instagram, Email & GitHub -->
-                <div class="card-face card-back absolute inset-0 w-full h-full rounded-2xl overflow-hidden border border-white/25 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 p-2.5 sm:p-5 md:p-6 flex flex-col justify-between" style="transform: rotateY(180deg); backface-visibility: hidden;">
+                <div class="card-face card-back absolute inset-0 w-full h-full rounded-2xl overflow-hidden border border-white/25 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 p-5 sm:p-6 flex flex-col justify-between" style="transform: rotateY(180deg); backface-visibility: hidden;">
                   
                   <!-- Dynamic Shiny Metallic Specular Reflection Layer -->
                   <div id="portrait-reflection" class="absolute inset-0 pointer-events-none rounded-2xl opacity-70 transition-all duration-100"></div>
@@ -248,17 +246,17 @@
                   <div class="absolute inset-0 bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none"></div>
 
                   <!-- Top Monogram & Flip Back Button -->
-                  <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-1.5 sm:pb-3">
-                    <div class="flex items-center gap-1.5 sm:gap-2.5">
-                      <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-white via-zinc-200 to-zinc-500 flex items-center justify-center shadow-lg text-black font-black text-[10px] sm:text-xs font-mono">
+                  <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-3">
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-white via-zinc-200 to-zinc-500 flex items-center justify-center shadow-lg text-black font-black text-xs font-mono">
                         KG
                       </div>
                       <div>
-                        <div class="text-[9px] sm:text-xs font-bold text-white tracking-wide">KHUSHMAN</div>
-                        <div class="text-[7px] sm:text-[10px] font-mono text-zinc-400 hidden xs:block">Connect</div>
+                        <div class="text-xs font-bold text-white tracking-wide">KHUSHMAN GILL</div>
+                        <div class="text-[10px] font-mono text-zinc-400">Direct Connect</div>
                       </div>
                     </div>
-                    <button id="flip-to-front-btn" type="button" class="flex items-center gap-0.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[9px] sm:text-[11px] font-mono text-zinc-200 hover:text-white transition-colors active:scale-95" title="Flip back to photo">
+                    <button id="flip-to-front-btn" type="button" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] font-mono text-zinc-200 hover:text-white transition-colors active:scale-95" title="Flip back to photo">
                       <span>Photo</span>
                       <span class="text-emerald-400 font-bold">↺</span>
                     </button>
@@ -330,42 +328,41 @@
 
               </div>
             </div>
+        </div>
+
+        <!-- Column 3: Impact Statement & CTA Actions (Under photo on mobile, right column on desktop) -->
+        <div class="reveal reveal-right stagger-2 md:col-span-4 flex flex-col justify-between space-y-3.5 sm:space-y-4 md:space-y-5">
+          <div class="space-y-2 sm:space-y-3">
+            <h3 class="text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-white tracking-tight leading-snug">
+              I build practical business solutions that turn complex ideas into high-margin reality.
+            </h3>
+            <p class="text-xs sm:text-sm lg:text-base text-zinc-400 leading-relaxed font-normal">
+              Combining a disciplined commerce foundation, technical engineering execution, and creative visual mastery to build websites and ventures that deliver tangible revenue and prestige.
+            </p>
           </div>
 
-          <!-- Column 3: Right Impact Statement & CTA Actions (Sits to the right of photo on mobile) -->
-          <div class="reveal reveal-right stagger-2 md:col-span-4 flex-1 min-w-0 flex flex-col justify-between space-y-2 xs:space-y-2.5 sm:space-y-4 md:space-y-5">
-            <div class="space-y-1 xs:space-y-1.5 sm:space-y-2.5">
-              <h3 class="text-xs xs:text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold text-white tracking-tight leading-snug">
-                I build practical business solutions that turn complex ideas into high-margin reality.
-              </h3>
-              <p class="text-[10px] xs:text-[11px] sm:text-xs md:text-sm lg:text-base text-zinc-400 leading-relaxed font-normal">
-                Combining a disciplined commerce foundation, technical engineering execution, and creative visual mastery to build websites and ventures that deliver tangible revenue and prestige.
-              </p>
-            </div>
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
+            <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md active:scale-95 group">
+              <span>Explore Projects</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+            
+            <a href="#experience" class="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-medium text-xs transition-all active:scale-95">
+              <span>View Milestones</span>
+              <span class="text-zinc-500 font-mono">↓</span>
+            </a>
 
-            <!-- CTAs -->
-            <div class="flex flex-col xs:flex-row xs:flex-wrap items-start xs:items-center gap-1.5 sm:gap-2.5 pt-0.5 sm:pt-2">
-              <a href="#projects" class="inline-flex items-center gap-1.5 px-2.5 py-1 xs:px-3 xs:py-1.5 sm:px-4 sm:py-2.5 rounded-full bg-white text-black font-semibold text-[10px] xs:text-xs hover:bg-zinc-200 transition-all shadow-md active:scale-95 group">
-                <span>Explore Projects</span>
-                <svg class="w-2.5 h-2.5 xs:w-3.5 xs:h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </a>
-              
-              <a href="#experience" class="inline-flex items-center gap-1.5 px-2.5 py-1 xs:px-3 xs:py-1.5 sm:px-3.5 sm:py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-medium text-[10px] xs:text-xs transition-all active:scale-95">
-                <span>View Milestones</span>
-                <span class="text-zinc-500 font-mono">↓</span>
-              </a>
-
-              <!-- Direct Instagram Profile Link -->
-              <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 xs:px-3 xs:py-1.5 sm:px-3.5 sm:py-2.5 rounded-full border border-pink-500/30 bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 hover:text-white font-medium text-[10px] xs:text-xs transition-all active:scale-95" title="Follow @kggills on Instagram">
-                <svg class="w-2.5 h-2.5 xs:w-3.5 xs:h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                <span>@kggills</span>
-                <span class="text-pink-400 font-mono text-[9px] xs:text-[10px]">↗</span>
-              </a>
-            </div>
+            <!-- Direct Instagram Profile Link -->
+            <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full border border-pink-500/30 bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 hover:text-white font-medium text-xs transition-all active:scale-95" title="Follow @kggills on Instagram">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>@kggills</span>
+              <span class="text-pink-400 font-mono text-[10px]">↗</span>
+            </a>
           </div>
         </div>
 
@@ -375,8 +372,8 @@
     </section>
 
     <!-- ==================== TECH STACK & COMPETENCY BENTO (Matching 00:11 - 00:12) ==================== -->
-    <section id="stack" data-flow-section class="pt-0 pb-6 sm:pb-10 md:pb-14 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+    <section id="stack" data-flow-section class="pt-0 pb-6 sm:pb-10 md:pb-14 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-7 md:mb-10 gap-3 sm:gap-4">
@@ -529,8 +526,8 @@
     </section>
 
     <!-- ==================== FEATURED PROJECTS (Matching 00:13 - 00:15 - macOS Physical Folder Cards) ==================== -->
-    <section id="projects" data-flow-section class="pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-4 sm:p-6 md:p-10 lg:p-12 xl:p-14">
+    <section id="projects" data-flow-section class="pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
+      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
       
       <!-- Section Header -->
       <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-7 md:mb-10 gap-3 sm:gap-4">
@@ -746,10 +743,10 @@
     </section>
 
     <!-- ==================== EXPERIENCE & MILESTONES (Matching 00:16 - Curved Bezier Timeline) ==================== -->
-    <section id="experience" class="py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-14 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto border-t border-white/10">
+    <section id="experience" class="py-8 sm:py-12 md:py-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto border-t border-white/10">
       
       <!-- Section Header -->
-      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 md:mb-8 gap-3 sm:gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 md:mb-8 gap-3 sm:gap-4 px-1 sm:px-2 md:px-0">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 03 • TRAJECTORY</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Experience.</h2>
@@ -882,7 +879,7 @@
       </div>
 
       <!-- MOBILE / TABLET TIMELINE: Animated Glowing Neon Rail & Interactive Milestone Cards -->
-      <div id="mobile-timeline-container" class="lg:hidden relative ml-3 pl-8 py-2 space-y-6">
+      <div id="mobile-timeline-container" class="lg:hidden relative ml-1 sm:ml-2 pl-7 sm:pl-8 pr-1 py-2 space-y-5 sm:space-y-6 w-full">
         
         <!-- Background Spine Track -->
         <div class="absolute left-1.5 top-3 bottom-6 w-0.5 bg-white/10 rounded-full"></div>
@@ -897,8 +894,8 @@
         </div>
 
         <!-- Mobile Milestone Card 1: 2024 - Present -->
-        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-1 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="0">
-          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+        <div class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-1 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="0">
+          <div class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
             <span class="w-1.5 h-1.5 rounded-full bg-white transition-colors"></span>
           </div>
           <div class="flex items-center justify-between mb-1">
@@ -913,8 +910,8 @@
         </div>
 
         <!-- Mobile Milestone Card 2: Academic Rigor -->
-        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-2 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="1">
-          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+        <div class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-2 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="1">
+          <div class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
             <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
           </div>
           <div class="flex items-center justify-between mb-1">
@@ -929,8 +926,8 @@
         </div>
 
         <!-- Mobile Milestone Card 3: Distinction -->
-        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-3 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="2">
-          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+        <div class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-3 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="2">
+          <div class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
             <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
           </div>
           <div class="flex items-center justify-between mb-1">
@@ -945,8 +942,8 @@
         </div>
 
         <!-- Mobile Milestone Card 4: Leadership & Agility -->
-        <div class="milestone-card mobile-milestone relative reveal reveal-left stagger-4 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="3">
-          <div class="mobile-timeline-node absolute -left-[35px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
+        <div class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-4 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group" data-milestone-index="3">
+          <div class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
             <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
           </div>
           <div class="flex items-center justify-between mb-1">
@@ -965,8 +962,8 @@
     </section>
 
     <!-- ==================== FOOTER & "SEE YOU AROUND" (Matching 00:17 - 00:18) ==================== -->
-    <footer id="contact" data-flow-section class="relative pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden bg-black">
-      <div data-flow-inner class="flow-art-container w-full p-4 sm:p-6 md:p-10 lg:p-12 xl:p-14">
+    <footer id="contact" data-flow-section class="relative pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden bg-black">
+      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
       
       <!-- Faded Giant Watermark Typography in Background: "KHUSHMAN" -->
       <div class="reveal reveal-fade absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">
@@ -977,7 +974,7 @@
         
         <!-- Social Profiles Strip -->
         <div class="reveal flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4 text-xs font-mono">
-          <div class="flex items-center gap-6">
+          <div class="flex flex-wrap items-center gap-3.5 sm:gap-6">
             <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5">
               <span>GitHub</span>
               <span class="text-zinc-600">↗</span>
