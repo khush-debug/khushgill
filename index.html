@@ -44,6 +44,9 @@
 </head>
 <body class="bg-[#09090b] text-[#EDEDED] font-sans antialiased selection:bg-white selection:text-black">
 
+  <!-- Sleek Top Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
   <!-- Ambient Background Spotlight -->
   <div id="ambient-spotlight" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
 
@@ -123,7 +126,7 @@
     <section id="hero" class="min-h-screen relative flex flex-col justify-between pt-28 pb-16 px-6 max-w-7xl mx-auto overflow-hidden">
       
       <!-- Top Decorative Monospace Brackets / Metadata (Frame 00:01) -->
-      <div class="flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-4 select-none">
+      <div class="reveal reveal-fade flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-4 select-none">
         <div class="flex items-center gap-2">
           <span class="text-zinc-300 font-bold">©2026</span>
           <span class="text-zinc-600">/</span>
@@ -135,7 +138,7 @@
       </div>
 
       <!-- Hero Centerpiece: Giant Kinetic Scramble Headline (Frame 00:02 - 00:06) -->
-      <div class="my-auto py-8 text-center select-none">
+      <div class="reveal reveal-scale my-auto py-8 text-center select-none">
         <div class="inline-flex items-center justify-center flex-wrap gap-2 md:gap-4">
           <span class="text-3xl md:text-6xl lg:text-7xl font-mono text-zinc-600 font-light">&lt;</span>
           <h1 id="scramble-heading" class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase text-white drop-shadow-[0_0_35px_rgba(255,255,255,0.25)] transition-all">
@@ -152,7 +155,7 @@
       <div id="about" class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-8 border-t border-white/10">
         
         <!-- Column 1: Left Bio & Current Focus -->
-        <div class="md:col-span-4 flex flex-col justify-between space-y-6">
+        <div class="reveal reveal-left md:col-span-4 flex flex-col justify-between space-y-6">
           <div>
             <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
               Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">Khushman.</span>
@@ -175,7 +178,7 @@
         </div>
 
         <!-- Column 2: Center Editorial Portrait Card (Interactive 3D Perspective Tilt) -->
-        <div class="md:col-span-4 flex justify-center">
+        <div class="reveal reveal-scale stagger-1 md:col-span-4 flex justify-center">
           <div class="relative group cursor-pointer perspective-container">
             <!-- Ambient Card Backglow -->
             <div class="absolute -inset-1.5 bg-gradient-to-r from-zinc-500 to-zinc-700 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
@@ -209,7 +212,7 @@
         </div>
 
         <!-- Column 3: Right Impact Statement & CTA Actions -->
-        <div class="md:col-span-4 flex flex-col justify-between space-y-6">
+        <div class="reveal reveal-right stagger-2 md:col-span-4 flex flex-col justify-between space-y-6">
           <div class="space-y-4">
             <h3 class="text-xl md:text-2xl font-bold text-white tracking-tight leading-snug">
               I build practical business solutions that turn complex ideas into high-margin reality.
@@ -243,7 +246,7 @@
     <section id="stack" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 01 • CAPABILITIES</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Tech Stack & Expertise</h2>
@@ -257,7 +260,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <!-- Card 1: Web Development & Architecture -->
-        <div class="stack-card p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+        <div class="stack-card reveal stagger-1 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +286,7 @@
         </div>
 
         <!-- Card 2: Applied AI & Digital Automation -->
-        <div class="stack-card p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+        <div class="stack-card reveal stagger-2 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -307,7 +310,7 @@
         </div>
 
         <!-- Card 3: Business Development & Sales -->
-        <div class="stack-card p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+        <div class="stack-card reveal stagger-3 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -331,7 +334,7 @@
         </div>
 
         <!-- Card 4: Creative Arts & Brand Identity -->
-        <div class="stack-card p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+        <div class="stack-card reveal stagger-4 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
           <div>
             <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -362,7 +365,7 @@
     <section id="projects" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 02 • WORK & CASE STUDIES</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Featured Projects</h2>
@@ -382,7 +385,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
 
         <!-- FOLDER 1: Lally Computers (Flagship Live Production Website) -->
-        <div class="folder-card group" data-project="lally">
+        <div class="folder-card reveal stagger-1 group" data-project="lally">
           <!-- Folder Back Structure & Tab -->
           <div class="folder-tab">
             <span class="tab-label">01 / RETAIL E-COM</span>
@@ -432,7 +435,7 @@
         </div>
 
         <!-- FOLDER 2: Digital Branding & E-Commerce Venture -->
-        <div class="folder-card group" data-project="branding">
+        <div class="folder-card reveal stagger-2 group" data-project="branding">
           <div class="folder-tab">
             <span class="tab-label">02 / BRAND IDENTITY</span>
           </div>
@@ -479,7 +482,7 @@
         </div>
 
         <!-- FOLDER 3: AI-Driven Enterprise Operations -->
-        <div class="folder-card group" data-project="ai">
+        <div class="folder-card reveal stagger-3 group" data-project="ai">
           <div class="folder-tab">
             <span class="tab-label">03 / APPLIED AI</span>
           </div>
@@ -526,7 +529,7 @@
         </div>
 
         <!-- FOLDER 4: Fine Arts & Visual Expression Studio -->
-        <div class="folder-card group" data-project="arts">
+        <div class="folder-card reveal stagger-4 group" data-project="arts">
           <div class="folder-tab">
             <span class="tab-label">04 / CREATIVE ARTS</span>
           </div>
@@ -580,7 +583,7 @@
     <section id="experience" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 03 • TRAJECTORY</span>
           <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Experience.</h2>
@@ -603,30 +606,38 @@
             </linearGradient>
           </defs>
           <!-- Smooth Bezier Wave Line -->
-          <path d="M 50 60 C 200 110, 300 20, 480 60 C 660 100, 780 20, 950 60" stroke="url(#lineGrad)" stroke-width="2.5" stroke-dasharray="6 4" class="timeline-path"/>
+          <path d="M 50 60 C 200 110, 300 20, 480 60 C 660 100, 780 20, 950 60" stroke="url(#lineGrad)" stroke-width="2.5" class="timeline-path timeline-path-draw"/>
           
           <!-- Node 1: Present -->
-          <circle cx="50" cy="60" r="7" fill="#FFFFFF" class="node-glow"/>
-          <circle cx="50" cy="60" r="3" fill="#09090B"/>
+          <g class="node-pulse stagger-1">
+            <circle cx="50" cy="60" r="7" fill="#FFFFFF" class="node-glow"/>
+            <circle cx="50" cy="60" r="3" fill="#09090B"/>
+          </g>
           
           <!-- Node 2: Academic Excellence -->
-          <circle cx="340" cy="38" r="6" fill="#D4D4D8"/>
-          <circle cx="340" cy="38" r="2.5" fill="#09090B"/>
+          <g class="node-pulse stagger-2">
+            <circle cx="340" cy="38" r="6" fill="#D4D4D8"/>
+            <circle cx="340" cy="38" r="2.5" fill="#09090B"/>
+          </g>
 
           <!-- Node 3: Olympiad Silver -->
-          <circle cx="600" cy="82" r="6" fill="#D4D4D8"/>
-          <circle cx="600" cy="82" r="2.5" fill="#09090B"/>
+          <g class="node-pulse stagger-3">
+            <circle cx="600" cy="82" r="6" fill="#D4D4D8"/>
+            <circle cx="600" cy="82" r="2.5" fill="#09090B"/>
+          </g>
 
           <!-- Node 4: Competitive Leadership -->
-          <circle cx="950" cy="60" r="6" fill="#A1A1AA"/>
-          <circle cx="950" cy="60" r="2.5" fill="#09090B"/>
+          <g class="node-pulse stagger-4">
+            <circle cx="950" cy="60" r="6" fill="#A1A1AA"/>
+            <circle cx="950" cy="60" r="2.5" fill="#09090B"/>
+          </g>
         </svg>
 
         <!-- Node Details Cards Placed Along Desktop Timeline -->
         <div class="grid grid-cols-4 gap-6 mt-4">
           
           <!-- Milestone 1 -->
-          <div class="milestone-card p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
+          <div class="milestone-card reveal stagger-1 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
             <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block mb-1">2024 — PRESENT</span>
             <h4 class="text-base font-bold text-white">Web Strategy & Product Lead</h4>
             <div class="text-xs text-zinc-300 font-medium mt-0.5">Lally Computers</div>
@@ -636,7 +647,7 @@
           </div>
 
           <!-- Milestone 2 -->
-          <div class="milestone-card p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
+          <div class="milestone-card reveal stagger-2 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
             <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">ACADEMIC RIGOR</span>
             <h4 class="text-base font-bold text-white">Commerce & IT Specialization</h4>
             <div class="text-xs text-zinc-300 font-medium mt-0.5">Akal Academy, Puranewala</div>
@@ -646,7 +657,7 @@
           </div>
 
           <!-- Milestone 3 -->
-          <div class="milestone-card p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
+          <div class="milestone-card reveal stagger-3 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
             <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">DISTINCTION</span>
             <h4 class="text-base font-bold text-white">English Olympiad Silver Medal</h4>
             <div class="text-xs text-zinc-300 font-medium mt-0.5">2nd Position • Competitive</div>
@@ -656,7 +667,7 @@
           </div>
 
           <!-- Milestone 4 -->
-          <div class="milestone-card p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
+          <div class="milestone-card reveal stagger-4 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
             <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">LEADERSHIP & AGILITY</span>
             <h4 class="text-base font-bold text-white">Athletics & Tri-Lingual Articulation</h4>
             <div class="text-xs text-zinc-300 font-medium mt-0.5">Football & Inter-House Cups</div>
@@ -672,7 +683,7 @@
       <div class="lg:hidden relative border-l-2 border-white/10 ml-4 space-y-10 pl-6 py-2">
         
         <!-- Mobile Item 1 -->
-        <div class="relative">
+        <div class="relative reveal reveal-left stagger-1">
           <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-white border-4 border-black"></span>
           <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest block">2024 — PRESENT</span>
           <h4 class="text-base font-bold text-white mt-0.5">Web Strategy & Product Lead</h4>
@@ -683,7 +694,7 @@
         </div>
 
         <!-- Mobile Item 2 -->
-        <div class="relative">
+        <div class="relative reveal reveal-left stagger-2">
           <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
           <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">ACADEMIC RIGOR</span>
           <h4 class="text-base font-bold text-white mt-0.5">Commerce & IT Specialization</h4>
@@ -694,7 +705,7 @@
         </div>
 
         <!-- Mobile Item 3 -->
-        <div class="relative">
+        <div class="relative reveal reveal-left stagger-3">
           <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
           <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">DISTINCTION</span>
           <h4 class="text-base font-bold text-white mt-0.5">English Olympiad — 2nd Position</h4>
@@ -705,7 +716,7 @@
         </div>
 
         <!-- Mobile Item 4 -->
-        <div class="relative">
+        <div class="relative reveal reveal-left stagger-4">
           <span class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-400 border-4 border-black"></span>
           <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-widest block">LEADERSHIP & LANGUAGES</span>
           <h4 class="text-base font-bold text-white mt-0.5">Athletics & Tri-Lingual Articulation</h4>
@@ -723,14 +734,14 @@
     <footer id="contact" class="relative pt-24 pb-12 overflow-hidden border-t border-white/10 bg-black">
       
       <!-- Faded Giant Watermark Typography in Background: "KHUSHMAN" -->
-      <div class="absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">
+      <div class="reveal reveal-fade absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">
         KHUSHMAN
       </div>
 
       <div class="max-w-7xl mx-auto px-6 relative z-10">
         
         <!-- Social Profiles Strip -->
-        <div class="flex flex-wrap items-center justify-between pb-12 mb-16 border-b border-white/10 gap-4 text-xs font-mono">
+        <div class="reveal flex flex-wrap items-center justify-between pb-12 mb-16 border-b border-white/10 gap-4 text-xs font-mono">
           <div class="flex items-center gap-6">
             <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5">
               <span>GitHub</span>
@@ -760,7 +771,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start mb-20">
           
           <!-- Column Left: Brand & Navigation -->
-          <div class="md:col-span-6 space-y-6">
+          <div class="reveal reveal-left md:col-span-6 space-y-6">
             <div>
               <h3 class="text-3xl font-black text-white tracking-tight">Khushman Gill.</h3>
               <p class="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
@@ -786,7 +797,7 @@
           </div>
 
           <!-- Column Right: Get in Touch & 1-Click Copy Email -->
-          <div class="md:col-span-6 flex flex-col md:items-end justify-between space-y-6">
+          <div class="reveal reveal-right md:col-span-6 flex flex-col md:items-end justify-between space-y-6">
             <div class="space-y-2 text-left md:text-right">
               <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">GET IN TOUCH</span>
               <p class="text-sm text-zinc-400">Have a venture or proposal in mind? Let's connect.</p>
@@ -814,7 +825,7 @@
             </div>
 
             <!-- "See you around" Big Signature Statement -->
-            <div class="text-left md:text-right pt-4">
+            <div class="reveal reveal-scale stagger-1 text-left md:text-right pt-4">
               <h2 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white">
                 See you around.
               </h2>
@@ -824,12 +835,12 @@
         </div>
 
         <!-- CROWD ILLUSTRATION (Matching Frame 00:18 of Reference Video) -->
-        <div class="w-full relative mt-8 mb-4 overflow-hidden rounded-2xl border-t border-white/10 bg-gradient-to-b from-transparent to-zinc-950/80 pt-6">
+        <div class="reveal stagger-2 w-full relative mt-8 mb-4 overflow-hidden rounded-2xl border-t border-white/10 bg-gradient-to-b from-transparent to-zinc-950/80 pt-6">
           <img src="assets/crowd.svg" alt="See you around community illustration" class="w-full h-auto object-cover max-h-72 opacity-90 transition-opacity duration-500 hover:opacity-100">
         </div>
 
         <!-- Copyright & Back to Top Bottom Bar -->
-        <div class="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-white/10 text-xs font-mono text-zinc-500 gap-4">
+        <div class="reveal reveal-fade flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-white/10 text-xs font-mono text-zinc-500 gap-4">
           <div>
             © 2026 Khushman Gill. All rights reserved.
           </div>

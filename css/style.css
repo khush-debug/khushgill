@@ -327,3 +327,100 @@ body {
 .max-w-4xl { max-width: 56rem; }
 .max-w-md { max-width: 28rem; }
 .max-w-2xl { max-width: 42rem; }
+
+/* ==========================================================================
+   SCROLL REVEAL & BUTTERY MOTION SYSTEM
+   Cinematic scroll-triggered reveal animations with Apple-grade bezier curves
+   ========================================================================== */
+
+/* Sleek Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #52525b 0%, #ffffff 50%, #10b981 100%);
+  z-index: 100;
+  transition: width 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 4px rgba(16, 185, 129, 0.8);
+}
+
+/* Base Scroll Reveal Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal.reveal-scale {
+  transform: scale(0.92) translateY(24px);
+}
+
+.reveal.reveal-fade {
+  transform: none;
+}
+
+/* Active State Triggered by IntersectionObserver */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Stagger Delays for Sequential Fluidity */
+.stagger-1 { transition-delay: 90ms; }
+.stagger-2 { transition-delay: 180ms; }
+.stagger-3 { transition-delay: 270ms; }
+.stagger-4 { transition-delay: 360ms; }
+.stagger-5 { transition-delay: 450ms; }
+
+/* Timeline Bezier SVG path drawing animation */
+.timeline-path-draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: stroke-dashoffset 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-path-draw.drawn {
+  stroke-dashoffset: 0;
+}
+
+/* Milestone glowing node scale-in animation */
+.node-pulse {
+  transform: scale(0);
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.node-pulse.is-visible {
+  transform: scale(1);
+}
+
+/* Floating Navbar Scrolled Elevation */
+header.is-scrolled nav {
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .node-pulse,
+  .timeline-path-draw {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}

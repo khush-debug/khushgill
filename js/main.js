@@ -424,4 +424,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // ==========================================
+  // 10. SCROLL-DRIVEN ANIMATIONS & REVEAL SYSTEM
+  // ==========================================
+  const scrollProgressBar = document.getElementById('scroll-progress');
+  const mainHeader = document.querySelector('header');
+
+  // Track scroll progress and header backdrop elevation
+  const handleScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Top Progress Bar
+    if (scrollProgressBar) {
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgressBar.style.width = `${progress}%`;
+    }
+
+    // Header elevation
+    if (mainHeader) {
+      if (scrollTop > 40) {
+        mainHeader.classList.add('is-scrolled');
+      } else {
+        mainHeader.classList.remove('is-scrolled');
+      }
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // IntersectionObserver for elements revealing as user scrolls
+  const revealElements = document.querySelectorAll('.reveal, .node-pulse, .timeline-path-draw');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          if (entry.target.classList.contains('timeline-path-draw')) {
+            entry.target.classList.add('drawn');
+          }
+          // Unobserve to trigger smooth one-directional reveal without layout jitter
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Graceful fallback for older environments
+    revealElements.forEach(el => {
+      el.classList.add('is-visible');
+      if (el.classList.contains('timeline-path-draw')) {
+        el.classList.add('drawn');
+      }
+    });
+  }
+
 });
