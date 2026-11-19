@@ -168,6 +168,26 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollY = currentScrollY;
   }, { passive: true });
 
+  // Mobile Touch detection (swiping down to move towards top triggers minimal clean spin on mobile)
+  let touchStartClientY = 0;
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      touchStartClientY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      const currentY = e.touches[0].clientY;
+      const deltaTouch = currentY - touchStartClientY;
+      // When dragging downwards (page scrolls UP):
+      if (deltaTouch > 4) {
+        triggerScrollUpSpin(deltaTouch * 0.35);
+      }
+      touchStartClientY = currentY;
+    }
+  }, { passive: true });
+
   // Physics animation loop for smooth deceleration and spring recovery
   function updatePortraitPhysics() {
     if (portraitCard) {
@@ -825,9 +845,12 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isMobile = window.innerWidth < 768;
 
-      if (!prefersReducedMotion && !isMobile) {
+      if (!prefersReducedMotion) {
+        const isMobile = window.innerWidth < 768;
+        const rotationAngle = isMobile ? 8 : 15;
+        const scrubRate = isMobile ? 0.45 : 0.8;
+
         const flowSections = Array.from(
           document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
         );
@@ -838,15 +861,15 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!inner) return;
 
           if (i > 0) {
-            gsap.set(inner, { rotation: 16, transformOrigin: 'bottom left' });
+            gsap.set(inner, { rotation: rotationAngle, transformOrigin: 'bottom left' });
             gsap.to(inner, {
               rotation: 0,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
                 start: 'top bottom',
-                end: 'top 20%',
-                scrub: 0.8,
+                end: isMobile ? 'top 14%' : 'top 20%',
+                scrub: scrubRate,
               },
             });
           }

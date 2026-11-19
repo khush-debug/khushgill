@@ -656,15 +656,65 @@ body {
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-/* Flow Art / Story Scroll Pinning & 3D Layering */
+/* ==========================================================================
+   FLOW ART / STORY SCROLL: PHYSICAL CARD DECK STACKING & SEPARATION BORDER
+   Gives each section an elevated physical border, rounded corners, and top
+   breathing space so after scrolling it sits like an elevated luxury sheet
+   ========================================================================== */
+
 [data-flow-section] {
   position: relative;
   width: 100%;
 }
 
+/* Base separation border and elevated surface on flow sections (except hero which is top of page) */
+[data-flow-section]:not(#hero) {
+  padding-top: 2.25rem;
+}
+
+[data-flow-section]:not(#hero) .flow-art-container {
+  background: #09090b;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  box-shadow: 0 -25px 60px -10px rgba(0, 0, 0, 0.95), 
+              0 0 35px rgba(255, 255, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elegant luminous accent line along the top border */
+[data-flow-section]:not(#hero) .flow-art-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  pointer-events: none;
+  z-index: 10;
+}
+
 .flow-art-container {
   will-change: transform;
   transform-origin: bottom left;
+}
+
+/* Mobile Optimizations: Fluid Card Borders & Full Touch Support */
+@media (max-width: 768px) {
+  [data-flow-section]:not(#hero) {
+    padding-top: 1.25rem;
+  }
+
+  [data-flow-section]:not(#hero) .flow-art-container {
+    border-top: 1.5px solid rgba(255, 255, 255, 0.24);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    box-shadow: 0 -18px 45px rgba(0, 0, 0, 0.95);
+  }
 }
 
 /* Floating Navbar Scrolled Elevation */
