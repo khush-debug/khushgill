@@ -113,13 +113,27 @@ body {
 }
 
 .stack-card {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
 }
 
 .stack-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.06);
+}
+
+.stack-card::after, .folder-front::after, .milestone-card::after {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  background: radial-gradient(circle at var(--sheen-x, 50%) var(--sheen-y, 30%), rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+  transition: opacity 0.3s ease;
 }
 
 /* ==========================================================================
@@ -189,8 +203,8 @@ body {
 }
 
 .folder-card:hover .folder-sheet {
-  transform: translateY(-28px) scale(0.99);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-42px) scale(1.02) rotate(-1.5deg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 25px rgba(255, 255, 255, 0.12);
 }
 
 /* Front Face of the Folder */
@@ -209,12 +223,14 @@ body {
   justify-content: space-between;
   z-index: 3;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 .folder-card:hover .folder-front {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 255, 255, 0.08);
 }
 
 .folder-meta {
@@ -346,35 +362,35 @@ body {
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 0 4px rgba(16, 185, 129, 0.8);
 }
 
-/* Base Scroll Reveal Classes */
+/* Base Scroll Reveal Classes - 10x Dramatic & Flowing */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(58px) scale(0.92) rotate(-1.5deg);
+  transition: opacity 0.95s cubic-bezier(0.12, 1.15, 0.28, 1),
+              transform 0.95s cubic-bezier(0.12, 1.15, 0.28, 1);
   will-change: opacity, transform;
 }
 
 .reveal.reveal-left {
-  transform: translateX(-40px);
+  transform: translateX(-65px) translateY(30px) rotate(-3deg);
 }
 
 .reveal.reveal-right {
-  transform: translateX(40px);
+  transform: translateX(65px) translateY(30px) rotate(3deg);
 }
 
 .reveal.reveal-scale {
-  transform: scale(0.92) translateY(24px);
+  transform: scale(0.85) translateY(45px);
 }
 
 .reveal.reveal-fade {
-  transform: none;
+  transform: translateY(20px);
 }
 
 /* Active State Triggered by IntersectionObserver */
 .reveal.is-visible {
   opacity: 1;
-  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg)) scale(1);
+  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg)) rotateY(var(--scroll-ry, 0deg)) rotate(0deg) scale(var(--scroll-scale, 1));
 }
 
 /* Bi-directional Real-time Scroll Parallax & 3D Spatial Physics */
@@ -386,24 +402,34 @@ body {
 .reveal.is-visible.stack-card,
 .reveal.is-visible.folder-card,
 .reveal.is-visible.milestone-card {
-  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg));
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg)) rotateY(var(--scroll-ry, 0deg)) scale(var(--scroll-scale, 1));
+  transition: opacity 0.95s cubic-bezier(0.12, 1.15, 0.28, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 /* Stagger Delays for Sequential Fluidity */
-.stagger-1 { transition-delay: 80ms; }
-.stagger-2 { transition-delay: 160ms; }
-.stagger-3 { transition-delay: 240ms; }
-.stagger-4 { transition-delay: 320ms; }
-.stagger-5 { transition-delay: 400ms; }
+.stagger-1 { transition-delay: 90ms; }
+.stagger-2 { transition-delay: 180ms; }
+.stagger-3 { transition-delay: 270ms; }
+.stagger-4 { transition-delay: 360ms; }
+.stagger-5 { transition-delay: 450ms; }
+
+/* Morphing Experience Headline Wave Line */
+#headline-morph-wave {
+  filter: drop-shadow(0 0 14px rgba(16, 185, 129, 0.9)) drop-shadow(0 0 30px rgba(99, 102, 241, 0.6));
+  transition: stroke-width 0.12s ease-out;
+  will-change: d, stroke-width;
+}
 
 /* Timeline Bezier SVG path drawing animation with bi-directional scrub */
 .timeline-path-draw {
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  transition: stroke-dashoffset 0.15s ease-out;
+  transition: stroke-dashoffset 0.15s ease-out, stroke-width 0.12s ease-out;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+  will-change: stroke-dashoffset, stroke-width, d;
 }
 
 .timeline-path-draw.drawn {
@@ -413,12 +439,22 @@ body {
 /* Milestone glowing node scale-in animation */
 .node-pulse {
   transform: scale(0);
-  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-origin: center;
 }
 
 .node-pulse.is-visible {
   transform: scale(1);
+}
+
+/* Floating Portrait Card Levitation */
+@keyframes floatPortrait {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+
+.floating-portrait {
+  animation: floatPortrait 6s ease-in-out infinite;
 }
 
 /* Floating Navbar Scrolled Elevation */

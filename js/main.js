@@ -427,14 +427,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
   // 10. SCROLL-DRIVEN ANIMATIONS & BI-DIRECTIONAL REVEAL SYSTEM
-  // Inspired by perspective-tunnel-hero: continuous motion responding
-  // both when scrolling DOWN and scrolling back UP
+  // Amplified 10x: Dramatic 3D momentum, flowing levitation,
+  // and real-time morphing wavy-to-normal headline stroke
   // ==========================================
   const scrollProgressBar = document.getElementById('scroll-progress');
   const mainHeader = document.querySelector('header');
   const parallaxCards = document.querySelectorAll('.folder-card, .stack-card, .milestone-card');
   const expSection = document.getElementById('experience');
-  const timelinePath = document.querySelector('.timeline-path-draw');
+  const headlineMorphWave = document.getElementById('headline-morph-wave');
+  const expTimelinePath = document.getElementById('experience-timeline-path');
+  const orb1 = document.getElementById('ambient-orb-1');
+  const orb2 = document.getElementById('ambient-orb-2');
   let ticking = false;
 
   // Real-time continuous scroll physics loop
@@ -459,26 +462,74 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 3. 3D Spatial Parallax on cards (reacts smoothly scrolling down AND scrolling up)
+    // 3. Ambient Flowing Background Orbs
+    if (orb1) {
+      orb1.style.transform = `translate3d(${scrollTop * 0.08}px, ${scrollTop * 0.18}px, 0)`;
+    }
+    if (orb2) {
+      orb2.style.transform = `translate3d(${-scrollTop * 0.06}px, ${-scrollTop * 0.14}px, 0)`;
+    }
+
+    // 4. 10x Dramatic 3D Spatial Parallax & Tilt on Cards
     parallaxCards.forEach(card => {
       const rect = card.getBoundingClientRect();
-      if (rect.bottom > -100 && rect.top < vh + 100) {
+      if (rect.bottom > -150 && rect.top < vh + 150) {
         const cardCenter = rect.top + rect.height / 2;
         const normalized = (cardCenter - vCenter) / vCenter; // -1 to +1
         const clamped = Math.max(-1, Math.min(1, normalized));
-        const rotateX = clamped * -4; // Subtle 3D tilt
-        const translateY = clamped * 10; // Depth parallax
+        
+        // 10x more dramatic 3D tilt and floating depth
+        const rotateX = clamped * -11; // Dramatic tilt towards viewer
+        const translateY = clamped * 26; // Fluid floating momentum
+        const scale = 1 + (1 - Math.abs(clamped)) * 0.038; // Breaths into center focus
+        const sheenY = 50 + (clamped * 45); // Dynamic specular lighting
+
         card.style.setProperty('--scroll-rx', `${rotateX.toFixed(2)}deg`);
         card.style.setProperty('--scroll-ty', `${translateY.toFixed(1)}px`);
+        card.style.setProperty('--scroll-scale', `${scale.toFixed(3)}`);
+        card.style.setProperty('--sheen-y', `${sheenY.toFixed(1)}%`);
       }
     });
 
-    // 4. Bi-directional Bezier timeline scrub (draws down, undraws up)
-    if (expSection && timelinePath) {
+    // 5. Experience Section: 3x Bolder Wavy Line morphing to Normal Clean Curve on Scroll
+    if (expSection) {
       const rect = expSection.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * 0.6)));
-      const strokeOffset = 1200 * (1 - progress);
-      timelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+      // Progress: 0 when entering viewport, 1 when headline is centered/past top
+      const rawProgress = (vh - rect.top) / (vh * 0.85);
+      const p = Math.min(1, Math.max(0, rawProgress));
+
+      // A) Headline Morphing Wave:
+      // Starts 3x bolder (8px) and deeply wavy; morphs to normal (2.5px) and smooth baseline on scroll
+      if (headlineMorphWave) {
+        // Amplitude: 24px deep wave at p=0, drops to 0px (smooth/normal) at p=1
+        const waveAmp = (1 - p) * 24;
+        // Stroke: starts at 8px (3.2x normal bold), drops to 2.5px normal
+        const strokeW = 2.5 + (1 - p) * 5.5;
+
+        const y1 = 20 - waveAmp;
+        const d = `M 0 20 Q 40 ${y1.toFixed(1)}, 80 20 T 160 20 T 240 20 T 320 20`;
+        headlineMorphWave.setAttribute('d', d);
+        headlineMorphWave.setAttribute('stroke-width', strokeW.toFixed(2));
+      }
+
+      // B) Trajectory Timeline Path:
+      // Starts 3x bold (7.5px) with exaggerated deep undulating peaks; morphs to normal 2.5px curve
+      if (expTimelinePath) {
+        const timelineProgress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * 0.65)));
+        const strokeOffset = 1200 * (1 - timelineProgress);
+        const tlStroke = 2.5 + (1 - p) * 5.0; // 7.5px bold down to 2.5px normal
+
+        const extraWave = (1 - p) * 45; // Deep exaggerated wave flattening to normal
+        const yC1 = 110 + extraWave;
+        const yC2 = 20 - extraWave;
+        const yC3 = 100 + extraWave;
+        const yC4 = 20 - extraWave;
+        const tlPathD = `M 50 60 C 200 ${yC1.toFixed(1)}, 300 ${yC2.toFixed(1)}, 480 60 C 660 ${yC3.toFixed(1)}, 780 ${yC4.toFixed(1)}, 950 60`;
+
+        expTimelinePath.setAttribute('d', tlPathD);
+        expTimelinePath.setAttribute('stroke-width', tlStroke.toFixed(2));
+        expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+      }
     }
 
     ticking = false;

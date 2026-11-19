@@ -50,6 +50,10 @@
   <!-- Ambient Background Spotlight -->
   <div id="ambient-spotlight" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
 
+  <!-- Floating Atmospheric Flowing Ambient Orbs (10x Dramatic Depth) -->
+  <div id="ambient-orb-1" class="pointer-events-none fixed -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-transparent blur-[120px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
+  <div id="ambient-orb-2" class="pointer-events-none fixed top-1/2 -right-40 w-[650px] h-[650px] rounded-full bg-gradient-to-tl from-purple-600/10 via-zinc-400/5 to-transparent blur-[140px] z-0 transition-transform duration-700 ease-out will-change-transform"></div>
+
   <!-- Noise Overlay for Cinematic Texture -->
   <div class="fixed inset-0 pointer-events-none z-10 opacity-[0.035] bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
@@ -184,7 +188,7 @@
             <div class="absolute -inset-1.5 bg-gradient-to-r from-zinc-500 to-zinc-700 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
             
             <!-- Card Frame -->
-            <div id="portrait-card" class="relative w-72 sm:w-80 h-[420px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl transition-transform duration-200 ease-out">
+            <div id="portrait-card" class="floating-portrait relative w-72 sm:w-80 h-[420px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl transition-transform duration-200 ease-out">
               <img id="user-headshot" src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover object-[center_18%] contrast-105 transition-all duration-700 group-hover:scale-105">
               
               <!-- Subtle Vignette & Sheen -->
@@ -583,12 +587,33 @@
     <section id="experience" class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10">
       
       <!-- Section Header -->
-      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+      <div class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
           <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 03 • TRAJECTORY</span>
-          <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Experience.</h2>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white flex items-center gap-3">
+            <span>Experience.</span>
+          </h2>
+          <!-- Dynamic Scroll-Morphing Line: 3x Bolder Wavy -> Normal Smooth on Scroll -->
+          <div class="w-64 sm:w-80 h-10 overflow-visible mt-2 select-none pointer-events-none">
+            <svg id="headline-wave-svg" class="w-full h-full overflow-visible" viewBox="0 0 320 40" fill="none">
+              <defs>
+                <linearGradient id="expHeadlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#10B981"/>
+                  <stop offset="40%" stop-color="#FFFFFF"/>
+                  <stop offset="75%" stop-color="#6366F1"/>
+                  <stop offset="100%" stop-color="#A855F7"/>
+                </linearGradient>
+                <filter id="headlineGlow" x="-20%" y="-40%" width="140%" height="180%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+              <path id="headline-morph-wave" d="M 0 20 Q 40 4, 80 20 T 160 20 T 240 20 T 320 20" 
+                    stroke="url(#expHeadlineGrad)" stroke-width="8" stroke-linecap="round" filter="url(#headlineGlow)"/>
+            </svg>
+          </div>
         </div>
-        <p class="text-xs sm:text-sm text-zinc-400 font-mono text-left md:text-right">
+        <p class="text-xs sm:text-sm text-zinc-400 font-mono text-left md:text-right max-w-xs">
           Current work. Back to the foundations.
         </p>
       </div>
@@ -605,8 +630,8 @@
               <stop offset="100%" stop-color="#27272A" stop-opacity="0.3"/>
             </linearGradient>
           </defs>
-          <!-- Smooth Bezier Wave Line -->
-          <path d="M 50 60 C 200 110, 300 20, 480 60 C 660 100, 780 20, 950 60" stroke="url(#lineGrad)" stroke-width="2.5" class="timeline-path timeline-path-draw"/>
+          <!-- Smooth Bezier Wave Line (Starts 3x Bold & Wavy, morphs to normal) -->
+          <path id="experience-timeline-path" d="M 50 60 C 200 110, 300 20, 480 60 C 660 100, 780 20, 950 60" stroke="url(#lineGrad)" stroke-width="7.5" stroke-linecap="round" class="timeline-path timeline-path-draw"/>
           
           <!-- Node 1: Present -->
           <g class="node-pulse stagger-1">
