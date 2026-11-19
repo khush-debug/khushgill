@@ -884,7 +884,7 @@ body {
 
 .flow-art-container {
   will-change: transform;
-  transform-origin: 50% 100%;
+  transform-origin: bottom left;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }

@@ -983,9 +983,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!prefersReducedMotion) {
         const isMobile = window.innerWidth < 768;
-        const rotationAngle = isMobile ? 0 : 1.2;
-        const translateYDist = isMobile ? 0 : 16;
-        const scrubRate = isMobile ? 0.3 : 0.45;
+        const rotationAngle = isMobile ? 6 : 12;
+        const translateYDist = isMobile ? 30 : 60;
+        const scrubRate = isMobile ? 0.35 : 0.6;
 
         const flowSections = Array.from(
           document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
@@ -1000,16 +1000,16 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.set(inner, {
               rotation: rotationAngle,
               y: translateYDist,
-              transformOrigin: '50% 100%'
+              transformOrigin: 'bottom left'
             });
             gsap.to(inner, {
               rotation: 0,
               y: 0,
-              ease: 'power2.out',
+              ease: 'power1.out',
               scrollTrigger: {
                 trigger: section,
-                start: 'top 95%',
-                end: 'top 25%',
+                start: 'top bottom',
+                end: isMobile ? 'top 12%' : 'top 18%',
                 scrub: scrubRate,
               },
             });
@@ -1018,6 +1018,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ScrollTrigger.refresh();
         window.addEventListener('load', () => ScrollTrigger.refresh());
+        window.addEventListener('resize', () => ScrollTrigger.refresh());
       }
     } catch (err) {
       console.warn('FlowArt ScrollTrigger suppressed:', err);
