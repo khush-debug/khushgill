@@ -43,24 +43,25 @@ body {
 ::-webkit-scrollbar {
   width: 7px;
 }
+
 ::-webkit-scrollbar-track {
   background: #09090b;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #27272a;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
 }
 
 /* --- Ambient Spotlight Background Follower --- */
 #ambient-spotlight {
-  background: radial-gradient(
-    650px circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
-    rgba(255, 255, 255, 0.05),
-    transparent 70%
-  );
+  background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
+      rgba(255, 255, 255, 0.05),
+      transparent 70%);
 }
 
 /* --- Glassmorphism Navigation --- */
@@ -130,7 +131,8 @@ body {
   font-weight: 300;
   font-size: clamp(1.3rem, 3.4vw, 3.6rem);
   line-height: 1;
-  color: #52525b; /* zinc-600 */
+  color: #52525b;
+  /* zinc-600 */
   flex-shrink: 0;
   user-select: none;
 }
@@ -141,8 +143,13 @@ body {
 
 /* --- Crazy Animated Tech Stack Cards & Kinetic Chips --- */
 @keyframes spinBorderBeam {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .stack-card {
@@ -155,8 +162,8 @@ body {
   border-radius: 1.25rem;
   overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease,
-              border-color 0.3s ease;
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
@@ -169,15 +176,13 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    rgba(16, 185, 129, 0.7) 12%,
-    transparent 25%,
-    transparent 50%,
-    rgba(99, 102, 241, 0.7) 62%,
-    transparent 75%
-  );
+  background: conic-gradient(from 0deg,
+      transparent 0%,
+      rgba(16, 185, 129, 0.7) 12%,
+      transparent 25%,
+      transparent 50%,
+      rgba(99, 102, 241, 0.7) 62%,
+      transparent 75%);
   animation: spinBorderBeam 8s linear infinite;
   pointer-events: none;
   opacity: 0.15;
@@ -186,7 +191,8 @@ body {
 
 .stack-card:hover::before {
   opacity: 0.85;
-  animation-duration: 3s; /* Hyper-charge speed on hover */
+  animation-duration: 3s;
+  /* Hyper-charge speed on hover */
 }
 
 /* Inner Mask to make the border beam razor thin */
@@ -203,7 +209,7 @@ body {
 .stack-card-cyber-grid {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 20px 20px;
@@ -223,9 +229,9 @@ body {
 .stack-card:hover {
   transform: translateY(-8px) scale(1.025);
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.9), 
-              0 0 35px rgba(16, 185, 129, 0.22),
-              0 0 15px rgba(99, 102, 241, 0.18);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(16, 185, 129, 0.22),
+    0 0 15px rgba(99, 102, 241, 0.18);
 }
 
 .stack-card-content {
@@ -302,7 +308,9 @@ body {
   box-shadow: 0 8px 20px -2px rgba(16, 185, 129, 0.45), 0 0 10px rgba(16, 185, 129, 0.35);
 }
 
-.stack-card::after, .folder-front::after, .milestone-card::after {
+.stack-card::after,
+.folder-front::after,
+.milestone-card::after {
   content: '';
   position: absolute;
   inset: -60%;
@@ -511,20 +519,47 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Full-size Laptop & PC container utilities */
-.max-w-7xl { max-width: 1720px; width: 100%; }
-.max-w-wide { max-width: 1720px; width: 100%; }
-@media (min-width: 1536px) {
-  .max-w-7xl { max-width: 1880px; }
-  .max-w-wide { max-width: 1880px; }
+.max-w-7xl {
+  max-width: 1800px;
+  width: 100%;
 }
-.max-w-4xl { max-width: 64rem; }
-.max-w-md { max-width: 28rem; }
-.max-w-2xl { max-width: 48rem; }
+
+.max-w-wide {
+  max-width: 1920px;
+  width: 100%;
+}
+
+@media (min-width: 1536px) {
+  .max-w-7xl {
+    max-width: 1920px;
+  }
+
+  .max-w-wide {
+    max-width: 100%;
+  }
+}
+
+.max-w-4xl {
+  max-width: 64rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.max-w-2xl {
+  max-width: 48rem;
+}
 
 /* ==========================================================================
    SCROLL REVEAL & BUTTERY MOTION SYSTEM
@@ -557,7 +592,7 @@ body {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   /* Failsafe: if JS is interrupted or slow, CSS guarantees elements become visible */
   animation: autoRevealFallback 0.4s ease-out 1.2s forwards;
   will-change: opacity, transform;
@@ -593,7 +628,9 @@ body {
 }
 
 /* Bi-directional Real-time Scroll Parallax & 3D Spatial Physics */
-.stack-card, .folder-card, .milestone-card {
+.stack-card,
+.folder-card,
+.milestone-card {
   will-change: transform;
 }
 
@@ -602,17 +639,34 @@ body {
 .reveal.is-visible.milestone-card {
   opacity: 1 !important;
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s ease,
-              box-shadow 0.25s ease;
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 /* Stagger Delays for Rapid Fluidity (Tight, Snappy 40ms Intervals) */
-.stagger-1 { transition-delay: 40ms !important; }
-.stagger-2 { transition-delay: 80ms !important; }
-.stagger-3 { transition-delay: 120ms !important; }
-.stagger-4 { transition-delay: 160ms !important; }
-.stagger-5 { transition-delay: 200ms !important; }
-.stagger-6 { transition-delay: 240ms !important; }
+.stagger-1 {
+  transition-delay: 40ms !important;
+}
+
+.stagger-2 {
+  transition-delay: 80ms !important;
+}
+
+.stagger-3 {
+  transition-delay: 120ms !important;
+}
+
+.stagger-4 {
+  transition-delay: 160ms !important;
+}
+
+.stagger-5 {
+  transition-delay: 200ms !important;
+}
+
+.stagger-6 {
+  transition-delay: 240ms !important;
+}
 
 /* Morphing Experience Headline Wave Line */
 #headline-morph-wave {
@@ -631,10 +685,11 @@ body {
 }
 
 /* Tracer Orbs on Curved Timeline */
-#timeline-tracer, #timeline-tracer-halo {
-  transition: cx 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-              cy 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.25s ease;
+#timeline-tracer,
+#timeline-tracer-halo {
+  transition: cx 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    cy 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease;
 }
 
 /* Milestone glowing node scale-in animation */
@@ -666,10 +721,10 @@ body {
 }
 
 .milestone-card {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-              border-color 0.25s ease, 
-              background-color 0.25s ease, 
-              box-shadow 0.25s ease !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease !important;
 }
 
 .milestone-card:hover,
@@ -752,20 +807,18 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: linear-gradient(145deg, #18181b 0%, #09090b 50%, #121215 100%);
   box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.04),
-              0 25px 60px -10px rgba(0, 0, 0, 0.95);
+    0 25px 60px -10px rgba(0, 0, 0, 0.95);
 }
 
 /* Shiny Dynamic Metallic Specular Reflection Layer */
 #portrait-reflection {
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.25) 30%,
-    rgba(255, 255, 255, 0.65) 45%,
-    rgba(236, 72, 153, 0.3) 60%,
-    rgba(16, 185, 129, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(115deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.25) 30%,
+      rgba(255, 255, 255, 0.65) 45%,
+      rgba(236, 72, 153, 0.3) 60%,
+      rgba(16, 185, 129, 0.3) 75%,
+      rgba(255, 255, 255, 0) 100%);
   filter: contrast(125%);
   pointer-events: none;
   border-radius: 1rem;
@@ -773,8 +826,8 @@ body {
 
 #portrait-card.is-spinning-up {
   box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.95),
-              0 0 35px rgba(255, 255, 255, 0.1),
-              0 0 20px rgba(161, 161, 170, 0.15);
+    0 0 35px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(161, 161, 170, 0.15);
 }
 
 #portrait-backglow {
@@ -784,8 +837,8 @@ body {
 
 /* ==========================================================================
    FLOW ART / STORY SCROLL: PHYSICAL CARD DECK STACKING & SEPARATION BORDER
-   Gives each section an elevated physical border, rounded corners, and top
-   breathing space so after scrolling it sits like an elevated luxury sheet
+   Gives each section an elevated physical border, rounded corners, and clean
+   rhythmic spacing so after scrolling it layers like an elevated luxury sheet
    ========================================================================== */
 
 [data-flow-section] {
@@ -795,7 +848,7 @@ body {
 
 /* Base separation border and elevated surface on flow sections (compact modern breathing room) */
 [data-flow-section]:not(#hero) {
-  padding-top: 0.25rem;
+  padding-top: 0;
 }
 
 [data-flow-section]:not(#hero) .flow-art-container {
@@ -816,23 +869,25 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: 12%;
-  right: 12%;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
   pointer-events: none;
   z-index: 10;
 }
 
 .flow-art-container {
   will-change: transform;
-  transform-origin: bottom left;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Mobile Optimizations: Fluid Card Borders & Full Touch Support */
 @media (max-width: 768px) {
   [data-flow-section]:not(#hero) {
-    padding-top: 0.15rem;
+    padding-top: 0;
   }
 
   [data-flow-section]:not(#hero) .flow-art-container {
@@ -852,6 +907,7 @@ header.is-scrolled nav {
 
 /* Accessibility: Respect Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
+
   .reveal,
   .node-pulse,
   .timeline-path-draw {

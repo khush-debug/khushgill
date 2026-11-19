@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
           currentAngleY = targetAngleY;
           targetAngleY = null;
         }
-      } 
+      }
       // 2. Momentum & Inertia Decay (when user flicked / spinned card)
       else if (!isDragging && !isTouchActive) {
         if (Math.abs(spinVelocityY) > 0.02) {
@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalLength = expTimelinePath.getTotalLength ? expTimelinePath.getTotalLength() : 1000;
         const strokeOffset = totalLength * (1 - target.progress);
         expTimelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
-      } catch (err) {}
+      } catch (err) { }
     }
 
     // Update active node in SVG (Desktop)
@@ -744,8 +744,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update active cards across BOTH Desktop and Mobile
     milestoneCards.forEach((card) => {
-      const cardIdx = card.dataset.milestoneIndex !== undefined 
-        ? parseInt(card.dataset.milestoneIndex, 10) 
+      const cardIdx = card.dataset.milestoneIndex !== undefined
+        ? parseInt(card.dataset.milestoneIndex, 10)
         : Array.from(card.parentNode.children).indexOf(card);
       if (cardIdx === index) {
         card.classList.add('is-active-milestone');
@@ -856,24 +856,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 3. Ambient Flowing Background Orbs (soft, GPU-accelerated drift)
       if (orb1) {
-        orb1.style.transform = `translate3d(${scrollTop * 0.04}px, ${scrollTop * 0.08}px, 0)`;
+        orb1.style.transform = `translate3d(${scrollTop * 0.03}px, ${scrollTop * 0.05}px, 0)`;
       }
       if (orb2) {
-        orb2.style.transform = `translate3d(${-scrollTop * 0.03}px, ${-scrollTop * 0.06}px, 0)`;
+        orb2.style.transform = `translate3d(${-scrollTop * 0.02}px, ${-scrollTop * 0.04}px, 0)`;
       }
 
-      // 4. Subtle, buttery smooth floating depth on cards (optimized for laptop trackpads)
-      parallaxCards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top < vh) {
-          const normalized = (rect.top + rect.height * 0.5 - vCenter) / vCenter;
-          const clamped = Math.max(-1, Math.min(1, normalized));
-          const translateY = clamped * 6; // feather-light 6px glide
-          card.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0)`;
-        }
-      });
-
-      // 5. Experience Section: Line animated while scrolling/viewing/selecting (Desktop & Mobile)
+      // 4. Experience Section: Glowing Tracer & Neon Rail (Desktop & Mobile)
       if (expSection && !isUserInteracting) {
         const rect = expSection.getBoundingClientRect();
         const rawProgress = (vh - rect.top) / (vh + rect.height * 0.7);
@@ -984,7 +973,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 13. FLOW ART / STORY SCROLL SYSTEM (GSAP ScrollTrigger)
   // Applied to all sections EXCEPT Experience (#experience)
-  // Zero screen-shaking, buttery smooth rotational scroll entrance
+  // Zero screen-shaking, buttery smooth physical card-sheet layering
   // ==========================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     try {
@@ -994,8 +983,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!prefersReducedMotion) {
         const isMobile = window.innerWidth < 768;
-        const rotationAngle = isMobile ? 1.5 : 2.5;
-        const scrubRate = isMobile ? 0.35 : 0.6;
+        const rotationAngle = isMobile ? 0 : 1.2;
+        const translateYDist = isMobile ? 0 : 16;
+        const scrubRate = isMobile ? 0.3 : 0.45;
 
         const flowSections = Array.from(
           document.querySelectorAll('section[data-flow-section], footer[data-flow-section]')
@@ -1007,14 +997,19 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!inner) return;
 
           if (i > 0) {
-            gsap.set(inner, { rotation: rotationAngle, transformOrigin: 'bottom left' });
+            gsap.set(inner, {
+              rotation: rotationAngle,
+              y: translateYDist,
+              transformOrigin: '50% 100%'
+            });
             gsap.to(inner, {
               rotation: 0,
-              ease: 'power1.out',
+              y: 0,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: section,
-                start: 'top bottom',
-                end: isMobile ? 'top 10%' : 'top 15%',
+                start: 'top 95%',
+                end: 'top 25%',
                 scrub: scrubRate,
               },
             });
@@ -1022,6 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         ScrollTrigger.refresh();
+        window.addEventListener('load', () => ScrollTrigger.refresh());
       }
     } catch (err) {
       console.warn('FlowArt ScrollTrigger suppressed:', err);
