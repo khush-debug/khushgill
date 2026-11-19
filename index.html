@@ -184,11 +184,11 @@
         <!-- Column 2: Center Editorial Portrait Card (Interactive 3D Perspective Tilt) -->
         <div class="reveal reveal-scale stagger-1 md:col-span-4 flex justify-center">
           <div class="relative group cursor-pointer perspective-container">
-            <!-- Ambient Card Backglow -->
-            <div class="absolute -inset-1.5 bg-gradient-to-r from-zinc-500 to-zinc-700 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
+            <!-- Ambient Card Backglow (Pulsing 3D Neon Energy) -->
+            <div id="portrait-backglow" class="absolute -inset-2 bg-gradient-to-r from-emerald-500 via-indigo-500 to-purple-600 rounded-3xl blur-2xl opacity-25 group-hover:opacity-60 transition duration-700"></div>
             
-            <!-- Card Frame -->
-            <div id="portrait-card" class="floating-portrait relative w-72 sm:w-80 h-[420px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl transition-transform duration-200 ease-out">
+            <!-- Card Frame (Interactive 3D Spin & Zoom-Out on Scroll Up) -->
+            <div id="portrait-card" class="relative w-72 sm:w-80 h-[420px] rounded-2xl overflow-hidden border border-white/20 bg-zinc-950 shadow-2xl">
               <img id="user-headshot" src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover object-[center_18%] contrast-105 transition-all duration-700 group-hover:scale-105">
               
               <!-- Subtle Vignette & Sheen -->
@@ -264,100 +264,136 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <!-- Card 1: Web Development & Architecture -->
-        <div class="stack-card reveal stagger-1 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-              </svg>
+        <div class="stack-card reveal stagger-1 group">
+          <div class="stack-card-inner-overlay"></div>
+          <div class="stack-card-cyber-grid"></div>
+          <div class="stack-card-content p-6">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="stack-icon-wrap">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                  </svg>
+                </div>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 flex items-center gap-1.5 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>CORE STACK
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Web Development & Architecture</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-6">
+                Engineering responsive, modern web platforms with high speed, clean code structure, and reliable cloud deployments.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Web Development & Architecture</h3>
-            <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-              Engineering responsive, modern web platforms with high speed, clean code structure, and reliable cloud deployments.
-            </p>
-          </div>
-          <!-- Chips -->
-          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-            <span class="chip">Next.js</span>
-            <span class="chip">React</span>
-            <span class="chip">HTML5 / CSS3</span>
-            <span class="chip">Tailwind CSS</span>
-            <span class="chip">JavaScript (ES6+)</span>
-            <span class="chip">Vercel Cloud</span>
-            <span class="chip">Backend Concepts</span>
-            <span class="chip">Web Performance</span>
+            <!-- Chips -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
+              <span class="chip">Next.js</span>
+              <span class="chip">React</span>
+              <span class="chip">HTML5 / CSS3</span>
+              <span class="chip">Tailwind CSS</span>
+              <span class="chip">JavaScript (ES6+)</span>
+              <span class="chip">Vercel Cloud</span>
+              <span class="chip">Backend Concepts</span>
+              <span class="chip">Web Performance</span>
+            </div>
           </div>
         </div>
 
         <!-- Card 2: Applied AI & Digital Automation -->
-        <div class="stack-card reveal stagger-2 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
+        <div class="stack-card reveal stagger-2 group">
+          <div class="stack-card-inner-overlay"></div>
+          <div class="stack-card-cyber-grid"></div>
+          <div class="stack-card-content p-6">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="stack-icon-wrap">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 flex items-center gap-1.5 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>NEURAL AI
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">Applied AI & Automation</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-6">
+                Harnessing state-of-the-art LLMs, generative AI tools, and smart automation pipelines to accelerate operations.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Applied AI & Automation</h3>
-            <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-              Harnessing state-of-the-art LLMs, generative AI tools, and smart automation pipelines to accelerate operations.
-            </p>
-          </div>
-          <!-- Chips -->
-          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-            <span class="chip">Prompt Engineering</span>
-            <span class="chip">LLM Workflows</span>
-            <span class="chip">Generative AI Tools</span>
-            <span class="chip">Workflow Automation</span>
-            <span class="chip">AI Product Strategy</span>
-            <span class="chip">Rapid Prototyping</span>
+            <!-- Chips -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
+              <span class="chip">Prompt Engineering</span>
+              <span class="chip">LLM Workflows</span>
+              <span class="chip">Generative AI Tools</span>
+              <span class="chip">Workflow Automation</span>
+              <span class="chip">AI Product Strategy</span>
+              <span class="chip">Rapid Prototyping</span>
+            </div>
           </div>
         </div>
 
         <!-- Card 3: Business Development & Sales -->
-        <div class="stack-card reveal stagger-3 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-              </svg>
+        <div class="stack-card reveal stagger-3 group">
+          <div class="stack-card-inner-overlay"></div>
+          <div class="stack-card-cyber-grid"></div>
+          <div class="stack-card-content p-6">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="stack-icon-wrap">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  </svg>
+                </div>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 flex items-center gap-1.5 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>REVENUE
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">Business & Sales Strategy</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-6">
+                Commercial deal-making, market positioning, financial fundamentals, and customer-first value propositions.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Business & Sales Strategy</h3>
-            <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-              Commercial deal-making, market positioning, financial fundamentals, and customer-first value propositions.
-            </p>
-          </div>
-          <!-- Chips -->
-          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-            <span class="chip">Commercial Sales</span>
-            <span class="chip">E-Commerce Strategy</span>
-            <span class="chip">Financial Modeling</span>
-            <span class="chip">Client Acquisition</span>
-            <span class="chip">Negotiation</span>
-            <span class="chip">Market Analysis</span>
+            <!-- Chips -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
+              <span class="chip">Commercial Sales</span>
+              <span class="chip">E-Commerce Strategy</span>
+              <span class="chip">Financial Modeling</span>
+              <span class="chip">Client Acquisition</span>
+              <span class="chip">Negotiation</span>
+              <span class="chip">Market Analysis</span>
+            </div>
           </div>
         </div>
 
         <!-- Card 4: Creative Arts & Brand Identity -->
-        <div class="stack-card reveal stagger-4 p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-6 group-hover:border-white/30 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-              </svg>
+        <div class="stack-card reveal stagger-4 group">
+          <div class="stack-card-inner-overlay"></div>
+          <div class="stack-card-cyber-grid"></div>
+          <div class="stack-card-content p-6">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="stack-icon-wrap">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                  </svg>
+                </div>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 flex items-center gap-1.5 shadow-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>CREATIVE
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">Creative Direction & Visuals</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed mb-6">
+                Rooted in fine arts, sketching, and painting, translated into sharp digital design systems and compelling branding.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">Creative Direction & Visuals</h3>
-            <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-              Rooted in fine arts, sketching, and painting, translated into sharp digital design systems and compelling branding.
-            </p>
-          </div>
-          <!-- Chips -->
-          <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-            <span class="chip">Brand Identity</span>
-            <span class="chip">UI/UX Systems</span>
-            <span class="chip">Sketching & Painting</span>
-            <span class="chip">Visual Communication</span>
-            <span class="chip">Photo Direction</span>
-            <span class="chip">Aesthetic Polish</span>
+            <!-- Chips -->
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
+              <span class="chip">Brand Identity</span>
+              <span class="chip">UI/UX Systems</span>
+              <span class="chip">Sketching & Painting</span>
+              <span class="chip">Visual Communication</span>
+              <span class="chip">Photo Direction</span>
+              <span class="chip">Aesthetic Polish</span>
+            </div>
           </div>
         </div>
 

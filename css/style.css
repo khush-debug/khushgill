@@ -89,40 +89,167 @@ body {
   perspective: 1000px;
 }
 
-/* --- Tech Stack & Competency Chips --- */
+/* --- Crazy Animated Tech Stack Cards & Kinetic Chips --- */
+@keyframes spinBorderBeam {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stack-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(22, 22, 27, 0.85) 0%, rgba(12, 12, 15, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Electric Rotating Conic Laser Border Beam */
+.stack-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.7) 12%,
+    transparent 25%,
+    transparent 50%,
+    rgba(99, 102, 241, 0.7) 62%,
+    transparent 75%
+  );
+  animation: spinBorderBeam 8s linear infinite;
+  pointer-events: none;
+  opacity: 0.15;
+  transition: opacity 0.4s ease;
+}
+
+.stack-card:hover::before {
+  opacity: 0.85;
+  animation-duration: 3s; /* Hyper-charge speed on hover */
+}
+
+/* Inner Mask to make the border beam razor thin */
+.stack-card-inner-overlay {
+  position: absolute;
+  inset: 1.5px;
+  background: linear-gradient(180deg, #16161a 0%, #0c0c0f 100%);
+  border-radius: calc(1.25rem - 1.5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Holographic Cyber Scanlines / Matrix Grid inside each Stack Card */
+.stack-card-cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 40%, transparent 80%);
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 1;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.stack-card:hover .stack-card-cyber-grid {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.stack-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.9), 
+              0 0 35px rgba(16, 185, 129, 0.22),
+              0 0 15px rgba(99, 102, 241, 0.18);
+}
+
+.stack-card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 3D Animated Category Icons */
+.stack-icon-wrap {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.stack-card:hover .stack-icon-wrap {
+  transform: scale(1.15) rotate(10deg);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(99, 102, 241, 0.3));
+  border-color: rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.6), 0 0 8px #ffffff;
+  color: #10b981;
+}
+
+/* Kinetic Neon Magnetic Chips */
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.65rem;
+  padding: 0.38rem 0.72rem;
   font-size: 0.72rem;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   color: #d4d4d8;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
-}
-
-.chip:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.stack-card {
-  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
+  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-.stack-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.06);
+.chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.chip:hover::before {
+  left: 100%;
+}
+
+.chip:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.7);
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px -2px rgba(16, 185, 129, 0.45), 0 0 10px rgba(16, 185, 129, 0.35);
 }
 
 .stack-card::after, .folder-front::after, .milestone-card::after {
@@ -503,14 +630,30 @@ body {
   box-shadow: 0 0 10px #10B981;
 }
 
-/* Floating Portrait Card Levitation */
-@keyframes floatPortrait {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-14px) rotate(1deg); }
+/* --- High-Energy 3D Scroll-Up Spin & Zoom-Out Portrait Physics --- */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
-.floating-portrait {
-  animation: floatPortrait 6s ease-in-out infinite;
+#portrait-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#portrait-card.is-spinning-up {
+  box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95),
+              0 0 50px rgba(16, 185, 129, 0.5),
+              0 0 70px rgba(99, 102, 241, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#portrait-backglow {
+  will-change: opacity, transform;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 /* Floating Navbar Scrolled Elevation */

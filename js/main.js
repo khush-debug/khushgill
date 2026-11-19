@@ -124,30 +124,153 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. 3D PERSPECTIVE CARD TILT
+  // 3. PHOTO 3D TILT & CRAZY SCROLL-UP SPIN + ZOOM-OUT PHYSICS
   // ==========================================
   const portraitCard = document.getElementById('portrait-card');
+  const portraitBackglow = document.getElementById('portrait-backglow');
+  
+  let spinTorque = 0;
+  let spinAngleY = 0;
+  let photoScale = 1.0;
+  let isMouseOverPortrait = false;
+  let mouseTiltX = 0;
+  let mouseTiltY = 0;
+  let lastScrollY = window.scrollY || document.documentElement.scrollTop;
+
+  // Track upward scroll to trigger 3D spin and zoom out
+  const triggerScrollUpSpin = (velocity) => {
+    const clampedVelocity = Math.min(80, Math.max(6, velocity));
+    spinTorque += clampedVelocity * 1.5;
+    // Zoom out: shrinks proportionally to upward scroll speed
+    photoScale = Math.max(0.68, photoScale - (clampedVelocity * 0.007));
+    
+    if (portraitCard) {
+      portraitCard.classList.add('is-spinning-up');
+    }
+  };
+
+  // Wheel detection (immediate response on trackpad / mousewheel scroll up)
+  window.addEventListener('wheel', (e) => {
+    if (e.deltaY < -2) {
+      triggerScrollUpSpin(Math.abs(e.deltaY) * 0.45);
+    }
+  }, { passive: true });
+
+  // Scroll detection (works with momentum scroll, keys, and touch swipe up)
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+    const deltaY = currentScrollY - lastScrollY;
+    if (deltaY < -2) {
+      triggerScrollUpSpin(Math.abs(deltaY));
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+  // Physics animation loop for smooth spin deceleration and spring recovery
+  function updatePortraitPhysics() {
+    if (portraitCard) {
+      if (spinTorque > 0.1 || Math.abs(photoScale - 1.0) > 0.002 || Math.abs(spinAngleY % 360) > 0.5) {
+        // Accumulate spin rotation
+        spinAngleY += spinTorque;
+        // Friction dampening
+        spinTorque *= 0.91;
+        // Spring scale back to 1.0
+        photoScale += (1.0 - photoScale) * 0.08;
+
+        // When slowing down, smoothly settle spin angle back to 0
+        if (spinTorque < 0.3) {
+          const remainder = spinAngleY % 360;
+          if (Math.abs(remainder) > 0.5) {
+            spinAngleY -= remainder * 0.15;
+          } else {
+            spinAngleY = 0;
+            spinTorque = 0;
+            if (portraitCard) portraitCard.classList.remove('is-spinning-up');
+          }
+        }
+
+        portraitCard.style.transform = `perspective(1000px) rotateY(${spinAngleY.toFixed(1)}deg) rotateZ(${(spinAngleY * 0.04).toFixed(1)}deg) scale(${photoScale.toFixed(3)})`;
+
+        if (portraitBackglow) {
+          const glowOpacity = Math.min(0.85, 0.25 + (spinTorque * 0.025));
+          const glowScale = Math.min(1.25, 1.0 + (1.0 - photoScale) * 0.85);
+          portraitBackglow.style.opacity = glowOpacity.toFixed(2);
+          portraitBackglow.style.transform = `scale(${glowScale.toFixed(2)})`;
+        }
+      } else if (isMouseOverPortrait) {
+        // Interactive 3D mouse tilt while hovering at rest
+        portraitCard.style.transform = `perspective(1000px) rotateX(${mouseTiltX.toFixed(1)}deg) rotateY(${mouseTiltY.toFixed(1)}deg) scale(1.02)`;
+        if (portraitBackglow) {
+          portraitBackglow.style.opacity = '0.5';
+          portraitBackglow.style.transform = 'scale(1.04)';
+        }
+      } else {
+        // Resting neutral state
+        portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        if (portraitBackglow) {
+          portraitBackglow.style.opacity = '0.25';
+          portraitBackglow.style.transform = 'scale(1)';
+        }
+      }
+    }
+    requestAnimationFrame(updatePortraitPhysics);
+  }
+  requestAnimationFrame(updatePortraitPhysics);
+
+  // Mouse tilt on portrait card
   if (portraitCard) {
-    const handleTilt = (e) => {
+    portraitCard.addEventListener('mousemove', (e) => {
+      isMouseOverPortrait = true;
       const rect = portraitCard.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
+      mouseTiltX = ((y - centerY) / centerY) * -12;
+      mouseTiltY = ((x - centerX) / centerX) * 12;
+    });
 
-      const rotateX = ((y - centerY) / centerY) * -12;
-      const rotateY = ((x - centerX) / centerX) * 12;
-
-      portraitCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    };
-
-    const resetTilt = () => {
-      portraitCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    };
-
-    portraitCard.addEventListener('mousemove', handleTilt);
-    portraitCard.addEventListener('mouseleave', resetTilt);
+    portraitCard.addEventListener('mouseleave', () => {
+      isMouseOverPortrait = false;
+      mouseTiltX = 0;
+      mouseTiltY = 0;
+    });
   }
+
+
+  // ==========================================
+  // 3b. CRAZY INTERACTIVE TECH STACK 3D CARDS & CHIP SOUNDS
+  // ==========================================
+  const stackCards = document.querySelectorAll('.stack-card');
+  stackCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(1)}deg) rotateY(${rotateY.toFixed(1)}deg) translateY(-8px) scale(1.03)`;
+      card.style.setProperty('--sheen-x', `${((x / rect.width) * 100).toFixed(1)}%`);
+      card.style.setProperty('--sheen-y', `${((y / rect.height) * 100).toFixed(1)}%`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // Micro-interaction sound on hovering any tech chip
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('mouseenter', () => {
+      if (typeof playClickSound === 'function') {
+        playClickSound(1400 + Math.random() * 400, 'triangle');
+      }
+    });
+  });
 
 
   // ==========================================
