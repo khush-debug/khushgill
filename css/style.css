@@ -350,8 +350,8 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -374,21 +374,36 @@ body {
 /* Active State Triggered by IntersectionObserver */
 .reveal.is-visible {
   opacity: 1;
-  transform: translate(0, 0) scale(1);
+  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg)) scale(1);
+}
+
+/* Bi-directional Real-time Scroll Parallax & 3D Spatial Physics */
+.stack-card, .folder-card, .milestone-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.reveal.is-visible.stack-card,
+.reveal.is-visible.folder-card,
+.reveal.is-visible.milestone-card {
+  transform: translate3d(0, var(--scroll-ty, 0px), 0) rotateX(var(--scroll-rx, 0deg));
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
 }
 
 /* Stagger Delays for Sequential Fluidity */
-.stagger-1 { transition-delay: 90ms; }
-.stagger-2 { transition-delay: 180ms; }
-.stagger-3 { transition-delay: 270ms; }
-.stagger-4 { transition-delay: 360ms; }
-.stagger-5 { transition-delay: 450ms; }
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+.stagger-5 { transition-delay: 400ms; }
 
-/* Timeline Bezier SVG path drawing animation */
+/* Timeline Bezier SVG path drawing animation with bi-directional scrub */
 .timeline-path-draw {
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
-  transition: stroke-dashoffset 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: stroke-dashoffset 0.15s ease-out;
 }
 
 .timeline-path-draw.drawn {

@@ -426,23 +426,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 10. SCROLL-DRIVEN ANIMATIONS & REVEAL SYSTEM
+  // 10. SCROLL-DRIVEN ANIMATIONS & BI-DIRECTIONAL REVEAL SYSTEM
+  // Inspired by perspective-tunnel-hero: continuous motion responding
+  // both when scrolling DOWN and scrolling back UP
   // ==========================================
   const scrollProgressBar = document.getElementById('scroll-progress');
   const mainHeader = document.querySelector('header');
+  const parallaxCards = document.querySelectorAll('.folder-card, .stack-card, .milestone-card');
+  const expSection = document.getElementById('experience');
+  const timelinePath = document.querySelector('.timeline-path-draw');
+  let ticking = false;
 
-  // Track scroll progress and header backdrop elevation
-  const handleScroll = () => {
+  // Real-time continuous scroll physics loop
+  const onScrollFrame = () => {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    
-    // Top Progress Bar
+    const vh = window.innerHeight;
+    const vCenter = vh / 2;
+
+    // 1. Top Progress Bar
     if (scrollProgressBar) {
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       scrollProgressBar.style.width = `${progress}%`;
     }
 
-    // Header elevation
+    // 2. Header backdrop elevation
     if (mainHeader) {
       if (scrollTop > 40) {
         mainHeader.classList.add('is-scrolled');
@@ -450,41 +458,65 @@ document.addEventListener('DOMContentLoaded', () => {
         mainHeader.classList.remove('is-scrolled');
       }
     }
+
+    // 3. 3D Spatial Parallax on cards (reacts smoothly scrolling down AND scrolling up)
+    parallaxCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.bottom > -100 && rect.top < vh + 100) {
+        const cardCenter = rect.top + rect.height / 2;
+        const normalized = (cardCenter - vCenter) / vCenter; // -1 to +1
+        const clamped = Math.max(-1, Math.min(1, normalized));
+        const rotateX = clamped * -4; // Subtle 3D tilt
+        const translateY = clamped * 10; // Depth parallax
+        card.style.setProperty('--scroll-rx', `${rotateX.toFixed(2)}deg`);
+        card.style.setProperty('--scroll-ty', `${translateY.toFixed(1)}px`);
+      }
+    });
+
+    // 4. Bi-directional Bezier timeline scrub (draws down, undraws up)
+    if (expSection && timelinePath) {
+      const rect = expSection.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh + rect.height * 0.6)));
+      const strokeOffset = 1200 * (1 - progress);
+      timelinePath.style.strokeDashoffset = `${strokeOffset.toFixed(1)}`;
+    }
+
+    ticking = false;
+  };
+
+  const handleScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(onScrollFrame);
+      ticking = true;
+    }
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  onScrollFrame();
 
-  // IntersectionObserver for elements revealing as user scrolls
-  const revealElements = document.querySelectorAll('.reveal, .node-pulse, .timeline-path-draw');
+  // Bi-directional IntersectionObserver (triggers enter when in view, resets when out)
+  const revealElements = document.querySelectorAll('.reveal, .node-pulse');
 
   if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          if (entry.target.classList.contains('timeline-path-draw')) {
-            entry.target.classList.add('drawn');
-          }
-          // Unobserve to trigger smooth one-directional reveal without layout jitter
-          observer.unobserve(entry.target);
+        } else {
+          // Reset when element leaves the viewport so scrolling back re-triggers fluidly
+          entry.target.classList.remove('is-visible');
         }
       });
     }, {
       root: null,
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.1
+      rootMargin: '20px 0px 20px 0px',
+      threshold: 0.08
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
   } else {
     // Graceful fallback for older environments
-    revealElements.forEach(el => {
-      el.classList.add('is-visible');
-      if (el.classList.contains('timeline-path-draw')) {
-        el.classList.add('drawn');
-      }
-    });
+    revealElements.forEach(el => el.classList.add('is-visible'));
   }
 
 });
