@@ -367,32 +367,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 6. CONTACT FORM HANDLER
+  // 6. CONTACT FORM HANDLER (REAL EMAIL DELIVERY)
+  // Powered by FormSubmit.co -> kgill3662@gmail.com
   // ==========================================
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const firstName = document.getElementById('firstName')?.value || '';
+      const lastName = document.getElementById('lastName')?.value || '';
+      const email = document.getElementById('email')?.value || '';
+      const subject = document.getElementById('subject')?.value || 'New Portfolio Inquiry';
+      const message = document.getElementById('message')?.value || '';
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Sending Message...</span>';
       }
 
-      setTimeout(() => {
-        if (formSuccess) formSuccess.classList.remove('hidden');
-        contactForm.reset();
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/kgill3662@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Portfolio Inquiry: ${subject} (${firstName} ${lastName})`,
+            _captcha: 'false',
+            _template: 'table',
+            _replyto: email,
+            name: `${firstName} ${lastName}`.trim(),
+            email: email,
+            subject: subject,
+            message: message
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === 'true' || data.success === true)) {
+          if (formSuccess) {
+            formSuccess.textContent = '✓ Message dispatched successfully. Khushman will be in touch soon.';
+            formSuccess.classList.remove('hidden', 'text-amber-600', 'text-red-500');
+            formSuccess.classList.add('text-emerald-600');
+          }
+          contactForm.reset();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Message Sent Successfully ✓</span>';
+          }
+        } else if (data.message && data.message.includes('Activation')) {
+          if (formSuccess) {
+            formSuccess.textContent = '✓ Form submitted! Please click "Activate Form" in your email (kgill3662@gmail.com) to complete setup.';
+            formSuccess.classList.remove('hidden', 'text-emerald-600', 'text-red-500');
+            formSuccess.classList.add('text-amber-600');
+          }
+          contactForm.reset();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Form Activation Sent ✓</span>';
+          }
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.warn('Form submission fallback:', err);
+        if (formSuccess) {
+          formSuccess.textContent = 'Notice: opening your email client to send message directly...';
+          formSuccess.classList.remove('hidden', 'text-emerald-600');
+          formSuccess.classList.add('text-amber-600');
+        }
+        const mailtoUrl = `mailto:kgill3662@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${firstName} ${lastName} (${email})\n\n${message}`)}`;
+        window.location.href = mailtoUrl;
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '<span>Message Sent Successfully ✓</span>';
+          submitBtn.innerHTML = '<span>Send Message →</span>';
         }
-        setTimeout(() => {
-          if (submitBtn) submitBtn.innerHTML = '<span>Send Message →</span>';
-          if (formSuccess) formSuccess.classList.add('hidden');
-        }, 5000);
-      }, 700);
+      }
+
+      setTimeout(() => {
+        if (submitBtn) submitBtn.innerHTML = '<span>Send Message →</span>';
+        if (formSuccess) formSuccess.classList.add('hidden');
+      }, 7000);
     });
   }
 
