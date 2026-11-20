@@ -186,10 +186,23 @@
     <!-- ==========================================
          HERO SECTION: EDITORIAL BRUTALIST LUXURY
          ========================================== -->
-    <section id="hero" class="min-h-screen relative bg-black flex flex-col justify-between px-6 pt-32 pb-12 md:px-16 md:pt-40 md:pb-16 lg:px-24">
+    <section id="hero" class="min-h-screen relative bg-black flex flex-col justify-between px-6 pt-32 pb-12 md:px-16 md:pt-40 md:pb-16 lg:px-24 overflow-hidden">
       
+      <!-- Ambient Three.js Glowing Portal Field Background (Only on Hero Section) -->
+      <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-85 mix-blend-screen">
+        <iframe
+          id="portal-field-frame"
+          src="portal.html"
+          title="Portal Field"
+          class="w-full h-full border-0 pointer-events-none"
+          loading="eager"
+          sandbox="allow-scripts allow-same-origin"
+          style="display: block; width: 100%; height: 100%; border: 0; background: transparent;"
+        ></iframe>
+      </div>
+
       <!-- Upper Grid: Core Disciplines & Credentials -->
-      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 mb-16 lg:mb-20">
+      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 mb-16 lg:mb-20 relative z-10">
         
         <!-- Left: Core Disciplines -->
         <div class="col-span-1 md:col-span-5 lg:col-span-4 flex flex-col gap-3">
@@ -244,16 +257,19 @@
       </div>
 
       <!-- Centerpiece Giant Headline with Inline Circular Cutout Portrait -->
-      <div class="my-auto py-6 md:py-12">
+      <div class="my-auto py-6 md:py-12 relative z-10">
         <h1 class="font-sans font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.2rem] leading-[0.9] tracking-tighter text-white uppercase text-left flex flex-col md:gap-3 select-none">
           
           <!-- Line 1 with inline circular photo -->
           <span class="flex items-center gap-3 sm:gap-5 md:gap-6 flex-wrap">
             <span>BUSINESS</span>
             
-            <!-- Circular Profile Cutout -->
-            <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 overflow-hidden rounded-full shrink-0 border-2 border-white/30 relative shadow-2xl group cursor-pointer">
-              <img src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+            <!-- Circular Profile Cutout with Ambient Portal Glow -->
+            <div class="relative inline-flex items-center justify-center shrink-0">
+              <div class="absolute -inset-2 md:-inset-3 rounded-full bg-gradient-to-tr from-sky-500/25 via-cyan-400/35 to-white/20 blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+              <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 overflow-hidden rounded-full shrink-0 border-2 border-white/40 relative shadow-2xl group cursor-pointer z-10">
+                <img src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+              </div>
             </div>
 
             <span>STRATEGY</span>
@@ -268,7 +284,7 @@
       </div>
 
       <!-- Bottom Headline Row: Mission Statement & CTA Pill -->
-      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-end pt-8 border-t border-white/15">
+      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-end pt-8 border-t border-white/15 relative z-10">
         <div class="col-span-1 md:col-span-8 lg:col-span-7">
           <p class="font-sans text-xs md:text-sm font-medium text-white/80 leading-relaxed tracking-wide uppercase text-left max-w-2xl">
             Engineering high-conversion platforms, scalable e-commerce systems, and applied AI workflows to drive sustainable commercial growth and operational clarity.

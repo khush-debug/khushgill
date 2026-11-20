@@ -457,6 +457,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
+  // 7. HERO PORTAL FIELD MOUSE INTERACTION
+  // ==========================================
+  const portalFrame = document.getElementById('portal-field-frame');
+  if (portalFrame) {
+    window.addEventListener('mousemove', (e) => {
+      try {
+        portalFrame.contentWindow?.postMessage({
+          type: 'portal-mouse',
+          x: e.clientX / window.innerWidth,
+          y: 1.0 - (e.clientY / window.innerHeight)
+        }, '*');
+      } catch (_) {}
+    }, { passive: true });
+  }
+
+  // ==========================================
   // 8. FOOTER HEAD-TO-TOE ANIMATION (KHUSHMAN)
   // Exact Framer Motion Replica from mananrajkhowa.vercel.app:
   // - Outer wrapper scroll progress (["start end", "end end"])
