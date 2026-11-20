@@ -6,7 +6,7 @@ Inspired by modern executive developer and strategist portfolios.
 
 ## 🚀 Live Demo & Projects
 
-- **Flagship Project:** [Lally Computers](https://lallycomputers.vercel.app/)
+- **Flagship Project:** [Supreme Infosys](https://lallycomputers.vercel.app/)
 - **GitHub:** [@khush-debug](https://github.com/khush-debug)
 
 ## 🛠️ Stack & Architecture

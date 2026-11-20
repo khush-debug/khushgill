@@ -443,14 +443,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const projectDetails = {
     lally: {
-      title: 'Lally Computers',
+      title: 'Supreme Infosys',
       subtitle: 'Full-Stack Computer Hardware & Retail Web Platform',
       badge: '● Live Production',
-      date: '2024 — Present',
+      date: '2026 — Present',
       link: 'https://lallycomputers.vercel.app/',
       linkText: 'Visit Live Website ↗',
       body: `
-        <p><strong>Executive Summary:</strong> Architected, built, and deployed an end-to-end commercial website for Lally Computers, a technology and computing retail enterprise.</p>
+        <p><strong>Executive Summary:</strong> Architected, built, and deployed an end-to-end commercial website for Supreme Infosys, a technology and computing retail enterprise.</p>
         <p><strong>The Objective:</strong> Create a polished, responsive digital storefront that organizes hundreds of technical hardware specifications, laptops, custom gaming rigs, and components into an effortless customer browsing experience.</p>
         <p><strong>Key Engineering & Strategic Deliverables:</strong></p>
         <ul class="list-disc pl-5 space-y-1.5 text-zinc-300">
