@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const $ = (L - j) / 2;
       const U = $ - (sr.stackPosition - sr.scaleEndPosition) * L;
       const ne = P[E.length - 1] - U;
-      const K = L * 1.2;
+      const K = L * 1.4;
 
       let I = 0;
       if (m > ne) {
