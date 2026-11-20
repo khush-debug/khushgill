@@ -439,4 +439,103 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFooterTransform();
   }
 
+  // ==========================================
+  // 9. SCROLL STACK CARDS (EXACT REPLICA)
+  // Replicating the physical card stacking physics from mananrajkhowa.vercel.app:
+  // - Pinning offset: (windowHeight - cardHeight) / 2
+  // - Top tab stack distance: 18px per card
+  // - Base scale: 0.92, scale step: 0.015 per card
+  // ==========================================
+  const scrollCards = Array.from(document.querySelectorAll('.scroll-stack-card'));
+  const stackEnd = document.getElementById('scroll-stack-end');
+
+  if (scrollCards.length > 0) {
+    const sr = {
+      itemScale: 0.015,
+      itemStackDistance: 18,
+      stackPosition: 0.08,
+      scaleEndPosition: 0.05,
+      baseScale: 0.92
+    };
+
+    let cardTops = [];
+    let endTop = 0;
+    let isCalculating = false;
+
+    const measureCardPositions = () => {
+      isCalculating = true;
+      scrollCards.forEach(c => {
+        c.style.transform = '';
+      });
+      const scrollY = window.scrollY;
+      cardTops = scrollCards.map(c => c.getBoundingClientRect().top + scrollY);
+      endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + scrollY) : 0;
+      isCalculating = false;
+    };
+
+    measureCardPositions();
+
+    const updateCardStack = () => {
+      if (isCalculating || !cardTops.length) return;
+      const m = window.scrollY;
+      const L = window.innerHeight;
+      const j = scrollCards[0].offsetHeight;
+      const $ = Math.max((L - j) / 2, 70);
+      const U = -(sr.stackPosition - sr.scaleEndPosition) * L;
+      const ne = cardTops[scrollCards.length - 1] - U;
+      const K = L * 1.2;
+
+      for (let X = 0; X < scrollCards.length; X++) {
+        const card = scrollCards[X];
+        const cardTop = cardTops[X];
+        const me = cardTop - $ - (sr.itemStackDistance * X);
+        const Z = cardTop - U;
+        const xe = me;
+        const ee = Math.max(endTop - L * 0.5, ne + K);
+
+        let Fe = 0;
+        if (m >= Z) {
+          Fe = 1;
+        } else if (m > me) {
+          Fe = (m - me) / (Z - me);
+        }
+        Fe = Math.min(Math.max(Fe, 0), 1);
+
+        const targetScale = sr.baseScale + (X * sr.itemScale);
+        const scale = Number((1 - Fe * (1 - targetScale)).toFixed(4));
+
+        let translateY = 0;
+        if (m >= xe && m <= ee) {
+          translateY = m - cardTop + $ + (sr.itemStackDistance * X);
+        } else if (m > ee) {
+          translateY = ee - cardTop + $ + (sr.itemStackDistance * X);
+        }
+
+        card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${scale})`;
+      }
+    };
+
+    let stackTicking = false;
+    const requestStackUpdate = () => {
+      if (!stackTicking) {
+        requestAnimationFrame(() => {
+          updateCardStack();
+          stackTicking = false;
+        });
+        stackTicking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestStackUpdate, { passive: true });
+    window.addEventListener('resize', () => {
+      measureCardPositions();
+      requestStackUpdate();
+    });
+    window.addEventListener('load', () => {
+      measureCardPositions();
+      requestStackUpdate();
+    });
+    updateCardStack();
+  }
+
 });

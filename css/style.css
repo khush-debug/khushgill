@@ -425,3 +425,37 @@ body {
   color: rgba(0, 0, 0, 0.35);
 }
 
+/* --- Scroll Stacking Cards Effect (Exact Manan Replica) --- */
+.scroll-stack-inner {
+  padding-top: 4vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-stack-card {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  will-change: transform;
+  transform-origin: top center;
+  margin-bottom: 80px;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+.scroll-stack-card:hover {
+  transform: none !important;
+}
+
+.scroll-stack-card:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .scroll-stack-card {
+    margin-bottom: 40px;
+  }
+}
+
+
