@@ -401,3 +401,47 @@ body {
     border-radius: 26px;
   }
 }
+
+/* ==========================================================================
+   3D FLOW ART / ROTATIONAL SCROLL ANIMATION (Physical Layering)
+   ========================================================================== */
+[data-flow-section] {
+  position: relative;
+  width: 100%;
+}
+
+.flow-art-container {
+  will-change: transform;
+  transform-origin: bottom left;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  width: 100%;
+}
+
+[data-flow-section]:not(#hero) .flow-art-container {
+  border-top: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-top-left-radius: 2.25rem;
+  border-top-right-radius: 2.25rem;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-flow-section]#about .flow-art-container {
+  border-top: 1.5px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
+}
+
+[data-flow-section]#contact .flow-art-container {
+  border-top: 1.5px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  [data-flow-section]:not(#hero) .flow-art-container {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.9);
+  }
+}
+
