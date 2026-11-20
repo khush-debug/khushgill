@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khushman Gill — Business Strategist & Creative Technologist</title>
+  <title>Khushman Gill — Business Strategist & Technologist</title>
 
+  <!-- Primary SEO -->
   <meta name="description"
     content="Portfolio of Khushman Gill — Strategic individual focused on business development, technology architecture, e-commerce, and creative direction.">
   <meta name="keywords"
@@ -13,20 +14,20 @@
   <meta name="author" content="Khushman Gill">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Khushman Gill — Business Strategist & Creative Technologist">
+  <meta property="og:title" content="Khushman Gill — Business Strategist & Technologist">
   <meta property="og:description"
-    content="Business | Technology | Salesman | Creative Development. Building practical business solutions with modern technology.">
+    content="Business | Technology | E-Commerce | Creative Direction. Building practical business solutions with modern technology.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://github.com/khush-debug/khushgill">
+  <meta property="og:url" content="https://khushgill.vercel.app/">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Fonts -->
+  <!-- Google Fonts: Inter (Sans), Playfair Display (Serif), JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
@@ -37,1342 +38,832 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace']
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           },
-          maxWidth: {
-            '7xl': '1720px',
-            'screen-2xl': '1720px',
-            'screen-3xl': '1880px',
-            'wide': '1720px'
+          colors: {
+            brand: {
+              emerald: '#10b981',
+              indigo: '#6366f1',
+            }
           }
         }
       }
     }
   </script>
 
-  <!-- GSAP & ScrollTrigger for Flow Art / Story Scroll -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Main Stylesheet -->
+  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="bg-[#09090b] text-[#EDEDED] font-sans antialiased selection:bg-white selection:text-black">
+<body class="bg-black text-white font-sans antialiased selection:bg-white selection:text-black min-h-screen relative">
 
-  <!-- Sleek Top Scroll Progress Indicator -->
-  <div id="scroll-progress"></div>
+  <!-- ==================== FIXED ARCHITECTURAL FRAME ==================== -->
 
-  <!-- Ambient Background Spotlight -->
-  <div id="ambient-spotlight" class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"></div>
+  <!-- Top Frame Bar -->
+  <header class="fixed top-0 left-0 w-full z-50 pointer-events-none px-6 py-6 md:px-12 md:py-8 flex items-start justify-between">
+    
+    <!-- Top-Left: Identity -->
+    <a href="#hero" class="pointer-events-auto flex flex-col group select-none">
+      <span class="font-sans font-black text-2xl md:text-3xl tracking-tighter text-white leading-none group-hover:text-emerald-400 transition-colors">
+        Khushman Gill
+      </span>
+      <span class="text-white/60 text-xs md:text-sm font-medium mt-1 tracking-wide">
+        Business Strategist & Technologist
+      </span>
+    </a>
 
-  <!-- Floating Atmospheric Flowing Ambient Orbs (10x Dramatic Depth) -->
-  <div id="ambient-orb-1"
-    class="pointer-events-none fixed -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-transparent blur-[120px] z-0 transition-transform duration-700 ease-out will-change-transform">
-  </div>
-  <div id="ambient-orb-2"
-    class="pointer-events-none fixed top-1/2 -right-40 w-[650px] h-[650px] rounded-full bg-gradient-to-tl from-purple-600/10 via-zinc-400/5 to-transparent blur-[140px] z-0 transition-transform duration-700 ease-out will-change-transform">
-  </div>
+    <!-- Top-Center: Status Pill (Desktop) -->
+    <div class="pointer-events-auto hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-[11px] font-mono tracking-wider uppercase text-zinc-300">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span>Available for ventures & leadership</span>
+    </div>
 
-  <!-- Noise Overlay for Cinematic Texture -->
-  <div
-    class="fixed inset-0 pointer-events-none z-10 opacity-[0.035] bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]">
-  </div>
+    <!-- Top-Right: Sound Toggle, Rotating Contact Stamp & Menu -->
+    <div class="pointer-events-auto flex items-center gap-3 sm:gap-4 md:gap-5">
+      
+      <!-- Audio Toggle -->
+      <button id="sound-toggle" class="p-2 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-white hover:border-white/40 transition-all text-xs" title="Toggle UI Sound Effects">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+        </svg>
+      </button>
 
-  <!-- FLOATING PILL NAVBAR -->
-  <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl">
-    <nav
-      class="nav-glass flex items-center justify-between px-4 py-2.5 rounded-full border border-white/10 shadow-2xl backdrop-blur-xl bg-black/60 transition-all duration-300">
-
-      <!-- Brand & Active Status -->
-      <a href="#hero" class="flex items-center group pl-1">
-        <span
-          class="font-semibold text-sm tracking-tight text-white group-hover:text-emerald-400 transition-colors">Khushman Gill</span>
+      <!-- Rotating Circular Contact Stamp Badge -->
+      <a href="#contact" class="cta-stamp-btn relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center group cursor-pointer hidden sm:flex">
+        <svg viewBox="0 0 130 130" class="cta-ring absolute inset-0 w-full h-full pointer-events-none animate-spin-slow">
+          <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" fill="none" />
+          <text fill="rgba(255,255,255,0.9)" font-size="8.5" font-family="'Inter', sans-serif" font-weight="900" letter-spacing="4">
+            <textPath href="#cta-circle-path">GET IN TOUCH • GET IN TOUCH • </textPath>
+          </text>
+        </svg>
+        <div class="absolute inset-2.5 rounded-full border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center overflow-hidden transition-all duration-300">
+          <div class="absolute inset-0 bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out rounded-full"></div>
+          <svg class="relative z-10 w-4 h-4 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </div>
       </a>
 
-      <!-- Desktop Navigation Anchors -->
-      <div class="hidden md:flex items-center gap-1 text-xs font-medium text-zinc-400">
-        <a href="#about"
-          class="nav-link px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">About</a>
-        <a href="#stack"
-          class="nav-link px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Stack</a>
-        <a href="#projects"
-          class="nav-link px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Projects</a>
-        <a href="#experience"
-          class="nav-link px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Journey</a>
-        <a href="#contact"
-          class="nav-link px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/5 transition-all">Contact</a>
-      </div>
+      <!-- Menu Toggle Button -->
+      <button id="menu-toggle" class="px-4 py-2.5 rounded-full border border-white/20 bg-black/80 hover:bg-white hover:text-black hover:border-white text-white text-xs font-mono font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-300 flex items-center gap-2">
+        <span>Menu</span>
+        <span class="text-emerald-400 font-bold">[+]</span>
+      </button>
 
-      <!-- Action Items & Sound Toggle -->
-      <div class="flex items-center gap-2">
-        <!-- Web Audio Haptic Sound Toggle -->
-        <button id="sound-toggle"
-          class="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-all text-xs"
-          title="Toggle audio clicks" aria-label="Toggle sound effects">
-          <svg id="sound-icon-on" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
-            </path>
-          </svg>
-          <svg id="sound-icon-off" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
-            </path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>
-          </svg>
-        </button>
-
-        <!-- CTA Button -->
-        <a href="#contact"
-          class="hidden sm:inline-flex items-center justify-center px-4 py-1.5 text-xs font-semibold rounded-full bg-white text-black hover:bg-zinc-200 transition-all shadow-md active:scale-95">
-          Let's Talk
-        </a>
-
-        <!-- Mobile Menu Trigger -->
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-zinc-400 hover:text-white" aria-label="Open mobile menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-      </div>
-
-    </nav>
-
-    <!-- Mobile Drawer Dropdown -->
-    <div id="mobile-menu"
-      class="hidden mt-2 p-4 rounded-2xl border border-white/10 bg-black/90 backdrop-blur-2xl md:hidden transition-all duration-300">
-      <div class="flex flex-col gap-3 text-sm font-medium">
-        <a href="#about" class="mobile-nav-link text-zinc-300 hover:text-white py-1">About</a>
-        <a href="#stack" class="mobile-nav-link text-zinc-300 hover:text-white py-1">Tech Stack & Expertise</a>
-        <a href="#projects" class="mobile-nav-link text-zinc-300 hover:text-white py-1">Featured Projects</a>
-        <a href="#experience" class="mobile-nav-link text-zinc-300 hover:text-white py-1">Journey & Milestones</a>
-        <a href="#contact" class="mobile-nav-link text-zinc-300 hover:text-white py-1">Contact Khushman</a>
-        <div class="pt-2 border-t border-white/10 flex justify-between items-center">
-          <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
-            class="text-xs font-mono text-pink-400 hover:text-pink-300 flex items-center gap-1.5 font-semibold">
-            <span>Instagram @kggills</span>
-            <span>↗</span>
-          </a>
-          <a href="#contact"
-            class="text-xs font-bold text-white bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full transition-colors">Get
-            In Touch ↗</a>
-        </div>
-      </div>
     </div>
   </header>
 
-  <!-- MAIN WRAPPER -->
-  <main class="relative z-20">
+  <!-- Left Edge Vertical Text (Desktop) -->
+  <aside class="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6 pointer-events-none text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase">
+    <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="pointer-events-auto vertical-rl hover:text-white transition-colors">
+      INSTAGRAM @KGGILLS
+    </a>
+    <span class="w-[1px] h-8 bg-white/20"></span>
+    <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="pointer-events-auto vertical-rl hover:text-white transition-colors">
+      GITHUB @KHUSH-DEBUG
+    </a>
+  </aside>
 
-    <!-- ==================== HERO SECTION (Matching 00:00 - 00:10 of Reference Video) ==================== -->
-    <section id="hero" data-flow-section
-      class="relative flex flex-col justify-between pt-16 sm:pt-18 md:pt-20 pb-3 sm:pb-5 md:pb-6 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner
-        class="flow-art-container w-full h-full flex flex-col justify-between p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+  <!-- Right Edge Vertical Text (Desktop) -->
+  <aside class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6 pointer-events-none text-[10px] font-mono tracking-[0.25em] text-white/40 uppercase">
+    <span class="vertical-rl">STRATEGIC ARCHITECTURE</span>
+    <span class="w-[1px] h-8 bg-white/20"></span>
+    <span class="vertical-rl text-emerald-400 font-bold">2026 EDITION</span>
+  </aside>
 
-        <!-- Top Decorative Monospace Brackets / Metadata (Frame 00:01) -->
-        <div
-          class="reveal reveal-fade flex items-center justify-between text-xs font-mono text-zinc-500 uppercase tracking-widest pt-2 sm:pt-3 select-none">
-          <div class="flex items-center gap-2">
-            <span class="text-zinc-300 font-bold">©2026</span>
-            <span class="text-zinc-600">/</span>
-            <span>KHUSHMAN GILL</span>
-          </div>
-          <div class="text-right tracking-wider text-zinc-400">
-            <span class="text-zinc-600">{{</span> <span class="text-zinc-300 hidden sm:inline">/BUSINESS • TECH •
-              CREATIVE</span><span class="text-zinc-300 sm:hidden">TECH • STRATEGY</span> <span
-              class="text-zinc-600">}}</span>
-          </div>
+
+  <!-- ==================== FULLSCREEN CURTAIN MENU ==================== -->
+  <div id="fullscreen-menu">
+    <div class="flex items-center justify-between pb-6 border-b border-white/20">
+      <div class="flex flex-col">
+        <span class="font-sans font-black text-2xl tracking-tighter text-white">Khushman Gill</span>
+        <span class="text-xs font-mono text-zinc-400 uppercase tracking-widest mt-0.5">Navigation System</span>
+      </div>
+      <button id="menu-close" class="px-5 py-2 rounded-full border border-white/20 hover:bg-white hover:text-black text-white text-xs font-mono font-bold tracking-widest uppercase transition-all">
+        Close [✕]
+      </button>
+    </div>
+
+    <!-- Links List -->
+    <div class="flex flex-col my-auto py-8">
+      <a href="#hero" class="menu-link-item group">
+        <span class="text-xs font-mono text-white/50 tracking-widest">01</span>
+        <span class="menu-link-name">Overview</span>
+        <span class="text-xs font-mono text-white/50 group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+      <a href="#work" class="menu-link-item group">
+        <span class="text-xs font-mono text-white/50 tracking-widest">02</span>
+        <span class="menu-link-name">Selected Works</span>
+        <span class="text-xs font-mono text-white/50 group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+      <a href="#about" class="menu-link-item group">
+        <span class="text-xs font-mono text-white/50 tracking-widest">03</span>
+        <span class="menu-link-name">Background</span>
+        <span class="text-xs font-mono text-white/50 group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+      <a href="#philosophy" class="menu-link-item group">
+        <span class="text-xs font-mono text-white/50 tracking-widest">04</span>
+        <span class="menu-link-name">Philosophy</span>
+        <span class="text-xs font-mono text-white/50 group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+      <a href="#contact" class="menu-link-item group">
+        <span class="text-xs font-mono text-white/50 tracking-widest">05</span>
+        <span class="menu-link-name">Contact</span>
+        <span class="text-xs font-mono text-white/50 group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+    </div>
+
+    <!-- Menu Bottom Bar -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-6 border-t border-white/20 text-xs font-mono text-zinc-400 gap-4">
+      <div class="flex items-center gap-6">
+        <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram @kggills ↗</a>
+        <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub @khush-debug ↗</a>
+        <button data-copy-email class="hover:text-white transition-colors text-left">Copy Email ↗</button>
+      </div>
+      <div>Punjab, India • Global Scope</div>
+    </div>
+  </div>
+
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="relative z-10 w-full overflow-hidden">
+
+    <!-- ==========================================
+         HERO SECTION: EDITORIAL BRUTALIST LUXURY
+         ========================================== -->
+    <section id="hero" class="min-h-screen relative bg-black flex flex-col justify-between px-6 pt-32 pb-12 md:px-16 md:pt-40 md:pb-16 lg:px-24">
+      
+      <!-- Upper Grid: Core Disciplines & Credentials -->
+      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 mb-16 lg:mb-20">
+        
+        <!-- Left: Core Disciplines -->
+        <div class="col-span-1 md:col-span-5 lg:col-span-4 flex flex-col gap-3">
+          <h3 class="font-sans text-[10px] md:text-xs font-bold text-white tracking-[0.25em] uppercase mb-1">
+            Core Disciplines
+          </h3>
+          <ul class="flex flex-col gap-2 font-sans text-xs md:text-sm font-medium text-white/60 tracking-wide">
+            <li class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+              <span>E-Commerce Architecture & Scaling</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+              <span>Commercial Web Platforms & Cloud</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+              <span>Applied AI & Automation Pipelines</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+              <span>Commercial Strategy & GTM Systems</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Hero Centerpiece: Giant Kinetic Scramble Headline (Frame 00:02 - 00:06) -->
-        <div class="reveal reveal-scale hero-headline-container my-auto py-2 sm:py-3 lg:py-3 text-center select-none">
-          <div
-            class="hero-headline-row flex flex-row items-center justify-center flex-nowrap gap-2 sm:gap-3 md:gap-4 select-none">
-            <span class="hero-bracket">&lt;</span>
-            <h1 id="scramble-heading" class="uppercase drop-shadow-[0_0_35px_rgba(255,255,255,0.25)]">
-              BUSINESS STRATEGIST
-            </h1>
-            <span class="hero-bracket">/&gt;</span>
-          </div>
-          <p class="mt-2 sm:mt-3 text-xs md:text-sm font-mono tracking-widest text-zinc-400 uppercase">
-            Technology Architect <span class="text-zinc-600">•</span> Commercial Salesman <span
-              class="text-zinc-600">•</span> Creative Developer
-          </p>
-        </div>
-
-        <!-- Asymmetrical 3-Column Profile Section (Frame 00:08 - 00:10) -->
-        <div id="about"
-          class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 xl:gap-10 items-center pt-3 sm:pt-4 lg:pt-5 border-t border-white/10">
-
-          <!-- Column 1: Left Bio & Current Focus -->
-          <div
-            class="reveal reveal-left md:col-span-4 flex flex-col justify-between space-y-3.5 sm:space-y-4 md:space-y-5">
-            <div>
-              <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                Hi, I'm <span
-                  class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">Khushman.</span>
-              </h2>
-              <p class="mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base text-zinc-400 leading-relaxed font-normal">
-                Business strategist, technologist, and digital venture builder. Focused on engineering high-conversion
-                platforms, scalable e-commerce systems, and applied AI workflows.
-              </p>
-            </div>
-
-            <!-- Currently Card -->
-            <div
-              class="p-3.5 sm:p-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm space-y-1 sm:space-y-1.5">
-              <div
-                class="flex items-center justify-between text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-zinc-500">
-                <span>CURRENT VENTURE</span>
-                <span class="text-emerald-400 font-bold">● Active</span>
-              </div>
-              <div class="text-xs sm:text-sm font-bold text-white">Supreme Infosys</div>
-              <div class="text-[11px] sm:text-xs text-zinc-400">Web Architecture & Digital Strategy Lead</div>
-              <div class="text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-0.5 sm:pt-1">Punjab, India • Global
-                Scope</div>
-            </div>
-          </div>
-
-          <!-- Column 2: Center Editorial Portrait Card (Interactive 3D Manual Touch & Trackpad Spin) -->
-          <div class="reveal reveal-scale stagger-1 md:col-span-4 flex justify-center select-none">
-            <div id="portrait-scene"
-              class="relative group cursor-grab active:cursor-grabbing perspective-container touch-none">
-              <!-- Ambient Card Backglow (Minimalist Black-Grey Obsidian Aura) -->
-              <div id="portrait-backglow"
-                class="absolute -inset-2.5 sm:-inset-3 bg-gradient-to-br from-zinc-700 via-zinc-800 to-black rounded-3xl blur-2xl opacity-45 group-hover:opacity-75 transition duration-700 pointer-events-none">
-              </div>
-
-              <!-- 3D Two-Sided Spinnable Card Frame (Clean Mobile Fitting Matching Third Photo) -->
-              <div id="portrait-card"
-                class="relative w-[280px] xs:w-[300px] sm:w-[320px] md:w-[260px] lg:w-[275px] xl:w-[310px] 2xl:w-[350px] h-[350px] xs:h-[370px] sm:h-[390px] md:h-[330px] lg:h-[350px] xl:h-[380px] 2xl:h-[430px] rounded-2xl shadow-2xl transition-shadow duration-300"
-                style="transform-style: preserve-3d;">
-
-                <!-- FRONT FACE: Editorial Headshot & Quick Controls -->
-                <div
-                  class="card-face card-front absolute inset-0 w-full h-full rounded-2xl overflow-hidden bg-zinc-950">
-                  <img id="user-headshot" src="assets/khushman.jpg" alt="Khushman Gill"
-                    class="w-full h-full object-cover object-[center_18%] contrast-105 pointer-events-none select-none">
-
-                  <!-- Seamless Soft Vignette (Ultra-smooth gradient, zero harsh lines or banding) -->
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none">
-                  </div>
-
-                  <!-- Top Monogram Badge & 3D Flip Trigger -->
-                  <div class="absolute top-4 inset-x-4 z-10 flex items-center justify-between">
-                    <div
-                      class="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-md">
-                      <span class="w-2 h-2 rounded-full bg-white"></span>
-                      <span class="text-[11px] font-mono font-bold text-white tracking-widest">KG</span>
-                    </div>
-                    <button id="flip-to-back-btn" type="button"
-                      class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 hover:bg-black/90 border border-white/20 hover:border-emerald-400/50 text-zinc-200 hover:text-white backdrop-blur-md text-[11px] font-mono font-medium transition-all shadow-lg active:scale-95"
-                      title="Flip card to direct socials">
-                      <span>Socials 3D</span>
-                      <span class="text-emerald-400 font-bold">↻</span>
-                    </button>
-                  </div>
-
-                  <!-- Bottom Floating Badges (Seamless pills, no box dividing line across photo, no swap button) -->
-                  <div
-                    class="absolute bottom-4 inset-x-4 z-10 flex items-center justify-between pointer-events-none select-none">
-                    <div
-                      class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      <span class="text-xs font-mono font-medium text-zinc-200">Khushman Gill</span>
-                    </div>
-                    <div
-                      class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 border border-white/10 backdrop-blur-md text-[10px] font-mono text-zinc-300">
-                      <span>Spin 360°</span>
-                      <span class="text-emerald-400 font-bold">↻</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- BACK FACE: Shiny Reflective Luxury Surface with Instagram, Email & GitHub -->
-                <div
-                  class="card-face card-back absolute inset-0 w-full h-full rounded-2xl overflow-hidden border border-white/25 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 p-5 sm:p-6 flex flex-col justify-between"
-                  style="transform: rotateY(180deg); backface-visibility: hidden;">
-
-                  <!-- Dynamic Shiny Metallic Specular Reflection Layer -->
-                  <div id="portrait-reflection"
-                    class="absolute inset-0 pointer-events-none rounded-2xl opacity-70 transition-all duration-100">
-                  </div>
-
-                  <!-- Subtle Grid Texture on Back -->
-                  <div
-                    class="absolute inset-0 bg-repeat bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none">
-                  </div>
-
-                  <!-- Top Monogram & Flip Back Button -->
-                  <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-3">
-                    <div class="flex items-center gap-2.5">
-                      <div
-                        class="w-8 h-8 rounded-full bg-gradient-to-br from-white via-zinc-200 to-zinc-500 flex items-center justify-center shadow-lg text-black font-black text-xs font-mono">
-                        KG
-                      </div>
-                      <div>
-                        <div class="text-xs font-bold text-white tracking-wide">KHUSHMAN GILL</div>
-                        <div class="text-[10px] font-mono text-zinc-400">Direct Connect</div>
-                      </div>
-                    </div>
-                    <button id="flip-to-front-btn" type="button"
-                      class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-[11px] font-mono text-zinc-200 hover:text-white transition-colors active:scale-95"
-                      title="Flip back to photo">
-                      <span>Photo</span>
-                      <span class="text-emerald-400 font-bold">↺</span>
-                    </button>
-                  </div>
-
-                  <!-- Middle: Direct Social & Contact Cards -->
-                  <div class="relative z-10 space-y-1 sm:space-y-2.5 my-auto py-1">
-
-                    <!-- INSTAGRAM: Profile @kggills with Direct Jump -->
-                    <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
-                      class="group/ig flex items-center justify-between p-1.5 sm:p-3 rounded-lg sm:rounded-xl border border-pink-500/35 bg-gradient-to-r from-pink-500/15 via-purple-500/10 to-transparent hover:border-pink-400/70 hover:from-pink-500/30 transition-all shadow-lg active:scale-95">
-                      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
-                        <div
-                          class="w-5 h-5 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 flex-shrink-0 flex items-center justify-center text-white shadow-md">
-                          <svg class="w-2.5 h-2.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
-                            <path
-                              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                          </svg>
-                        </div>
-                        <div class="min-w-0">
-                          <div
-                            class="text-[9px] sm:text-xs font-bold text-white group-hover/ig:text-pink-300 transition-colors">
-                            Instagram</div>
-                          <div class="text-[8px] sm:text-[11px] font-mono text-pink-400 font-bold truncate">@kggills
-                          </div>
-                        </div>
-                      </div>
-                      <span
-                        class="text-[8px] sm:text-xs font-mono text-pink-400 group-hover/ig:text-white group-hover/ig:translate-x-1 transition-all flex-shrink-0">Jump
-                        ↗</span>
-                    </a>
-
-                    <!-- GITHUB: @khush-debug -->
-                    <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer"
-                      class="group/gh flex items-center justify-between p-1.5 sm:p-3 rounded-lg sm:rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/25 transition-all shadow-md active:scale-95">
-                      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
-                        <div
-                          class="w-5 h-5 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-zinc-800 border border-white/10 flex-shrink-0 flex items-center justify-center text-white">
-                          <svg class="w-2.5 h-2.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
-                            <path
-                              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                          </svg>
-                        </div>
-                        <div class="min-w-0">
-                          <div
-                            class="text-[9px] sm:text-xs font-bold text-white group-hover/gh:text-zinc-200 transition-colors">
-                            GitHub</div>
-                          <div class="text-[8px] sm:text-[11px] font-mono text-zinc-400 truncate">@khush-debug</div>
-                        </div>
-                      </div>
-                      <span
-                        class="text-[8px] sm:text-xs font-mono text-zinc-400 group-hover/gh:text-white group-hover/gh:translate-x-1 transition-all flex-shrink-0">Code
-                        ↗</span>
-                    </a>
-
-                    <!-- EMAIL: kgill3662@gmail.com -->
-                    <a href="mailto:kgill3662@gmail.com"
-                      class="group/em flex items-center justify-between p-1.5 sm:p-3 rounded-lg sm:rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/25 transition-all shadow-md active:scale-95">
-                      <div class="flex items-center gap-1.5 sm:gap-3 min-w-0">
-                        <div
-                          class="w-5 h-5 sm:w-8 sm:h-8 rounded-md sm:rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex-shrink-0 flex items-center justify-center text-emerald-400">
-                          <svg class="w-2.5 h-2.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                          </svg>
-                        </div>
-                        <div class="min-w-0">
-                          <div
-                            class="text-[9px] sm:text-xs font-bold text-white group-hover/em:text-emerald-300 transition-colors">
-                            Email</div>
-                          <div
-                            class="text-[8px] sm:text-[11px] font-mono text-zinc-400 truncate max-w-[85px] sm:max-w-[150px]">
-                            kgill3662@gmail.com</div>
-                        </div>
-                      </div>
-                      <span
-                        class="text-[8px] sm:text-xs font-mono text-zinc-400 group-hover/em:text-white group-hover/em:translate-x-1 transition-all flex-shrink-0">Send
-                        ↗</span>
-                    </a>
-
-                  </div>
-
-                  <!-- Bottom Status & Swipe Hint -->
-                  <div
-                    class="relative z-10 pt-1 sm:pt-3 border-t border-white/10 flex items-center justify-between text-[7px] sm:text-[10px] font-mono text-zinc-500">
-                    <span class="text-emerald-400 flex items-center gap-1">
-                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      <span class="hidden xs:inline">Open to </span>Ventures
-                    </span>
-                    <span>Spin 360°</span>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- Column 3: Impact Statement & CTA Actions (Under photo on mobile, right column on desktop) -->
-          <div
-            class="reveal reveal-right stagger-2 md:col-span-4 flex flex-col justify-between space-y-3.5 sm:space-y-4 md:space-y-5">
-            <div class="space-y-2 sm:space-y-3">
-              <h3
-                class="text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl font-bold text-white tracking-tight leading-snug">
-                I build practical business solutions that turn complex ideas into high-margin reality.
-              </h3>
-              <p class="text-xs sm:text-sm lg:text-base text-zinc-400 leading-relaxed font-normal">
-                Combining a disciplined commerce foundation, technical engineering execution, and creative visual
-                mastery to build websites and ventures that deliver tangible revenue and prestige.
-              </p>
-            </div>
-
-            <!-- CTAs -->
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
-              <a href="#projects"
-                class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md active:scale-95 group">
-                <span>Explore Projects</span>
-                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3">
-                  </path>
-                </svg>
-              </a>
-
-              <a href="#experience"
-                class="inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-medium text-xs transition-all active:scale-95">
-                <span>View Milestones</span>
-                <span class="text-zinc-500 font-mono">↓</span>
-              </a>
-
-              <!-- Direct Instagram Profile Link -->
-              <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full border border-pink-500/30 bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 hover:text-white font-medium text-xs transition-all active:scale-95"
-                title="Follow @kggills on Instagram">
-                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                </svg>
-                <span>@kggills</span>
-                <span class="text-pink-400 font-mono text-[10px]">↗</span>
-              </a>
-            </div>
-          </div>
-
+        <!-- Right: Credentials & Scope -->
+        <div class="col-span-1 md:col-start-8 md:col-span-5 lg:col-start-9 lg:col-span-4 flex flex-col gap-3 mt-4 md:mt-0">
+          <h3 class="font-sans text-[10px] md:text-xs font-bold text-white tracking-[0.25em] uppercase mb-1">
+            Credentials & Impact
+          </h3>
+          <ul class="flex flex-col gap-2 font-sans text-xs md:text-sm font-medium text-white/60 tracking-wide">
+            <li class="flex items-center gap-2.5">
+              <span class="text-white font-bold">Supreme Infosys</span>
+              <span>— Web Strategy & Product Lead</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="text-white font-bold">Akal Academy</span>
+              <span>— 88% X / 87% XII Commerce + IT (802)</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="text-white font-bold">Modern Web</span>
+              <span>— Next.js, React, Tailwind, Vercel</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="text-white font-bold">2026 Scope</span>
+              <span>— Global Enterprise Standards</span>
+            </li>
+          </ul>
         </div>
 
       </div>
-    </section>
 
-    <!-- ==================== TECH STACK & COMPETENCY BENTO (Matching 00:11 - 00:12) ==================== -->
-    <section id="stack" data-flow-section
-      class="pt-0 pb-6 sm:pb-10 md:pb-14 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+      <!-- Centerpiece Giant Headline with Inline Circular Cutout Portrait -->
+      <div class="my-auto py-6 md:py-12">
+        <h1 class="font-sans font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] xl:text-[9.2rem] leading-[0.9] tracking-tighter text-white uppercase text-left flex flex-col md:gap-3 select-none">
+          
+          <!-- Line 1 with inline circular photo -->
+          <span class="flex items-center gap-3 sm:gap-5 md:gap-6 flex-wrap">
+            <span>BUSINESS</span>
+            
+            <!-- Circular Profile Cutout -->
+            <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 overflow-hidden rounded-full shrink-0 border-2 border-white/30 relative shadow-2xl group cursor-pointer">
+              <img src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+            </div>
 
-        <!-- Section Header -->
-        <div
-          class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-7 md:mb-10 gap-3 sm:gap-4">
-          <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 01 •
-              CAPABILITIES</span>
-            <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Tech Stack & Expertise</h2>
-          </div>
-          <p class="text-xs sm:text-sm text-zinc-400 max-w-md font-mono text-left md:text-right">
-            The engineering tools, analytical frameworks, and creative disciplines powering high-performing digital
-            business.
+            <span>STRATEGY</span>
+          </span>
+
+          <!-- Line 2 -->
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">
+            & TECHNOLOGIST
+          </span>
+
+        </h1>
+      </div>
+
+      <!-- Bottom Headline Row: Mission Statement & CTA Pill -->
+      <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-end pt-8 border-t border-white/15">
+        <div class="col-span-1 md:col-span-8 lg:col-span-7">
+          <p class="font-sans text-xs md:text-sm font-medium text-white/80 leading-relaxed tracking-wide uppercase text-left max-w-2xl">
+            Engineering high-conversion platforms, scalable e-commerce systems, and applied AI workflows to drive sustainable commercial growth and operational clarity.
           </p>
         </div>
+        <div class="col-span-1 md:col-span-4 lg:col-span-5 flex md:justify-end">
+          <a href="#contact" class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black font-sans font-bold text-xs uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300 group shadow-lg">
+            <span>Get in touch</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
 
-        <!-- Bento Grid (Categorized Disciplines) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+    </section>
 
-          <!-- Card 1: Web Development & Architecture -->
-          <div class="stack-card reveal stagger-1 group">
-            <div class="stack-card-inner-overlay"></div>
-            <div class="stack-card-cyber-grid"></div>
-            <div class="stack-card-content p-6">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="stack-icon-wrap">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                  </div>
-                  <span
-                    class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 flex items-center shadow-sm">
-                    CORE STACK
-                  </span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Web
-                  Development & Architecture</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Engineering responsive, modern web platforms with high speed, clean code structure, and reliable cloud
-                  deployments.
-                </p>
-              </div>
-              <!-- Chips -->
-              <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
-                <span class="chip">Next.js</span>
-                <span class="chip">React</span>
-                <span class="chip">HTML5 / CSS3</span>
-                <span class="chip">Tailwind CSS</span>
-                <span class="chip">JavaScript (ES6+)</span>
-                <span class="chip">Vercel Cloud</span>
-                <span class="chip">Backend Concepts</span>
-                <span class="chip">Web Performance</span>
-              </div>
-            </div>
+
+    <!-- ==========================================
+         SELECTED WORKS: MARQUEE & STAR-BORDER CARDS
+         ========================================== -->
+    <section id="work" class="w-full bg-black text-white pt-24 pb-32">
+      
+      <!-- Infinite Marquee Header -->
+      <div class="marquee-selected-works mb-16 md:mb-24">
+        <div class="marquee-selected-works__track">
+          <div class="marquee-selected-works__segment">
+            <span class="marquee-selected-works__text">Selected Works</span>
+            <span class="marquee-selected-works__dash">—</span>
           </div>
-
-          <!-- Card 2: Applied AI & Digital Automation -->
-          <div class="stack-card reveal stagger-2 group">
-            <div class="stack-card-inner-overlay"></div>
-            <div class="stack-card-cyber-grid"></div>
-            <div class="stack-card-content p-6">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="stack-icon-wrap">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                  </div>
-                  <span
-                    class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 flex items-center shadow-sm">
-                    NEURAL AI
-                  </span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors">Applied AI &
-                  Automation</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Harnessing state-of-the-art LLMs, generative AI tools, and smart automation pipelines to accelerate
-                  operations.
-                </p>
-              </div>
-              <!-- Chips -->
-              <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
-                <span class="chip">Prompt Engineering</span>
-                <span class="chip">LLM Workflows</span>
-                <span class="chip">Generative AI Tools</span>
-                <span class="chip">Workflow Automation</span>
-                <span class="chip">AI Product Strategy</span>
-                <span class="chip">Rapid Prototyping</span>
-              </div>
-            </div>
+          <div class="marquee-selected-works__segment">
+            <span class="marquee-selected-works__text">Selected Works</span>
+            <span class="marquee-selected-works__dash">—</span>
           </div>
-
-          <!-- Card 3: Business Development & Sales -->
-          <div class="stack-card reveal stagger-3 group">
-            <div class="stack-card-inner-overlay"></div>
-            <div class="stack-card-cyber-grid"></div>
-            <div class="stack-card-content p-6">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="stack-icon-wrap">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                      </path>
-                    </svg>
-                  </div>
-                  <span
-                    class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 flex items-center shadow-sm">
-                    REVENUE
-                  </span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">Business &
-                  Sales Strategy</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Commercial deal-making, market positioning, financial fundamentals, and customer-first value
-                  propositions.
-                </p>
-              </div>
-              <!-- Chips -->
-              <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
-                <span class="chip">Commercial Sales</span>
-                <span class="chip">E-Commerce Strategy</span>
-                <span class="chip">Financial Modeling</span>
-                <span class="chip">Client Acquisition</span>
-                <span class="chip">Negotiation</span>
-                <span class="chip">Market Analysis</span>
-              </div>
-            </div>
+          <div class="marquee-selected-works__segment">
+            <span class="marquee-selected-works__text">Selected Works</span>
+            <span class="marquee-selected-works__dash">—</span>
           </div>
-
-          <!-- Card 4: Creative Arts & Brand Identity -->
-          <div class="stack-card reveal stagger-4 group">
-            <div class="stack-card-inner-overlay"></div>
-            <div class="stack-card-cyber-grid"></div>
-            <div class="stack-card-content p-6">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="stack-icon-wrap">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
-                      </path>
-                    </svg>
-                  </div>
-                  <span
-                    class="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 flex items-center shadow-sm">
-                    CREATIVE
-                  </span>
-                </div>
-                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">Creative
-                  Direction & Visuals</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed mb-6">
-                  Rooted in fine arts, sketching, and painting, translated into sharp digital design systems and
-                  compelling branding.
-                </p>
-              </div>
-              <!-- Chips -->
-              <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/10">
-                <span class="chip">Brand Identity</span>
-                <span class="chip">UI/UX Systems</span>
-                <span class="chip">Sketching & Painting</span>
-                <span class="chip">Visual Communication</span>
-                <span class="chip">Photo Direction</span>
-                <span class="chip">Aesthetic Polish</span>
-              </div>
-            </div>
+          <div class="marquee-selected-works__segment">
+            <span class="marquee-selected-works__text">Selected Works</span>
+            <span class="marquee-selected-works__dash">—</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ==================== FEATURED PROJECTS (Matching 00:13 - 00:15 - macOS Physical Folder Cards) ==================== -->
-    <section id="projects" data-flow-section
-      class="pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden">
-      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+      <!-- Star-Border Stacked Showcase Cards -->
+      <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col gap-10 md:gap-14">
 
-        <!-- Section Header -->
-        <div
-          class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-7 md:mb-10 gap-3 sm:gap-4">
-          <div>
-            <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 02 • WORK & CASE
-              STUDIES</span>
-            <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Featured Projects</h2>
-            <p class="text-xs sm:text-sm text-zinc-400 mt-2">
-              Independent ventures and commercial work. Hover or click a folder to explore project details.
-            </p>
-          </div>
-          <div>
-            <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-white transition-colors py-2 px-3 rounded-lg border border-white/10 bg-white/5">
-              <span>github.com/khush-debug</span>
-              <span class="text-white">↗</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- 4 Physical macOS Folder Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-4">
-
-          <!-- FOLDER 1: Lally Computers (Flagship Live Production Website) -->
-          <div class="folder-card reveal stagger-1 group" data-project="lally">
-            <!-- Folder Back Structure & Tab -->
-            <div class="folder-tab">
-              <span class="tab-label">01 / RETAIL E-COM</span>
-            </div>
-
-            <!-- Peek Sheet (Paper that slides up on hover) -->
-            <div class="folder-sheet">
-              <div class="sheet-content">
-                <div class="flex items-center justify-between border-b border-zinc-200 pb-1 mb-1.5">
-                  <span class="font-bold text-[10px] text-zinc-800">lallycomputers.vercel.app</span>
-                  <span class="text-[9px] font-mono text-emerald-600 font-bold">● LIVE</span>
-                </div>
-                <div class="space-y-1 text-[9px] text-zinc-600">
-                  <div class="font-semibold text-zinc-900">Hardware Catalog & Storefront</div>
-                  <div>• Responsive Product Presentation</div>
-                  <div>• Clean Conversion Architecture</div>
-                  <div>• Vercel Cloud Deployment</div>
+        <!-- CARD 01: Supreme Infosys (Flagship E-Commerce) -->
+        <div class="star-border-container reveal">
+          <div class="border-gradient-full border-gradient-cyan"></div>
+          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+            
+            <!-- Card Top Row -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+              <div class="flex items-center gap-4 sm:gap-6">
+                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">01</span>
+                <div>
+                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Supreme Infosys</h3>
+                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Full-Stack Computer Hardware & Retail E-Commerce Platform</p>
                 </div>
               </div>
-            </div>
-
-            <!-- Folder Front Face -->
-            <div class="folder-front">
-              <div class="folder-meta">
-                <span class="text-emerald-400 font-mono text-[10px]">● Production Live</span>
-                <span class="text-zinc-500 font-mono text-[10px]">2026</span>
-              </div>
-
-              <div class="folder-body">
-                <h3 class="folder-title">Supreme Infosys</h3>
-                <p class="folder-desc">
-                  Full-scale computer retail platform. Engineered sleek catalog layouts, responsive navigation, and
-                  cloud infrastructure.
-                </p>
-              </div>
-
-              <div class="folder-actions">
-                <button
-                  class="open-case-study text-xs font-bold text-white hover:text-zinc-300 inline-flex items-center gap-1">
-                  View Case Study <span>→</span>
+              <div class="flex items-center gap-3">
+                <button data-open-case-study="supreme" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                  Case Study
                 </button>
-                <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer"
-                  class="folder-icon-btn" title="Open live site">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
+                <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                  <div class="border-gradient-full border-gradient-gold"></div>
+                  <div class="inner-content">
+                    <span>Live Platform</span>
+                    <span>↗</span>
+                  </div>
                 </a>
               </div>
             </div>
-          </div>
 
-          <!-- FOLDER 2: Digital Branding & E-Commerce Venture -->
-          <div class="folder-card reveal stagger-2 group" data-project="branding">
-            <div class="folder-tab">
-              <span class="tab-label">02 / BRAND IDENTITY</span>
-            </div>
-
-            <div class="folder-sheet">
-              <div class="sheet-content">
-                <div class="flex items-center justify-between border-b border-zinc-200 pb-1 mb-1.5">
-                  <span class="font-bold text-[10px] text-zinc-800">Brand Systems</span>
-                  <span class="text-[9px] font-mono text-zinc-500">IDENTITY</span>
-                </div>
-                <div class="space-y-1 text-[9px] text-zinc-600">
-                  <div class="font-semibold text-zinc-900">Commercial Direction</div>
-                  <div>• Visual Guidelines & Logos</div>
-                  <div>• Customer Acquisition Strategy</div>
-                  <div>• E-Commerce Storefront Specs</div>
+            <!-- Card Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-7 space-y-4">
+                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                  Architected, built, and launched the full-scale digital storefront for Supreme Infosys. Engineered sleek catalog layouts, responsive multi-device navigation, component specifications, and automated cloud infrastructure.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Next.js / React</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Tailwind CSS</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Vercel Cloud</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">E-Com Architecture</span>
                 </div>
               </div>
-            </div>
-
-            <div class="folder-front">
-              <div class="folder-meta">
-                <span class="text-zinc-300 font-mono text-[10px]">Commercial Venture</span>
-                <span class="text-zinc-500 font-mono text-[10px]">Strategy</span>
-              </div>
-
-              <div class="folder-body">
-                <h3 class="folder-title">Brand & E-Com Hub</h3>
-                <p class="folder-desc">
-                  Comprehensive brand positioning, digital visual standards, and market architecture for high-growth
-                  e-commerce ventures.
+              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                <div class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">● Active Production Metrics</div>
+                <div class="text-2xl font-black text-white tracking-tight">99.9% Uptime</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Fast global edge distribution via Vercel CDN, optimizing mobile catalog browse speed and cutting customer inquiry latency.
                 </p>
               </div>
-
-              <div class="folder-actions">
-                <button
-                  class="open-case-study text-xs font-bold text-white hover:text-zinc-300 inline-flex items-center gap-1">
-                  View Case Study <span>→</span>
-                </button>
-                <span class="folder-icon-btn">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                    </path>
-                  </svg>
-                </span>
-              </div>
             </div>
+
           </div>
+        </div>
 
-          <!-- FOLDER 3: AI-Driven Enterprise Operations -->
-          <div class="folder-card reveal stagger-3 group" data-project="ai">
-            <div class="folder-tab">
-              <span class="tab-label">03 / APPLIED AI</span>
-            </div>
-
-            <div class="folder-sheet">
-              <div class="sheet-content">
-                <div class="flex items-center justify-between border-b border-zinc-200 pb-1 mb-1.5">
-                  <span class="font-bold text-[10px] text-zinc-800">AI Automation</span>
-                  <span class="text-[9px] font-mono text-purple-600 font-bold">WORKFLOWS</span>
+        <!-- CARD 02: Digital Brand & E-Com Hub -->
+        <div class="star-border-container reveal">
+          <div class="border-gradient-full border-gradient-gold"></div>
+          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+              <div class="flex items-center gap-4 sm:gap-6">
+                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">02</span>
+                <div>
+                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Brand Strategy & E-Com Hub</h3>
+                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Commercial Brand Identity, GTM & Scalable Conversion Systems</p>
                 </div>
-                <div class="space-y-1 text-[9px] text-zinc-600">
-                  <div class="font-semibold text-zinc-900">Operational Automation</div>
-                  <div>• Prompt Architecture & Chains</div>
-                  <div>• High-Volume Lead Structuring</div>
-                  <div>• Zero-Friction Content Engine</div>
-                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button data-open-case-study="branding" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                  Case Study
+                </button>
+                <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                  <div class="border-gradient-full border-gradient-cyan"></div>
+                  <div class="inner-content">
+                    <span>GitHub Repos</span>
+                    <span>↗</span>
+                  </div>
+                </a>
               </div>
             </div>
 
-            <div class="folder-front">
-              <div class="folder-meta">
-                <span class="text-purple-400 font-mono text-[10px]">Applied Intelligence</span>
-                <span class="text-zinc-500 font-mono text-[10px]">AI Workflows</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-7 space-y-4">
+                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                  End-to-end commercial system uniting aesthetic brand positioning with high-converting digital storefronts. Engineered component design tokens, customer conversion funnels, and margin-focused product roadmaps.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Brand Identity</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Systems</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Financial Modeling</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">GTM Strategy</span>
+                </div>
               </div>
-
-              <div class="folder-body">
-                <h3 class="folder-title">Applied AI Workflows</h3>
-                <p class="folder-desc">
-                  Architecting intelligent automation routines and prompt pipelines to replace hours of manual
-                  administrative business drag.
+              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold">● Strategic Focus</div>
+                <div class="text-2xl font-black text-white tracking-tight">Conversion Architecture</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Turning digital touchpoints into tangible customer conversion through typographic clarity, fast loading, and deliberate layout hierarchy.
                 </p>
               </div>
-
-              <div class="folder-actions">
-                <button
-                  class="open-case-study text-xs font-bold text-white hover:text-zinc-300 inline-flex items-center gap-1">
-                  View Case Study <span>→</span>
-                </button>
-                <span class="folder-icon-btn">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                  </svg>
-                </span>
-              </div>
             </div>
+
           </div>
+        </div>
 
-          <!-- FOLDER 4: Fine Arts & Visual Expression Studio -->
-          <div class="folder-card reveal stagger-4 group" data-project="arts">
-            <div class="folder-tab">
-              <span class="tab-label">04 / CREATIVE ARTS</span>
-            </div>
-
-            <div class="folder-sheet">
-              <div class="sheet-content">
-                <div class="flex items-center justify-between border-b border-zinc-200 pb-1 mb-1.5">
-                  <span class="font-bold text-[10px] text-zinc-800">Visual Disciplines</span>
-                  <span class="text-[9px] font-mono text-amber-600 font-bold">GALLERY</span>
+        <!-- CARD 03: Applied AI & Automations -->
+        <div class="star-border-container reveal">
+          <div class="border-gradient-full border-gradient-emerald"></div>
+          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+              <div class="flex items-center gap-4 sm:gap-6">
+                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">03</span>
+                <div>
+                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Applied AI & Automation Pipelines</h3>
+                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Generative AI Workflows & Autonomous Business Scripts</p>
                 </div>
-                <div class="space-y-1 text-[9px] text-zinc-600">
-                  <div class="font-semibold text-zinc-900">Traditional Arts & Media</div>
-                  <div>• Fine Drawing & Sketching</div>
-                  <div>• Painting & Color Dynamics</div>
-                  <div>• Digital Art Translation</div>
-                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button data-open-case-study="ai" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                  Case Study
+                </button>
+                <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                  <div class="border-gradient-full border-gradient-gold"></div>
+                  <div class="inner-content">
+                    <span>Explore AI</span>
+                    <span>↗</span>
+                  </div>
+                </a>
               </div>
             </div>
 
-            <div class="folder-front">
-              <div class="folder-meta">
-                <span class="text-amber-400 font-mono text-[10px]">Fine Arts & Design</span>
-                <span class="text-zinc-500 font-mono text-[10px]">Craft</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-7 space-y-4">
+                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                  Researched and built prompt pipelines, context-window curation routines, and autonomous scripts that eliminate operational drag. Converting chaotic business data into structured outputs with speed.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Prompt Engineering</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">LLM Workflows</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Automation Pipelines</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Rapid Prototyping</span>
+                </div>
               </div>
-
-              <div class="folder-body">
-                <h3 class="folder-title">Creative Arts Studio</h3>
-                <p class="folder-desc">
-                  Traditional sketching, painting, and visual storytelling that cultivates aesthetic precision and
-                  visual design sensitivity.
+              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                <div class="text-[10px] font-mono uppercase tracking-widest text-indigo-400 font-bold">● Operational Leverage</div>
+                <div class="text-2xl font-black text-white tracking-tight">Zero-Friction Workflows</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Automating repetitive administrative drafting and classification routines to free up high-agency creative and business time.
                 </p>
               </div>
+            </div>
 
-              <div class="folder-actions">
-                <button
-                  class="open-case-study text-xs font-bold text-white hover:text-zinc-300 inline-flex items-center gap-1">
-                  View Case Study <span>→</span>
+          </div>
+        </div>
+
+        <!-- CARD 04: Creative Direction & Visual Systems -->
+        <div class="star-border-container reveal">
+          <div class="border-gradient-full border-gradient-purple"></div>
+          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+              <div class="flex items-center gap-4 sm:gap-6">
+                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">04</span>
+                <div>
+                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Creative Direction & Visual Systems</h3>
+                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Fine Arts, Traditional Sketching & Modern Digital Polish</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button data-open-case-study="creative" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                  Case Study
                 </button>
-                <span class="folder-icon-btn">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                    </path>
-                  </svg>
-                </span>
+                <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                  <div class="border-gradient-full border-gradient-cyan"></div>
+                  <div class="inner-content">
+                    <span>Studio Work</span>
+                    <span>↗</span>
+                  </div>
+                </a>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ==================== EXPERIENCE & MILESTONES (Matching 00:16 - Curved Bezier Timeline) ==================== -->
-    <section id="experience"
-      class="py-8 sm:py-12 md:py-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto border-t border-white/10">
-
-      <!-- Section Header -->
-      <div
-        class="reveal reveal-left flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 md:mb-8 gap-3 sm:gap-4 px-1 sm:px-2 md:px-0">
-        <div>
-          <span class="text-xs font-mono uppercase tracking-widest text-zinc-500 block mb-2">// 03 • TRAJECTORY</span>
-          <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Experience.</h2>
-        </div>
-        <p class="text-xs sm:text-sm text-zinc-400 font-mono text-left md:text-right max-w-xs">
-          Current work. Back to the foundations.
-        </p>
-      </div>
-
-      <!-- DESKTOP TIMELINE: Curved Bezier SVG + Node Cards -->
-      <div class="hidden lg:block relative py-4">
-        <!-- SVG Curved Path: Precisely aligned with the 4 columns below -->
-        <svg class="w-full h-20 overflow-visible select-none" viewBox="0 0 1000 70" fill="none">
-          <defs>
-            <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#10B981" stop-opacity="1" />
-              <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.95" />
-              <stop offset="70%" stop-color="#A1A1AA" stop-opacity="0.8" />
-              <stop offset="100%" stop-color="#6366F1" stop-opacity="0.9" />
-            </linearGradient>
-            <filter id="timelineGlow" x="-20%" y="-40%" width="140%" height="180%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-
-          <!-- Geometric Guideline Connectors from Nodes to Card Centers -->
-          <line x1="125" y1="42" x2="125" y2="68" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"
-            stroke-dasharray="3 3" />
-          <line x1="375" y1="32" x2="375" y2="68" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"
-            stroke-dasharray="3 3" />
-          <line x1="625" y1="52" x2="625" y2="68" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"
-            stroke-dasharray="3 3" />
-          <line x1="887" y1="38" x2="887" y2="68" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5"
-            stroke-dasharray="3 3" />
-
-          <!-- Background Dotted Guideline Track (Always visible as reference) -->
-          <path id="experience-timeline-base"
-            d="M 40 42 C 85 42, 95 42, 125 42 C 210 42, 290 32, 375 32 C 460 32, 540 52, 625 52 C 710 52, 790 38, 887 38 C 930 38, 950 38, 970 38"
-            stroke="rgba(255, 255, 255, 0.16)" stroke-width="2" stroke-dasharray="6 4" />
-
-          <!-- Animated Active Glowing Line (Draws on scroll, scrubs, and animates when selecting cards below) -->
-          <path id="experience-timeline-path"
-            d="M 40 42 C 85 42, 95 42, 125 42 C 210 42, 290 32, 375 32 C 460 32, 540 52, 625 52 C 710 52, 790 38, 887 38 C 930 38, 950 38, 970 38"
-            stroke="url(#lineGrad)" stroke-width="4" stroke-linecap="round" filter="url(#timelineGlow)"
-            class="timeline-path timeline-path-draw" />
-
-          <!-- Interactive Glowing Tracer Orb that glides along line to the viewed/selected card -->
-          <circle id="timeline-tracer-halo" cx="125" cy="42" r="14" fill="#10B981" opacity="0.3"
-            class="transition-all duration-500 ease-out pointer-events-none" />
-          <circle id="timeline-tracer" cx="125" cy="42" r="6.5" fill="#FFFFFF" stroke="#10B981" stroke-width="2.5"
-            class="transition-all duration-500 ease-out filter drop-shadow-[0_0_10px_#10B981] pointer-events-none" />
-
-          <!-- Node 0: Present (Column 1 Center) -->
-          <g id="timeline-node-0" class="timeline-node group cursor-pointer transition-all duration-300" data-index="0"
-            transform-origin="125 42">
-            <circle cx="125" cy="42" r="15" fill="transparent" class="hover-zone" />
-            <circle cx="125" cy="42" r="6" fill="#FFFFFF" class="node-circle node-glow transition-all duration-300" />
-            <circle cx="125" cy="42" r="2.5" fill="#09090B" />
-          </g>
-
-          <!-- Node 1: Academic Excellence (Column 2 Center) -->
-          <g id="timeline-node-1" class="timeline-node group cursor-pointer transition-all duration-300" data-index="1"
-            transform-origin="375 32">
-            <circle cx="375" cy="32" r="15" fill="transparent" class="hover-zone" />
-            <circle cx="375" cy="32" r="5.5" fill="#D4D4D8" class="node-circle transition-all duration-300" />
-            <circle cx="375" cy="32" r="2" fill="#09090B" />
-          </g>
-
-          <!-- Node 2: Olympiad Silver (Column 3 Center) -->
-          <g id="timeline-node-2" class="timeline-node group cursor-pointer transition-all duration-300" data-index="2"
-            transform-origin="625 52">
-            <circle cx="625" cy="52" r="15" fill="transparent" class="hover-zone" />
-            <circle cx="625" cy="52" r="5.5" fill="#D4D4D8" class="node-circle transition-all duration-300" />
-            <circle cx="625" cy="52" r="2" fill="#09090B" />
-          </g>
-
-          <!-- Node 3: Competitive Leadership (Column 4 Center) -->
-          <g id="timeline-node-3" class="timeline-node group cursor-pointer transition-all duration-300" data-index="3"
-            transform-origin="887 38">
-            <circle cx="887" cy="38" r="15" fill="transparent" class="hover-zone" />
-            <circle cx="887" cy="38" r="5.5" fill="#A1A1AA" class="node-circle transition-all duration-300" />
-            <circle cx="887" cy="38" r="2.5" fill="#09090B" />
-          </g>
-        </svg>
-
-        <!-- Node Details Cards Placed Along Desktop Timeline -->
-        <div class="grid grid-cols-4 gap-6 lg:gap-8 mt-3">
-
-          <!-- Milestone 1 -->
-          <div
-            class="milestone-card reveal stagger-1 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all cursor-pointer group"
-            data-milestone-index="0">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">2026 —
-                PRESENT</span>
-              <span
-                class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div class="lg:col-span-7 space-y-4">
+                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                  Steeped in traditional fine arts, observational sketching, and painting, translated into sharp digital design systems. Providing rare visual sensitivity to spacing, tension, and proportions that generic templates cannot mimic.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-2">
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Traditional Fine Arts</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Observational Sketching</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Visual Tension</span>
+                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Editorial Layouts</span>
+                </div>
+              </div>
+              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                <div class="text-[10px] font-mono uppercase tracking-widest text-purple-400 font-bold">● Artistic Core</div>
+                <div class="text-2xl font-black text-white tracking-tight">Intentional Precision</div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Infusing technological systems with genuine aesthetic soul, elevating technical platforms into prestigious brand experiences.
+                </p>
+              </div>
             </div>
-            <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Web Strategy &
-              Product Lead</h4>
-            <div class="text-xs text-zinc-300 font-medium mt-0.5">Supreme Infosys</div>
-            <p class="text-xs text-zinc-400 mt-3 leading-relaxed">
-              Designed, built, and launched the commercial computer retail platform. Managed layout engineering, product
-              presentation, and ongoing Vercel deployment.
-            </p>
-          </div>
 
-          <!-- Milestone 2 -->
-          <div
-            class="milestone-card reveal stagger-2 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all cursor-pointer group"
-            data-milestone-index="1">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">ACADEMIC
-                RIGOR</span>
-              <span
-                class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </div>
-            <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Commerce & IT
-              Specialization</h4>
-            <div class="text-xs text-zinc-300 font-medium mt-0.5">Akal Academy, Puranewala</div>
-            <p class="text-xs text-zinc-400 mt-3 leading-relaxed">
-              Top-tier performance: <strong>88% (Class X)</strong> and <strong>87% (Class XII CBSE Commerce)</strong>
-              with 4-year formal IT specialization (IT 802), Accountancy, and Economics.
-            </p>
           </div>
-
-          <!-- Milestone 3 -->
-          <div
-            class="milestone-card reveal stagger-3 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all cursor-pointer group"
-            data-milestone-index="2">
-            <div class="flex items-center justify-between mb-1">
-              <span
-                class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">DISTINCTION</span>
-              <span
-                class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </div>
-            <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">English Olympiad
-              Silver Medal</h4>
-            <div class="text-xs text-zinc-300 font-medium mt-0.5">2nd Position • Competitive</div>
-            <p class="text-xs text-zinc-400 mt-3 leading-relaxed">
-              Demonstrated linguistic mastery, critical analytical synthesis, and persuasive communication on a
-              high-stakes competitive stage.
-            </p>
-          </div>
-
-          <!-- Milestone 4 -->
-          <div
-            class="milestone-card reveal stagger-4 p-5 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all cursor-pointer group"
-            data-milestone-index="3">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">LEADERSHIP &
-                AGILITY</span>
-              <span
-                class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-            </div>
-            <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Athletics &
-              Tri-Lingual Articulation</h4>
-            <div class="text-xs text-zinc-300 font-medium mt-0.5">Football & Inter-House Cups</div>
-            <p class="text-xs text-zinc-400 mt-3 leading-relaxed">
-              Competitive tournament football forging grit and crisis decision-making. Fluent in English, Punjabi, and
-              Hindi for cross-market commerce.
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- MOBILE / TABLET TIMELINE: Animated Glowing Neon Rail & Interactive Milestone Cards -->
-      <div id="mobile-timeline-container"
-        class="lg:hidden relative ml-1 sm:ml-2 pl-7 sm:pl-8 pr-1 py-2 space-y-5 sm:space-y-6 w-full">
-
-        <!-- Background Spine Track -->
-        <div class="absolute left-1.5 top-3 bottom-6 w-0.5 bg-white/10 rounded-full"></div>
-
-        <!-- Animated Glowing Progress Beam (Morphs & draws as you scroll) -->
-        <div id="mobile-timeline-beam"
-          class="absolute left-1.5 top-3 w-1 -translate-x-[1px] bg-gradient-to-b from-emerald-400 via-teal-400 to-indigo-500 rounded-full shadow-[0_0_12px_rgba(16,185,129,0.8)] transition-all duration-300 ease-out"
-          style="height: 14%;"></div>
-
-        <!-- Pulsing Mobile Tracer Head -->
-        <div id="mobile-timeline-tracer"
-          class="absolute left-1.5 top-3 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full pointer-events-none transition-all duration-300 ease-out"
-          style="top: 24px;">
-          <span class="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75"></span>
-          <span
-            class="relative block w-4 h-4 rounded-full bg-emerald-500 border-2 border-black shadow-[0_0_10px_#10B981]"></span>
-        </div>
-
-        <!-- Mobile Milestone Card 1: 2024 - Present -->
-        <!-- Mobile Milestone Card 1: 2026 - Present -->
-        <div
-          class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-1 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group"
-          data-milestone-index="0">
-          <div
-            class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-white transition-colors"></span>
-          </div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-widest block">2026 —
-              PRESENT</span>
-            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
-          </div>
-          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Web Strategy &
-            Product Lead</h4>
-          <div class="text-xs text-zinc-300 font-medium mt-0.5">Supreme Infosys</div>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Designed, built, and launched the commercial computer retail platform. Managed layout engineering, product
-            presentation, and ongoing Vercel deployment.
-          </p>
-        </div>
-
-        <!-- Mobile Milestone Card 2: Academic Rigor -->
-        <div
-          class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-2 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group"
-          data-milestone-index="1">
-          <div
-            class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
-          </div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">ACADEMIC
-              RIGOR</span>
-            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
-          </div>
-          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Commerce & IT
-            Specialization</h4>
-          <div class="text-xs text-zinc-300 font-medium mt-0.5">Akal Academy • 88% X / 87% XII</div>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Top-tier performance: 88% (Class X) and 87% (Class XII CBSE Commerce) with 4-year formal IT specialization
-            (IT 802), Accountancy, and Economics.
-          </p>
-        </div>
-
-        <!-- Mobile Milestone Card 3: Distinction -->
-        <div
-          class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-3 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group"
-          data-milestone-index="2">
-          <div
-            class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
-          </div>
-          <div class="flex items-center justify-between mb-1">
-            <span
-              class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">DISTINCTION</span>
-            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
-          </div>
-          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">English Olympiad
-            Silver Medal</h4>
-          <div class="text-xs text-zinc-300 font-medium mt-0.5">2nd Position • Competitive</div>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Demonstrated linguistic mastery, critical analytical synthesis, and persuasive communication on a
-            high-stakes competitive stage.
-          </p>
-        </div>
-
-        <!-- Mobile Milestone Card 4: Leadership & Agility -->
-        <div
-          class="milestone-card mobile-milestone w-full relative reveal reveal-left stagger-4 p-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all cursor-pointer group"
-          data-milestone-index="3">
-          <div
-            class="mobile-timeline-node absolute -left-[30px] top-4 w-4 h-4 rounded-full bg-zinc-700 border-2 border-black transition-all group-hover:scale-125 flex items-center justify-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 transition-colors"></span>
-          </div>
-          <div class="flex items-center justify-between mb-1">
-            <span class="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block">LEADERSHIP &
-              LANGUAGES</span>
-            <span class="milestone-status-dot w-2 h-2 rounded-full bg-emerald-500 opacity-0 transition-opacity"></span>
-          </div>
-          <h4 class="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">Athletics &
-            Tri-Lingual Articulation</h4>
-          <div class="text-xs text-zinc-300 font-medium mt-0.5">Football & Inter-House Cups</div>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Competitive tournament football forging grit and crisis decision-making. Fluent in English, Punjabi, and
-            Hindi for cross-market commerce.
-          </p>
         </div>
 
       </div>
 
     </section>
 
-    <!-- ==================== FOOTER & "SEE YOU AROUND" (Matching 00:17 - 00:18) ==================== -->
-    <footer id="contact" data-flow-section
-      class="relative pt-0 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 w-full max-w-[1720px] 2xl:max-w-[1880px] mx-auto overflow-hidden bg-black">
-      <div data-flow-inner class="flow-art-container w-full p-3.5 sm:p-6 md:p-8 lg:p-10 xl:p-12">
 
-        <!-- Faded Giant Watermark Typography in Background: "KHUSHMAN" -->
-        <div
-          class="reveal reveal-fade absolute top-20 left-1/2 -translate-x-1/2 select-none pointer-events-none text-[16vw] font-black tracking-tighter text-white/[0.025] leading-none whitespace-nowrap">
-          KHUSHMAN
+    <!-- ==========================================
+         ABOUT SECTION: CRISP WHITE EDITORIAL SPLIT
+         ========================================== -->
+    <section id="about" class="w-full bg-white text-black py-28 md:py-36 px-6 md:px-16 lg:px-24">
+      <div class="max-w-6xl mx-auto">
+        
+        <!-- Header -->
+        <div class="reveal mb-16 md:mb-24">
+          <span class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-black/60 block mb-4">
+            01 / Background & Foundations
+          </span>
+          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-6xl tracking-tight leading-[1.05] max-w-4xl">
+            Strategic individual bridging commercial finance, computing architecture, and creative visual polish.
+          </h2>
         </div>
 
-        <div class="w-full relative z-10">
-
-          <!-- Social Profiles Strip -->
-          <div
-            class="reveal flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4 text-xs font-mono">
-            <div class="flex flex-wrap items-center gap-3.5 sm:gap-6">
-              <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer"
-                class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5">
-                <span>GitHub</span>
-                <span class="text-zinc-600">↗</span>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5">
-                <span>LinkedIn</span>
-                <span class="text-zinc-600">↗</span>
-              </a>
-              <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
-                class="text-zinc-400 hover:text-pink-400 transition-colors flex items-center gap-1.5 font-medium">
-                <span>Instagram (@kggills)</span>
-                <span class="text-pink-500">↗</span>
-              </a>
-              <a href="mailto:kgill3662@gmail.com"
-                class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5">
-                <span>Email</span>
-                <span class="text-zinc-600">↗</span>
-              </a>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span class="text-zinc-300">Open to Business & Tech Ventures</span>
+        <!-- 3-Column Numbered Editorial Story -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 border-t border-black/15 pt-12">
+          
+          <!-- Block 01 -->
+          <div class="reveal flex flex-col gap-4">
+            <span class="font-mono text-xs font-bold uppercase tracking-widest text-black/50">01. Academic Rigor</span>
+            <h3 class="font-sans font-bold text-xl md:text-2xl leading-snug">
+              Akal Academy, Puranewala
+            </h3>
+            <p class="font-sans text-sm text-black/75 leading-relaxed font-normal">
+              Top-tier academic record with <strong>88% in Class X</strong> and <strong>87% in Class XII CBSE Commerce</strong>. Formal 4-year technical specialization in Information Technology (IT 802), Accountancy, Economics, and Business Studies.
+            </p>
+            <div class="pt-2">
+              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-black/5 text-black">
+                Accountancy • Economics • IT 802
+              </span>
             </div>
           </div>
 
-          <!-- Footer Main Columns -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start mb-20">
+          <!-- Block 02 -->
+          <div class="reveal flex flex-col gap-4">
+            <span class="font-mono text-xs font-bold uppercase tracking-widest text-black/50">02. Commercial Execution</span>
+            <h3 class="font-sans font-bold text-xl md:text-2xl leading-snug">
+              Supreme Infosys (2026 — Present)
+            </h3>
+            <p class="font-sans text-sm text-black/75 leading-relaxed font-normal">
+              Web Strategy & Product Lead spearheading layout engineering, hardware catalog architecture, and automated Vercel cloud deployment for an active computing retail enterprise in Punjab.
+            </p>
+            <div class="pt-2">
+              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-black/5 text-black">
+                Production Web Lead • Cloud Deployment
+              </span>
+            </div>
+          </div>
 
-            <!-- Column Left: Brand & Navigation -->
-            <div class="reveal reveal-left md:col-span-6 space-y-6">
+          <!-- Block 03 -->
+          <div class="reveal flex flex-col gap-4">
+            <span class="font-mono text-xs font-bold uppercase tracking-widest text-black/50">03. Modern Competencies</span>
+            <h3 class="font-sans font-bold text-xl md:text-2xl leading-snug">
+              Full-Stack & Applied AI
+            </h3>
+            <p class="font-sans text-sm text-black/75 leading-relaxed font-normal">
+              Daily engineering using Next.js, React, Tailwind CSS, JavaScript ES6+, cloud edge pipelines, prompt engineering, generative business automations, and disciplined financial modeling.
+            </p>
+            <div class="pt-2">
+              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-black/5 text-black">
+                React • Tailwind • LLM Pipelines
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         PHILOSOPHY & PROVEN METRICS (OBSIDIAN)
+         ========================================== -->
+    <section id="philosophy" class="w-full bg-black text-white py-28 md:py-36 px-6 md:px-16 lg:px-24">
+      <div class="max-w-6xl mx-auto">
+        
+        <!-- Header -->
+        <div class="reveal mb-20">
+          <span class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-white/50 block mb-4">
+            02 / Proven Performance
+          </span>
+          <h2 class="font-sans font-bold text-3xl sm:text-4xl md:text-6xl tracking-tight leading-tight max-w-3xl">
+            Built with high agency, commercial discipline, and architectural clarity.
+          </h2>
+        </div>
+
+        <!-- 3 Big Metric Counters -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-12 pb-24 border-b border-white/20">
+          
+          <div class="reveal flex flex-col items-start">
+            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-white mb-2" data-target="99.9" data-decimals="1" data-suffix="%">
+              0.0%
+            </span>
+            <span class="font-mono text-xs md:text-sm text-zinc-400 uppercase tracking-widest">
+              Deployment Uptime & Global Edge Speed
+            </span>
+          </div>
+
+          <div class="reveal flex flex-col items-start">
+            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-white mb-2" data-target="88" data-decimals="0" data-suffix="%">
+              0%
+            </span>
+            <span class="font-mono text-xs md:text-sm text-zinc-400 uppercase tracking-widest">
+              Academic Distinction (CBSE Commerce & IT)
+            </span>
+          </div>
+
+          <div class="reveal flex flex-col items-start">
+            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-white mb-2" data-target="2026" data-decimals="0" data-suffix="">
+              0
+            </span>
+            <span class="font-mono text-xs md:text-sm text-zinc-400 uppercase tracking-widest">
+              Active Production Leadership & Scope
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Testimonial Quote Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-16">
+          
+          <div class="reveal border border-white/20 p-8 md:p-10 flex flex-col justify-between hover:bg-white/5 transition-colors duration-300 rounded-3xl">
+            <p class="font-sans text-base md:text-lg leading-relaxed text-zinc-200 mb-8 font-normal">
+              "Khushman combines commercial business logic with high-caliber technical execution. His attention to detail on the Supreme Infosys platform cut customer friction and delivered an exceptional digital storefront."
+            </p>
+            <div>
+              <p class="font-sans font-bold text-base text-white">Commercial Venture Partner</p>
+              <p class="font-mono text-xs text-zinc-400">Supreme Infosys Retail Operations</p>
+            </div>
+          </div>
+
+          <div class="reveal border border-white/20 p-8 md:p-10 flex flex-col justify-between hover:bg-white/5 transition-colors duration-300 rounded-3xl">
+            <p class="font-sans text-base md:text-lg leading-relaxed text-zinc-200 mb-8 font-normal">
+              "A rare hybrid of commercial accounting understanding, e-commerce strategy, and hands-on code. He approaches every project with urgency, high agency, and deliberate aesthetic polish."
+            </p>
+            <div>
+              <p class="font-sans font-bold text-base text-white">Digital Strategy Review</p>
+              <p class="font-mono text-xs text-zinc-400">Web Platforms & Applied AI</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         CONTACT SECTION: EDITORIAL INQUIRY CANVAS
+         ========================================== -->
+    <section id="contact" class="w-full bg-white text-black py-28 md:py-36 px-6 md:px-16 lg:px-24">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- Left Column: Portrait & Direct Details -->
+        <div class="lg:col-span-6 flex flex-col justify-between">
+          <div>
+            
+            <div class="flex items-center gap-5 mb-8">
+              <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border border-black/10 shrink-0 shadow-md">
+                <img src="assets/khushman.jpg" alt="Khushman Gill" class="w-full h-full object-cover">
+              </div>
               <div>
-                <h3 class="text-3xl font-black text-white tracking-tight">Khushman Gill.</h3>
-                <p class="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
-                  Business • Technology • Salesman • Creative Development
-                </p>
-              </div>
-
-              <p class="text-sm text-zinc-400 max-w-md leading-relaxed">
-                Strategically minded builder dedicated to high-impact web infrastructure, innovative commercial
-                ventures, and creative execution.
-              </p>
-
-              <div class="flex flex-wrap gap-4 text-xs font-medium text-zinc-400 pt-2">
-                <a href="#hero" class="hover:text-white transition-colors">Hero</a>
-                <span class="text-zinc-700">•</span>
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <span class="text-zinc-700">•</span>
-                <a href="#stack" class="hover:text-white transition-colors">Stack</a>
-                <span class="text-zinc-700">•</span>
-                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <span class="text-zinc-700">•</span>
-                <a href="#experience" class="hover:text-white transition-colors">Journey</a>
-              </div>
-            </div>
-
-            <!-- Column Right: Get in Touch & 1-Click Copy Email -->
-            <div class="reveal reveal-right md:col-span-6 flex flex-col md:items-end justify-between space-y-6">
-              <div class="space-y-2 text-left md:text-right">
-                <span class="text-xs font-mono uppercase tracking-widest text-zinc-500">GET IN TOUCH</span>
-                <p class="text-sm text-zinc-400">Have a venture or proposal in mind? Let's connect.</p>
-              </div>
-
-              <!-- Copyable Email Card with Toast Feedback -->
-              <div
-                class="w-full max-w-md p-4 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md flex items-center justify-between gap-4">
-                <div class="overflow-hidden">
-                  <span class="text-[10px] font-mono uppercase text-zinc-500 block">Direct Email</span>
-                  <span id="email-address"
-                    class="text-xs sm:text-sm font-mono font-semibold text-white truncate block">kgill3662@gmail.com</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button id="copy-email-btn"
-                    class="px-3.5 py-1.5 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all active:scale-95 flex items-center gap-1.5"
-                    title="Copy to clipboard">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3">
-                      </path>
-                    </svg>
-                    <span>Copy</span>
-                  </button>
-                  <a href="mailto:kgill3662@gmail.com"
-                    class="p-2 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-white transition-colors"
-                    title="Send email">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                      </path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <!-- "See you around" Big Signature Statement -->
-              <div class="reveal reveal-scale stagger-1 text-left md:text-right pt-4">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white">
-                  See you around.
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-black/50 block">Direct Inquiry</span>
+                <h2 class="font-sans font-black text-3xl md:text-4xl tracking-tight leading-tight">
+                  Let's Build Together
                 </h2>
               </div>
             </div>
 
+            <!-- Service Offerings -->
+            <div class="space-y-6 pt-4 border-t border-black/10">
+              
+              <div class="border-l-2 border-black/20 pl-4">
+                <h4 class="font-sans font-bold text-base text-black">Commercial Web Architecture</h4>
+                <p class="text-xs font-mono text-black/60 mb-1">Tailored High-Performance Platforms</p>
+                <p class="text-xs md:text-sm text-black/75 leading-relaxed">
+                  Full-stack Next.js, React, and Tailwind systems built for speed, SEO, and maximum customer inquiry conversion.
+                </p>
+              </div>
+
+              <div class="border-l-2 border-black/20 pl-4">
+                <h4 class="font-sans font-bold text-base text-black">E-Commerce & Digital Strategy</h4>
+                <p class="text-xs font-mono text-black/60 mb-1">Catalog Layouts & Customer Funnels</p>
+                <p class="text-xs md:text-sm text-black/75 leading-relaxed">
+                  Engineering structured product directories, clear pricing communication, and conversion-optimized checkout paths.
+                </p>
+              </div>
+
+              <div class="border-l-2 border-black/20 pl-4">
+                <h4 class="font-sans font-bold text-base text-black">Applied AI & Automation Pipelines</h4>
+                <p class="text-xs font-mono text-black/60 mb-1">Operational Leverage & Workflows</p>
+                <p class="text-xs md:text-sm text-black/75 leading-relaxed">
+                  Building structured prompt routines and autonomous agent workflows that accelerate business execution.
+                </p>
+              </div>
+
+            </div>
+
           </div>
 
-          <!-- CROWD ILLUSTRATION (Matching Frame 00:18 of Reference Video) -->
-          <div
-            class="reveal stagger-2 w-full relative mt-8 mb-4 overflow-hidden rounded-2xl border-t border-white/10 bg-gradient-to-b from-transparent to-zinc-950/80 pt-6">
-            <img src="assets/crowd.svg" alt="See you around community illustration"
-              class="w-full h-auto object-cover max-h-72 opacity-90 transition-opacity duration-500 hover:opacity-100">
-          </div>
-
-          <!-- Copyright & Back to Top Bottom Bar -->
-          <div
-            class="reveal reveal-fade flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-white/10 text-xs font-mono text-zinc-500 gap-4">
-            <div>
-              © 2026 Khushman Gill. All rights reserved.
-            </div>
-            <div>
-              <a href="#hero" class="hover:text-white transition-colors flex items-center gap-1">
-                <span>Back to top</span>
-                <span>↑</span>
-              </a>
-            </div>
+          <!-- Direct Links -->
+          <div class="pt-8 border-t border-black/10 flex flex-wrap items-center gap-4 text-xs font-mono">
+            <button data-copy-email class="px-4 py-2 rounded-full bg-black text-white hover:bg-zinc-800 transition-colors font-bold">
+              Copy Email: khushmangill18@gmail.com ↗
+            </button>
+            <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="hover:underline text-black font-semibold">
+              Instagram @kggills ↗
+            </a>
+            <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="hover:underline text-black font-semibold">
+              GitHub @khush-debug ↗
+            </a>
           </div>
 
         </div>
+
+        <!-- Right Column: Interactive Form -->
+        <div class="lg:col-span-6 bg-black/[0.03] p-8 md:p-12 rounded-3xl border border-black/10 flex flex-col justify-center">
+          
+          <h3 class="font-sans font-black text-xl md:text-2xl tracking-tight mb-2">Send Direct Message</h3>
+          <p class="font-sans text-xs md:text-sm text-black/70 mb-6">
+            Leave your project details or inquiry below and Khushman will respond directly.
+          </p>
+
+          <form id="contact-form" class="space-y-4">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1">
+                <label class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/60">First Name</label>
+                <input type="text" required placeholder="Khushman" class="w-full px-4 py-3 rounded-xl border border-black/15 bg-white text-black text-sm focus:outline-none focus:border-black transition-colors">
+              </div>
+              <div class="flex flex-col gap-1">
+                <label class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/60">Last Name</label>
+                <input type="text" placeholder="Gill" class="w-full px-4 py-3 rounded-xl border border-black/15 bg-white text-black text-sm focus:outline-none focus:border-black transition-colors">
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/60">Email Address</label>
+              <input type="email" required placeholder="partner@enterprise.com" class="w-full px-4 py-3 rounded-xl border border-black/15 bg-white text-black text-sm focus:outline-none focus:border-black transition-colors">
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/60">Project Focus</label>
+              <input type="text" placeholder="E-Commerce Architecture, AI Workflow, or Advisory" class="w-full px-4 py-3 rounded-xl border border-black/15 bg-white text-black text-sm focus:outline-none focus:border-black transition-colors">
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/60">Message</label>
+              <textarea rows="4" required placeholder="Describe your venture, scope, or timeline..." class="w-full px-4 py-3 rounded-xl border border-black/15 bg-white text-black text-sm focus:outline-none focus:border-black transition-colors resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 rounded-xl bg-black text-white font-sans font-bold text-xs uppercase tracking-widest hover:bg-zinc-800 transition-colors shadow-md flex items-center justify-center gap-2">
+              <span>Send Message</span>
+              <span>→</span>
+            </button>
+
+            <div id="form-success" class="hidden text-center text-xs font-mono font-bold text-emerald-600 pt-2">
+              ✓ Message dispatched successfully. Khushman will be in touch soon.
+            </div>
+
+          </form>
+
+        </div>
+
       </div>
-    </footer>
+    </section>
 
   </main>
 
-  <!-- ==================== INTERACTIVE CASE STUDY MODAL ==================== -->
-  <div id="project-modal"
-    class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl">
-    <div
-      class="relative w-full max-w-2xl rounded-3xl border border-white/15 bg-zinc-950 p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
 
-      <!-- Modal Close Button -->
-      <button id="modal-close-btn"
-        class="absolute top-5 right-5 p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white transition-all">
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="w-full bg-black text-white/50 py-12 px-6 md:px-16 lg:px-24 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs font-mono gap-4">
+      <div>
+        © 2026 Khushman Gill. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#hero" class="hover:text-white transition-colors flex items-center gap-1 font-semibold">
+          <span>Back to top</span>
+          <span>↑</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ==================== INTERACTIVE CASE STUDY MODAL ==================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-xl">
+    <div class="relative w-full max-w-2xl rounded-3xl border border-white/15 bg-zinc-950 p-6 sm:p-10 shadow-2xl space-y-6 text-white max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button id="modal-close-btn" class="absolute top-6 right-6 p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white transition-all">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
-      <!-- Modal Category & Date -->
+      <!-- Badge & Date -->
       <div class="flex items-center gap-3 text-xs font-mono text-zinc-400">
-        <span id="modal-badge" class="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-semibold">Live
-          Production</span>
-        <span id="modal-date" class="text-zinc-500">2024</span>
+        <span id="modal-badge" class="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-semibold">Production Live</span>
         <span id="modal-date" class="text-zinc-500">2026</span>
       </div>
 
-      <!-- Modal Title -->
+      <!-- Title & Subtitle -->
       <div>
         <h3 id="modal-title" class="text-2xl sm:text-3xl font-black text-white tracking-tight">Supreme Infosys</h3>
-        <p id="modal-subtitle" class="text-sm font-mono text-zinc-400 mt-1">Computer Retail & Hardware E-Commerce
-          Platform</p>
+        <p id="modal-subtitle" class="text-sm font-mono text-zinc-400 mt-1">Computer Retail & Hardware E-Commerce Platform</p>
       </div>
 
-      <!-- Modal Body Content -->
-      <div id="modal-body"
-        class="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-b border-white/10 py-5">
-        <!-- Injected via JavaScript -->
+      <!-- Body Content -->
+      <div id="modal-body" class="space-y-4 text-sm text-zinc-300 leading-relaxed border-t border-b border-white/10 py-5">
+        <!-- Injected dynamically -->
       </div>
 
-      <!-- Modal Tech Stack Chips -->
+      <!-- Tech Stack Chips -->
       <div>
         <div class="text-[11px] font-mono text-zinc-500 uppercase tracking-wider mb-2">Technologies & Architecture</div>
         <div id="modal-chips" class="flex flex-wrap gap-1.5">
-          <!-- Injected via JavaScript -->
+          <!-- Injected dynamically -->
         </div>
       </div>
 
       <!-- Modal Action Buttons -->
       <div class="flex items-center justify-between pt-2">
-        <a id="modal-link-btn" href="#" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md">
+        <a id="modal-link-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-all shadow-md">
           <span>Visit Live Website</span>
           <span>↗</span>
         </a>
@@ -1384,16 +875,15 @@
     </div>
   </div>
 
-  <!-- FLOATING TOAST NOTIFICATION -->
-  <div id="toast"
-    class="fixed bottom-8 right-8 z-50 pointer-events-none transform translate-y-12 opacity-0 transition-all duration-300 px-4 py-2.5 rounded-xl border border-white/15 bg-zinc-900/95 backdrop-blur-xl text-white text-xs font-mono flex items-center gap-2.5 shadow-2xl">
-    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-    </svg>
-    <span id="toast-message">Copied to clipboard!</span>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast" class="bg-zinc-900 border border-white/20 text-white text-xs font-mono px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span id="toast-text">Notification</span>
   </div>
 
-  <!-- Main JavaScript File -->
+
+  <!-- Main JavaScript Controller -->
   <script src="js/main.js"></script>
 </body>
 
