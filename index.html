@@ -83,37 +83,32 @@
       <span>Available for ventures & leadership</span>
     </div>
 
-    <!-- Top-Right: Sound Toggle, Rotating Contact Stamp & Menu -->
-    <div class="pointer-events-auto flex items-center gap-3 sm:gap-4 md:gap-5">
+    <!-- Top-Right: Circular Hamburger Menu Button & Social Icons Column (Exact Manan Replica) -->
+    <div class="pointer-events-auto flex flex-col items-center gap-5 z-[200]">
       
-      <!-- Audio Toggle -->
-      <button id="sound-toggle" class="p-2 rounded-full border border-white/15 bg-black/60 backdrop-blur-md text-white hover:border-white/40 transition-all text-xs" title="Toggle UI Sound Effects">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-        </svg>
+      <!-- Circular Hamburger Button (Morphs to X) -->
+      <button id="menu-toggle" class="menu-toggle-btn" aria-label="Open menu">
+        <span class="menu-bar-top"></span>
+        <span class="menu-bar-mid"></span>
+        <span class="menu-bar-bot"></span>
       </button>
 
-      <!-- Rotating Circular Contact Stamp Badge -->
-      <a href="#contact" class="cta-stamp-btn relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center group cursor-pointer hidden sm:flex">
-        <svg viewBox="0 0 130 130" class="cta-ring absolute inset-0 w-full h-full pointer-events-none animate-spin-slow">
-          <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" fill="none" />
-          <text fill="rgba(255,255,255,0.9)" font-size="8.5" font-family="'Inter', sans-serif" font-weight="900" letter-spacing="4">
-            <textPath href="#cta-circle-path">GET IN TOUCH • GET IN TOUCH • </textPath>
-          </text>
-        </svg>
-        <div class="absolute inset-2.5 rounded-full border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center overflow-hidden transition-all duration-300">
-          <div class="absolute inset-0 bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out rounded-full"></div>
-          <svg class="relative z-10 w-4 h-4 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+      <!-- Vertical Social Links (Instagram & Email) -->
+      <div class="header-social-rail">
+        <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
           </svg>
-        </div>
-      </a>
-
-      <!-- Menu Toggle Button -->
-      <button id="menu-toggle" class="px-4 py-2.5 rounded-full border border-white/20 bg-black/80 hover:bg-white hover:text-black hover:border-white text-white text-xs font-mono font-bold uppercase tracking-widest backdrop-blur-md transition-all duration-300 flex items-center gap-2">
-        <span>Menu</span>
-        <span class="text-emerald-400 font-bold">[+]</span>
-      </button>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=khushmangill18@gmail.com" target="_blank" rel="noopener noreferrer" title="Email" aria-label="Email">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+      </div>
 
     </div>
   </header>
@@ -285,6 +280,24 @@
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </a>
         </div>
+      </div>
+
+      <!-- Rotating Circular Contact Stamp Badge (Exact Manan Replica) -->
+      <div class="absolute hidden md:flex items-center justify-center pointer-events-auto z-20" style="bottom: 3.5rem; right: 3.5rem;">
+        <a href="#contact" class="cta-stamp-btn relative w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center group cursor-pointer">
+          <svg viewBox="0 0 130 130" class="cta-ring absolute inset-0 w-full h-full pointer-events-none animate-spin-slow">
+            <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" fill="none" />
+            <text fill="rgba(255,255,255,0.9)" font-size="8.5" font-family="'Inter', sans-serif" font-weight="900" letter-spacing="4">
+              <textPath href="#cta-circle-path">GET IN TOUCH • GET IN TOUCH • </textPath>
+            </text>
+          </svg>
+          <div class="absolute inset-2.5 rounded-full border border-white/20 bg-black/80 backdrop-blur-md flex items-center justify-center overflow-hidden transition-all duration-300">
+            <div class="absolute inset-0 bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out rounded-full"></div>
+            <svg class="relative z-10 w-4 h-4 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+        </a>
       </div>
 
     </section>

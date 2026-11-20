@@ -63,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const openMenu = () => {
     if (fullscreenMenu) {
       fullscreenMenu.classList.add('open');
+      if (menuBtn) {
+        menuBtn.classList.add('is-active');
+        menuBtn.setAttribute('aria-label', 'Close menu');
+      }
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
       playClickSound(950);
@@ -72,13 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeMenu = () => {
     if (fullscreenMenu) {
       fullscreenMenu.classList.remove('open');
+      if (menuBtn) {
+        menuBtn.classList.remove('is-active');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+      }
       document.body.style.overflow = '';
       if (lenis) lenis.start();
       playClickSound(600);
     }
   };
 
-  if (menuBtn) menuBtn.addEventListener('click', openMenu);
+  const toggleMenu = () => {
+    if (fullscreenMenu && fullscreenMenu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
   if (menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
 
   menuLinks.forEach(link => {
