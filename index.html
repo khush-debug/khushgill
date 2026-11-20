@@ -298,10 +298,10 @@
     <!-- ==========================================
          SELECTED WORKS: MARQUEE & STAR-BORDER CARDS
          ========================================== -->
-    <section id="work" class="w-full bg-black text-white pt-24 pb-32">
+    <section id="work" class="w-full bg-black text-white pt-20 pb-0 relative">
       
       <!-- Infinite Marquee Header -->
-      <div class="marquee-selected-works mb-16 md:mb-24">
+      <div class="marquee-selected-works mb-12 md:mb-16">
         <div class="marquee-selected-works__track">
           <div class="marquee-selected-works__segment">
             <span class="marquee-selected-works__text">Selected Works</span>
@@ -322,12 +322,12 @@
         </div>
       </div>
 
-      <!-- Star-Border Stacked Showcase Cards -->
-      <div id="scroll-stack-inner" class="scroll-stack-inner max-w-6xl mx-auto px-6 md:px-12 w-full flex flex-col items-center">
-        <div id="void-container" class="void-container relative w-full flex flex-col items-center justify-center">
+      <!-- Stacked Floating Showcase Cards (Anchored Overlap between Black & White sections) -->
+      <div id="stacked-deck-wrapper" class="stacked-deck-wrapper max-w-6xl mx-auto px-6 md:px-12 w-full">
+        <div class="relative w-full">
 
         <!-- CARD 01: Supreme Infosys (Flagship E-Commerce) -->
-        <div class="star-border-container scroll-stack-card">
+        <div id="deck-card-1" class="star-border-container stacked-card absolute inset-x-0 cursor-pointer" style="top: 0px; transform: scale(0.94); z-index: 1;">
           <div class="border-gradient-full border-gradient-cyan"></div>
           <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
             
@@ -380,7 +380,7 @@
         </div>
 
         <!-- CARD 02: Digital Brand & E-Com Hub -->
-        <div class="star-border-container scroll-stack-card">
+        <div id="deck-card-2" class="star-border-container stacked-card absolute inset-x-0 cursor-pointer" style="top: 16px; transform: scale(0.96); z-index: 2;">
           <div class="border-gradient-full border-gradient-gold"></div>
           <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
             
@@ -431,7 +431,7 @@
         </div>
 
         <!-- CARD 03: Applied AI & Automations -->
-        <div class="star-border-container scroll-stack-card">
+        <div id="deck-card-3" class="star-border-container stacked-card absolute inset-x-0 cursor-pointer" style="top: 32px; transform: scale(0.98); z-index: 3;">
           <div class="border-gradient-full border-gradient-emerald"></div>
           <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
             
@@ -482,7 +482,7 @@
         </div>
 
         <!-- CARD 04: Creative Direction & Visual Systems -->
-        <div class="star-border-container scroll-stack-card">
+        <div id="deck-card-4" class="star-border-container stacked-card relative cursor-pointer" style="margin-top: 48px; transform: scale(1.0); z-index: 4;">
           <div class="border-gradient-full border-gradient-purple"></div>
           <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
             
@@ -533,9 +533,6 @@
         </div>
 
         </div>
-
-        <!-- Scroll stack spacer to give natural scroll travel while cards stack -->
-        <div id="scroll-stack-end" class="scroll-stack-end pointer-events-none h-[60vh] md:h-[90vh]"></div>
       </div>
 
     </section>
@@ -544,7 +541,7 @@
     <!-- ==========================================
          ABOUT SECTION: CRISP WHITE EDITORIAL SPLIT
          ========================================== -->
-    <section id="about" class="w-full bg-white text-black py-28 md:py-36 px-6 md:px-16 lg:px-24">
+    <section id="about" class="w-full bg-white text-black pt-64 md:pt-72 pb-28 md:pb-36 px-6 md:px-16 lg:px-24">
       <div class="max-w-6xl mx-auto">
         
         <!-- Header -->

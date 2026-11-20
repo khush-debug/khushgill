@@ -440,102 +440,58 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 9. SCROLL STACK CARDS (EXACT REPLICA)
-  // Replicating the physical card stacking physics from mananrajkhowa.vercel.app:
-  // - Pinning offset: (windowHeight - cardHeight) / 2
-  // - Top tab stack distance: 18px per card
-  // - Base scale: 0.92, scale step: 0.015 per card
+  // 9. STACKED CARDS TAB SWITCHER (ANCHORED)
+  // Preserves layered borders (cyan, gold, emerald, purple)
+  // Prevents any shifting on scroll. Allows interactive tab switching.
   // ==========================================
-  const scrollCards = Array.from(document.querySelectorAll('.scroll-stack-card'));
-  const stackEnd = document.getElementById('scroll-stack-end');
+  const deckCards = [
+    document.getElementById('deck-card-1'),
+    document.getElementById('deck-card-2'),
+    document.getElementById('deck-card-3'),
+    document.getElementById('deck-card-4')
+  ].filter(Boolean);
 
-  if (scrollCards.length > 0) {
-    const sr = {
-      itemScale: 0.015,
-      itemStackDistance: 18,
-      stackPosition: 0.08,
-      scaleEndPosition: 0.05,
-      baseScale: 0.92
-    };
+  if (deckCards.length === 4) {
+    const scales = [0.94, 0.96, 0.98, 1.0];
+    const topOffsets = [0, 16, 32, 48];
 
-    let cardTops = [];
-    let endTop = 0;
-    let isCalculating = false;
+    const setFrontCard = (frontIndex) => {
+      const order = [];
+      for (let i = 0; i < 4; i++) {
+        if (i !== frontIndex) order.push(i);
+      }
+      order.push(frontIndex);
 
-    const measureCardPositions = () => {
-      isCalculating = true;
-      scrollCards.forEach(c => {
-        c.style.transform = '';
+      order.forEach((cardIdx, stackPos) => {
+        const card = deckCards[cardIdx];
+        const isFront = (stackPos === 3);
+        const top = topOffsets[stackPos];
+        const scale = scales[stackPos];
+
+        if (isFront) {
+          card.style.position = 'relative';
+          card.style.marginTop = `${top}px`;
+          card.style.top = '';
+          card.style.zIndex = '10';
+          card.style.transform = `scale(${scale})`;
+          card.style.opacity = '1';
+        } else {
+          card.style.position = 'absolute';
+          card.style.marginTop = '0px';
+          card.style.top = `${top}px`;
+          card.style.zIndex = `${stackPos + 1}`;
+          card.style.transform = `scale(${scale})`;
+          card.style.opacity = '1';
+        }
       });
-      const scrollY = window.scrollY;
-      cardTops = scrollCards.map(c => c.getBoundingClientRect().top + scrollY);
-      endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + scrollY) : 0;
-      isCalculating = false;
     };
 
-    measureCardPositions();
-
-    const updateCardStack = () => {
-      if (isCalculating || !cardTops.length) return;
-      const m = window.scrollY;
-      const L = window.innerHeight;
-      const j = scrollCards[0].offsetHeight;
-      const $ = Math.max((L - j) / 2, 70);
-      const U = -(sr.stackPosition - sr.scaleEndPosition) * L;
-      const ne = cardTops[scrollCards.length - 1] - U;
-      const K = L * 1.2;
-
-      for (let X = 0; X < scrollCards.length; X++) {
-        const card = scrollCards[X];
-        const cardTop = cardTops[X];
-        const me = cardTop - $ - (sr.itemStackDistance * X);
-        const Z = cardTop - U;
-        const xe = me;
-        const ee = Math.max(endTop - L * 0.5, ne + K);
-
-        let Fe = 0;
-        if (m >= Z) {
-          Fe = 1;
-        } else if (m > me) {
-          Fe = (m - me) / (Z - me);
-        }
-        Fe = Math.min(Math.max(Fe, 0), 1);
-
-        const targetScale = sr.baseScale + (X * sr.itemScale);
-        const scale = Number((1 - Fe * (1 - targetScale)).toFixed(4));
-
-        let translateY = 0;
-        if (m >= xe && m <= ee) {
-          translateY = m - cardTop + $ + (sr.itemStackDistance * X);
-        } else if (m > ee) {
-          translateY = ee - cardTop + $ + (sr.itemStackDistance * X);
-        }
-
-        card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${scale})`;
-      }
-    };
-
-    let stackTicking = false;
-    const requestStackUpdate = () => {
-      if (!stackTicking) {
-        requestAnimationFrame(() => {
-          updateCardStack();
-          stackTicking = false;
-        });
-        stackTicking = true;
-      }
-    };
-
-    window.addEventListener('scroll', requestStackUpdate, { passive: true });
-    window.addEventListener('resize', () => {
-      measureCardPositions();
-      requestStackUpdate();
+    deckCards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('button') || e.target.closest('a')) return;
+        setFrontCard(idx);
+      });
     });
-    window.addEventListener('load', () => {
-      measureCardPositions();
-      requestStackUpdate();
-    });
-    updateCardStack();
   }
 
 });
