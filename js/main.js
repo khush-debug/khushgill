@@ -379,39 +379,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 8. FOOTER BIG NAME SCROLL ANIMATION (KHUSHMAN)
-  // Replicating Framer Motion:
-  // scale: 0.8 -> 1.0, opacity: 0.0 -> 1.0
+  // 8. FOOTER HEAD-TO-TOE ANIMATION (KHUSHMAN)
+  // Exact Framer Motion Replica from mananrajkhowa.vercel.app:
+  // - Outer wrapper scroll progress (["start end", "end end"])
+  // - footerY: translateY("-50%" -> "0%")
+  // - footerScale: 0.8 -> 1.0
+  // - footerOpacity: 0.0 -> 1.0
   // ==========================================
-  const footerCurtain = document.getElementById('footer-curtain');
-  const footerBigName = document.getElementById('footer-big-name');
+  const footerRevealWrapper = document.getElementById('footer-reveal-wrapper');
+  const footerParallax = document.getElementById('footer-parallax');
+  const footerBigNameBox = document.getElementById('footer-big-name-box');
   const footerMetaGrid = document.getElementById('footer-meta-grid');
 
-  if (footerCurtain && footerBigName) {
+  if (footerRevealWrapper && footerParallax && footerBigNameBox) {
     let ticking = false;
 
     const updateFooterTransform = () => {
-      const rect = footerCurtain.getBoundingClientRect();
+      const rect = footerRevealWrapper.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const total = footerCurtain.offsetHeight;
+      const total = footerRevealWrapper.offsetHeight || windowHeight;
       const current = windowHeight - rect.top;
       const progress = Math.min(Math.max(current / total, 0), 1);
 
-      const scale = 0.8 + progress * 0.2;
+      // Parallax translation: -50% to 0%
+      const translateY = -50 + (progress * 50);
+      footerParallax.style.transform = `translate3d(0, ${translateY.toFixed(3)}%, 0)`;
+
+      // Scale: 0.8 to 1.0, Opacity: 0 to 1.0
+      const scale = 0.8 + (progress * 0.2);
       const opacity = progress;
 
-      footerBigName.style.transform = `scale(${scale.toFixed(4)})`;
-      footerBigName.style.opacity = `${opacity.toFixed(4)}`;
+      footerBigNameBox.style.transform = `scale(${scale.toFixed(4)})`;
+      footerBigNameBox.style.opacity = `${opacity.toFixed(4)}`;
 
+      // Top metadata grid staggered entrance
       if (footerMetaGrid) {
         if (progress > 0.15) {
           footerMetaGrid.style.opacity = '1';
-          footerMetaGrid.style.transform = 'translateY(0px)';
+          footerMetaGrid.style.transform = 'translate3d(0, 0px, 0)';
+          footerMetaGrid.style.transition = 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
         } else {
           footerMetaGrid.style.opacity = '0';
-          footerMetaGrid.style.transform = 'translateY(16px)';
+          footerMetaGrid.style.transform = 'translate3d(0, 15px, 0)';
         }
       }
+
       ticking = false;
     };
 
