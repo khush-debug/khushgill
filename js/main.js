@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const $ = (L - j) / 2;
       const U = $ - (sr.stackPosition - sr.scaleEndPosition) * L;
       const ne = P[E.length - 1] - U;
-      const K = L * 1.4;
+      const K = L * 1.2;
 
       let I = 0;
       if (m > ne) {
@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
             A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             A.style.transform = 'translate3d(0, 0, 0) scale(1)';
             A.style.opacity = Math.max(0, ae).toFixed(3);
-            if (Q >= 1 || I >= 0.98) {
+            if (Q >= 1 || I >= 1) {
               A.style.visibility = 'hidden';
               A.style.opacity = '0';
               A.style.pointerEvents = 'none';
@@ -665,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
             A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             A.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
             A.style.opacity = Math.max(0, Z).toFixed(3);
-            if (I >= 0.98) {
+            if (I >= 1) {
               A.style.visibility = 'hidden';
               A.style.opacity = '0';
               A.style.pointerEvents = 'none';
@@ -683,14 +683,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 3. KINETIC ARC WHEEL (STRICT BOUNDING & SMOOTH FADE)
+      // 3. KINETIC ARC WHEEL (EXACT MANAN REPLICA & STRICT LIFECYCLE)
       const W = kineticWheel;
       if (W) {
-        if (I <= 0 || I >= 0.99 || (C > 0 && m > C + L * 0.2)) {
+        // If before start of 3D void (I <= 0) or after completion of 3D void (I >= 1),
+        // or if past stack end, hide the wheel completely so it never overlaps other sections
+        if (I <= 0 || I >= 1 || (C > 0 && m > C + L * 1.2)) {
           W.style.display = 'none';
           W.style.visibility = 'hidden';
           W.style.opacity = '0';
+          if (!isMobile) {
+            W.style.transform = I <= 0 ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
         } else {
+          // 0 < I < 1: Active 3D void perspective flight!
           W.style.display = 'block';
           W.style.visibility = 'visible';
           if (isMobile) {
@@ -702,14 +708,21 @@ document.addEventListener('DOMContentLoaded', () => {
             W.style.opacity = X.toFixed(3);
             W.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            // Smooth fade-in (0 to 0.2), fully solid (0.2 to 0.8), smooth fade-out (0.8 to 1.0)
-            let wheelOpacity = 1;
-            if (I < 0.2) {
-              wheelOpacity = I / 0.2;
-            } else if (I > 0.8) {
-              wheelOpacity = Math.max(0, 1 - (I - 0.8) / 0.2);
+            // Desktop:
+            // Smooth entrance fade from 0 to 0.15
+            // Full solid opacity from 0.15 to 0.85
+            // Graceful exit fade from 0.85 to 1.0 as cards vanish into the deep void
+            let alpha = 1;
+            if (I < 0.15) {
+              alpha = I / 0.15;
+            } else if (I > 0.85) {
+              alpha = Math.max(0, (1 - I) / 0.15);
             }
-            W.style.opacity = wheelOpacity.toFixed(3);
+            W.style.opacity = alpha.toFixed(3);
+
+            // Rotates 180deg -> 0deg:
+            // Sweeps up from right horizon (180deg), arches through framing the shrunken cards,
+            // and finishes down to the right bottom (0deg)
             const rot = 180 * (1 - I);
             W.style.transformOrigin = '50% 100%';
             W.style.transform = `rotate(${rot.toFixed(2)}deg)`;

@@ -504,14 +504,14 @@ body {
   }
 }
 
-/* --- Kinetic Wheel (Bigger, Proper Concentric Circular Arc & Grand Horizon) --- */
+/* --- Kinetic Wheel (Proper Concentric Circular Arc & Smooth Orbit) --- */
 .kinetic-wheel {
   position: fixed;
-  bottom: -16vh;
-  left: -3vw;
-  width: 106vw;
+  bottom: -18vh;
+  left: 0;
+  width: 100vw;
   height: auto;
-  z-index: 5;
+  z-index: 10;
   visibility: hidden;
   opacity: 0;
   will-change: transform, opacity;
@@ -529,6 +529,26 @@ body {
     margin-top: -50vw !important;
     transform-origin: center center !important;
   }
+}
+
+/* --- Section Layering & Stacking Context Isolation --- */
+#work {
+  position: relative;
+  z-index: 20;
+}
+
+#philosophy {
+  position: relative;
+  z-index: 30;
+  background-color: #000000;
+  isolation: isolate;
+}
+
+#contact {
+  position: relative;
+  z-index: 30;
+  background-color: #ffffff;
+  isolation: isolate;
 }
 
 
