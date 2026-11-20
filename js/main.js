@@ -490,21 +490,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 9. SCROLL STACK & 3D SINK ANIMATION
+  // 9. SCROLL STACK & 3D VOID PERSPECTIVE ANIMATION
   // Head-to-toe physical card stacking + 3D perspective fly-away
-  // Inspired by mananrajkhowa.vercel.app:
-  // - Pinning offset: $ = Math.max((windowHeight - cardHeight) / 2, 60)
+  // Exact Replica from mananrajkhowa.vercel.app:
+  // - Pinning offset: $ = (L - j) / 2
   // - Top tab stack distance: 18px per card
   // - Base scale: 0.92, scale step: 0.015 per card
-  // - When stacked (m > ne): 3D perspective fly-away (translateZ: 0 -> -3000px, scale: 1 -> 0, opacity: 1 -> 0)
-  // - Strict clamping so cards NEVER bleed or overlap the white #about section
+  // - Scroll travel: K = L * 1.2
+  // - 3D Perspective on voidContainer:
+  //   perspectiveOrigin: 50% (m + L/2 - k)px
+  //   perspective: 1500px
+  //   transformOrigin: 50% (m + L/2 - k)px
+  //   translate3d(0, 0, -Math.pow(I, 1.5) * 3000px) scale(1 - Math.pow(I, 1.5))
+  //   opacity: 1 - Math.pow(I, 2.5)
+  // - Kinetic Wheel:
+  //   rotate(180 * (1 - I)deg) around 50% 100%
   // ==========================================
   const scrollCards = Array.from(document.querySelectorAll('.scroll-stack-card'));
   const perspectiveContainer = document.getElementById('scroll-stack-inner');
   const voidContainer = document.getElementById('void-container');
   const stackEnd = document.getElementById('scroll-stack-end');
   const kineticWheel = document.getElementById('kinetic-wheel');
-  const aboutSection = document.getElementById('about');
 
   if (scrollCards.length > 0 && voidContainer) {
     const sr = {
@@ -521,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let perspectiveTop = 0;
     let isCalculating = false;
 
-    // Set initial layout properties
+    // Set initial card styles
     scrollCards.forEach((c, idx) => {
       if (idx < scrollCards.length - 1) {
         c.style.marginBottom = `${sr.itemDistance}px`;
@@ -543,6 +549,10 @@ document.addEventListener('DOMContentLoaded', () => {
         voidContainer.style.opacity = '1';
         voidContainer.style.visibility = 'visible';
       }
+      if (kineticWheel) {
+        kineticWheel.style.transform = '';
+      }
+
       const scrollY = window.scrollY;
       cardTops = scrollCards.map(c => c.getBoundingClientRect().top + scrollY);
       endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + scrollY) : 0;
@@ -555,16 +565,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateCardStack = (currentScrollY) => {
       if (isCalculating || !cardTops.length) return;
       const m = typeof currentScrollY === 'number' ? currentScrollY : window.scrollY;
+      const E = scrollCards;
+      const P = cardTops;
+      const C = endTop;
+      const k = perspectiveTop;
+      if (!E.length || !P.length) return;
+
       const L = window.innerHeight;
       const isMobile = window.innerWidth < 1024;
-      const j = scrollCards[0].offsetHeight;
-      const $ = Math.max((L - j) / 2, 60);
-      const U = -(sr.stackPosition - sr.scaleEndPosition) * L;
-      const ne = cardTops[scrollCards.length - 1] - U;
-      const K = L * 3.0;
-
-      // Position of #about relative to viewport
-      const aboutRectTop = aboutSection ? aboutSection.getBoundingClientRect().top : 99999;
+      const j = E[0].offsetHeight;
+      const $ = (L - j) / 2;
+      const U = $ - (sr.stackPosition - sr.scaleEndPosition) * L;
+      const ne = P[E.length - 1] - U;
+      const K = L * 1.2;
 
       let I = 0;
       if (m > ne) {
@@ -572,14 +585,14 @@ document.addEventListener('DOMContentLoaded', () => {
         I = Math.min(Math.max(I, 0), 1);
       }
 
-      // 1. Individual card translation & progressive scale (subpixel smooth)
-      for (let X = 0; X < scrollCards.length; X++) {
-        const card = scrollCards[X];
-        const cardTop = cardTops[X];
-        const me = cardTop - $ - (sr.itemStackDistance * X);
-        const Z = cardTop - U;
+      // 1. CARDS PINNING & ACCELERATED SCALING
+      for (let X = 0; X < E.length; X++) {
+        const Q = E[X];
+        const ae = P[X];
+        const me = ae - $ - (sr.itemStackDistance * X);
+        const Z = ae - U;
         const xe = me;
-        const ee = Math.max(endTop - L * 0.5, ne + K);
+        const ee = Math.max(C - L * 0.5, ne + K);
 
         let Fe = 0;
         if (m >= Z) {
@@ -589,103 +602,92 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         Fe = Math.min(Math.max(Fe, 0), 1);
 
-        const targetScale = sr.baseScale + (X * sr.itemScale);
-        const scale = Number((1 - Fe * (1 - targetScale)).toFixed(4));
+        const Ze = sr.baseScale + (X * sr.itemScale);
+        const Ge = Number((1 - Fe * (1 - Ze)).toFixed(4));
 
-        let translateY = 0;
+        let Je = 0;
         if (m >= xe && m <= ee) {
-          translateY = m - cardTop + $ + (sr.itemStackDistance * X);
+          Je = m - ae + $ + (sr.itemStackDistance * X);
         } else if (m > ee) {
-          translateY = ee - cardTop + $ + (sr.itemStackDistance * X);
+          Je = ee - ae + $ + (sr.itemStackDistance * X);
         }
 
-        card.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale})`;
+        Q.style.transform = `translate3d(0, ${Math.round(Je * 10) / 10}px, 0) scale(${Ge})`;
       }
 
-      // 2. 3D Scroll Perspective Animation on Void Container
-      if (voidContainer && perspectiveContainer) {
-        const X = m + L / 2 - perspectiveTop;
-        perspectiveContainer.style.perspectiveOrigin = `50% ${X.toFixed(1)}px`;
-        perspectiveContainer.style.perspective = '1500px';
+      // 2. 3D PERSPECTIVE ON VOID CONTAINER (EXACT MANAN REPLICA)
+      const A = voidContainer;
+      const M = perspectiveContainer;
+      if (A && M) {
+        const X = m + L / 2 - k;
+        M.style.perspectiveOrigin = `50% ${X.toFixed(1)}px`;
+        M.style.perspective = '1500px';
 
         if (I > 0) {
           if (isMobile) {
             const Q = Math.min(I / 0.25, 1);
             const ae = 1 - Q;
-            voidContainer.style.transformOrigin = `50% ${X.toFixed(1)}px`;
-            voidContainer.style.transform = 'translate3d(0, 0, 0) scale(1)';
-            voidContainer.style.opacity = Math.max(0, ae).toFixed(3);
-            if (Q >= 1 || aboutRectTop <= L * 0.85) {
-              voidContainer.style.visibility = 'hidden';
-              voidContainer.style.opacity = '0';
-              voidContainer.style.pointerEvents = 'none';
+            A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
+            A.style.transform = 'translate3d(0, 0, 0) scale(1)';
+            A.style.opacity = Math.max(0, ae).toFixed(3);
+            if (Q >= 1) {
+              A.style.visibility = 'hidden';
             } else {
-              voidContainer.style.visibility = 'visible';
-              voidContainer.style.pointerEvents = 'auto';
+              A.style.visibility = 'visible';
             }
           } else {
-            // Desktop 3D fly-away sink into the void
-            const Q = Math.pow(I, 1.4);
-            const ae = -Q * 3200;
-            const me = 1 - (Q * 0.85);
-            const Z = 1 - Math.pow(I, 2.0);
-            voidContainer.style.transformOrigin = `50% ${X.toFixed(1)}px`;
-            voidContainer.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
-            voidContainer.style.opacity = Math.max(0, Z).toFixed(3);
-            if (I >= 0.98 || aboutRectTop <= L * 0.85) {
-              voidContainer.style.visibility = 'hidden';
-              voidContainer.style.opacity = '0';
-              voidContainer.style.pointerEvents = 'none';
+            // Desktop 3D Scroll Perspective Fly-Away into the void!
+            const Q = Math.pow(I, 1.5);
+            const ae = -Q * 3000;
+            const me = 1 - Q;
+            const Z = 1 - Math.pow(I, 2.5);
+            A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
+            A.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
+            A.style.opacity = Math.max(0, Z).toFixed(3);
+            if (I >= 1) {
+              A.style.visibility = 'hidden';
             } else {
-              voidContainer.style.visibility = 'visible';
-              voidContainer.style.pointerEvents = 'auto';
+              A.style.visibility = 'visible';
             }
           }
         } else {
-          voidContainer.style.transformOrigin = '';
-          voidContainer.style.transform = '';
-          voidContainer.style.opacity = '1';
-          voidContainer.style.visibility = 'visible';
-          voidContainer.style.pointerEvents = 'auto';
+          A.style.transformOrigin = '';
+          A.style.transform = '';
+          A.style.opacity = '1';
+          A.style.visibility = 'visible';
         }
       }
 
-      // 3. Kinetic Arc Wheel (Bigger 140vw Radius & Lasting Long)
-      if (kineticWheel) {
-        if (m > endTop + L * 3.0 + L * 0.2 || aboutRectTop <= 0) {
-          kineticWheel.style.display = 'none';
-          kineticWheel.style.visibility = 'hidden';
+      // 3. KINETIC ARC WHEEL (EXACT MANAN REPLICA)
+      const W = kineticWheel;
+      if (W) {
+        if (m > C + L * 1.2 + L * 0.2) {
+          W.style.display = 'none';
+          W.style.visibility = 'hidden';
         } else if (I > 0) {
-          kineticWheel.style.display = 'block';
-          kineticWheel.style.visibility = 'visible';
+          W.style.display = 'block';
+          W.style.visibility = 'visible';
           if (isMobile) {
-            let wheelOpacity = 0;
-            if (I <= 0.2) wheelOpacity = I / 0.2;
-            else if (I <= 0.85) wheelOpacity = 1;
-            else wheelOpacity = Math.max(0, 1 - (I - 0.85) / 0.15);
-            kineticWheel.style.opacity = wheelOpacity.toFixed(3);
-            kineticWheel.style.transform = 'translate3d(0, 0, 0)';
+            let X = 0;
+            if (I <= 0.25) X = 0.5 * (I / 0.25);
+            else if (I <= 0.5) X = 0.5 + 0.5 * ((I - 0.25) / 0.25);
+            else X = 1;
+            W.style.opacity = X.toFixed(3);
+            W.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            // Bright white letters lasting solidly throughout the scroll travel
-            let wheelOpacity = 1;
-            if (I < 0.15) {
-              wheelOpacity = I / 0.15;
-            } else if (I > 0.85) {
-              wheelOpacity = Math.max(0, 1 - (I - 0.85) / 0.15);
-            }
-            kineticWheel.style.opacity = wheelOpacity.toFixed(3);
+            W.style.opacity = Math.min(I * 4, 1).toFixed(3);
             const rot = 180 * (1 - I);
-            kineticWheel.style.transformOrigin = '50% 100%';
-            kineticWheel.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+            W.style.transformOrigin = '50% 100%';
+            W.style.transform = `rotate(${rot.toFixed(2)}deg)`;
           }
         } else {
-          kineticWheel.style.display = 'block';
-          kineticWheel.style.opacity = '0';
-          kineticWheel.style.visibility = 'hidden';
+          W.style.display = 'block';
+          W.style.opacity = '0';
+          W.style.visibility = 'hidden';
           if (isMobile) {
-            kineticWheel.style.transform = 'translate3d(0, 0, 0)';
+            W.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            kineticWheel.style.transform = 'rotate(180deg)';
+            W.style.transform = 'rotate(180deg)';
           }
         }
       }

@@ -474,7 +474,7 @@ body {
   transform-origin: top center;
   border-radius: 44px;
   display: block;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   transition: none !important;
 }
 
@@ -486,24 +486,37 @@ body {
   margin-bottom: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .scroll-stack-inner {
+    padding-top: 2vh;
+    padding-bottom: 4vh;
+  }
   .scroll-stack-card {
-    border-radius: 28px;
-    margin-bottom: 40px;
+    width: 94% !important;
+    max-width: 440px;
+    border-radius: 30px !important;
+    margin-bottom: 24px !important;
+  }
+  .scroll-stack-card .inner-content {
+    border-radius: 28px !important;
+    padding: 1.25rem 1.25rem !important;
+    gap: 0.85rem !important;
   }
 }
 
-/* --- Kinetic Wheel (Giant Cosmic Radius Arc) --- */
+/* --- Kinetic Wheel (Exact Manan Head-to-Toe Dimensions & Orbit) --- */
 .kinetic-wheel {
   position: fixed;
-  bottom: -28vh;
-  left: -20vw;
-  width: 140vw;
+  bottom: -18vh;
+  left: 0;
+  width: 100vw;
+  height: auto;
   z-index: 5;
   visibility: hidden;
   opacity: 0;
   will-change: transform, opacity;
   pointer-events: none;
+  transform-origin: 50% 100%;
 }
 
 @media (max-width: 1024px) {
@@ -514,6 +527,7 @@ body {
     width: 100vw !important;
     height: 100vw !important;
     margin-top: -50vw !important;
+    transform-origin: center center !important;
   }
 }
 
