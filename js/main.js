@@ -378,4 +378,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // 8. FOOTER BIG NAME SCROLL ANIMATION (KHUSHMAN)
+  // Replicating Framer Motion:
+  // scale: 0.8 -> 1.0, opacity: 0.0 -> 1.0
+  // ==========================================
+  const footerCurtain = document.getElementById('footer-curtain');
+  const footerBigName = document.getElementById('footer-big-name');
+  const footerMetaGrid = document.getElementById('footer-meta-grid');
+
+  if (footerCurtain && footerBigName) {
+    let ticking = false;
+
+    const updateFooterTransform = () => {
+      const rect = footerCurtain.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const total = footerCurtain.offsetHeight;
+      const current = windowHeight - rect.top;
+      const progress = Math.min(Math.max(current / total, 0), 1);
+
+      const scale = 0.8 + progress * 0.2;
+      const opacity = progress;
+
+      footerBigName.style.transform = `scale(${scale.toFixed(4)})`;
+      footerBigName.style.opacity = `${opacity.toFixed(4)}`;
+
+      if (footerMetaGrid) {
+        if (progress > 0.15) {
+          footerMetaGrid.style.opacity = '1';
+          footerMetaGrid.style.transform = 'translateY(0px)';
+        } else {
+          footerMetaGrid.style.opacity = '0';
+          footerMetaGrid.style.transform = 'translateY(16px)';
+        }
+      }
+      ticking = false;
+    };
+
+    const requestFooterUpdate = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateFooterTransform);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestFooterUpdate, { passive: true });
+    window.addEventListener('resize', requestFooterUpdate);
+    updateFooterTransform();
+  }
+
 });

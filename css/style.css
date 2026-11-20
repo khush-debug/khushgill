@@ -401,3 +401,27 @@ body {
     border-radius: 26px;
   }
 }
+
+/* --- Underline Inputs (Contact Form) --- */
+.input-underline {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
+  padding: 0.65rem 0;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: #000000;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+}
+
+.input-underline:focus {
+  outline: none;
+  border-bottom-color: #000000;
+}
+
+.input-underline::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
