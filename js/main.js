@@ -409,10 +409,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const footerBigNameBox = document.getElementById('footer-big-name-box');
   const footerMetaGrid = document.getElementById('footer-meta-grid');
 
+  let updateFooterTransform = null;
   if (footerRevealWrapper && footerParallax && footerBigNameBox) {
-    let ticking = false;
-
-    const updateFooterTransform = (m) => {
+    updateFooterTransform = (m) => {
       const rect = footerRevealWrapper.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const total = footerRevealWrapper.offsetHeight || windowHeight;
@@ -441,20 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
           footerMetaGrid.style.transform = 'translate3d(0, 15px, 0)';
         }
       }
-
-      ticking = false;
     };
 
-    const requestFooterUpdate = () => {
-      if (!ticking) {
-        requestAnimationFrame(updateFooterTransform);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', requestFooterUpdate, { passive: true });
-    window.addEventListener('resize', requestFooterUpdate);
-    updateFooterTransform();
+    window.addEventListener('resize', () => {
+      const sy = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
+      updateFooterTransform(sy);
+    }, { passive: true });
+    updateFooterTransform(0);
   }
 
   // ==========================================
@@ -506,30 +498,6 @@ document.addEventListener('DOMContentLoaded', () => {
       c.style.transformOrigin = 'top center';
     });
 
-    const measureCardPositions = () => {
-      isCalculating = true;
-      scrollCards.forEach(c => {
-        c.style.transform = '';
-      });
-      if (voidContainer) {
-        voidContainer.style.transform = '';
-        voidContainer.style.transformOrigin = '';
-        voidContainer.style.opacity = '1';
-        voidContainer.style.visibility = 'visible';
-      }
-      if (kineticWheel) {
-        kineticWheel.style.transform = '';
-      }
-
-      const scrollY = window.scrollY;
-      cardTops = scrollCards.map(c => c.getBoundingClientRect().top + scrollY);
-      endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + scrollY) : 0;
-      perspectiveTop = perspectiveContainer ? (perspectiveContainer.getBoundingClientRect().top + scrollY) : 0;
-      isCalculating = false;
-    };
-
-    measureCardPositions();
-
     const updateCardStack = (currentScrollY) => {
       if (isCalculating || !cardTops.length) return;
       const m = typeof currentScrollY === 'number' ? currentScrollY : window.scrollY;
@@ -580,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
           Je = ee - ae + $ + (sr.itemStackDistance * X);
         }
 
-        Q.style.transform = `translate3d(0, ${Math.round(Je * 10) / 10}px, 0) scale(${Ge})`;
+        Q.style.transform = `translate3d(0, ${Je.toFixed(2)}px, 0) scale(${Ge})`;
       }
 
       // 2. 3D PERSPECTIVE ON VOID CONTAINER (EXACT MANAN REPLICA)
@@ -681,41 +649,68 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    let stackTicking = false;
-    const requestStackUpdate = () => {
-      if (!stackTicking) {
-        requestAnimationFrame(() => {
-          updateCardStack();
-          stackTicking = false;
-        });
-        stackTicking = true;
+    const measureCardPositions = () => {
+      isCalculating = true;
+      scrollCards.forEach(c => {
+        c.style.transform = '';
+      });
+      if (voidContainer) {
+        voidContainer.style.transform = '';
+        voidContainer.style.transformOrigin = '';
+        voidContainer.style.opacity = '1';
+        voidContainer.style.visibility = 'visible';
       }
+      if (kineticWheel) {
+        kineticWheel.style.transform = '';
+      }
+
+      const currentScroll = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
+      cardTops = scrollCards.map(c => c.getBoundingClientRect().top + currentScroll);
+      endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + currentScroll) : 0;
+      perspectiveTop = perspectiveContainer ? (perspectiveContainer.getBoundingClientRect().top + currentScroll) : 0;
+      isCalculating = false;
+
+      // Synchronously restore card transforms immediately so no unpinned frame paints
+      updateCardStack(currentScroll);
     };
 
-    // Synchronize both Lenis smooth scrolling and native window scroll
+    measureCardPositions();
+
+    // Unified single-driver scroll loop: Lenis takes full priority when active
     if (lenis) {
       lenis.on('scroll', (e) => {
         const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
         updateCardStack(sy);
         if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
       });
+    } else {
+      let scrollTicking = false;
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          requestAnimationFrame(() => {
+            const sy = window.scrollY;
+            updateCardStack(sy);
+            if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
+            scrollTicking = false;
+          });
+          scrollTicking = true;
+        }
+      }, { passive: true });
     }
 
-    window.addEventListener('scroll', requestStackUpdate, { passive: true });
     window.addEventListener('resize', () => {
       measureCardPositions();
-      requestStackUpdate();
-    });
+    }, { passive: true });
+
     window.addEventListener('load', () => {
       measureCardPositions();
-      requestStackUpdate();
     });
 
-    const resizeObserver = new ResizeObserver(() => {
-      measureCardPositions();
-      requestStackUpdate();
-    });
-    scrollCards.forEach(c => resizeObserver.observe(c));
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        measureCardPositions();
+      });
+    }
 
     // Interactive card modal triggers
     const projectKeys = ['supreme', 'branding', 'ai', 'creative'];
@@ -726,7 +721,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    updateCardStack();
+    const initScroll = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
+    updateCardStack(initScroll);
   }
 
 });

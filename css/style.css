@@ -202,7 +202,7 @@ body {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
-.star-border-container:hover {
+.star-border-container:not(.scroll-stack-card):hover {
   transform: translateY(-4px);
 }
 
@@ -570,6 +570,8 @@ body {
   width: 100%;
   position: relative;
   transition: none !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .scroll-stack-card {
@@ -582,10 +584,14 @@ body {
   display: block;
   margin-bottom: 100px;
   transition: none !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.scroll-stack-card:hover {
-  transform: none !important;
+.scroll-stack-card.star-border-container,
+.scroll-stack-card:hover,
+.scroll-stack-card.star-border-container:hover {
+  transition: none !important;
 }
 
 .scroll-stack-card:last-child {
