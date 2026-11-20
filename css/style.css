@@ -425,20 +425,13 @@ body {
   color: rgba(0, 0, 0, 0.35);
 }
 
-/* --- Stacked Floating Card Section (Anchored Overlap) --- */
+/* --- Stacked Card Deck (Contained in Works Section) --- */
 .stacked-deck-wrapper {
   position: relative;
-  z-index: 30;
+  z-index: 10;
   width: 100%;
   max-width: 72rem;
   margin: 0 auto;
-  margin-bottom: -220px;
-}
-
-@media (max-width: 768px) {
-  .stacked-deck-wrapper {
-    margin-bottom: -160px;
-  }
 }
 
 .stacked-card {
