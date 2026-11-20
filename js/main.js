@@ -87,6 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Global smooth scroll for internal anchors via Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        closeMenu();
+        if (lenis) {
+          lenis.scrollTo(targetEl, { offset: 0, duration: 1.2 });
+        } else {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
   // ESC to close menu or modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -630,10 +648,13 @@ document.addEventListener('DOMContentLoaded', () => {
             A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             A.style.transform = 'translate3d(0, 0, 0) scale(1)';
             A.style.opacity = Math.max(0, ae).toFixed(3);
-            if (Q >= 1) {
+            if (Q >= 1 || I >= 0.98) {
               A.style.visibility = 'hidden';
+              A.style.opacity = '0';
+              A.style.pointerEvents = 'none';
             } else {
               A.style.visibility = 'visible';
+              A.style.pointerEvents = 'auto';
             }
           } else {
             // Desktop 3D Scroll Perspective Fly-Away into the void!
@@ -644,10 +665,13 @@ document.addEventListener('DOMContentLoaded', () => {
             A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             A.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
             A.style.opacity = Math.max(0, Z).toFixed(3);
-            if (I >= 1) {
+            if (I >= 0.98) {
               A.style.visibility = 'hidden';
+              A.style.opacity = '0';
+              A.style.pointerEvents = 'none';
             } else {
               A.style.visibility = 'visible';
+              A.style.pointerEvents = 'auto';
             }
           }
         } else {
@@ -655,39 +679,40 @@ document.addEventListener('DOMContentLoaded', () => {
           A.style.transform = '';
           A.style.opacity = '1';
           A.style.visibility = 'visible';
+          A.style.pointerEvents = 'auto';
         }
       }
 
-      // 3. KINETIC ARC WHEEL (EXACT MANAN REPLICA)
+      // 3. KINETIC ARC WHEEL (STRICT BOUNDING & SMOOTH FADE)
       const W = kineticWheel;
       if (W) {
-        if (m > C + L * 1.2 + L * 0.2) {
+        if (I <= 0 || I >= 0.99 || (C > 0 && m > C + L * 0.2)) {
           W.style.display = 'none';
           W.style.visibility = 'hidden';
-        } else if (I > 0) {
+          W.style.opacity = '0';
+        } else {
           W.style.display = 'block';
           W.style.visibility = 'visible';
           if (isMobile) {
             let X = 0;
             if (I <= 0.25) X = 0.5 * (I / 0.25);
             else if (I <= 0.5) X = 0.5 + 0.5 * ((I - 0.25) / 0.25);
-            else X = 1;
+            else if (I <= 0.8) X = 1;
+            else X = Math.max(0, 1 - (I - 0.8) / 0.2);
             W.style.opacity = X.toFixed(3);
             W.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            W.style.opacity = Math.min(I * 4, 1).toFixed(3);
+            // Smooth fade-in (0 to 0.2), fully solid (0.2 to 0.8), smooth fade-out (0.8 to 1.0)
+            let wheelOpacity = 1;
+            if (I < 0.2) {
+              wheelOpacity = I / 0.2;
+            } else if (I > 0.8) {
+              wheelOpacity = Math.max(0, 1 - (I - 0.8) / 0.2);
+            }
+            W.style.opacity = wheelOpacity.toFixed(3);
             const rot = 180 * (1 - I);
             W.style.transformOrigin = '50% 100%';
             W.style.transform = `rotate(${rot.toFixed(2)}deg)`;
-          }
-        } else {
-          W.style.display = 'block';
-          W.style.opacity = '0';
-          W.style.visibility = 'hidden';
-          if (isMobile) {
-            W.style.transform = 'translate3d(0, 0, 0)';
-          } else {
-            W.style.transform = 'rotate(180deg)';
           }
         }
       }
