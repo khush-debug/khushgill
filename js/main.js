@@ -7,6 +7,52 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
+  // 0. LENIS LUXURY SMOOTH SCROLL (MANAN RAJKHOWA EXACT ENGINE)
+  // Options: duration: 1.2, wheelMultiplier: 0.9, syncTouch: true, expoOut easing
+  // ==========================================
+  let lenis = null;
+  try {
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.2,
+        wheelMultiplier: 0.9,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        syncTouch: true,
+        syncTouchLerp: 0.15,
+        touchMultiplier: 1.2,
+        touchInertiaExponent: 1.55,
+        autoRaf: false
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  } catch (e) {
+    console.warn('Lenis failed to load, falling back to native scroll:', e);
+  }
+
+  // Smooth anchor links with Lenis
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const targetId = anchor.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          if (lenis) {
+            lenis.scrollTo(targetEl, { offset: 0, duration: 1.4 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  });
+
+  // ==========================================
   // 1. FULLSCREEN CURTAIN MENU
   // ==========================================
   const menuBtn = document.getElementById('menu-toggle');
@@ -18,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fullscreenMenu) {
       fullscreenMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
       playClickSound(950);
     }
   };
@@ -26,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fullscreenMenu) {
       fullscreenMenu.classList.remove('open');
       document.body.style.overflow = '';
+      if (lenis) lenis.start();
       playClickSound(600);
     }
   };
@@ -290,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    if (lenis) lenis.stop();
     playClickSound(880);
   };
 
@@ -298,6 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('hidden');
     modal.classList.remove('flex');
     document.body.style.overflow = '';
+    if (lenis) lenis.start();
     playClickSound(500);
   };
 
@@ -394,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (footerRevealWrapper && footerParallax && footerBigNameBox) {
     let ticking = false;
 
-    const updateFooterTransform = () => {
+    const updateFooterTransform = (m) => {
       const rect = footerRevealWrapper.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const total = footerRevealWrapper.offsetHeight || windowHeight;
@@ -502,9 +552,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     measureCardPositions();
 
-    const updateCardStack = () => {
+    const updateCardStack = (currentScrollY) => {
       if (isCalculating || !cardTops.length) return;
-      const m = window.scrollY;
+      const m = typeof currentScrollY === 'number' ? currentScrollY : window.scrollY;
       const L = window.innerHeight;
       const isMobile = window.innerWidth < 1024;
       const j = scrollCards[0].offsetHeight;
@@ -522,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
         I = Math.min(Math.max(I, 0), 1);
       }
 
-      // 1. Individual card translation & progressive scale
+      // 1. Individual card translation & progressive scale (subpixel smooth)
       for (let X = 0; X < scrollCards.length; X++) {
         const card = scrollCards[X];
         const cardTop = cardTops[X];
@@ -549,20 +599,20 @@ document.addEventListener('DOMContentLoaded', () => {
           translateY = ee - cardTop + $ + (sr.itemStackDistance * X);
         }
 
-        card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${scale})`;
+        card.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale})`;
       }
 
       // 2. 3D Scroll Perspective Animation on Void Container
       if (voidContainer && perspectiveContainer) {
         const X = m + L / 2 - perspectiveTop;
-        perspectiveContainer.style.perspectiveOrigin = `50% ${X}px`;
+        perspectiveContainer.style.perspectiveOrigin = `50% ${X.toFixed(1)}px`;
         perspectiveContainer.style.perspective = '1500px';
 
         if (I > 0) {
           if (isMobile) {
             const Q = Math.min(I / 0.25, 1);
             const ae = 1 - Q;
-            voidContainer.style.transformOrigin = `50% ${X}px`;
+            voidContainer.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             voidContainer.style.transform = 'translate3d(0, 0, 0) scale(1)';
             voidContainer.style.opacity = Math.max(0, ae).toFixed(3);
             if (Q >= 1 || aboutRectTop <= L * 0.85) {
@@ -579,8 +629,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const ae = -Q * 3000;
             const me = 1 - Q;
             const Z = 1 - Math.pow(I, 2.5);
-            voidContainer.style.transformOrigin = `50% ${X}px`;
-            voidContainer.style.transform = `translate3d(0, 0, ${ae.toFixed(1)}px) scale(${Math.max(0, me).toFixed(4)})`;
+            voidContainer.style.transformOrigin = `50% ${X.toFixed(1)}px`;
+            voidContainer.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
             voidContainer.style.opacity = Math.max(0, Z).toFixed(3);
             if (I >= 1 || aboutRectTop <= L * 0.85) {
               voidContainer.style.visibility = 'hidden';
@@ -619,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
             kineticWheel.style.opacity = Math.min(I * 4, 1).toFixed(3);
             const rot = 180 * (1 - I);
             kineticWheel.style.transformOrigin = '50% 100%';
-            kineticWheel.style.transform = `rotate(${rot}deg)`;
+            kineticWheel.style.transform = `rotate(${rot.toFixed(2)}deg)`;
           }
         } else {
           kineticWheel.style.display = 'block';
@@ -644,6 +694,15 @@ document.addEventListener('DOMContentLoaded', () => {
         stackTicking = true;
       }
     };
+
+    // Synchronize both Lenis smooth scrolling and native window scroll
+    if (lenis) {
+      lenis.on('scroll', (e) => {
+        const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
+        updateCardStack(sy);
+        if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
+      });
+    }
 
     window.addEventListener('scroll', requestStackUpdate, { passive: true });
     window.addEventListener('resize', () => {

@@ -29,11 +29,35 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
   background-color: var(--bg-black);
   overflow-x: hidden;
   width: 100%;
+}
+
+html:not(.lenis) {
+  scroll-behavior: smooth;
+}
+
+/* Lenis Luxury Smooth Scrolling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -439,6 +463,7 @@ body {
 .void-container {
   width: 100%;
   position: relative;
+  transition: none !important;
 }
 
 .scroll-stack-card {
