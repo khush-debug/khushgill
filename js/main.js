@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
-      playClickSound(950);
     }
   };
 
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       document.body.style.overflow = '';
       if (lenis) lenis.start();
-      playClickSound(600);
     }
   };
 
@@ -131,67 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 2. WEB AUDIO HAPTIC SOUND SYNTHESIZER
-  // ==========================================
-  let audioCtx = null;
-  let soundEnabled = true;
-
-  const initAudio = () => {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-    }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  };
-
-  const playClickSound = (freq = 800, type = 'sine') => {
-    if (!soundEnabled) return;
-    try {
-      initAudio();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.04);
-
-      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.04);
-    } catch (e) {
-      // Audio autoplay policy fallback
-    }
-  };
-
-  const soundToggle = document.getElementById('sound-toggle');
-  if (soundToggle) {
-    soundToggle.addEventListener('click', () => {
-      initAudio();
-      soundEnabled = !soundEnabled;
-      soundToggle.classList.toggle('text-white', soundEnabled);
-      soundToggle.classList.toggle('text-zinc-500', !soundEnabled);
-      showToast(soundEnabled ? 'Haptic UI Audio: Enabled' : 'Haptic UI Audio: Muted');
-      if (soundEnabled) playClickSound(1000);
-    });
-  }
-
-  // Bind subtle sounds to interactive elements
-  document.querySelectorAll('a, button, .star-border-container').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      if (soundEnabled) playClickSound(1200, 'triangle');
-    });
-  });
-
-
-  // ==========================================
-  // 3. STATS COUNT-UP ANIMATION
+  // 2. STATS COUNT-UP ANIMATION
   // ==========================================
   const statNumbers = document.querySelectorAll('.stat-number');
   let statsAnimated = false;
@@ -373,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
     if (lenis) lenis.stop();
-    playClickSound(880);
   };
 
   const closeModal = () => {
@@ -382,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.classList.remove('flex');
     document.body.style.overflow = '';
     if (lenis) lenis.start();
-    playClickSound(500);
   };
 
   document.querySelectorAll('[data-open-case-study]').forEach(btn => {
@@ -422,7 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const email = 'kgill3662@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
-        playClickSound(1050);
         showToast('Copied kgill3662@gmail.com to clipboard!');
       }).catch(() => {
         window.location.href = `mailto:${email}`;
@@ -432,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 7. CONTACT FORM HANDLER
+  // 6. CONTACT FORM HANDLER
   // ==========================================
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
@@ -447,7 +382,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       setTimeout(() => {
-        playClickSound(900);
         if (formSuccess) formSuccess.classList.remove('hidden');
         contactForm.reset();
         if (submitBtn) {
