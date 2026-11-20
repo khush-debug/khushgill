@@ -535,34 +535,34 @@
 
         </div>
 
-        <!-- Scroll Stack End spacer (provides travel for the 3D perspective fly-away) -->
-        <div id="scroll-stack-end" class="scroll-stack-end pointer-events-none h-[120vh] hidden md:block"></div>
+        <!-- Scroll Stack End spacer (provides 300vh of immersive scroll travel for 3D wheel) -->
+        <div id="scroll-stack-end" class="scroll-stack-end pointer-events-none h-[300vh] hidden md:block"></div>
       </div>
 
-      <!-- Kinetic Wheel Arc SVG (matching Manan's layout) -->
-      <div id="kinetic-wheel" class="kinetic-wheel pointer-events-none" style="position: fixed; bottom: -18vh; left: 0; width: 100vw; z-index: 0; visibility: hidden; opacity: 0; will-change: transform, opacity;">
+      <!-- Kinetic Wheel Arc SVG (Bigger, Grand 140vw Cosmic Radius) -->
+      <div id="kinetic-wheel" class="kinetic-wheel pointer-events-none" style="position: fixed; bottom: -28vh; left: -20vw; width: 140vw; z-index: 5; visibility: hidden; opacity: 0; will-change: transform, opacity;">
         <div class="hidden md:block">
-          <svg viewBox="0 0 3000 1500" class="w-full h-auto" style="overflow: visible;">
-            <path id="arc-path" d="M 400,1500 A 1100,1100 0 0,1 2600,1500" fill="none" stroke="none" />
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 85px; text-transform: uppercase;">
+          <svg viewBox="0 0 3600 1800" class="w-full h-auto" style="overflow: visible;">
+            <path id="arc-path" d="M 250,1800 A 1550,1550 0 0,1 3350,1800" fill="none" stroke="none" />
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 105px; text-transform: uppercase; letter-spacing: 0.04em;">
               <textPath href="#arc-path" startOffset="14%" text-anchor="middle">STRATEGY</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 45px; text-transform: uppercase;" dy="-16">
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 50px; text-transform: uppercase;" dy="-16">
               <textPath href="#arc-path" startOffset="26%" text-anchor="middle">●</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 85px; text-transform: uppercase;">
-              <textPath href="#arc-path" startOffset="38%" text-anchor="middle">ARCHITECTURE</textPath>
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 105px; text-transform: uppercase; letter-spacing: 0.04em;">
+              <textPath href="#arc-path" startOffset="38%" text-anchor="middle">SYSTEMS</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 45px; text-transform: uppercase;" dy="-16">
-              <textPath href="#arc-path" startOffset="52%" text-anchor="middle">●</textPath>
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 50px; text-transform: uppercase;" dy="-16">
+              <textPath href="#arc-path" startOffset="50%" text-anchor="middle">●</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 85px; text-transform: uppercase;">
-              <textPath href="#arc-path" startOffset="65%" text-anchor="middle">SYSTEMS</textPath>
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 105px; text-transform: uppercase; letter-spacing: 0.04em;">
+              <textPath href="#arc-path" startOffset="63%" text-anchor="middle">ARCHITECTURE</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 45px; text-transform: uppercase;" dy="-16">
-              <textPath href="#arc-path" startOffset="78%" text-anchor="middle">●</textPath>
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 50px; text-transform: uppercase;" dy="-16">
+              <textPath href="#arc-path" startOffset="76%" text-anchor="middle">●</textPath>
             </text>
-            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 85px; text-transform: uppercase;">
+            <text fill="#ffffff" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 105px; text-transform: uppercase; letter-spacing: 0.04em;">
               <textPath href="#arc-path" startOffset="88%" text-anchor="middle">VELOCITY</textPath>
             </text>
           </svg>

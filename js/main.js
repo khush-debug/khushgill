@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const $ = Math.max((L - j) / 2, 60);
       const U = -(sr.stackPosition - sr.scaleEndPosition) * L;
       const ne = cardTops[scrollCards.length - 1] - U;
-      const K = L * 1.2;
+      const K = L * 3.0;
 
       // Position of #about relative to viewport
       const aboutRectTop = aboutSection ? aboutSection.getBoundingClientRect().top : 99999;
@@ -625,14 +625,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           } else {
             // Desktop 3D fly-away sink into the void
-            const Q = Math.pow(I, 1.5);
-            const ae = -Q * 3000;
-            const me = 1 - Q;
-            const Z = 1 - Math.pow(I, 2.5);
+            const Q = Math.pow(I, 1.4);
+            const ae = -Q * 3200;
+            const me = 1 - (Q * 0.85);
+            const Z = 1 - Math.pow(I, 2.0);
             voidContainer.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             voidContainer.style.transform = `translate3d(0, 0, ${ae.toFixed(2)}px) scale(${Math.max(0, me).toFixed(4)})`;
             voidContainer.style.opacity = Math.max(0, Z).toFixed(3);
-            if (I >= 1 || aboutRectTop <= L * 0.85) {
+            if (I >= 0.98 || aboutRectTop <= L * 0.85) {
               voidContainer.style.visibility = 'hidden';
               voidContainer.style.opacity = '0';
               voidContainer.style.pointerEvents = 'none';
@@ -650,9 +650,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 3. Kinetic Arc Wheel (if present)
+      // 3. Kinetic Arc Wheel (Bigger 140vw Radius & Lasting Long)
       if (kineticWheel) {
-        if (m > endTop + L * 1.2 + L * 0.2 || aboutRectTop <= 0) {
+        if (m > endTop + L * 3.0 + L * 0.2 || aboutRectTop <= 0) {
           kineticWheel.style.display = 'none';
           kineticWheel.style.visibility = 'hidden';
         } else if (I > 0) {
@@ -660,13 +660,20 @@ document.addEventListener('DOMContentLoaded', () => {
           kineticWheel.style.visibility = 'visible';
           if (isMobile) {
             let wheelOpacity = 0;
-            if (I <= 0.25) wheelOpacity = 0.5 * (I / 0.25);
-            else if (I <= 0.5) wheelOpacity = 0.5 + 0.5 * ((I - 0.25) / 0.25);
-            else wheelOpacity = 1;
+            if (I <= 0.2) wheelOpacity = I / 0.2;
+            else if (I <= 0.85) wheelOpacity = 1;
+            else wheelOpacity = Math.max(0, 1 - (I - 0.85) / 0.15);
             kineticWheel.style.opacity = wheelOpacity.toFixed(3);
             kineticWheel.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            kineticWheel.style.opacity = Math.min(I * 4, 1).toFixed(3);
+            // Bright white letters lasting solidly throughout the scroll travel
+            let wheelOpacity = 1;
+            if (I < 0.15) {
+              wheelOpacity = I / 0.15;
+            } else if (I > 0.85) {
+              wheelOpacity = Math.max(0, 1 - (I - 0.85) / 0.15);
+            }
+            kineticWheel.style.opacity = wheelOpacity.toFixed(3);
             const rot = 180 * (1 - I);
             kineticWheel.style.transformOrigin = '50% 100%';
             kineticWheel.style.transform = `rotate(${rot.toFixed(2)}deg)`;

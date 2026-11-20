@@ -493,5 +493,29 @@ body {
   }
 }
 
+/* --- Kinetic Wheel (Giant Cosmic Radius Arc) --- */
+.kinetic-wheel {
+  position: fixed;
+  bottom: -28vh;
+  left: -20vw;
+  width: 140vw;
+  z-index: 5;
+  visibility: hidden;
+  opacity: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .kinetic-wheel {
+    top: 50% !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vw !important;
+    margin-top: -50vw !important;
+  }
+}
+
 
 
