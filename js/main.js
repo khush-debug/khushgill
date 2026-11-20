@@ -420,10 +420,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-copy-email]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const email = 'khushmangill18@gmail.com';
+      const email = 'kgill3662@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
         playClickSound(1050);
-        showToast('Copied khushmangill18@gmail.com to clipboard!');
+        showToast('Copied kgill3662@gmail.com to clipboard!');
       }).catch(() => {
         window.location.href = `mailto:${email}`;
       });
