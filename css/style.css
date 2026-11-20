@@ -425,25 +425,46 @@ body {
   color: rgba(0, 0, 0, 0.35);
 }
 
-/* --- Stacked Card Deck (Contained in Works Section) --- */
-.stacked-deck-wrapper {
+/* --- Scroll Stacking & 3D Void Animation (Manan Head-to-Toe Physics) --- */
+.scroll-stack-inner {
+  padding-top: 4vh;
+  padding-bottom: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  z-index: 10;
   width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
 }
 
-.stacked-card {
+.void-container {
   width: 100%;
-  border-radius: 44px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s ease, opacity 0.3s ease;
+  position: relative;
+}
+
+.scroll-stack-card {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  will-change: transform;
   transform-origin: top center;
+  border-radius: 44px;
+  display: block;
+  margin-bottom: 80px;
+  transition: none !important;
+}
+
+.scroll-stack-card:hover {
+  transform: none !important;
+}
+
+.scroll-stack-card:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 640px) {
-  .stacked-card {
+  .scroll-stack-card {
     border-radius: 28px;
+    margin-bottom: 40px;
   }
 }
 

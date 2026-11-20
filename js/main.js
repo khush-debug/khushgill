@@ -440,58 +440,237 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 9. STACKED CARDS TAB SWITCHER (ANCHORED)
-  // Preserves layered borders (cyan, gold, emerald, purple)
-  // Prevents any shifting on scroll. Allows interactive tab switching.
+  // 9. SCROLL STACK & 3D SINK ANIMATION
+  // Head-to-toe physical card stacking + 3D perspective fly-away
+  // Inspired by mananrajkhowa.vercel.app:
+  // - Pinning offset: $ = Math.max((windowHeight - cardHeight) / 2, 60)
+  // - Top tab stack distance: 18px per card
+  // - Base scale: 0.92, scale step: 0.015 per card
+  // - When stacked (m > ne): 3D perspective fly-away (translateZ: 0 -> -3000px, scale: 1 -> 0, opacity: 1 -> 0)
+  // - Strict clamping so cards NEVER bleed or overlap the white #about section
   // ==========================================
-  const deckCards = [
-    document.getElementById('deck-card-1'),
-    document.getElementById('deck-card-2'),
-    document.getElementById('deck-card-3'),
-    document.getElementById('deck-card-4')
-  ].filter(Boolean);
+  const scrollCards = Array.from(document.querySelectorAll('.scroll-stack-card'));
+  const perspectiveContainer = document.getElementById('scroll-stack-inner');
+  const voidContainer = document.getElementById('void-container');
+  const stackEnd = document.getElementById('scroll-stack-end');
+  const kineticWheel = document.getElementById('kinetic-wheel');
+  const aboutSection = document.getElementById('about');
 
-  if (deckCards.length === 4) {
-    const scales = [0.94, 0.96, 0.98, 1.0];
-    const topOffsets = [0, 16, 32, 48];
-
-    const setFrontCard = (frontIndex) => {
-      const order = [];
-      for (let i = 0; i < 4; i++) {
-        if (i !== frontIndex) order.push(i);
-      }
-      order.push(frontIndex);
-
-      order.forEach((cardIdx, stackPos) => {
-        const card = deckCards[cardIdx];
-        const isFront = (stackPos === 3);
-        const top = topOffsets[stackPos];
-        const scale = scales[stackPos];
-
-        if (isFront) {
-          card.style.position = 'relative';
-          card.style.marginTop = `${top}px`;
-          card.style.top = '';
-          card.style.zIndex = '10';
-          card.style.transform = `scale(${scale})`;
-          card.style.opacity = '1';
-        } else {
-          card.style.position = 'absolute';
-          card.style.marginTop = '0px';
-          card.style.top = `${top}px`;
-          card.style.zIndex = `${stackPos + 1}`;
-          card.style.transform = `scale(${scale})`;
-          card.style.opacity = '1';
-        }
-      });
+  if (scrollCards.length > 0 && voidContainer) {
+    const sr = {
+      itemDistance: 100,
+      itemScale: 0.015,
+      itemStackDistance: 18,
+      stackPosition: 0.08,
+      scaleEndPosition: 0.05,
+      baseScale: 0.92
     };
 
-    deckCards.forEach((card, idx) => {
+    let cardTops = [];
+    let endTop = 0;
+    let perspectiveTop = 0;
+    let isCalculating = false;
+
+    // Set initial layout properties
+    scrollCards.forEach((c, idx) => {
+      if (idx < scrollCards.length - 1) {
+        c.style.marginBottom = `${sr.itemDistance}px`;
+      } else {
+        c.style.marginBottom = '0px';
+      }
+      c.style.willChange = 'transform';
+      c.style.transformOrigin = 'top center';
+    });
+
+    const measureCardPositions = () => {
+      isCalculating = true;
+      scrollCards.forEach(c => {
+        c.style.transform = '';
+      });
+      if (voidContainer) {
+        voidContainer.style.transform = '';
+        voidContainer.style.transformOrigin = '';
+        voidContainer.style.opacity = '1';
+        voidContainer.style.visibility = 'visible';
+      }
+      const scrollY = window.scrollY;
+      cardTops = scrollCards.map(c => c.getBoundingClientRect().top + scrollY);
+      endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + scrollY) : 0;
+      perspectiveTop = perspectiveContainer ? (perspectiveContainer.getBoundingClientRect().top + scrollY) : 0;
+      isCalculating = false;
+    };
+
+    measureCardPositions();
+
+    const updateCardStack = () => {
+      if (isCalculating || !cardTops.length) return;
+      const m = window.scrollY;
+      const L = window.innerHeight;
+      const isMobile = window.innerWidth < 1024;
+      const j = scrollCards[0].offsetHeight;
+      const $ = Math.max((L - j) / 2, 60);
+      const U = -(sr.stackPosition - sr.scaleEndPosition) * L;
+      const ne = cardTops[scrollCards.length - 1] - U;
+      const K = L * 1.2;
+
+      // Position of #about relative to viewport
+      const aboutRectTop = aboutSection ? aboutSection.getBoundingClientRect().top : 99999;
+
+      let I = 0;
+      if (m > ne) {
+        I = (m - ne) / K;
+        I = Math.min(Math.max(I, 0), 1);
+      }
+
+      // 1. Individual card translation & progressive scale
+      for (let X = 0; X < scrollCards.length; X++) {
+        const card = scrollCards[X];
+        const cardTop = cardTops[X];
+        const me = cardTop - $ - (sr.itemStackDistance * X);
+        const Z = cardTop - U;
+        const xe = me;
+        const ee = Math.max(endTop - L * 0.5, ne + K);
+
+        let Fe = 0;
+        if (m >= Z) {
+          Fe = 1;
+        } else if (m > me) {
+          Fe = (m - me) / (Z - me);
+        }
+        Fe = Math.min(Math.max(Fe, 0), 1);
+
+        const targetScale = sr.baseScale + (X * sr.itemScale);
+        const scale = Number((1 - Fe * (1 - targetScale)).toFixed(4));
+
+        let translateY = 0;
+        if (m >= xe && m <= ee) {
+          translateY = m - cardTop + $ + (sr.itemStackDistance * X);
+        } else if (m > ee) {
+          translateY = ee - cardTop + $ + (sr.itemStackDistance * X);
+        }
+
+        card.style.transform = `translate3d(0, ${Math.round(translateY * 10) / 10}px, 0) scale(${scale})`;
+      }
+
+      // 2. 3D Scroll Perspective Animation on Void Container
+      if (voidContainer && perspectiveContainer) {
+        const X = m + L / 2 - perspectiveTop;
+        perspectiveContainer.style.perspectiveOrigin = `50% ${X}px`;
+        perspectiveContainer.style.perspective = '1500px';
+
+        if (I > 0) {
+          if (isMobile) {
+            const Q = Math.min(I / 0.25, 1);
+            const ae = 1 - Q;
+            voidContainer.style.transformOrigin = `50% ${X}px`;
+            voidContainer.style.transform = 'translate3d(0, 0, 0) scale(1)';
+            voidContainer.style.opacity = Math.max(0, ae).toFixed(3);
+            if (Q >= 1 || aboutRectTop <= L * 0.85) {
+              voidContainer.style.visibility = 'hidden';
+              voidContainer.style.opacity = '0';
+              voidContainer.style.pointerEvents = 'none';
+            } else {
+              voidContainer.style.visibility = 'visible';
+              voidContainer.style.pointerEvents = 'auto';
+            }
+          } else {
+            // Desktop 3D fly-away sink into the void
+            const Q = Math.pow(I, 1.5);
+            const ae = -Q * 3000;
+            const me = 1 - Q;
+            const Z = 1 - Math.pow(I, 2.5);
+            voidContainer.style.transformOrigin = `50% ${X}px`;
+            voidContainer.style.transform = `translate3d(0, 0, ${ae.toFixed(1)}px) scale(${Math.max(0, me).toFixed(4)})`;
+            voidContainer.style.opacity = Math.max(0, Z).toFixed(3);
+            if (I >= 1 || aboutRectTop <= L * 0.85) {
+              voidContainer.style.visibility = 'hidden';
+              voidContainer.style.opacity = '0';
+              voidContainer.style.pointerEvents = 'none';
+            } else {
+              voidContainer.style.visibility = 'visible';
+              voidContainer.style.pointerEvents = 'auto';
+            }
+          }
+        } else {
+          voidContainer.style.transformOrigin = '';
+          voidContainer.style.transform = '';
+          voidContainer.style.opacity = '1';
+          voidContainer.style.visibility = 'visible';
+          voidContainer.style.pointerEvents = 'auto';
+        }
+      }
+
+      // 3. Kinetic Arc Wheel (if present)
+      if (kineticWheel) {
+        if (m > endTop + L * 1.2 + L * 0.2 || aboutRectTop <= 0) {
+          kineticWheel.style.display = 'none';
+          kineticWheel.style.visibility = 'hidden';
+        } else if (I > 0) {
+          kineticWheel.style.display = 'block';
+          kineticWheel.style.visibility = 'visible';
+          if (isMobile) {
+            let wheelOpacity = 0;
+            if (I <= 0.25) wheelOpacity = 0.5 * (I / 0.25);
+            else if (I <= 0.5) wheelOpacity = 0.5 + 0.5 * ((I - 0.25) / 0.25);
+            else wheelOpacity = 1;
+            kineticWheel.style.opacity = wheelOpacity.toFixed(3);
+            kineticWheel.style.transform = 'translate3d(0, 0, 0)';
+          } else {
+            kineticWheel.style.opacity = Math.min(I * 4, 1).toFixed(3);
+            const rot = 180 * (1 - I);
+            kineticWheel.style.transformOrigin = '50% 100%';
+            kineticWheel.style.transform = `rotate(${rot}deg)`;
+          }
+        } else {
+          kineticWheel.style.display = 'block';
+          kineticWheel.style.opacity = '0';
+          kineticWheel.style.visibility = 'hidden';
+          if (isMobile) {
+            kineticWheel.style.transform = 'translate3d(0, 0, 0)';
+          } else {
+            kineticWheel.style.transform = 'rotate(180deg)';
+          }
+        }
+      }
+    };
+
+    let stackTicking = false;
+    const requestStackUpdate = () => {
+      if (!stackTicking) {
+        requestAnimationFrame(() => {
+          updateCardStack();
+          stackTicking = false;
+        });
+        stackTicking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestStackUpdate, { passive: true });
+    window.addEventListener('resize', () => {
+      measureCardPositions();
+      requestStackUpdate();
+    });
+    window.addEventListener('load', () => {
+      measureCardPositions();
+      requestStackUpdate();
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureCardPositions();
+      requestStackUpdate();
+    });
+    scrollCards.forEach(c => resizeObserver.observe(c));
+
+    // Interactive card modal triggers
+    const projectKeys = ['supreme', 'branding', 'ai', 'creative'];
+    scrollCards.forEach((card, idx) => {
       card.addEventListener('click', (e) => {
-        if (e.target.closest('button') || e.target.closest('a')) return;
-        setFrontCard(idx);
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        openModal(projectKeys[idx]);
       });
     });
+
+    updateCardStack();
   }
 
 });
