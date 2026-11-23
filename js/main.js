@@ -197,81 +197,81 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const projectDetails = {
     supreme: {
-      title: 'Supreme Infosys',
-      subtitle: 'Commercial Computer Retail & Hardware Platform',
-      badge: '● Live Production',
-      date: '2026 — Present',
+      title: 'Lally Computers',
+      subtitle: 'A business website presenting products and services through a clear, accessible interface.',
+      badge: '● Live Website',
+      date: '2026',
       link: 'https://lallycomputers.vercel.app/',
-      linkText: 'Visit Live Platform ↗',
+      linkText: 'Visit Live Website ↗',
       body: `
-        <p><strong>Executive Summary:</strong> Architected, built, and launched an end-to-end commercial website for Supreme Infosys, a technology and computing retail enterprise in Punjab, India.</p>
-        <p><strong>The Strategic Objective:</strong> Create a polished, responsive digital storefront that organizes hundreds of technical hardware specifications, custom gaming rigs, laptops, and components into an effortless customer browsing experience.</p>
-        <p><strong>Key Engineering Deliverables:</strong></p>
+        <p><strong>Overview:</strong> A business website presenting products and services through a clear, accessible interface.</p>
+        <p><strong>Design & Development:</strong> Designed and developed with responsive layouts, an intuitive product catalog, and smooth customer communication pathways.</p>
+        <p><strong>Key Highlights:</strong></p>
         <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-          <li>Engineered sleek, responsive UI layouts optimized for mobile, tablet, and desktop customer journeys.</li>
-          <li>Structured intuitive hardware categories (Laptops, Desktops, Components, Accessories) to drive direct customer inquiries.</li>
-          <li>Deployed to Vercel with automated CI/CD pipeline, achieving near-instant global edge load speeds and 99.9% uptime.</li>
-          <li>Streamlined customer communications and reduced showroom sales friction.</li>
+          <li>Engineered responsive, clean layouts across mobile, tablet, and desktop viewports.</li>
+          <li>Organized hardware specifications and product categories for effortless browsing.</li>
+          <li>Deployed on Vercel with high-performance edge speeds and 99.9% uptime.</li>
+          <li>Clean interface prioritizing accessibility and intuitive navigation.</li>
         </ul>
       `,
-      chips: ['Next.js / React', 'Tailwind CSS', 'Vercel Cloud Deployment', 'E-Commerce Architecture', 'Product Presentation', 'Responsive UX']
+      chips: ['Frontend Development', 'UI/UX Design', 'Next.js / React', 'Tailwind CSS', 'Vercel', 'Responsive Web']
     },
     branding: {
-      title: 'Brand Strategy & E-Commerce Venture Hub',
-      subtitle: 'Commercial Brand Identity, Go-To-Market & Scalable Systems',
-      badge: 'Commercial Venture',
+      title: 'Personal Portfolio',
+      subtitle: 'A collection of my work across web development, design, and branding.',
+      badge: 'Personal Project',
       date: '2026',
-      link: 'https://github.com/khush-debug',
-      linkText: 'View GitHub Repos ↗',
+      link: 'https://github.com/khush-debug/khushgill',
+      linkText: 'View Portfolio Source ↗',
       body: `
-        <p><strong>Executive Summary:</strong> Conceptualized and engineered commercial systems for high-growth digital brands, connecting aesthetic positioning with high-converting digital storefronts.</p>
-        <p><strong>Strategic Approach:</strong> Designed modular visual identities, typography hierarchies, and scalable layout components that boost brand prestige and customer conversion.</p>
-        <p><strong>Key Impact:</strong></p>
+        <p><strong>Overview:</strong> A collection of my work across web development, design, and branding.</p>
+        <p><strong>Design Direction:</strong> Built with clean layouts, smooth interactions, and attention to detail. Blends brutalist editorial aesthetics with smooth motion and tactile interactions.</p>
+        <p><strong>Key Features:</strong></p>
         <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-          <li>Formulated end-to-end brand identity books including typography and component tokens.</li>
-          <li>Engineered fast-loading landing pages optimized for e-commerce performance.</li>
-          <li>Constructed unit economics and margin models for digital product offerings.</li>
+          <li>Custom architectural framing with fixed coordinates and responsive viewports.</li>
+          <li>Tactile physics, 3D scroll stacking, and interactive star-border cards.</li>
+          <li>Clear narrative hierarchy showcasing design and frontend capabilities.</li>
         </ul>
       `,
-      chips: ['Brand Strategy', 'E-Commerce Systems', 'Design Systems', 'Financial Modeling', 'GTM Planning']
+      chips: ['Frontend Development', 'UI/UX Design', 'Brand Direction', 'Web Architecture', 'Three.js']
     },
     ai: {
-      title: 'Applied AI & Workflow Automations',
-      subtitle: 'Generative AI Pipelines & Intelligent Business Workflows',
-      badge: 'Applied AI Solutions',
+      title: 'Brand Identity & Strategy',
+      subtitle: 'Visual identities and digital direction that reflect a business’s goals.',
+      badge: 'Brand Direction',
       date: '2026',
       link: 'https://github.com/khush-debug',
-      linkText: 'Explore Repos ↗',
+      linkText: 'Explore Work ↗',
       body: `
-        <p><strong>Executive Summary:</strong> Researched and deployed prompt pipelines and autonomous agent automations to eliminate administrative friction in day-to-day business operations.</p>
-        <p><strong>Core Capabilities:</strong> Context-window curation, structured LLM JSON outputs, and smart pipeline scripting to accelerate decision-making.</p>
+        <p><strong>Overview:</strong> Develop visual identities and digital direction that reflect a business’s goals.</p>
+        <p><strong>Strategic Approach:</strong> Shaping how brands look, feel, and connect with people. From shaping a brand’s identity to designing its interface and building its website, I help turn early concepts into polished work.</p>
         <p><strong>Key Deliverables:</strong></p>
         <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-          <li>Designed structured prompt frameworks that convert messy business inputs into clean JSON outputs.</li>
-          <li>Automated operational drafting, client intake, and data categorization routines.</li>
-          <li>Integrated state-of-the-art LLMs into rapid internal prototype applications.</li>
+          <li>Distinctive brand identities and visual style systems.</li>
+          <li>Digital direction aligning design choices with business objectives.</li>
+          <li>Unified design tokens across typography, color, and interaction states.</li>
         </ul>
       `,
-      chips: ['LLM Workflows', 'Prompt Engineering', 'Workflow Automation', 'Rapid Prototyping', 'Autonomous Systems']
+      chips: ['Brand Strategy', 'Visual Identity', 'Digital Direction', 'Design Systems']
     },
     creative: {
-      title: 'Creative Direction & Visual Systems',
-      subtitle: 'Fine Arts, Sketching & High-Caliber Digital Polish',
-      badge: 'Creative Mastery',
+      title: 'Creative Collaboration',
+      subtitle: 'Work with businesses and creators to develop ideas and bring projects to completion.',
+      badge: 'Collaboration',
       date: '2026',
       link: 'https://www.instagram.com/kggills',
-      linkText: 'View Studio Work ↗',
+      linkText: 'Connect on Instagram ↗',
       body: `
-        <p><strong>Executive Summary:</strong> Grounded in rigorous traditional fine arts, sketching, and painting, translated into sharp digital design systems and compelling visual assets.</p>
-        <p><strong>Philosophy:</strong> True digital distinction comes from an artist's eye for proportion, negative space, lighting, and visceral emotion—qualities that boilerplate templates cannot replicate.</p>
-        <p><strong>Artistic Disciplines:</strong></p>
+        <p><strong>Overview:</strong> Work with businesses and creators to develop ideas and bring projects to completion.</p>
+        <p><strong>Approach:</strong> Understand the purpose. Shape the experience. Build with care. Combining design, technology, and business thinking to create digital experiences that serve a purpose.</p>
+        <p><strong>Collaboration Areas:</strong></p>
         <ul class="list-disc pl-5 space-y-2 text-zinc-300">
-          <li>Traditional fine-art sketching, observational anatomy, and ink drawings.</li>
-          <li>Design direction for modern digital editorial layouts and high-fashion aesthetics.</li>
-          <li>Brand aesthetic curation with meticulous visual balance.</li>
+          <li>UI/UX Design: Plan user journeys and create intuitive interfaces, from wireframes to final designs.</li>
+          <li>Frontend Development: Build responsive websites with clean layouts, smooth interactions, and attention to detail.</li>
+          <li>End-to-end execution from initial concept to live production launch.</li>
         </ul>
       `,
-      chips: ['Fine Arts', 'Traditional Sketching', 'Digital Layouts', 'Visual Hierarchy', 'Editorial Polish']
+      chips: ['UI/UX Design', 'Frontend Development', 'Brand Direction', 'Creative Collaboration']
     }
   };
 

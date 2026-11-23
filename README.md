@@ -1,12 +1,15 @@
-# Khushman Gill — Portfolio
+# Khushman Singh Gill — Portfolio
 
-A high-performance, dark-mode portfolio built with obsidian aesthetics, tactile physical macOS folder interactions, kinetic typography, and fluid responsive design.
+> Frontend Developer, UI/UX Designer & Brand Strategist | Creating thoughtful websites, intuitive interfaces, and distinctive brand identities.
 
-Inspired by modern executive developer and strategist portfolios.
+A high-performance portfolio built with brutalist-luxury aesthetics, 3D perspective scroll physics, tactile interactions, kinetic typography, and fluid responsive design.
+
+I bring ideas to life through thoughtful design, functional websites, and clear brand direction.
 
 ## 🚀 Live Demo & Projects
 
-- **Flagship Project:** [Supreme Infosys](https://lallycomputers.vercel.app/)
+- **Lally Computers:** [lallycomputers.vercel.app](https://lallycomputers.vercel.app/) — A business website presenting products and services through a clear, accessible interface.
+- **Personal Portfolio:** [khushgill.vercel.app](https://khushgill.vercel.app/) — A collection of my work across web development, design, and branding.
 - **GitHub:** [@khush-debug](https://github.com/khush-debug)
 
 ## 🛠️ Stack & Architecture
