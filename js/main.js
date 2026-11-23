@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateCardStack = (currentScrollY) => {
       if (isCalculating || !cardTops.length) return;
-      const m = typeof currentScrollY === 'number' ? currentScrollY : window.scrollY;
+      const m = typeof currentScrollY === 'number' ? currentScrollY : ((lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY);
       const E = scrollCards;
       const P = cardTops;
       const C = endTop;
@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!E.length || !P.length) return;
 
       const L = window.innerHeight;
-      const isMobile = window.innerWidth < 1024;
+      const isMobile = window.innerWidth < 768;
       const j = E[0].offsetHeight;
       const $ = (L - j) / 2;
       const U = $ - (sr.stackPosition - sr.scaleEndPosition) * L;
@@ -769,12 +769,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (I > 0) {
           if (isMobile) {
-            const Q = Math.min(I / 0.25, 1);
+            const Q = Math.min(I / 0.35, 1);
             const ae = 1 - Q;
             A.style.transformOrigin = `50% ${X.toFixed(1)}px`;
             A.style.transform = 'translate3d(0, 0, 0) scale(1)';
             A.style.opacity = Math.max(0, ae).toFixed(3);
-            if (Q >= 1 || I >= 1) {
+            if (I >= 1) {
               A.style.visibility = 'hidden';
               A.style.opacity = '0';
               A.style.pointerEvents = 'none';
@@ -802,7 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         } else {
           A.style.transformOrigin = '';
-          A.style.transform = '';
+          A.style.transform = 'translate3d(0, 0, 0) scale(1)';
           A.style.opacity = '1';
           A.style.visibility = 'visible';
           A.style.pointerEvents = 'auto';
@@ -812,9 +812,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // 3. KINETIC ARC WHEEL (EXACT MANAN REPLICA & STRICT LIFECYCLE)
       const W = kineticWheel;
       if (W) {
-        // If before start of 3D void (I <= 0) or after completion of 3D void (I >= 1),
-        // or if past stack end, hide the wheel completely so it never overlaps other sections
-        if (I <= 0 || I >= 1 || (C > 0 && m > C + L * 1.2)) {
+        // Strictly hidden before 3D fly-away starts (m < ne or I <= 0) and after it ends (I >= 1)
+        if (I <= 0 || I >= 1 || m < (ne - 20) || (C > 0 && m > C + L * 1.2)) {
           W.style.display = 'none';
           W.style.visibility = 'hidden';
           W.style.opacity = '0';
@@ -834,10 +833,6 @@ document.addEventListener('DOMContentLoaded', () => {
             W.style.opacity = X.toFixed(3);
             W.style.transform = 'translate3d(0, 0, 0)';
           } else {
-            // Desktop:
-            // Smooth entrance fade from 0 to 0.15
-            // Full solid opacity from 0.15 to 0.85
-            // Graceful exit fade from 0.85 to 1.0 as cards vanish into the deep void
             let alpha = 1;
             if (I < 0.15) {
               alpha = I / 0.15;
@@ -846,9 +841,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             W.style.opacity = alpha.toFixed(3);
 
-            // Rotates 180deg -> 0deg:
-            // Sweeps up from right horizon (180deg), arches through framing the shrunken cards,
-            // and finishes down to the right bottom (0deg)
             const rot = 180 * (1 - I);
             W.style.transformOrigin = '50% 100%';
             W.style.transform = `rotate(${rot.toFixed(2)}deg)`;
@@ -872,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
         kineticWheel.style.transform = '';
       }
 
-      const currentScroll = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
+      const currentScroll = window.scrollY;
       cardTops = scrollCards.map(c => c.getBoundingClientRect().top + currentScroll);
       endTop = stackEnd ? (stackEnd.getBoundingClientRect().top + currentScroll) : 0;
       perspectiveTop = perspectiveContainer ? (perspectiveContainer.getBoundingClientRect().top + currentScroll) : 0;
@@ -884,26 +876,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     measureCardPositions();
 
-    // Unified single-driver scroll loop: Lenis takes full priority when active
+    // Universal dual-driver scroll engine: both Lenis and native window scroll drive RAF physics
+    let scrollTicking = false;
+    const handleScrollDriver = (customY) => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          const sy = typeof customY === 'number' ? customY : window.scrollY;
+          updateCardStack(sy);
+          if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    };
+
+    // Native scroll listener for trackpad, scrollbar drag, spacebar, keyboard, touch
+    window.addEventListener('scroll', () => handleScrollDriver(window.scrollY), { passive: true });
+
+    // Lenis scroll listener
     if (lenis) {
       lenis.on('scroll', (e) => {
         const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
-        updateCardStack(sy);
-        if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
+        handleScrollDriver(sy);
       });
-    } else {
-      let scrollTicking = false;
-      window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-          requestAnimationFrame(() => {
-            const sy = window.scrollY;
-            updateCardStack(sy);
-            if (typeof updateFooterTransform === 'function') updateFooterTransform(sy);
-            scrollTicking = false;
-          });
-          scrollTicking = true;
-        }
-      }, { passive: true });
     }
 
     window.addEventListener('resize', () => {
@@ -919,6 +914,12 @@ document.addEventListener('DOMContentLoaded', () => {
         measureCardPositions();
       });
     }
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureCardPositions();
+    });
+    scrollCards.forEach(c => resizeObserver.observe(c));
+    if (perspectiveContainer) resizeObserver.observe(perspectiveContainer);
 
     // Interactive card modal triggers
     const projectKeys = ['supreme', 'branding', 'ai', 'creative'];
