@@ -1,0 +1,72 @@
+/* ==========================================================================
+   3D Scroll Stacking Component Styles
+   Encapsulates perspective container, card layout, card pinning, and responsive scaling.
+   ========================================================================== */
+
+.scroll-stack-inner {
+  padding-top: 4vh;
+  padding-bottom: 8vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+.void-container {
+  width: 100%;
+  position: relative;
+  transition: none !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.scroll-stack-card {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  will-change: transform;
+  transform-origin: top center;
+  border-radius: 44px;
+  display: block;
+  margin-bottom: 100px;
+  transition: none !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.scroll-stack-card.star-border-container,
+.scroll-stack-card:hover,
+.scroll-stack-card.star-border-container:hover {
+  transition: none !important;
+}
+
+.scroll-stack-card:last-child {
+  margin-bottom: 0;
+}
+
+.scroll-stack-end {
+  pointer-events: none;
+  height: 120vh;
+}
+
+@media (max-width: 768px) {
+  .scroll-stack-inner {
+    padding-top: 2vh;
+    padding-bottom: 4vh;
+  }
+  .scroll-stack-card {
+    width: 94% !important;
+    max-width: 440px;
+    border-radius: 30px !important;
+    margin-bottom: 24px !important;
+  }
+  .scroll-stack-card .inner-content {
+    border-radius: 28px !important;
+    padding: 1.25rem 1.25rem !important;
+    gap: 0.85rem !important;
+  }
+}
