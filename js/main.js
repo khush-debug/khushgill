@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
       subtitle: 'Help businesses build a clear and recognizable identity.',
       badge: '● Brand Strategy',
       date: '2026',
-      link: 'https://celestia.vercel.app/',
+      link: 'https://slyphe.vercel.app/',
       linkText: 'Visit Slyphe Live ↗',
       body: `
         <p><strong>Overview:</strong> Help businesses build a clear and recognizable identity.</p>
