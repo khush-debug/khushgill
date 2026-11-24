@@ -472,210 +472,186 @@
   }
 
 
-  // --- 3D Glass Folder Stacking Physics Controller ---
-  class Folder3DStack {
+  // --- Folder Carousel (carousel-08 Apple Card Style Architecture) ---
+  class FolderCarousel {
     constructor() {
-      this.items = Array.from(document.querySelectorAll('.work-timeline-item'));
-      this.timelineContainer = document.getElementById('work-timeline');
+      this.viewport = document.getElementById('folder-carousel-viewport');
+      this.track = document.getElementById('folder-carousel-track');
+      this.slides = Array.from(document.querySelectorAll('.folder-carousel-slide'));
+      this.prevBtn = document.getElementById('folder-carousel-prev');
+      this.nextBtn = document.getElementById('folder-carousel-next');
+      this.counter = document.getElementById('folder-carousel-counter');
       this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
 
-      if (!this.items.length || !this.timelineContainer) return;
+      if (!this.viewport || !this.slides.length) return;
 
-      this.itemTops = [];
-      this.pinScrolls = [];
-      this.isMeasuring = false;
-      this.ticking = false;
+      this.currentIndex = 0;
+      this.isDown = false;
+      this.startX = 0;
+      this.scrollLeft = 0;
+      this.hasMoved = false;
+      this.rafId = null;
+
       this.init();
     }
 
     init() {
-      const isMobile = window.innerWidth < 768;
-      this.items.forEach((item, idx) => {
-        item.style.zIndex = idx + 10;
-        item.style.willChange = 'transform';
-        item.style.transformOrigin = 'center top';
-        if (idx < this.items.length - 1) {
-          item.style.marginBottom = isMobile ? '45px' : '75px';
-        } else {
-          item.style.marginBottom = '30px';
+      this.bindEvents();
+      this.updateControls();
+    }
+
+    updateControls() {
+      if (!this.viewport) return;
+      const scrollLeft = this.viewport.scrollLeft;
+      const maxScroll = Math.max(0, this.viewport.scrollWidth - this.viewport.clientWidth);
+
+      // Determine active slide index based on viewport position
+      let activeIdx = 0;
+      let minDiff = Infinity;
+      const viewportLeft = this.viewport.getBoundingClientRect().left;
+
+      this.slides.forEach((slide, idx) => {
+        const slideRect = slide.getBoundingClientRect();
+        const diff = Math.abs(slideRect.left - viewportLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          activeIdx = idx;
         }
       });
 
-      this.measure();
-      this.bindEvents();
-      this.update(window.scrollY);
-    }
+      this.currentIndex = activeIdx;
 
-    measure() {
-      if (!this.items.length) return;
-      this.isMeasuring = true;
-      this.items.forEach(item => { item.style.transform = ''; });
-      const currentScroll = window.scrollY;
-      this.itemTops = this.items.map(item => item.getBoundingClientRect().top + currentScroll);
-
-      const isMobile = window.innerWidth < 768;
-      const pinTop = isMobile ? 80 : 110;
-      const tabOffset = isMobile ? 18 : 28;
-
-      this.pinScrolls = this.itemTops.map((top, i) => top - pinTop - (tabOffset * i));
-      this.isMeasuring = false;
-      this.update(currentScroll);
-    }
-
-    update(scrollY) {
-      if (this.isMeasuring || !this.itemTops.length) return;
-      const m = typeof scrollY === 'number' ? scrollY : window.scrollY;
-      const N = this.items.length;
-      const L = window.innerHeight;
-      const isMobile = window.innerWidth < 768;
-
-      const pinTop = isMobile ? 80 : 110;
-      const tabOffset = isMobile ? 18 : 28;
-
-      const stackEndScroll = this.pinScrolls[N - 1];
-      const exitScroll = stackEndScroll + (L * 0.70);
-
-      // 1. Determine active index in proper 01 -> 02 -> 03 -> 04 sequence
-      let activeIdx = 0;
-      for (let i = 0; i < N; i++) {
-        if (m >= this.pinScrolls[i] - 40) {
-          activeIdx = i;
-        }
+      if (this.counter) {
+        this.counter.textContent = String(activeIdx + 1).padStart(2, '0');
       }
 
-      // 2. Calculate Pinned Translations and 3D Perspective Scaling
-      for (let i = 0; i < N; i++) {
-        const item = this.items[i];
-        const initialTop = this.itemTops[i];
-        const targetPinScroll = this.pinScrolls[i];
-
-        // Pinned Translation (Y-axis)
-        let translateY = 0;
-        if (m >= targetPinScroll && m <= exitScroll) {
-          translateY = m - initialTop + pinTop + (tabOffset * i);
-        } else if (m > exitScroll) {
-          translateY = exitScroll - initialTop + pinTop + (tabOffset * i);
-        }
-
-        // 3D Perspective Scale & Depth Dimming
-        let scale = 1.0;
-        let brightness = 1.0;
-
-        if (i < N - 1) {
-          const nextPin = this.pinScrolls[i + 1];
-          if (m >= targetPinScroll && m < nextPin) {
-            // As next card scrolls up towards its pin, this card gently compresses
-            const progress = (m - targetPinScroll) / Math.max(1, nextPin - targetPinScroll);
-            scale = 1.0 - (progress * 0.06);
-            brightness = 1.0 - (progress * 0.04);
-          } else if (m >= nextPin) {
-            // Subsequent cards are stacking above; continue gradual compression
-            const remainingProgress = Math.min(1, (m - nextPin) / Math.max(1, stackEndScroll - nextPin));
-            const layersAbove = N - 1 - i;
-            scale = 0.94 - (remainingProgress * (0.05 * layersAbove));
-            brightness = 0.96 - (remainingProgress * (0.03 * layersAbove));
-          }
-        }
-
-        scale = Math.max(0.78, Math.min(1.0, scale));
-        brightness = Math.max(0.85, Math.min(1.0, brightness));
-
-        item.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
-
-        const rootEl = item.querySelector('.gf-root');
-        if (rootEl) {
-          if (scale < 0.98) {
-            rootEl.style.filter = `brightness(${brightness.toFixed(3)})`;
-          } else {
-            rootEl.style.filter = '';
-          }
-        }
-
-        if (i === activeIdx) {
-          item.classList.add('is-active');
-        } else {
-          item.classList.remove('is-active');
-        }
+      if (this.prevBtn) {
+        this.prevBtn.disabled = scrollLeft <= 8;
+      }
+      if (this.nextBtn) {
+        this.nextBtn.disabled = scrollLeft >= maxScroll - 8;
       }
 
-      // 4. Highlight left sidebar nav button in proper sequence
-      this.navBtns.forEach((btn, idx) => {
-        if (idx === activeIdx) {
-          btn.classList.add('is-active');
+      // Sync left sidebar navigation buttons
+      this.navBtns.forEach((btn) => {
+        const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
+        const dot = btn.querySelector('.nav-dot');
+        if (targetIdx === activeIdx) {
+          btn.classList.add('is-active', 'bg-[#F0EFEB]', 'text-[#202522]');
+          if (dot) {
+            dot.classList.remove('bg-transparent');
+            dot.classList.add('bg-[#176B5B]');
+          }
         } else {
-          btn.classList.remove('is-active');
+          btn.classList.remove('is-active', 'bg-[#F0EFEB]', 'text-[#202522]');
+          if (dot) {
+            dot.classList.add('bg-transparent');
+            dot.classList.remove('bg-[#176B5B]');
+          }
         }
+      });
+    }
+
+    scrollToSlide(index) {
+      if (index < 0 || index >= this.slides.length) return;
+      const targetSlide = this.slides[index];
+      if (!targetSlide) return;
+
+      const targetScroll = targetSlide.offsetLeft - this.viewport.offsetLeft;
+      this.viewport.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
       });
     }
 
     bindEvents() {
-      const handleScroll = (customY) => {
-        if (!this.ticking) {
-          this.ticking = true;
-          requestAnimationFrame(() => {
-            const sy = typeof customY === 'number' ? customY : window.scrollY;
-            this.update(sy);
-            this.ticking = false;
-          });
-        }
-      };
+      // Realtime scroll tracking
+      this.viewport.addEventListener('scroll', () => {
+        if (this.rafId) cancelAnimationFrame(this.rafId);
+        this.rafId = requestAnimationFrame(() => this.updateControls());
+      }, { passive: true });
 
-      window.addEventListener('scroll', () => handleScroll(window.scrollY), { passive: true });
-      window.addEventListener('resize', () => this.measure(), { passive: true });
-      window.addEventListener('load', () => this.measure());
-
-      if (document.fonts) {
-        document.fonts.ready.then(() => this.measure());
+      // Arrow navigation
+      if (this.prevBtn) {
+        this.prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.scrollToSlide(Math.max(0, this.currentIndex - 1));
+        });
+      }
+      if (this.nextBtn) {
+        this.nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+        });
       }
 
-      // Resilient Lenis integration
-      const hookLenis = () => {
-        if (window.lenis && typeof window.lenis.on === 'function') {
-          window.lenis.on('scroll', (e) => {
-            const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
-            handleScroll(sy);
-          });
-          return true;
-        }
-        return false;
-      };
-
-      if (!hookLenis()) {
-        const checkLenis = setInterval(() => {
-          if (hookLenis()) clearInterval(checkLenis);
-        }, 150);
-        setTimeout(() => clearInterval(checkLenis), 3000);
-      }
-
-      // Fast-Nav click handlers (smooth scroll to selected project stack state)
+      // Sidebar nav buttons
       this.navBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
-          if (!isNaN(targetIdx) && this.pinScrolls[targetIdx] !== undefined) {
-            const targetScroll = this.pinScrolls[targetIdx] + 10;
-            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-              window.lenis.scrollTo(targetScroll, { duration: 1.2 });
-            } else {
-              window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-            }
+          if (!isNaN(targetIdx)) {
+            this.scrollToSlide(targetIdx);
           }
         });
       });
+
+      // Mouse dragFree gesture
+      this.viewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button, a, input, [role="button"], .gf-hit, .gf-key, .gf-sheet, .gf-menu')) {
+          return;
+        }
+        this.isDown = true;
+        this.hasMoved = false;
+        this.startX = e.pageX - this.viewport.offsetLeft;
+        this.scrollLeft = this.viewport.scrollLeft;
+        this.viewport.classList.add('is-dragging');
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!this.isDown) return;
+        const x = e.pageX - this.viewport.offsetLeft;
+        const walk = x - this.startX;
+        if (Math.abs(walk) > 5) {
+          this.hasMoved = true;
+          this.viewport.scrollLeft = this.scrollLeft - walk;
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (this.isDown) {
+          this.isDown = false;
+          this.viewport.classList.remove('is-dragging');
+        }
+      });
+
+      // Keyboard arrow keys
+      window.addEventListener('keydown', (e) => {
+        const rect = this.viewport.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!inView) return;
+
+        if (e.key === 'ArrowLeft') {
+          this.scrollToSlide(Math.max(0, this.currentIndex - 1));
+        } else if (e.key === 'ArrowRight') {
+          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+        }
+      });
+
+      window.addEventListener('resize', () => this.updateControls(), { passive: true });
     }
   }
 
-  window.Folder3DStack = Folder3DStack;
-
+  window.FolderCarousel = FolderCarousel;
   window.initGlassFolders = initGlassFolders;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initGlassFolders();
-      window.folder3DStackInstance = new Folder3DStack();
+      window.folderCarouselInstance = new FolderCarousel();
     });
   } else {
     initGlassFolders();
-    window.folder3DStackInstance = new Folder3DStack();
+    window.folderCarouselInstance = new FolderCarousel();
   }
 })();

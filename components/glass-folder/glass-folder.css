@@ -498,3 +498,34 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 .work-timeline-item .gf-root {
   transition: filter 0.4s ease;
 }
+
+/* ---- Apple Card Folder Carousel (carousel-08 style) ---- */
+.folder-carousel-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.folder-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.folder-carousel-viewport.is-dragging {
+  cursor: grabbing !important;
+  user-select: none;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+.folder-carousel-slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.folder-carousel-slide:hover {
+  transform: translateY(-2px);
+}

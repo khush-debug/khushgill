@@ -531,14 +531,29 @@
           </nav>
         </aside>
 
-        <!-- Folders Column (Right Column) -->
-        <div id="work-timeline" class="lg:col-span-8 relative flex flex-col items-center w-full">
+                <!-- Apple Card Carousel for Glass Folders (Right Column) -->
+        <div class="lg:col-span-8 relative w-full overflow-hidden">
+          
+          <!-- Viewport & Drag-free Horizontal Track -->
+          <div id="folder-carousel-viewport" class="folder-carousel-viewport w-full overflow-x-auto select-none py-2 cursor-grab active:cursor-grabbing" style="-webkit-overflow-scrolling: touch;">
+            <div id="folder-carousel-track" class="folder-carousel-track flex gap-6 sm:gap-8 px-1 pb-4">
+              <!-- Slide 1: Supreme Infosys -->
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="0">
+                <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">01 / Active Platform</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Supreme Infosys</h3>
+                  </div>
+                  <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="Open Live Website">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  </a>
+                </div>
 
-          <!-- CARD 01: Supreme Infosys (Glass Folder) -->
-          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="0">
-
-            <div class="gf-container">
-              <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left" data-width="480">
+                <!-- Glass Folder Container -->
+                <div class="py-2 my-auto">
+                  <div class="gf-container">
+              <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left" data-width="400">
                 <div class="gf-stage">
                   <div class="gf-tilt">
                     <div class="gf-shadow" aria-hidden="true"></div>
@@ -664,13 +679,34 @@
                 </div>
               </div>
             </div>
-          </div>
+                </div>
 
-          <!-- CARD 02: Personal Portfolio (Glass Folder) -->
-          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="1">
+                <!-- Bottom Footer Meta (carousel-08 style) -->
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Accessible Platform</span>
+                  </div>
+                  <span class="font-semibold text-[#202522]">4 Files · Click to Open</span>
+                </div>
+              </div>
+              <!-- Slide 2: Personal Portfolio -->
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="1">
+                <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">02 / Portfolio & Motion</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Personal Portfolio</h3>
+                  </div>
+                  <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="View Portfolio Source">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  </a>
+                </div>
 
-            <div class="gf-container">
-              <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left" data-width="480">
+                <!-- Glass Folder Container -->
+                <div class="py-2 my-auto">
+                  <div class="gf-container">
+              <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left" data-width="400">
                 <div class="gf-stage">
                   <div class="gf-tilt">
                     <div class="gf-shadow" aria-hidden="true"></div>
@@ -796,13 +832,34 @@
                 </div>
               </div>
             </div>
-          </div>
+                </div>
 
-          <!-- CARD 03: Brand Identity & Strategy (Glass Folder) -->
-          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="2">
+                <!-- Bottom Footer Meta (carousel-08 style) -->
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Curated Digital Products</span>
+                  </div>
+                  <span class="font-semibold text-[#202522]">4 Files · Click to Open</span>
+                </div>
+              </div>
+              <!-- Slide 3: Brand Identity & Strategy -->
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="2">
+                <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">03 / Visual Identity</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Brand Identity & Strategy</h3>
+                  </div>
+                  <button type="button" data-open-case-study="brand" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="View Case Study">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  </button>
+                </div>
 
-            <div class="gf-container">
-              <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left" data-width="480">
+                <!-- Glass Folder Container -->
+                <div class="py-2 my-auto">
+                  <div class="gf-container">
+              <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left" data-width="400">
                 <div class="gf-stage">
                   <div class="gf-tilt">
                     <div class="gf-shadow" aria-hidden="true"></div>
@@ -928,13 +985,34 @@
                 </div>
               </div>
             </div>
-          </div>
+                </div>
 
-          <!-- CARD 04: Creative Collaboration (Glass Folder) -->
-          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="3">
+                <!-- Bottom Footer Meta (carousel-08 style) -->
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Design Systems & Direction</span>
+                  </div>
+                  <span class="font-semibold text-[#202522]">4 Files · Click to Open</span>
+                </div>
+              </div>
+              <!-- Slide 4: Creative Collaboration -->
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="3">
+                <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
+                <div class="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">04 / Partnership</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Creative Collaboration</h3>
+                  </div>
+                  <a href="#contact" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="Start Collaboration">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  </a>
+                </div>
 
-            <div class="gf-container">
-              <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left" data-width="480">
+                <!-- Glass Folder Container -->
+                <div class="py-2 my-auto">
+                  <div class="gf-container">
+              <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left" data-width="400">
                 <div class="gf-stage">
                   <div class="gf-tilt">
                     <div class="gf-shadow" aria-hidden="true"></div>
@@ -1060,10 +1138,40 @@
                 </div>
               </div>
             </div>
+                </div>
+
+                <!-- Bottom Footer Meta (carousel-08 style) -->
+                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Concept to Shipped Launch</span>
+                  </div>
+                  <span class="font-semibold text-[#202522]">4 Files · Click to Open</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- 3D Folder Stack Scroll Distance Spacer -->
-          <div class="h-[35vh] md:h-[45vh] pointer-events-none" aria-hidden="true"></div>
+          <!-- Bottom Navigation Controls (carousel-08 style) -->
+          <div class="flex items-center justify-between mt-6 pt-4 border-t border-[#DADDD7]">
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs uppercase tracking-widest text-[#595F5B]">Project</span>
+              <span class="font-mono text-sm font-bold text-[#202522]">
+                <span id="folder-carousel-counter" class="text-[#176B5B]">01</span> / 04
+              </span>
+              <span class="hidden sm:inline-block text-xs font-mono text-[#595F5B]/70 ml-2">Drag or swipe freely</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="folder-carousel-prev" type="button" aria-label="Previous folder" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
+                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+              </button>
+              <button id="folder-carousel-next" type="button" aria-label="Next folder" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
+                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+              </button>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -1228,31 +1336,9 @@
                 <span class="faq-toggle-icon">+</span>
               </button>
               <div class="faq-answer-panel">
-                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed mb-3">
-                  I design and engineer tailored digital experiences across five dedicated disciplines:
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  I specialize in portfolio websites, business platforms, responsive landing pages, and visual brand identities. My focus is on clean layouts, thoughtful animations, and fast load speeds for businesses, founders, and creators.
                 </p>
-                <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Business & Commercial Platforms:</strong> Full-featured websites for companies and retail businesses (like Supreme Infosys) with structured product catalogs, technical hardware specifications, multi-device accessibility, and streamlined customer inquiries.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Personal Portfolios & Landing Pages:</strong> High-impact, responsive web showcases featuring brutalist editorial typography, smooth scrolling motion, and interactive case study cards.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">UI/UX Design Systems:</strong> End-to-end interface architecture in Figma, including wireframing, component libraries, responsive grids, and interactive prototypes.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Graphic Design & Digital Art:</strong> Promotional media, marketing banners, social media assets, and digital art with high aesthetic appeal.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Brand Identity & Strategy:</strong> Distinctive visual identities, logo marks, typography pairings, color systems, and comprehensive brand guidelines.</span>
-                  </li>
-                </ul>
               </div>
             </div>
 
