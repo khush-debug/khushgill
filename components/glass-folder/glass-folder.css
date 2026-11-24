@@ -529,3 +529,14 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 .folder-carousel-slide:hover {
   transform: translateY(-2px);
 }
+
+/* Pause transitions/animations & free GPU layers when folder or section is off-screen */
+.gf-root[data-offscreen="true"],
+.gf-root[data-offscreen="true"] *,
+.is-offscreen .gf-root,
+.is-offscreen .gf-root *,
+.is-page-hidden .gf-root,
+.is-page-hidden .gf-root * {
+  animation-play-state: paused !important;
+  will-change: auto !important;
+}

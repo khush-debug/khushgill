@@ -517,3 +517,25 @@ body {
   background-color: #000000 !important;
   color: #ffffff;
 }
+
+/* --- Viewport & Tab-Visibility Animation Pausing --- */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after,
+.is-page-hidden *,
+.is-page-hidden *::before,
+.is-page-hidden *::after {
+  animation-play-state: paused !important;
+}
+
+.is-offscreen .marquee-selected-works__track,
+.is-offscreen .animate-spin-slow,
+.is-offscreen .services-card-3d,
+.is-offscreen .gf-root,
+.is-offscreen .gf-sheet,
+.is-page-hidden .marquee-selected-works__track,
+.is-page-hidden .animate-spin-slow,
+.is-page-hidden .services-card-3d {
+  will-change: auto !important;
+}

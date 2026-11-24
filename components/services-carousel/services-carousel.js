@@ -21,12 +21,24 @@
       this.startX = 0;
       this.currentX = 0;
       this.isDragging = false;
+      this.isVisible = true;
       this.dragThreshold = 45;
 
       this.init();
     }
 
     init() {
+      // Pause carousel listeners/layers when scrolled off-screen
+      if (typeof IntersectionObserver !== 'undefined') {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            this.isVisible = entry.isIntersecting;
+            this.wrapper.classList.toggle('is-offscreen', !entry.isIntersecting);
+          });
+        }, { rootMargin: '100px 0px', threshold: 0 });
+        io.observe(this.wrapper);
+      }
+
       // Build dots
       if (this.dotsContainer) {
         this.dotsContainer.innerHTML = '';
@@ -66,12 +78,15 @@
       window.addEventListener('touchmove', (e) => this.dragMove(e), { passive: true });
       window.addEventListener('touchend', () => this.dragEnd());
 
-      window.addEventListener('resize', () => this.updateLayout());
+      window.addEventListener('resize', () => {
+        if (this.isVisible) this.updateLayout();
+      }, { passive: true });
 
       this.updateLayout();
     }
 
     dragStart(e) {
+      if (!this.isVisible) return;
       this.isDragging = true;
       this.startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
       this.currentX = this.startX;

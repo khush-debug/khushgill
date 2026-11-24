@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Options: duration: 1.2, wheelMultiplier: 0.9, syncTouch: true, expoOut easing
   // ==========================================
   let lenis = null;
+  let lenisRafId = null;
   try {
     if (typeof Lenis !== 'undefined') {
       window.lenis = lenis = new Lenis({
@@ -24,11 +25,36 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRaf: false
       });
 
-      function raf(time) {
+      const raf = (time) => {
+        if (document.hidden) {
+          lenisRafId = null;
+          return;
+        }
         lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+        lenisRafId = requestAnimationFrame(raf);
+      };
+
+      const startLenisRaf = () => {
+        if (lenisRafId === null && !document.hidden) {
+          lenisRafId = requestAnimationFrame(raf);
+        }
+      };
+
+      const stopLenisRaf = () => {
+        if (lenisRafId !== null) {
+          cancelAnimationFrame(lenisRafId);
+          lenisRafId = null;
+        }
+      };
+
+      startLenisRaf();
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopLenisRaf();
+        } else {
+          startLenisRaf();
+        }
+      });
     }
   } catch (e) {
     console.warn('Lenis failed to load, falling back to native scroll:', e);
@@ -592,7 +618,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
 
+      let isHeroVisible = true;
+      let isPageVisible = !document.hidden;
+      let portalRafId = null;
+      let elapsed = 0;
+      let lastFrameTime = performance.now();
+
       function handleResize() {
+        if (!isHeroVisible) return;
         const w = hero.clientWidth;
         const h = hero.clientHeight;
         if (w > 0 && h > 0) {
@@ -605,6 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let targetMouse = new THREE.Vector2(0.5, 0.5);
       window.addEventListener('mousemove', (e) => {
+        if (!isHeroVisible || !isPageVisible) return;
         const rect = hero.getBoundingClientRect();
         if (rect.bottom > 0 && rect.top < window.innerHeight) {
           targetMouse.x = (e.clientX - rect.left) / rect.width;
@@ -612,19 +646,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, { passive: true });
 
-      const clock = new THREE.Clock();
-      function renderLoop() {
-        requestAnimationFrame(renderLoop);
-        material.uniforms.u_time.value = clock.getElapsedTime() * 0.85;
+      function renderLoop(now) {
+        if (!isHeroVisible || !isPageVisible) {
+          portalRafId = null;
+          return;
+        }
+        const dt = Math.min((now - lastFrameTime) / 1000, 0.1);
+        lastFrameTime = now;
+        elapsed += dt;
+
+        material.uniforms.u_time.value = elapsed * 0.85;
         material.uniforms.u_mouse.value.lerp(targetMouse, 0.035);
         renderer.render(scene, camera);
+        portalRafId = requestAnimationFrame(renderLoop);
       }
-      renderLoop();
+
+      function syncPortalPlayback() {
+        if (isHeroVisible && isPageVisible) {
+          if (portalRafId === null) {
+            handleResize();
+            lastFrameTime = performance.now();
+            portalRafId = requestAnimationFrame(renderLoop);
+          }
+        } else if (portalRafId !== null) {
+          cancelAnimationFrame(portalRafId);
+          portalRafId = null;
+        }
+      }
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        const heroObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            isHeroVisible = entry.isIntersecting;
+            syncPortalPlayback();
+          });
+        }, { rootMargin: '80px 0px', threshold: 0 });
+        heroObserver.observe(hero);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        isPageVisible = !document.hidden;
+        syncPortalPlayback();
+      });
+
+      // Render initial frame and start only if visible
+      renderer.render(scene, camera);
+      syncPortalPlayback();
     } catch (err) {
       console.warn('Portal WebGL initialization skipped:', err);
     }
   }
   initPortalField();
+
+  // ==========================================
+  // 7B. VIEWPORT ANIMATION PAUSE CONTROLLER
+  // Pauses CSS keyframe animations and frees GPU layers when sections scroll off-screen or tab is hidden
+  // ==========================================
+  function initViewportAnimationManager() {
+    const syncPageVisibility = () => {
+      document.documentElement.classList.toggle('is-page-hidden', document.hidden);
+    };
+    syncPageVisibility();
+    document.addEventListener('visibilitychange', syncPageVisibility);
+
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    const targets = document.querySelectorAll('section, footer, .marquee-selected-works, .cta-stamp-btn, [class*="animate-"]');
+    const animObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+    }, { rootMargin: '80px 0px', threshold: 0 });
+
+    targets.forEach((el) => animObserver.observe(el));
+  }
+  initViewportAnimationManager();
 
   // ==========================================
   // 8. FOOTER HEAD-TO-TOE ANIMATION (KHUSHMAN)
@@ -640,6 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const footerMetaGrid = document.getElementById('footer-meta-grid');
 
   let updateFooterTransform = null;
+  let isFooterVisible = false;
   if (footerRevealWrapper && footerParallax && footerBigNameBox) {
     updateFooterTransform = (m) => {
       const rect = footerRevealWrapper.getBoundingClientRect();
@@ -672,7 +769,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    if (typeof IntersectionObserver !== 'undefined') {
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isFooterVisible = entry.isIntersecting;
+          if (isFooterVisible) {
+            const sy = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
+            updateFooterTransform(sy);
+          }
+        });
+      }, { rootMargin: '120px 0px', threshold: 0 });
+      footerObserver.observe(footerRevealWrapper);
+    } else {
+      isFooterVisible = true;
+    }
+
     window.addEventListener('resize', () => {
+      if (!isFooterVisible) return;
       const sy = (lenis && typeof lenis.scroll === 'number') ? lenis.scroll : window.scrollY;
       updateFooterTransform(sy);
     }, { passive: true });
@@ -692,10 +805,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Footer animation scroll driver
+  // Footer animation scroll driver (runs only when footer is in view)
   if (typeof updateFooterTransform === 'function') {
     let footerTicking = false;
     const handleFooterScroll = (customY) => {
+      if (!isFooterVisible || document.hidden) return;
       if (!footerTicking) {
         requestAnimationFrame(() => {
           const sy = typeof customY === 'number' ? customY : window.scrollY;

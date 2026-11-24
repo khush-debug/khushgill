@@ -364,19 +364,8 @@
       updateSize();
       window.addEventListener('resize', updateSize, { passive: true });
 
-      // 2. Entrance Observer
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const delay = parseInt(folder.dataset.appearDelay || '0', 10);
-            setTimeout(() => folder.setAttribute('data-entered', 'true'), delay);
-            io.unobserve(folder);
-          }
-        });
-      }, { threshold: 0.15 });
-      io.observe(folder);
-
-      // 3. Pointer Tracking
+      // 2. Entrance & Viewport Visibility Observer (Pause off-screen folders to reduce lag)
+      let isFolderVisible = true;
       let raf = 0;
       let px = 0;
       let py = 0;
@@ -386,8 +375,32 @@
         folder.style.setProperty('--gf-py', py.toFixed(3));
       };
 
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            isFolderVisible = true;
+            folder.removeAttribute('data-offscreen');
+            if (!folder.hasAttribute('data-entered')) {
+              const delay = parseInt(folder.dataset.appearDelay || '0', 10);
+              setTimeout(() => folder.setAttribute('data-entered', 'true'), delay);
+            }
+          } else {
+            isFolderVisible = false;
+            folder.setAttribute('data-offscreen', 'true');
+            px = 0;
+            py = 0;
+            if (raf) {
+              cancelAnimationFrame(raf);
+              raf = 0;
+            }
+          }
+        });
+      }, { rootMargin: '100px 0px', threshold: 0 });
+      io.observe(folder);
+
+      // 3. Pointer Tracking (Paused when off-screen or tab hidden)
       folder.addEventListener('pointermove', (e) => {
-        if (e.pointerType === 'touch') return;
+        if (e.pointerType === 'touch' || !isFolderVisible || document.hidden) return;
         const r = folder.getBoundingClientRect();
         px = ((e.clientX - r.left) / r.width) * 2 - 1;
         py = ((e.clientY - r.top) / r.height) * 2 - 1;
@@ -395,6 +408,7 @@
       });
 
       folder.addEventListener('pointerleave', () => {
+        if (!isFolderVisible) return;
         px = 0;
         py = 0;
         if (!raf) raf = requestAnimationFrame(write);
@@ -490,12 +504,26 @@
       this.startX = 0;
       this.scrollLeft = 0;
       this.hasMoved = false;
+      this.isVisible = true;
       this.rafId = null;
 
       this.init();
     }
 
     init() {
+      if (typeof IntersectionObserver !== 'undefined') {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            this.isVisible = entry.isIntersecting;
+            if (!this.isVisible && this.rafId) {
+              cancelAnimationFrame(this.rafId);
+              this.rafId = null;
+            }
+          });
+        }, { rootMargin: '100px 0px', threshold: 0 });
+        io.observe(this.viewport);
+      }
+
       this.bindEvents();
       this.updateControls();
     }
@@ -625,8 +653,9 @@
         }
       });
 
-      // Keyboard arrow keys
+      // Keyboard arrow keys (only when carousel is visible)
       window.addEventListener('keydown', (e) => {
+        if (!this.isVisible || document.hidden) return;
         const rect = this.viewport.getBoundingClientRect();
         const inView = rect.top < window.innerHeight && rect.bottom > 0;
         if (!inView) return;
@@ -638,7 +667,9 @@
         }
       });
 
-      window.addEventListener('resize', () => this.updateControls(), { passive: true });
+      window.addEventListener('resize', () => {
+        if (this.isVisible) this.updateControls();
+      }, { passive: true });
     }
   }
 
