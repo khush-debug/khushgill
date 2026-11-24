@@ -56,8 +56,7 @@
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
   <!-- Modular Component Styles -->
-  <link rel="stylesheet" href="components/scroll-stack/scroll-stack.css">
-  <link rel="stylesheet" href="components/kinetic-wheel/kinetic-wheel.css">
+  <link rel="stylesheet" href="components/work-timeline/work-timeline.css">
 </head>
 
 <body class="bg-black text-white font-sans antialiased selection:bg-white selection:text-black min-h-screen relative">
@@ -431,252 +430,306 @@
         </div>
       </div>
 
-      <!-- Perspective Container for 3D Scroll Physics -->
-      <div id="scroll-stack-inner" class="scroll-stack-inner px-4 sm:px-6 md:px-12 lg:px-16 w-full" style="transform-style: preserve-3d;">
-        <!-- Void Container (3D fly-away target) -->
-        <div id="void-container" class="void-container relative w-full flex flex-col items-center justify-center max-w-6xl mx-auto" style="will-change: transform, opacity; transform-style: preserve-3d;">
-
-        <!-- CARD 01: Lally Computers -->
-        <div id="deck-card-1" class="star-border-container scroll-stack-card w-full cursor-pointer" style="z-index: 1;">
-          <div class="border-gradient-full border-gradient-cyan"></div>
-          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
-            
-            <!-- Card Top Row -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
-              <div class="flex items-center gap-4 sm:gap-6">
-                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">01</span>
-                <div>
-                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Lally Computers</h3>
-                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">A business website presenting products and services through a clear, accessible interface.</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <button data-open-case-study="supreme" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
-                  Case Study
-                </button>
-                <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn-star">
-                  <div class="border-gradient-full border-gradient-gold"></div>
-                  <div class="inner-content">
-                    <span>Live Website</span>
-                    <span>↗</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Card Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div class="lg:col-span-7 space-y-4">
-                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
-                  A business website presenting products and services through a clear, accessible interface. Built with responsive multi-device navigation, structured catalog inquiries, and automated cloud infrastructure.
-                </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Next.js / React</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Vercel</span>
-                </div>
-              </div>
-              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
-                <div class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">● Active Production Website</div>
-                <div class="text-2xl font-black text-white tracking-tight">Accessible Platform</div>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Presenting products and services through a clear, accessible interface with instant load speeds and seamless navigation.
-                </p>
-              </div>
-            </div>
-
+      <!-- Main Container: Sticky Narrative Sidebar on Left, Illuminated Timeline on Right -->
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pb-16 md:pb-24">
+        
+        <!-- Sticky Sidebar (Left Column) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-32 flex flex-col gap-6 z-10">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-emerald-400">
+              02 / Selected Works
+            </span>
           </div>
-        </div>
+          
+          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.08] text-white">
+            Crafted with purpose, engineered with precision.
+          </h2>
+          
+          <p class="font-sans text-sm md:text-base text-zinc-400 leading-relaxed max-w-sm">
+            A curated selection of digital products, responsive web platforms, and brand systems built for real-world performance.
+          </p>
 
-        <!-- CARD 02: Personal Portfolio -->
-        <div id="deck-card-2" class="star-border-container scroll-stack-card w-full cursor-pointer" style="z-index: 2;">
-          <div class="border-gradient-full border-gradient-gold"></div>
-          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+          <!-- Interactive Timeline Index / Fast Nav -->
+          <nav class="hidden lg:flex flex-col gap-2.5 pt-6 border-t border-white/10 mt-2" aria-label="Projects Navigation">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Index &amp; Stages</span>
             
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
-              <div class="flex items-center gap-4 sm:gap-6">
-                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">02</span>
-                <div>
-                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Personal Portfolio</h3>
-                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">A collection of my work across web development, design, and branding.</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <button data-open-case-study="branding" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
-                  Case Study
-                </button>
-                <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="live-btn-star">
-                  <div class="border-gradient-full border-gradient-cyan"></div>
-                  <div class="inner-content">
-                    <span>Portfolio Source</span>
-                    <span>↗</span>
-                  </div>
-                </a>
-              </div>
+            <button data-nav-target="0" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-all text-sm font-mono text-zinc-400 hover:text-white">
+              <span class="flex items-center gap-3">
+                <span class="text-xs text-zinc-600 group-hover:text-emerald-400 transition-colors font-bold">01</span>
+                <span class="font-sans font-semibold text-zinc-300 group-hover:text-white transition-colors">Lally Computers</span>
+              </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-emerald-400 transition-all nav-dot"></span>
+            </button>
+
+            <button data-nav-target="1" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-all text-sm font-mono text-zinc-400 hover:text-white">
+              <span class="flex items-center gap-3">
+                <span class="text-xs text-zinc-600 group-hover:text-emerald-400 transition-colors font-bold">02</span>
+                <span class="font-sans font-semibold text-zinc-300 group-hover:text-white transition-colors">Personal Portfolio</span>
+              </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-emerald-400 transition-all nav-dot"></span>
+            </button>
+
+            <button data-nav-target="2" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-all text-sm font-mono text-zinc-400 hover:text-white">
+              <span class="flex items-center gap-3">
+                <span class="text-xs text-zinc-600 group-hover:text-emerald-400 transition-colors font-bold">03</span>
+                <span class="font-sans font-semibold text-zinc-300 group-hover:text-white transition-colors">Brand Identity &amp; Strategy</span>
+              </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-emerald-400 transition-all nav-dot"></span>
+            </button>
+
+            <button data-nav-target="3" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-white/5 transition-all text-sm font-mono text-zinc-400 hover:text-white">
+              <span class="flex items-center gap-3">
+                <span class="text-xs text-zinc-600 group-hover:text-emerald-400 transition-colors font-bold">04</span>
+                <span class="font-sans font-semibold text-zinc-300 group-hover:text-white transition-colors">Creative Collaboration</span>
+              </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-emerald-400 transition-all nav-dot"></span>
+            </button>
+          </nav>
+        </aside>
+
+        <!-- Timeline Column (Right Column) -->
+        <div id="work-timeline" class="lg:col-span-8 relative pl-6 sm:pl-10 md:pl-12 flex flex-col gap-14 sm:gap-20 md:gap-24">
+          
+          <!-- Continuous Vertical Background Track -->
+          <div class="work-timeline-track absolute left-1 sm:left-2 md:left-3 top-8 bottom-12 w-[2px] rounded-full"></div>
+          
+          <!-- Continuous Vertical Dynamic Glowing Progress Fill -->
+          <div id="work-timeline-progress" class="work-timeline-progress absolute left-1 sm:left-2 md:left-3 top-8 w-[2px] bg-gradient-to-b from-emerald-400 via-teal-300 to-cyan-400 rounded-full" style="height: 0%; will-change: height;"></div>
+
+          <!-- CARD 01: Lally Computers -->
+          <div class="work-timeline-item relative" data-timeline-idx="0">
+            <!-- Node Indicator Dot on the Line -->
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-8 -translate-x-1/2 flex items-center justify-center">
+              <div class="timeline-node-dot"></div>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div class="lg:col-span-7 space-y-4">
-                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
-                  A high-performance portfolio showcasing thoughtful design, functional websites, and clear brand direction. Combines brutalist editorial aesthetics with smooth motion and tactile interactions.
-                </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Brand Strategy</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Three.js</span>
-                </div>
-              </div>
-              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
-                <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold">● Selected Work</div>
-                <div class="text-2xl font-black text-white tracking-tight">Design & Code</div>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Bringing early concepts into polished work with clean layouts, smooth interactions, and attention to detail.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- CARD 03: Brand Identity & Strategy -->
-        <div id="deck-card-3" class="star-border-container scroll-stack-card w-full cursor-pointer" style="z-index: 3;">
-          <div class="border-gradient-full border-gradient-emerald"></div>
-          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
             
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
-              <div class="flex items-center gap-4 sm:gap-6">
-                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">03</span>
-                <div>
-                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Brand Identity & Strategy</h3>
-                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Develop visual identities and digital direction that reflect a business’s goals.</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <button data-open-case-study="ai" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
-                  Case Study
-                </button>
-                <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="live-btn-star">
-                  <div class="border-gradient-full border-gradient-gold"></div>
-                  <div class="inner-content">
-                    <span>Explore Work</span>
-                    <span>↗</span>
+            <div id="deck-card-1" class="star-border-container scroll-stack-card w-full cursor-pointer">
+              <div class="border-gradient-full border-gradient-cyan"></div>
+              <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+                
+                <!-- Card Top Row -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+                  <div class="flex items-center gap-4 sm:gap-6">
+                    <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">01</span>
+                    <div>
+                      <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Lally Computers</h3>
+                      <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">A business website presenting products and services through a clear, accessible interface.</p>
+                    </div>
                   </div>
-                </a>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div class="lg:col-span-7 space-y-4">
-                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
-                  Develop visual identities and digital direction that reflect a business’s goals. Shaping how brands look, feel, and connect with people to create digital experiences that serve a clear purpose.
-                </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Brand Strategy</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Visual Identity</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Digital Direction</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Design Systems</span>
+                  <div class="flex items-center gap-3">
+                    <button data-open-case-study="supreme" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                      Case Study
+                    </button>
+                    <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                      <div class="border-gradient-full border-gradient-gold"></div>
+                      <div class="inner-content">
+                        <span>Live Website</span>
+                        <span>↗</span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
-                <div class="text-[10px] font-mono uppercase tracking-widest text-indigo-400 font-bold">● Strategic Focus</div>
-                <div class="text-2xl font-black text-white tracking-tight">Distinctive Brands</div>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Developing visual identities and digital direction that reflect a business’s goals and serve a clear commercial purpose.
-                </p>
+
+                <!-- Card Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div class="lg:col-span-7 space-y-4">
+                    <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                      A business website presenting products and services through a clear, accessible interface. Built with responsive multi-device navigation, structured catalog inquiries, and automated cloud infrastructure.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Next.js / React</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Vercel</span>
+                    </div>
+                  </div>
+                  <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-bold">● Active Production Website</div>
+                    <div class="text-2xl font-black text-white tracking-tight">Accessible Platform</div>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                      Presenting products and services through a clear, accessible interface with instant load speeds and seamless navigation.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
-
           </div>
-        </div>
 
-        <!-- CARD 04: Creative Collaboration -->
-        <div id="deck-card-4" class="star-border-container scroll-stack-card w-full cursor-pointer" style="z-index: 4;">
-          <div class="border-gradient-full border-gradient-purple"></div>
-          <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+          <!-- CARD 02: Personal Portfolio -->
+          <div class="work-timeline-item relative" data-timeline-idx="1">
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-8 -translate-x-1/2 flex items-center justify-center">
+              <div class="timeline-node-dot"></div>
+            </div>
             
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
-              <div class="flex items-center gap-4 sm:gap-6">
-                <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">04</span>
-                <div>
-                  <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Creative Collaboration</h3>
-                  <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Work with businesses and creators to develop ideas and bring projects to completion.</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <button data-open-case-study="creative" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
-                  Case Study
-                </button>
-                <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="live-btn-star">
-                  <div class="border-gradient-full border-gradient-cyan"></div>
-                  <div class="inner-content">
-                    <span>Connect Studio</span>
-                    <span>↗</span>
+            <div id="deck-card-2" class="star-border-container scroll-stack-card w-full cursor-pointer">
+              <div class="border-gradient-full border-gradient-gold"></div>
+              <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+                  <div class="flex items-center gap-4 sm:gap-6">
+                    <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">02</span>
+                    <div>
+                      <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Personal Portfolio</h3>
+                      <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">A collection of my work across web development, design, and branding.</p>
+                    </div>
                   </div>
-                </a>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div class="lg:col-span-7 space-y-4">
-                <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
-                  Work with businesses and creators to develop ideas and bring projects to completion. Understand the purpose. Shape the experience. Build with care from initial concepts into polished work.
-                </p>
-                <div class="flex flex-wrap gap-2 pt-2">
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Collaboration</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
-                  <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Concept to Launch</span>
+                  <div class="flex items-center gap-3">
+                    <button data-open-case-study="branding" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                      Case Study
+                    </button>
+                    <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                      <div class="border-gradient-full border-gradient-cyan"></div>
+                      <div class="inner-content">
+                        <span>Portfolio Source</span>
+                        <span>↗</span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
-                <div class="text-[10px] font-mono uppercase tracking-widest text-purple-400 font-bold">● Creative Delivery</div>
-                <div class="text-2xl font-black text-white tracking-tight">Idea to Launch</div>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Working with businesses and creators to turn early concepts into polished work, built with care and precision.
-                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div class="lg:col-span-7 space-y-4">
+                    <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                      A high-performance portfolio showcasing thoughtful design, functional websites, and clear brand direction. Combines brutalist editorial aesthetics with smooth motion and tactile interactions.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Brand Strategy</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Three.js</span>
+                    </div>
+                  </div>
+                  <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-bold">● Selected Work</div>
+                    <div class="text-2xl font-black text-white tracking-tight">Design &amp; Code</div>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                      Bringing early concepts into polished work with clean layouts, smooth interactions, and attention to detail.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
-
           </div>
-        </div>
+
+          <!-- CARD 03: Brand Identity & Strategy -->
+          <div class="work-timeline-item relative" data-timeline-idx="2">
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-8 -translate-x-1/2 flex items-center justify-center">
+              <div class="timeline-node-dot"></div>
+            </div>
+            
+            <div id="deck-card-3" class="star-border-container scroll-stack-card w-full cursor-pointer">
+              <div class="border-gradient-full border-gradient-emerald"></div>
+              <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+                  <div class="flex items-center gap-4 sm:gap-6">
+                    <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">03</span>
+                    <div>
+                      <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Brand Identity &amp; Strategy</h3>
+                      <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Develop visual identities and digital direction that reflect a business’s goals.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <button data-open-case-study="ai" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                      Case Study
+                    </button>
+                    <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                      <div class="border-gradient-full border-gradient-gold"></div>
+                      <div class="inner-content">
+                        <span>Explore Work</span>
+                        <span>↗</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div class="lg:col-span-7 space-y-4">
+                    <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                      Develop visual identities and digital direction that reflect a business’s goals. Shaping how brands look, feel, and connect with people to create digital experiences that serve a clear purpose.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Brand Strategy</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Visual Identity</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Digital Direction</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Design Systems</span>
+                    </div>
+                  </div>
+                  <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-indigo-400 font-bold">● Strategic Focus</div>
+                    <div class="text-2xl font-black text-white tracking-tight">Distinctive Brands</div>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                      Developing visual identities and digital direction that reflect a business’s goals and serve a clear commercial purpose.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 04: Creative Collaboration -->
+          <div class="work-timeline-item relative" data-timeline-idx="3">
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-8 -translate-x-1/2 flex items-center justify-center">
+              <div class="timeline-node-dot"></div>
+            </div>
+            
+            <div id="deck-card-4" class="star-border-container scroll-stack-card w-full cursor-pointer">
+              <div class="border-gradient-full border-gradient-purple"></div>
+              <div class="inner-content p-6 sm:p-8 md:p-12 flex flex-col gap-8">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15">
+                  <div class="flex items-center gap-4 sm:gap-6">
+                    <span class="font-sans font-black text-5xl md:text-7xl text-white leading-none">04</span>
+                    <div>
+                      <h3 class="font-sans font-black text-lg md:text-2xl text-white uppercase tracking-tight">Creative Collaboration</h3>
+                      <p class="font-mono text-xs md:text-sm text-zinc-400 mt-0.5">Work with businesses and creators to develop ideas and bring projects to completion.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <button data-open-case-study="creative" class="text-xs font-mono font-semibold uppercase tracking-wider text-zinc-300 hover:text-white px-4 py-2 rounded-full border border-white/20 hover:border-white/50 transition-all">
+                      Case Study
+                    </button>
+                    <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="live-btn-star">
+                      <div class="border-gradient-full border-gradient-cyan"></div>
+                      <div class="inner-content">
+                        <span>Connect Studio</span>
+                        <span>↗</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div class="lg:col-span-7 space-y-4">
+                    <p class="font-sans text-base md:text-lg text-zinc-200 leading-relaxed font-normal">
+                      Work with businesses and creators to develop ideas and bring projects to completion. Understand the purpose. Shape the experience. Build with care from initial concepts into polished work.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2">
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Collaboration</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">UI/UX Design</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Frontend Dev</span>
+                      <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10">Concept to Launch</span>
+                    </div>
+                  </div>
+                  <div class="lg:col-span-5 bg-zinc-950 p-6 rounded-2xl border border-white/10 space-y-3">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-purple-400 font-bold">● Creative Delivery</div>
+                    <div class="text-2xl font-black text-white tracking-tight">Idea to Launch</div>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                      Working with businesses and creators to turn early concepts into polished work, built with care and precision.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
         </div>
 
-        <!-- Scroll Stack End spacer (provides 120vh of immersive scroll travel matching K = L * 1.2) -->
-        <div id="scroll-stack-end" class="scroll-stack-end pointer-events-none h-[120vh] hidden md:block"></div>
-      </div>
-
-      <!-- Kinetic Wheel Arc SVG (Exact Manan Head-to-Toe Sweeping Arc & Geometry) -->
-      <div id="kinetic-wheel" class="kinetic-wheel pointer-events-none" style="position: fixed; top: auto; bottom: -18vh; left: 0; width: 100vw; height: auto; z-index: 10; visibility: hidden; opacity: 0; will-change: transform, opacity;">
-        <div class="hidden md:block">
-          <svg viewBox="0 0 3000 1500" class="w-full h-auto" style="overflow: visible;">
-            <path id="arc-path" d="M 400,1500 A 1100,1100 0 0,1 2600,1500" fill="none" stroke="none" />
-            <text fill="#ffffff" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 800; font-size: 100px; text-transform: uppercase;">
-              <textPath href="#arc-path" startOffset="15%" text-anchor="middle">PLANNING</textPath>
-            </text>
-            <text fill="#ffffff" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 800; font-size: 48px; text-transform: uppercase;" dy="-16">
-              <textPath href="#arc-path" startOffset="27%" text-anchor="middle">●</textPath>
-            </text>
-            <text fill="#ffffff" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 800; font-size: 100px; text-transform: uppercase;">
-              <textPath href="#arc-path" startOffset="39%" text-anchor="middle">CREATION</textPath>
-            </text>
-            <text fill="#ffffff" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 800; font-size: 48px; text-transform: uppercase;" dy="-16">
-              <textPath href="#arc-path" startOffset="51%" text-anchor="middle">●</textPath>
-            </text>
-            <text fill="#ffffff" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 800; font-size: 100px; text-transform: uppercase;">
-              <textPath href="#arc-path" startOffset="63%" text-anchor="middle">LAUNCH</textPath>
-            </text>
-          </svg>
-        </div>
-        <!-- Mobile circular indicator -->
-        <div class="block md:hidden w-full h-full flex items-center justify-center">
-          <svg viewBox="0 0 200 200" class="w-64 h-64">
-            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2" />
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="440" stroke-dashoffset="100" stroke-linecap="round" />
-          </svg>
-        </div>
       </div>
 
     </section>
@@ -1017,8 +1070,7 @@
   <!-- Lenis Smooth Scrolling Engine (Manan Rajkhowa Exact Physics) -->
   <script src="js/lenis.min.js"></script>
   <!-- Modular Component Controllers -->
-  <script src="components/scroll-stack/scroll-stack.js"></script>
-  <script src="components/kinetic-wheel/kinetic-wheel.js"></script>
+  <script src="components/work-timeline/work-timeline.js"></script>
   <!-- Main JavaScript Controller -->
   <script src="js/main.js"></script>
 </body>
