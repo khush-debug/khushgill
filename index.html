@@ -66,6 +66,7 @@
   <link rel="stylesheet" href="components/work-timeline/work-timeline.css">
   <link rel="stylesheet" href="components/services-carousel/services-carousel.css">
   <link rel="stylesheet" href="components/faq/faq.css">
+  <link rel="stylesheet" href="components/glass-folder/glass-folder.css">
 </head>
 
 <body class="bg-[#FAF9F6] text-[#202522] font-sans antialiased selection:bg-[#176B5B] selection:text-white min-h-screen relative">
@@ -539,234 +540,546 @@
           <!-- Continuous Vertical Dynamic Glowing Progress Fill -->
           <div id="work-timeline-progress" class="work-timeline-progress absolute left-1 sm:left-2 md:left-3 top-8 w-[2px] rounded-full" style="height: 0%; will-change: height;"></div>
 
-          <!-- CARD 01: Supreme Infosys -->
+          <!-- CARD 01: Supreme Infosys (Glass Folder) -->
           <div class="work-timeline-item relative" data-timeline-idx="0">
             <!-- Node Indicator Dot on the Line -->
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-6 -translate-x-1/2 flex items-center justify-center">
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
               <div class="timeline-node-dot"></div>
             </div>
-            
-            <div id="deck-card-1" class="star-border-container scroll-stack-card w-full cursor-pointer shadow-sm">
-              <div class="inner-content p-5 sm:p-6 md:p-7 flex flex-col gap-4 sm:gap-5">
-                
-                <!-- Card Top Row -->
-                <div class="flex items-center justify-between gap-4 pb-4 border-b border-[#DADDD7]">
-                  <div class="flex items-center gap-3 sm:gap-4">
-                    <span class="font-sans font-black text-3xl sm:text-4xl text-[#176B5B] leading-none">01</span>
-                    <h3 class="font-sans font-black text-base sm:text-xl text-[#202522] uppercase tracking-tight">Supreme Infosys</h3>
-                  </div>
-                  <div class="flex items-center gap-2 sm:gap-3">
-                    <button data-open-case-study="supreme" class="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3.5 py-1.5 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:border-[#176B5B] transition-all">
-                      Case Study
-                    </button>
-                    <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="live-btn-star text-[11px] sm:text-xs py-1.5 px-3.5">
-                      <div class="inner-content flex items-center gap-1.5">
-                        <span>Live Website</span>
-                        <span>↗</span>
+
+            <div class="gf-container">
+              <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left" data-width="480">
+                <div class="gf-stage">
+                  <div class="gf-tilt">
+                    <div class="gf-shadow" aria-hidden="true"></div>
+
+                    <!-- Back panel with liquid artwork canvas -->
+                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
+                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
+                      <div class="gf-back-sheen"></div>
+                    </div>
+                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
+                    </svg>
+
+                    <!-- Frosted glass front panel, hinged at bottom edge -->
+                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                      <div class="gf-tint" aria-hidden="true"></div>
+                      <div class="gf-spec" aria-hidden="true"></div>
+                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="gf-rim-supreme" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-supreme)"></path>
+                      </svg>
+                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Supreme Infosys, 4 items"></button>
+                      <div class="gf-label">
+                        <span class="gf-title">01 Supreme Infosys</span>
+                        <span class="gf-meta">Accessible Platform · 4 Files</span>
                       </div>
-                    </a>
+                    </div>
+
+                    <!-- Files inside: fanning out when open -->
+                    <div class="gf-files" role="list" aria-label="Supreme Infosys files" inert>
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.2px; --gf-jr: -1.8deg; z-index: 1;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Product Showcase</span>
+                            <span class="gf-sheet-meta">E-Commerce</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>A business website showcasing computers, products, and services.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Hardware</span>
+                              <span class="gf-badge-chip">Retail</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.8px; --gf-jr: 0.9deg; z-index: 2;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Catalog Specs</span>
+                            <span class="gf-sheet-meta">Architecture</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Organized product categories and clear specifications.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Next.js</span>
+                              <span class="gf-badge-chip">React</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.5px; --gf-jr: -0.7deg; z-index: 3;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Responsive Platform</span>
+                            <span class="gf-sheet-meta">Multi-Device</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Easy browsing across mobile, tablet, and desktop.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Tailwind CSS</span>
+                              <span class="gf-badge-chip">Vercel</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.6deg; z-index: 4;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Launch &amp; Contact</span>
+                            <span class="gf-sheet-meta">Live Production</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Simple ways for customers to contact the business.</p>
+                            <div class="flex items-center gap-2 pt-2">
+                              <button type="button" data-open-case-study="supreme" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                Case Study
+                              </button>
+                              <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                <span>Live Site</span>
+                                <span>↗</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action Key: More Options (···) -->
+                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Supreme Infosys" aria-haspopup="menu" aria-expanded="false">
+                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                      </svg>
+                    </button>
+
+                    <!-- Options Dropdown Menu -->
+                    <div role="menu" aria-label="Supreme Infosys options" class="gf-menu">
+                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
+                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="supreme">View Case Study</button>
+                      <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" role="menuitem" class="gf-menu-item">Live Website ↗</a>
+                    </div>
                   </div>
                 </div>
-
-                <!-- Point to Point Content -->
-                <ul class="space-y-2 text-xs sm:text-sm text-[#595F5B] leading-relaxed">
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>A business website showcasing computers, products, and services.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Organized product categories and clear specifications.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Easy browsing across mobile, tablet, and desktop.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Simple ways for customers to contact the business.</span>
-                  </li>
-                </ul>
-
-                <!-- Tech Badges -->
-                <div class="flex flex-wrap gap-2 pt-1 border-t border-[#DADDD7]/60">
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Next.js</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">React</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Tailwind CSS</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Vercel</span>
-                </div>
-
               </div>
             </div>
           </div>
 
-          <!-- CARD 02: Personal Portfolio -->
+          <!-- CARD 02: Personal Portfolio (Glass Folder) -->
           <div class="work-timeline-item relative" data-timeline-idx="1">
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-6 -translate-x-1/2 flex items-center justify-center">
+            <!-- Node Indicator Dot on the Line -->
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
               <div class="timeline-node-dot"></div>
             </div>
-            
-            <div id="deck-card-2" class="star-border-container scroll-stack-card w-full cursor-pointer shadow-sm">
-              <div class="inner-content p-5 sm:p-6 md:p-7 flex flex-col gap-4 sm:gap-5">
-                
-                <div class="flex items-center justify-between gap-4 pb-4 border-b border-[#DADDD7]">
-                  <div class="flex items-center gap-3 sm:gap-4">
-                    <span class="font-sans font-black text-3xl sm:text-4xl text-[#176B5B] leading-none">02</span>
-                    <h3 class="font-sans font-black text-base sm:text-xl text-[#202522] uppercase tracking-tight">Personal Portfolio</h3>
-                  </div>
-                  <div class="flex items-center gap-2 sm:gap-3">
-                    <button data-open-case-study="branding" class="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3.5 py-1.5 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:border-[#176B5B] transition-all">
-                      Case Study
-                    </button>
-                    <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="live-btn-star text-[11px] sm:text-xs py-1.5 px-3.5">
-                      <div class="inner-content flex items-center gap-1.5">
-                        <span>Portfolio Source</span>
-                        <span>↗</span>
+
+            <div class="gf-container">
+              <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left" data-width="480">
+                <div class="gf-stage">
+                  <div class="gf-tilt">
+                    <div class="gf-shadow" aria-hidden="true"></div>
+
+                    <!-- Back panel with liquid artwork canvas -->
+                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
+                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
+                      <div class="gf-back-sheen"></div>
+                    </div>
+                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
+                    </svg>
+
+                    <!-- Frosted glass front panel, hinged at bottom edge -->
+                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                      <div class="gf-tint" aria-hidden="true"></div>
+                      <div class="gf-spec" aria-hidden="true"></div>
+                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="gf-rim-portfolio" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-portfolio)"></path>
+                      </svg>
+                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Personal Portfolio, 4 items"></button>
+                      <div class="gf-label">
+                        <span class="gf-title">02 Personal Portfolio</span>
+                        <span class="gf-meta">Design &amp; Code · 4 Files</span>
                       </div>
-                    </a>
+                    </div>
+
+                    <!-- Files inside: fanning out when open -->
+                    <div class="gf-files" role="list" aria-label="Personal Portfolio files" inert>
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.9px; --gf-jr: -1.5deg; z-index: 1;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Design &amp; Work</span>
+                            <span class="gf-sheet-meta">Showcase</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>A collection of my website, design, and branding work.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Editorial</span>
+                              <span class="gf-badge-chip">Brutalism</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 1.2px; --gf-jr: 0.8deg; z-index: 2;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Summaries &amp; Demos</span>
+                            <span class="gf-sheet-meta">Case Studies</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Clear project summaries and interactive live examples.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Next.js</span>
+                              <span class="gf-badge-chip">Tailwind</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.0px; --gf-jr: -0.9deg; z-index: 3;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Thoughtful Motion</span>
+                            <span class="gf-sheet-meta">Interactions</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Clean layouts with thoughtful animations and subtle movement.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Three.js</span>
+                              <span class="gf-badge-chip">Lenis</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 0.8px; --gf-jr: 1.4deg; z-index: 4;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Skills &amp; Source</span>
+                            <span class="gf-sheet-meta">Production Build</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>An introduction to my skills and creative approach.</p>
+                            <div class="flex items-center gap-2 pt-2">
+                              <button type="button" data-open-case-study="portfolio" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                Case Study
+                              </button>
+                              <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                <span>Source</span>
+                                <span>↗</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action Key: More Options (···) -->
+                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Personal Portfolio" aria-haspopup="menu" aria-expanded="false">
+                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                      </svg>
+                    </button>
+
+                    <!-- Options Dropdown Menu -->
+                    <div role="menu" aria-label="Personal Portfolio options" class="gf-menu">
+                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
+                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="portfolio">View Case Study</button>
+                      <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" role="menuitem" class="gf-menu-item">View Source ↗</a>
+                    </div>
                   </div>
                 </div>
-
-                <ul class="space-y-2 text-xs sm:text-sm text-[#595F5B] leading-relaxed">
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>A collection of my website, design, and branding work.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Clear project summaries and examples.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Clean layouts with thoughtful animations.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>An introduction to my skills and creative approach.</span>
-                  </li>
-                </ul>
-
-                <div class="flex flex-wrap gap-2 pt-1 border-t border-[#DADDD7]/60">
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Website Design</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Frontend Dev</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Branding</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Animations</span>
-                </div>
-
               </div>
             </div>
           </div>
 
-          <!-- CARD 03: Brand Identity & Strategy -->
+          <!-- CARD 03: Brand Identity & Strategy (Glass Folder) -->
           <div class="work-timeline-item relative" data-timeline-idx="2">
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-6 -translate-x-1/2 flex items-center justify-center">
+            <!-- Node Indicator Dot on the Line -->
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
               <div class="timeline-node-dot"></div>
             </div>
-            
-            <div id="deck-card-3" class="star-border-container scroll-stack-card w-full cursor-pointer shadow-sm">
-              <div class="inner-content p-5 sm:p-6 md:p-7 flex flex-col gap-4 sm:gap-5">
-                
-                <div class="flex items-center justify-between gap-4 pb-4 border-b border-[#DADDD7]">
-                  <div class="flex items-center gap-3 sm:gap-4">
-                    <span class="font-sans font-black text-3xl sm:text-4xl text-[#176B5B] leading-none">03</span>
-                    <h3 class="font-sans font-black text-base sm:text-xl text-[#202522] uppercase tracking-tight">Brand Identity &amp; Strategy</h3>
-                  </div>
-                  <div class="flex items-center gap-2 sm:gap-3">
-                    <button data-open-case-study="ai" class="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3.5 py-1.5 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:border-[#176B5B] transition-all">
-                      Case Study
-                    </button>
-                    <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="live-btn-star text-[11px] sm:text-xs py-1.5 px-3.5">
-                      <div class="inner-content flex items-center gap-1.5">
-                        <span>Explore Work</span>
-                        <span>↗</span>
+
+            <div class="gf-container">
+              <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left" data-width="480">
+                <div class="gf-stage">
+                  <div class="gf-tilt">
+                    <div class="gf-shadow" aria-hidden="true"></div>
+
+                    <!-- Back panel with liquid artwork canvas -->
+                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
+                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
+                      <div class="gf-back-sheen"></div>
+                    </div>
+                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
+                    </svg>
+
+                    <!-- Frosted glass front panel, hinged at bottom edge -->
+                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                      <div class="gf-tint" aria-hidden="true"></div>
+                      <div class="gf-spec" aria-hidden="true"></div>
+                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="gf-rim-brand" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-brand)"></path>
+                      </svg>
+                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Brand Identity & Strategy, 4 items"></button>
+                      <div class="gf-label">
+                        <span class="gf-title">03 Brand Identity</span>
+                        <span class="gf-meta">Visual Systems · 4 Files</span>
                       </div>
-                    </a>
+                    </div>
+
+                    <!-- Files inside: fanning out when open -->
+                    <div class="gf-files" role="list" aria-label="Brand Identity files" inert>
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.1px; --gf-jr: -1.7deg; z-index: 1;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Visual Style</span>
+                            <span class="gf-sheet-meta">Identity</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Create a visual style that reflects the business.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Brand Voice</span>
+                              <span class="gf-badge-chip">Positioning</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.7px; --gf-jr: 0.6deg; z-index: 2;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Colors &amp; Fonts</span>
+                            <span class="gf-sheet-meta">Design Tokens</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Choose consistent colours, fonts, and design elements.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Typography</span>
+                              <span class="gf-badge-chip">Color Palette</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.8px; --gf-jr: -0.8deg; z-index: 3;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Digital Presence</span>
+                            <span class="gf-sheet-meta">Online Strategy</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Give the brand a clear direction online.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Web Strategy</span>
+                              <span class="gf-badge-chip">Guidelines</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.0px; --gf-jr: 1.5deg; z-index: 4;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Communication</span>
+                            <span class="gf-sheet-meta">Audience Impact</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Help businesses communicate with their audience.</p>
+                            <div class="flex items-center gap-2 pt-2">
+                              <button type="button" data-open-case-study="brand" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                Case Study
+                              </button>
+                              <a href="#contact" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                <span>Inquire</span>
+                                <span>↗</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action Key: More Options (···) -->
+                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Brand Identity & Strategy" aria-haspopup="menu" aria-expanded="false">
+                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                      </svg>
+                    </button>
+
+                    <!-- Options Dropdown Menu -->
+                    <div role="menu" aria-label="Brand Identity options" class="gf-menu">
+                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
+                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="brand">View Case Study</button>
+                      <a href="#contact" role="menuitem" class="gf-menu-item">Discuss Project ↗</a>
+                    </div>
                   </div>
                 </div>
-
-                <ul class="space-y-2 text-xs sm:text-sm text-[#595F5B] leading-relaxed">
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Create a visual style that reflects the business.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Choose consistent colours, fonts, and design elements.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Give the brand a clear direction online.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Help businesses communicate with their audience.</span>
-                  </li>
-                </ul>
-
-                <div class="flex flex-wrap gap-2 pt-1 border-t border-[#DADDD7]/60">
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Brand Planning</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Visual Design</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Website Direction</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Design Guidelines</span>
-                </div>
-
               </div>
             </div>
           </div>
 
-          <!-- CARD 04: Creative Collaboration -->
+          <!-- CARD 04: Creative Collaboration (Glass Folder) -->
           <div class="work-timeline-item relative" data-timeline-idx="3">
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-6 -translate-x-1/2 flex items-center justify-center">
+            <!-- Node Indicator Dot on the Line -->
+            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
               <div class="timeline-node-dot"></div>
             </div>
-            
-            <div id="deck-card-4" class="star-border-container scroll-stack-card w-full cursor-pointer shadow-sm">
-              <div class="inner-content p-5 sm:p-6 md:p-7 flex flex-col gap-4 sm:gap-5">
-                
-                <div class="flex items-center justify-between gap-4 pb-4 border-b border-[#DADDD7]">
-                  <div class="flex items-center gap-3 sm:gap-4">
-                    <span class="font-sans font-black text-3xl sm:text-4xl text-[#176B5B] leading-none">04</span>
-                    <h3 class="font-sans font-black text-base sm:text-xl text-[#202522] uppercase tracking-tight">Creative Collaboration</h3>
-                  </div>
-                  <div class="flex items-center gap-2 sm:gap-3">
-                    <button data-open-case-study="creative" class="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3.5 py-1.5 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:border-[#176B5B] transition-all">
-                      Case Study
-                    </button>
-                    <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="live-btn-star text-[11px] sm:text-xs py-1.5 px-3.5">
-                      <div class="inner-content flex items-center gap-1.5">
-                        <span>Connect Studio</span>
-                        <span>↗</span>
+
+            <div class="gf-container">
+              <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left" data-width="480">
+                <div class="gf-stage">
+                  <div class="gf-tilt">
+                    <div class="gf-shadow" aria-hidden="true"></div>
+
+                    <!-- Back panel with liquid artwork canvas -->
+                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
+                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
+                      <div class="gf-back-sheen"></div>
+                    </div>
+                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
+                    </svg>
+
+                    <!-- Frosted glass front panel, hinged at bottom edge -->
+                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                      <div class="gf-tint" aria-hidden="true"></div>
+                      <div class="gf-spec" aria-hidden="true"></div>
+                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="gf-rim-collab" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-collab)"></path>
+                      </svg>
+                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Creative Collaboration, 4 items"></button>
+                      <div class="gf-label">
+                        <span class="gf-title">04 Collaboration</span>
+                        <span class="gf-meta">Idea to Launch · 4 Files</span>
                       </div>
-                    </a>
+                    </div>
+
+                    <!-- Files inside: fanning out when open -->
+                    <div class="gf-files" role="list" aria-label="Creative Collaboration files" inert>
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.8px; --gf-jr: -1.6deg; z-index: 1;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Idea Discovery</span>
+                            <span class="gf-sheet-meta">Partnership</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Work with businesses and creators to develop ideas.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Ideation</span>
+                              <span class="gf-badge-chip">Sprint Planning</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.9px; --gf-jr: 0.7deg; z-index: 2;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Design &amp; Build</span>
+                            <span class="gf-sheet-meta">Execution</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Plan the design and build together.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">UI/UX</span>
+                              <span class="gf-badge-chip">Fullstack</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.2px; --gf-jr: -1.0deg; z-index: 3;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Iterative Polish</span>
+                            <span class="gf-sheet-meta">Feedback Loops</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Refine the work through feedback.</p>
+                            <div class="flex gap-1.5 pt-1">
+                              <span class="gf-badge-chip">Sprint Demos</span>
+                              <span class="gf-badge-chip">QA</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div role="listitem" class="gf-sheet-slot">
+                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.5deg; z-index: 4;">
+                          <span class="gf-sheet-head">
+                            <span class="gf-sheet-name">Concept to Launch</span>
+                            <span class="gf-sheet-meta">Shipped Work</span>
+                          </span>
+                          <div class="gf-sheet-content-preview">
+                            <p>Bring projects from concept to launch.</p>
+                            <div class="flex items-center gap-2 pt-2">
+                              <button type="button" data-open-case-study="collab" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                Case Study
+                              </button>
+                              <a href="#contact" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                <span>Connect</span>
+                                <span>↗</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Action Key: More Options (···) -->
+                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Creative Collaboration" aria-haspopup="menu" aria-expanded="false">
+                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                      </svg>
+                    </button>
+
+                    <!-- Options Dropdown Menu -->
+                    <div role="menu" aria-label="Creative Collaboration options" class="gf-menu">
+                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
+                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="collab">View Case Study</button>
+                      <a href="#contact" role="menuitem" class="gf-menu-item">Inquire Studio ↗</a>
+                    </div>
                   </div>
                 </div>
-
-                <ul class="space-y-2 text-xs sm:text-sm text-[#595F5B] leading-relaxed">
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Work with businesses and creators to develop ideas.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Plan the design and build together.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Refine the work through feedback.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B] mt-1.5 shrink-0"></span>
-                    <span>Bring projects from concept to launch.</span>
-                  </li>
-                </ul>
-
-                <div class="flex flex-wrap gap-2 pt-1 border-t border-[#DADDD7]/60">
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Design &amp; Dev</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Brand Direction</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Creative Planning</span>
-                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">Launch</span>
-                </div>
-
               </div>
             </div>
           </div>
@@ -1354,6 +1667,7 @@
   <script src="components/work-timeline/work-timeline.js"></script>
   <script src="components/services-carousel/services-carousel.js"></script>
   <script src="components/faq/faq.js"></script>
+  <script src="components/glass-folder/glass-folder.js"></script>
   <!-- Main JavaScript Controller -->
   <script src="js/main.js"></script>
 </body>
