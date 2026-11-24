@@ -271,12 +271,12 @@ document.addEventListener('DOMContentLoaded', () => {
       chips: ['Website Design & Development', 'Branding', 'Interactive Animations']
     },
     ai: {
-      title: 'Brand Identity & Strategy',
+      title: 'Slyphe — Brand Identity & Strategy',
       subtitle: 'Help businesses build a clear and recognizable identity.',
       badge: '● Brand Strategy',
       date: '2026',
-      link: 'https://github.com/khush-debug',
-      linkText: 'Explore Work ↗',
+      link: 'https://celestia.vercel.app/',
+      linkText: 'Visit Slyphe Live ↗',
       body: `
         <p><strong>Overview:</strong> Help businesses build a clear and recognizable identity.</p>
         <p class="pt-2"><strong>Strategic Approach:</strong></p>
