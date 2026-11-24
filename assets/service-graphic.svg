@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="grad-graphic" cx="45%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#9C36B5" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#E8590C" stop-opacity="0.85"/>
+      <stop offset="70%" stop-color="#202522" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#121513" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="prism-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF922B" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#FA5252" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#BE4BDB" stop-opacity="0.85"/>
+    </linearGradient>
+    <filter id="blur-graphic" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#grad-graphic)"/>
+  <!-- Ambient light blobs -->
+  <circle cx="280" cy="150" r="110" fill="#FFA94D" opacity="0.45" filter="url(#blur-graphic)"/>
+  <circle cx="130" cy="260" r="95" fill="#BE4BDB" opacity="0.4" filter="url(#blur-graphic)"/>
+  <!-- Graphic Design composition (geometric shapes, pen tool curve, typography) -->
+  <g opacity="0.4" stroke="#FAF9F6" stroke-width="1.5" fill="none">
+    <circle cx="160" cy="170" r="55" stroke-dasharray="4 4"/>
+    <rect x="175" y="145" width="90" height="90" rx="14" fill="url(#prism-glow)" opacity="0.35"/>
+    <polygon points="230,120 280,210 180,210" stroke-width="2"/>
+    <path d="M90 270 C 140 210, 260 310, 310 240" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="90" cy="270" r="4" fill="#FAF9F6"/>
+    <circle cx="310" cy="240" r="4" fill="#FAF9F6"/>
+  </g>
+</svg>

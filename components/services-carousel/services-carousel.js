@@ -133,7 +133,7 @@
         card.style.zIndex = zIndex;
         card.style.opacity = opacity;
         card.style.filter = `brightness(${brightness})`;
-        card.style.pointerEvents = absOffset > 1 ? 'none' : 'auto';
+        card.style.pointerEvents = absOffset > 2 ? 'none' : 'auto';
 
         if (absOffset === 0) {
           card.classList.add('is-active');
