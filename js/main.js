@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Overview:</strong> A business website presenting products and services through a clear, accessible interface.</p>
         <p><strong>Design & Development:</strong> Designed and developed with responsive layouts, an intuitive product catalog, and smooth customer communication pathways.</p>
         <p><strong>Key Highlights:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
           <li>Engineered responsive, clean layouts across mobile, tablet, and desktop viewports.</li>
           <li>Organized hardware specifications and product categories for effortless browsing.</li>
           <li>Deployed on Vercel with high-performance edge speeds and 99.9% uptime.</li>
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Overview:</strong> A collection of my work across web development, design, and branding.</p>
         <p><strong>Design Direction:</strong> Built with clean layouts, smooth interactions, and attention to detail. Blends brutalist editorial aesthetics with smooth motion and tactile interactions.</p>
         <p><strong>Key Features:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
           <li>Custom architectural framing with fixed coordinates and responsive viewports.</li>
           <li>Tactile physics, 3D scroll stacking, and interactive star-border cards.</li>
           <li>Clear narrative hierarchy showcasing design and frontend capabilities.</li>
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Overview:</strong> Develop visual identities and digital direction that reflect a business’s goals.</p>
         <p><strong>Strategic Approach:</strong> Shaping how brands look, feel, and connect with people. From shaping a brand’s identity to designing its interface and building its website, I help turn early concepts into polished work.</p>
         <p><strong>Key Deliverables:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
           <li>Distinctive brand identities and visual style systems.</li>
           <li>Digital direction aligning design choices with business objectives.</li>
           <li>Unified design tokens across typography, color, and interaction states.</li>
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p><strong>Overview:</strong> Work with businesses and creators to develop ideas and bring projects to completion.</p>
         <p><strong>Approach:</strong> Understand the purpose. Shape the experience. Build with care. Combining design, technology, and business thinking to create digital experiences that serve a purpose.</p>
         <p><strong>Collaboration Areas:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-zinc-300">
+        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
           <li>UI/UX Design: Plan user journeys and create intuitive interfaces, from wireframes to final designs.</li>
           <li>Frontend Development: Build responsive websites with clean layouts, smooth interactions, and attention to detail.</li>
           <li>End-to-end execution from initial concept to live production launch.</li>
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalChips.innerHTML = '';
     data.chips.forEach(chip => {
       const span = document.createElement('span');
-      span.className = 'px-2.5 py-1 rounded-full text-xs font-mono bg-white/10 text-white border border-white/10';
+      span.className = 'px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]';
       span.textContent = chip;
       modalChips.appendChild(span);
     });

@@ -1,21 +1,21 @@
 /**
  * Work Timeline Component Styles
- * Clean minimal architectural timeline (monochrome elegance).
+ * Tailored to the Warm White, Light Stone & Deep Teal Editorial Palette.
  */
 
 .work-timeline-track {
-  background: rgba(255, 255, 255, 0.12);
+  background: #DADDD7;
 }
 
 .work-timeline-progress {
-  background: #ffffff !important;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  background: #176B5B !important;
+  box-shadow: 0 0 10px rgba(23, 107, 91, 0.4);
   transition: height 0.08s linear;
 }
 
 /* Timeline Items */
 .work-timeline-item {
-  opacity: 0.6;
+  opacity: 0.65;
   transform: translateY(0) scale(0.99);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -30,15 +30,15 @@
   width: 12px;
   height: 12px;
   border-radius: 9999px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: #09090b;
+  border: 2px solid #DADDD7;
+  background: #FAF9F6;
   transition: all 0.3s ease;
 }
 
 .work-timeline-item.is-active .timeline-node-dot {
-  background: #ffffff;
-  border-color: #ffffff;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  background: #176B5B;
+  border-color: #FAF9F6;
+  box-shadow: 0 0 10px rgba(23, 107, 91, 0.5);
   transform: scale(1.15);
 }
 
@@ -47,21 +47,26 @@
   transition: all 0.25s ease;
 }
 
+.timeline-nav-btn:hover {
+  background: #F0EFEB;
+  color: #202522;
+}
+
 .timeline-nav-btn.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: #F0EFEB;
+  color: #202522;
 }
 
 .timeline-nav-btn.is-active span:first-child span:first-child {
-  color: #ffffff !important;
+  color: #176B5B !important;
 }
 
 .timeline-nav-btn.is-active span:first-child span:last-child {
-  color: #ffffff !important;
+  color: #202522 !important;
 }
 
 .timeline-nav-btn.is-active .nav-dot {
-  background: #ffffff !important;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  background: #176B5B !important;
+  box-shadow: 0 0 8px rgba(23, 107, 91, 0.5);
   transform: scale(1.2);
 }
