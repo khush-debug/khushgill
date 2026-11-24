@@ -198,80 +198,102 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectDetails = {
     supreme: {
       title: 'Supreme Infosys',
-      subtitle: 'A business website presenting products and services through a clear, accessible interface.',
+      subtitle: 'A website helping customers explore computer products and services.',
       badge: '● Live Website',
       date: '2026',
       link: 'https://lallycomputers.vercel.app/',
       linkText: 'Visit Live Website ↗',
       body: `
-        <p><strong>Overview:</strong> A business website presenting products and services through a clear, accessible interface.</p>
-        <p><strong>Design & Development:</strong> Designed and developed with responsive layouts, an intuitive product catalog, and smooth customer communication pathways.</p>
-        <p><strong>Key Highlights:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
-          <li>Engineered responsive, clean layouts across mobile, tablet, and desktop viewports.</li>
-          <li>Organized hardware specifications and product categories for effortless browsing.</li>
-          <li>Deployed on Vercel with high-performance edge speeds and 99.9% uptime.</li>
-          <li>Clean interface prioritizing accessibility and intuitive navigation.</li>
+        <p><strong>Overview:</strong> A website helping customers explore computer products and services.</p>
+        <p class="pt-2"><strong>Design &amp; Development:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Designed clear pages and organized product listings.</li>
+          <li>Built layouts that adapt to different screen sizes.</li>
+        </ul>
+        <p class="pt-2"><strong>Key Highlights:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Easy-to-browse product categories.</li>
+          <li>Clear hardware specifications.</li>
+          <li>Simple navigation and contact options.</li>
+          <li>Works across mobile, tablet, and desktop.</li>
         </ul>
       `,
-      chips: ['Frontend Development', 'UI/UX Design', 'Next.js / React', 'Tailwind CSS', 'Vercel', 'Responsive Web']
+      chips: ['Next.js', 'React', 'Tailwind CSS', 'Vercel']
     },
     branding: {
       title: 'Personal Portfolio',
-      subtitle: 'A collection of my work across web development, design, and branding.',
-      badge: 'Personal Project',
+      subtitle: 'A personal website presenting my work, skills, and interests.',
+      badge: '● Personal Project',
       date: '2026',
       link: 'https://github.com/khush-debug/khushgill',
       linkText: 'View Portfolio Source ↗',
       body: `
-        <p><strong>Overview:</strong> A collection of my work across web development, design, and branding.</p>
-        <p><strong>Design Direction:</strong> Built with clean layouts, smooth interactions, and attention to detail. Blends brutalist editorial aesthetics with smooth motion and tactile interactions.</p>
-        <p><strong>Key Features:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
-          <li>Custom architectural framing with fixed coordinates and responsive viewports.</li>
-          <li>Tactile physics, 3D scroll stacking, and interactive star-border cards.</li>
-          <li>Clear narrative hierarchy showcasing design and frontend capabilities.</li>
+        <p><strong>Overview:</strong> A personal website presenting my work, skills, and interests.</p>
+        <p class="pt-2"><strong>Design Direction:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Clean layouts with bold headings.</li>
+          <li>Consistent colours and subtle movement.</li>
+        </ul>
+        <p class="pt-2"><strong>Key Features:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Selected projects with short case studies.</li>
+          <li>Interactive project cards and scrolling effects.</li>
+          <li>Layouts that adapt to different devices.</li>
+          <li>Easy access to my work and contact details.</li>
         </ul>
       `,
-      chips: ['Frontend Development', 'UI/UX Design', 'Brand Direction', 'Web Architecture', 'Three.js']
+      chips: ['Website Design & Development', 'Branding', 'Interactive Animations']
     },
     ai: {
       title: 'Brand Identity & Strategy',
-      subtitle: 'Visual identities and digital direction that reflect a business’s goals.',
-      badge: 'Brand Direction',
+      subtitle: 'Help businesses build a clear and recognizable identity.',
+      badge: '● Brand Strategy',
       date: '2026',
       link: 'https://github.com/khush-debug',
       linkText: 'Explore Work ↗',
       body: `
-        <p><strong>Overview:</strong> Develop visual identities and digital direction that reflect a business’s goals.</p>
-        <p><strong>Strategic Approach:</strong> Shaping how brands look, feel, and connect with people. From shaping a brand’s identity to designing its interface and building its website, I help turn early concepts into polished work.</p>
-        <p><strong>Key Deliverables:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
-          <li>Distinctive brand identities and visual style systems.</li>
-          <li>Digital direction aligning design choices with business objectives.</li>
-          <li>Unified design tokens across typography, color, and interaction states.</li>
+        <p><strong>Overview:</strong> Help businesses build a clear and recognizable identity.</p>
+        <p class="pt-2"><strong>Strategic Approach:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Understand the business and its audience.</li>
+          <li>Create a visual style that supports its goals.</li>
+          <li>Keep the brand consistent across its online presence.</li>
+        </ul>
+        <p class="pt-2"><strong>Key Deliverables:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Brand colours and fonts.</li>
+          <li>A consistent visual style.</li>
+          <li>Clear design guidelines.</li>
+          <li>Direction for website design and presentation.</li>
         </ul>
       `,
-      chips: ['Brand Strategy', 'Visual Identity', 'Digital Direction', 'Design Systems']
+      chips: ['Brand Planning', 'Visual Design', 'Website Direction', 'Design Guidelines']
     },
     creative: {
       title: 'Creative Collaboration',
-      subtitle: 'Work with businesses and creators to develop ideas and bring projects to completion.',
-      badge: 'Collaboration',
+      subtitle: 'Work with businesses and creators to turn ideas into finished projects.',
+      badge: '● Collaboration',
       date: '2026',
       link: 'https://www.instagram.com/kggills',
       linkText: 'Connect on Instagram ↗',
       body: `
-        <p><strong>Overview:</strong> Work with businesses and creators to develop ideas and bring projects to completion.</p>
-        <p><strong>Approach:</strong> Understand the purpose. Shape the experience. Build with care. Combining design, technology, and business thinking to create digital experiences that serve a purpose.</p>
-        <p><strong>Collaboration Areas:</strong></p>
-        <ul class="list-disc pl-5 space-y-2 text-[#595F5B]">
-          <li>UI/UX Design: Plan user journeys and create intuitive interfaces, from wireframes to final designs.</li>
-          <li>Frontend Development: Build responsive websites with clean layouts, smooth interactions, and attention to detail.</li>
-          <li>End-to-end execution from initial concept to live production launch.</li>
+        <p><strong>Overview:</strong> Work with businesses and creators to turn ideas into finished projects.</p>
+        <p class="pt-2"><strong>Approach:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Understand the goals.</li>
+          <li>Agree on a clear plan.</li>
+          <li>Share progress and gather feedback.</li>
+          <li>Refine the details before launch.</li>
+        </ul>
+        <p class="pt-2"><strong>Collaboration Areas:</strong></p>
+        <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
+          <li>Website design.</li>
+          <li>Website development.</li>
+          <li>Brand identity.</li>
+          <li>Project planning and launch.</li>
         </ul>
       `,
-      chips: ['UI/UX Design', 'Frontend Development', 'Brand Direction', 'Creative Collaboration']
+      chips: ['Design & Development', 'Brand Direction', 'Creative Planning & Teamwork']
     }
   };
 
