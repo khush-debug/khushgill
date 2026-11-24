@@ -80,7 +80,7 @@
 }
 
 .faq-accordion-item.is-open .faq-answer-panel {
-  max-height: 240px;
+  max-height: 700px;
   opacity: 1;
   padding-bottom: 1.5rem;
 }
