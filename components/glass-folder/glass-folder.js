@@ -471,11 +471,197 @@
     });
   }
 
+
+  // --- 3D Glass Folder Stacking Physics Controller ---
+  class Folder3DStack {
+    constructor() {
+      this.items = Array.from(document.querySelectorAll('.work-timeline-item'));
+      this.timelineContainer = document.getElementById('work-timeline');
+      this.progressLine = document.getElementById('work-timeline-progress');
+      this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
+
+      if (!this.items.length || !this.timelineContainer) return;
+
+      this.itemTops = [];
+      this.isMeasuring = false;
+      this.ticking = false;
+      this.init();
+    }
+
+    init() {
+      const isMobile = window.innerWidth < 768;
+      this.items.forEach((item, idx) => {
+        item.style.zIndex = idx + 10;
+        item.style.willChange = 'transform';
+        item.style.transformOrigin = 'center top';
+        if (idx < this.items.length - 1) {
+          item.style.marginBottom = isMobile ? '160px' : '260px';
+        } else {
+          item.style.marginBottom = '40px';
+        }
+      });
+
+      this.measure();
+      this.bindEvents();
+      this.update(window.scrollY);
+    }
+
+    measure() {
+      if (!this.items.length) return;
+      this.isMeasuring = true;
+      this.items.forEach(item => { item.style.transform = ''; });
+      const currentScroll = window.scrollY;
+      this.itemTops = this.items.map(item => item.getBoundingClientRect().top + currentScroll);
+      this.isMeasuring = false;
+      this.update(currentScroll);
+    }
+
+    update(scrollY) {
+      if (this.isMeasuring || !this.itemTops.length) return;
+      const m = typeof scrollY === 'number' ? scrollY : window.scrollY;
+      const N = this.items.length;
+      const L = window.innerHeight;
+      const isMobile = window.innerWidth < 768;
+
+      const pinTop = isMobile ? 95 : 135;
+      const itemStackDistance = isMobile ? 24 : 36;
+      const baseScale = 0.90;
+
+      const stackEndScroll = this.itemTops[N - 1] - pinTop - (itemStackDistance * (N - 1));
+      const exitScroll = stackEndScroll + (L * 0.75);
+
+      let activeIdx = 0;
+
+      for (let i = 0; i < N; i++) {
+        const item = this.items[i];
+        const initialTop = this.itemTops[i];
+        const targetPinScroll = initialTop - pinTop - (itemStackDistance * i);
+
+        // 1. Calculate Pinned Translation
+        let translateY = 0;
+        if (m >= targetPinScroll && m <= exitScroll) {
+          translateY = m - initialTop + pinTop + (itemStackDistance * i);
+        } else if (m > exitScroll) {
+          translateY = exitScroll - initialTop + pinTop + (itemStackDistance * i);
+        }
+
+        // 2. Calculate 3D Scale Compression as subsequent cards stack above
+        let scaleProgress = 0;
+        if (i < N - 1) {
+          const nextCardStart = this.itemTops[i + 1] - pinTop - (itemStackDistance * (i + 1));
+          if (m >= nextCardStart) {
+            scaleProgress = (m - nextCardStart) / Math.max(1, stackEndScroll - nextCardStart);
+            scaleProgress = Math.min(1, Math.max(0, scaleProgress));
+          }
+        }
+
+        const targetScale = baseScale + (i * ((1 - baseScale) / (N - 1)));
+        const currentScale = 1 - (scaleProgress * (1 - targetScale));
+
+        if (scaleProgress > 0.05) {
+          item.classList.add('is-stacked-under');
+        } else {
+          item.classList.remove('is-stacked-under');
+        }
+
+        item.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${currentScale.toFixed(4)})`;
+
+        if (m >= targetPinScroll - 60) {
+          activeIdx = i;
+          item.classList.add('is-active');
+        } else {
+          item.classList.remove('is-active');
+        }
+      }
+
+      // 3. Highlight sidebar nav button
+      this.navBtns.forEach((btn, idx) => {
+        if (idx === activeIdx) {
+          btn.classList.add('is-active');
+        } else {
+          btn.classList.remove('is-active');
+        }
+      });
+
+      // 4. Update vertical progress track line
+      if (this.progressLine && this.itemTops.length > 1) {
+        const totalSpan = this.itemTops[N - 1] - this.itemTops[0];
+        const currentProgress = (m - this.itemTops[0] + (L * 0.25)) / Math.max(1, totalSpan);
+        const clamped = Math.min(1, Math.max(0, currentProgress));
+        this.progressLine.style.height = `${(clamped * 100).toFixed(1)}%`;
+      }
+    }
+
+    bindEvents() {
+      const handleScroll = (customY) => {
+        if (!this.ticking) {
+          this.ticking = true;
+          requestAnimationFrame(() => {
+            const sy = typeof customY === 'number' ? customY : window.scrollY;
+            this.update(sy);
+            this.ticking = false;
+          });
+        }
+      };
+
+      window.addEventListener('scroll', () => handleScroll(window.scrollY), { passive: true });
+      window.addEventListener('resize', () => this.measure(), { passive: true });
+      window.addEventListener('load', () => this.measure());
+
+      if (document.fonts) {
+        document.fonts.ready.then(() => this.measure());
+      }
+
+      // Resilient Lenis hook
+      const hookLenis = () => {
+        if (window.lenis && typeof window.lenis.on === 'function') {
+          window.lenis.on('scroll', (e) => {
+            const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
+            handleScroll(sy);
+          });
+          return true;
+        }
+        return false;
+      };
+
+      if (!hookLenis()) {
+        const checkLenis = setInterval(() => {
+          if (hookLenis()) clearInterval(checkLenis);
+        }, 150);
+        setTimeout(() => clearInterval(checkLenis), 3000);
+      }
+
+      // Fast-Nav click handlers
+      const pinTop = window.innerWidth < 768 ? 95 : 135;
+      const itemStackDistance = window.innerWidth < 768 ? 24 : 36;
+      this.navBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
+          if (!isNaN(targetIdx) && this.itemTops[targetIdx] !== undefined) {
+            const targetScroll = this.itemTops[targetIdx] - pinTop - (itemStackDistance * targetIdx) + 5;
+            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+              window.lenis.scrollTo(targetScroll, { duration: 1.2 });
+            } else {
+              window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
+  }
+
+  window.Folder3DStack = Folder3DStack;
+
   window.initGlassFolders = initGlassFolders;
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlassFolders);
+    document.addEventListener('DOMContentLoaded', () => {
+      initGlassFolders();
+      window.folder3DStackInstance = new Folder3DStack();
+    });
   } else {
     initGlassFolders();
+    window.folder3DStackInstance = new Folder3DStack();
   }
 })();
