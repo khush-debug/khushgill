@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="grad-brand" cx="40%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#E8590C" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#C92A2A" stop-opacity="0.75"/>
+      <stop offset="85%" stop-color="#202522" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#141715" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="blur-brand" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#grad-brand)"/>
+  <!-- Warm glow silhouette -->
+  <circle cx="240" cy="180" r="110" fill="#FFA94D" opacity="0.5" filter="url(#blur-brand)"/>
+  <circle cx="140" cy="260" r="90" fill="#E8590C" opacity="0.45" filter="url(#blur-brand)"/>
+  <!-- Editorial Serif Monogram Geometry -->
+  <g opacity="0.4" stroke="#FAF9F6" stroke-width="1.5" fill="none">
+    <circle cx="200" cy="200" r="100"/>
+    <line x1="100" y1="200" x2="300" y2="200"/>
+    <line x1="200" y1="100" x2="200" y2="300"/>
+    <polygon points="200,120 270,240 130,240" stroke-width="2"/>
+    <text x="200" y="215" font-family="'Cinzel', serif" font-size="44" font-weight="900" fill="#FAF9F6" text-anchor="middle" letter-spacing="4" opacity="0.65">KG</text>
+  </g>
+</svg>

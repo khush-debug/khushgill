@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="grad-ui-1" cx="35%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FF7A45" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#D9480F" stop-opacity="0.8"/>
+      <stop offset="80%" stop-color="#202522" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#141715" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="glow-ui" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#176B5B" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#FF922B" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#105044" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="blur-ui" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="url(#grad-ui-1)"/>
+  <!-- Ambient light blobs -->
+  <circle cx="280" cy="120" r="110" fill="#FFA94D" opacity="0.45" filter="url(#blur-ui)"/>
+  <circle cx="120" cy="280" r="90" fill="#176B5B" opacity="0.5" filter="url(#blur-ui)"/>
+  <!-- Stylized UI Wireframe overlay -->
+  <g opacity="0.35" stroke="#FFFFFF" stroke-width="1.5" fill="none">
+    <rect x="70" y="80" width="260" height="240" rx="16"/>
+    <line x1="70" y1="130" x2="330" y2="130"/>
+    <circle cx="95" cy="105" r="4" fill="#FFFFFF"/>
+    <circle cx="112" cy="105" r="4" fill="#FFFFFF"/>
+    <circle cx="129" cy="105" r="4" fill="#FFFFFF"/>
+    <rect x="95" y="155" width="105" height="70" rx="8" fill="url(#glow-ui)" opacity="0.3"/>
+    <line x1="220" y1="165" x2="305" y2="165" stroke-width="3" stroke-linecap="round"/>
+    <line x1="220" y1="185" x2="285" y2="185" stroke-width="2" stroke-linecap="round"/>
+    <line x1="220" y1="205" x2="270" y2="205" stroke-width="2" stroke-linecap="round"/>
+    <rect x="95" y="245" width="210" height="50" rx="8" stroke-dasharray="4 4"/>
+  </g>
+</svg>

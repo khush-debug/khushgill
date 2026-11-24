@@ -1,0 +1,86 @@
+/**
+ * FAQ Accordion Component Styles
+ * Tailored to the Warm White, Light Stone & Deep Teal Editorial Palette.
+ */
+
+.faq-card-photo {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #202522;
+  border: 1px solid #DADDD7;
+  box-shadow: 0 16px 36px -10px rgba(32, 37, 34, 0.08);
+}
+
+.faq-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) brightness(0.95);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-card-photo:hover img {
+  transform: scale(1.04);
+}
+
+/* Accordion */
+.faq-accordion-item {
+  border-bottom: 1px solid #DADDD7;
+  transition: all 0.25s ease;
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.faq-question-btn:hover .faq-question-text {
+  color: #176B5B;
+}
+
+.faq-toggle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1px solid #DADDD7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #202522;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  background: #FAF9F6;
+}
+
+.faq-accordion-item.is-open .faq-toggle-icon {
+  background: #176B5B;
+  border-color: #176B5B;
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+.faq-answer-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.3s ease;
+}
+
+.faq-accordion-item.is-open .faq-answer-panel {
+  max-height: 240px;
+  opacity: 1;
+  padding-bottom: 1.5rem;
+}

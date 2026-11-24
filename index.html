@@ -64,6 +64,8 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Modular Component Styles -->
   <link rel="stylesheet" href="components/work-timeline/work-timeline.css">
+  <link rel="stylesheet" href="components/services-carousel/services-carousel.css">
+  <link rel="stylesheet" href="components/faq/faq.css">
 </head>
 
 <body class="bg-[#FAF9F6] text-[#202522] font-sans antialiased selection:bg-[#176B5B] selection:text-white min-h-screen relative">
@@ -135,7 +137,7 @@
     <div class="flex flex-col my-auto py-8">
       <a href="#about" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">01</span>
-        <span class="menu-link-name">About</span>
+        <span class="menu-link-name">Services</span>
         <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
       <a href="#work" class="menu-link-item group gap-4 sm:gap-6">
@@ -145,11 +147,16 @@
       </a>
       <a href="#philosophy" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">03</span>
-        <span class="menu-link-name">My Approach</span>
+        <span class="menu-link-name">Why Choose Me</span>
+        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
+      </a>
+      <a href="#faq" class="menu-link-item group">
+        <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">04</span>
+        <span class="menu-link-name">FAQs</span>
         <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
       <a href="#contact" class="menu-link-item group">
-        <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">04</span>
+        <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">05</span>
         <span class="menu-link-name">Contact</span>
         <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
@@ -297,90 +304,120 @@
     </section>
 
 
-    <!-- ==================== ABOUT SECTION: LIGHT STONE EDITORIAL ==================== -->
-    <section id="about" class="w-full relative z-20 bg-[#F0EFEB] text-[#202522] py-28 md:py-36 px-6 md:px-16 lg:px-24">
+    <!-- ==================== ABOUT & SERVICES SECTION ==================== -->
+    <section id="about" class="w-full relative z-20 bg-[#F0EFEB] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24">
       <div class="max-w-6xl mx-auto">
         
         <!-- Header -->
-        <div class="reveal mb-16 md:mb-24">
-          <span class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] block mb-4">
-            01 / About Me
+        <div class="reveal mb-12 md:mb-16 text-center max-w-3xl mx-auto">
+          <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
+            <span>&gt;</span>
+            <span>01 / Core Services</span>
           </span>
-          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.05] max-w-4xl mb-6 text-[#202522]">
-            I’m a creative developer and designer with an interest in how brands look, feel, and connect with people.
+          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] mb-5 text-[#202522]">
+            Where Thoughtful Design Meets Clean Code.
           </h2>
-          <p class="font-sans text-base md:text-lg text-[#595F5B] leading-relaxed max-w-3xl">
-            I combine design, technology, and business thinking to create digital experiences that serve a purpose. From shaping a brand’s identity to designing its interface and building its website, I help turn early concepts into polished work.
+          <p class="font-sans text-sm sm:text-base md:text-lg text-[#595F5B] leading-relaxed">
+            Combining user-centered design, modern frontend development, and brand strategy to build digital experiences that perform seamlessly.
           </p>
         </div>
 
-        <!-- 4-Column Numbered Editorial Story -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 border-t border-[#DADDD7] pt-12">
-          
-          <!-- Block 01: Design -->
-          <div class="reveal flex flex-col gap-3">
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#176B5B]">01. DESIGN</span>
-            <h3 class="font-sans font-bold text-lg md:text-xl leading-snug text-[#202522]">
-              Clear &amp; Easy to Use
-            </h3>
-            <p class="font-sans text-sm md:text-[15px] text-[#595F5B] leading-relaxed font-normal">
-              Design <strong class="font-bold text-[#202522]">clean, easy-to-use website layouts</strong> that help people <strong class="font-bold text-[#202522]">find what they need</strong>.
-            </p>
-            <div class="pt-2 mt-auto">
-              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">
-                Clarity · Simplicity
-              </span>
+        <!-- 3D Curved Services Carousel (Visvora-Inspired 3D Perspective Track) -->
+        <div class="services-carousel-wrapper">
+          <div class="services-carousel-track">
+            
+            <!-- Card 1: UI/UX Design -->
+            <div class="services-card-3d" data-service-idx="0">
+              <div class="space-y-3">
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">01 / Experience Design</div>
+                <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">UI/UX Design</h3>
+                <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
+                  Every great project starts with detailed research. I design clear user journeys, intuitive interfaces, and scalable design systems for effortless navigation.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                <div class="services-card-art">
+                  <img src="assets/service-ui.svg" alt="UI/UX Design Preview" loading="lazy">
+                </div>
+                <div class="services-pill-stack">
+                  <span class="services-pill-item">Website Design</span>
+                  <span class="services-pill-item">UX Strategy</span>
+                  <span class="services-pill-item">Design Systems</span>
+                </div>
+              </div>
             </div>
+
+            <!-- Card 2: Web Development -->
+            <div class="services-card-3d" data-service-idx="1">
+              <div class="space-y-3">
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">02 / Engineering</div>
+                <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Web Development</h3>
+                <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
+                  High-performance websites built with clean code and subtle motion. Fluid layouts engineered to look sharp and load instantly on every screen.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                <div class="services-card-art">
+                  <img src="assets/service-dev.svg" alt="Web Development Preview" loading="lazy">
+                </div>
+                <div class="services-pill-stack">
+                  <span class="services-pill-item">Next.js &amp; React</span>
+                  <span class="services-pill-item">Responsive UI</span>
+                  <span class="services-pill-item">Interactive Motion</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Brand Identity & Strategy -->
+            <div class="services-card-3d" data-service-idx="2">
+              <div class="space-y-3">
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">03 / Brand Identity</div>
+                <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Brand Strategy</h3>
+                <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
+                  Shape a distinctive visual style that reflects your purpose. Consistent colors, typography, and clear design guidelines that make brands memorable.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                <div class="services-card-art">
+                  <img src="assets/service-brand.svg" alt="Brand Strategy Preview" loading="lazy">
+                </div>
+                <div class="services-pill-stack">
+                  <span class="services-pill-item">Visual Identity</span>
+                  <span class="services-pill-item">Typography</span>
+                  <span class="services-pill-item">Brand Guidelines</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Creative Collaboration -->
+            <div class="services-card-3d" data-service-idx="3">
+              <div class="space-y-3">
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">04 / Partnership</div>
+                <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Collaboration</h3>
+                <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
+                  Partner directly with creators and businesses to turn ideas into finished products. Transparent communication, rapid feedback, and care from plan to launch.
+                </p>
+              </div>
+              <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                <div class="services-card-art">
+                  <img src="assets/service-collab.svg" alt="Collaboration Preview" loading="lazy">
+                </div>
+                <div class="services-pill-stack">
+                  <span class="services-pill-item">Idea to Launch</span>
+                  <span class="services-pill-item">Direct Feedback</span>
+                  <span class="services-pill-item">Studio Direction</span>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Block 02: Development -->
-          <div class="reveal flex flex-col gap-3">
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#176B5B]">02. DEVELOPMENT</span>
-            <h3 class="font-sans font-bold text-lg md:text-xl leading-snug text-[#202522]">
-              Websites for Every Screen
-            </h3>
-            <p class="font-sans text-sm md:text-[15px] text-[#595F5B] leading-relaxed font-normal">
-              Build websites that <strong class="font-bold text-[#202522]">look good</strong> and <strong class="font-bold text-[#202522]">work smoothly across all devices</strong>.
-            </p>
-            <div class="pt-2 mt-auto">
-              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">
-                Mobile · Tablet · Desktop
-              </span>
-            </div>
+          <!-- Carousel Navigation & Indicators -->
+          <div class="services-carousel-nav">
+            <button class="services-nav-arrow" data-carousel-prev aria-label="Previous service">←</button>
+            <div class="services-dots"></div>
+            <button class="services-nav-arrow" data-carousel-next aria-label="Next service">→</button>
           </div>
-
-          <!-- Block 03: Branding -->
-          <div class="reveal flex flex-col gap-3">
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#176B5B]">03. BRANDING</span>
-            <h3 class="font-sans font-bold text-lg md:text-xl leading-snug text-[#202522]">
-              A Consistent Identity
-            </h3>
-            <p class="font-sans text-sm md:text-[15px] text-[#595F5B] leading-relaxed font-normal">
-              Create a <strong class="font-bold text-[#202522]">visual style</strong> that reflects your business and makes it <strong class="font-bold text-[#202522]">instantly recognizable</strong>.
-            </p>
-            <div class="pt-2 mt-auto">
-              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">
-                Identity · Consistency
-              </span>
-            </div>
-          </div>
-
-          <!-- Block 04: Collaboration -->
-          <div class="reveal flex flex-col gap-3">
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#176B5B]">04. COLLABORATION</span>
-            <h3 class="font-sans font-bold text-lg md:text-xl leading-snug text-[#202522]">
-              From Idea to Launch
-            </h3>
-            <p class="font-sans text-sm md:text-[15px] text-[#595F5B] leading-relaxed font-normal">
-              Work with you to <strong class="font-bold text-[#202522]">shape your ideas</strong> and bring the <strong class="font-bold text-[#202522]">finished website to life</strong>.
-            </p>
-            <div class="pt-2 mt-auto">
-              <span class="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded bg-[#FAF9F6] text-[#202522] border border-[#DADDD7]">
-                Idea · Launch
-              </span>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -720,73 +757,229 @@
     </section>
 
 
-    <!-- ==================== PHILOSOPHY & PROVEN METRICS: LIGHT STONE ==================== -->
-    <section id="philosophy" class="w-full relative z-30 bg-[#F0EFEB] text-[#202522] py-28 md:py-36 px-6 md:px-16 lg:px-24">
+    <!-- ==================== WHY CHOOSE ME & PROVEN APPROACH: BENTO GRID ==================== -->
+    <section id="philosophy" class="w-full relative z-30 bg-[#F0EFEB] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24">
       <div class="max-w-6xl mx-auto">
         
         <!-- Header -->
-        <div class="reveal mb-20">
-          <span class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] block mb-4">
-            03 / My Approach
+        <div class="reveal mb-14 max-w-3xl">
+          <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
+            <span>&gt;</span>
+            <span>03 / Why Choose Me</span>
           </span>
-          <h2 class="font-sans font-bold text-3xl sm:text-4xl md:text-6xl tracking-tight leading-tight max-w-3xl text-[#202522]">
+          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] text-[#202522]">
             Understand the purpose. Shape the experience. Build with care.
           </h2>
         </div>
 
-        <!-- 3 Big Metric Counters (All Three Numbers in Deep Teal #176B5B) -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-12 pb-24 border-b border-[#DADDD7]">
+        <!-- Bento Grid Architecture (Visvora Inspired) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
           
-          <div class="reveal flex flex-col items-start">
-            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-[#176B5B] mb-2" data-target="100" data-decimals="0" data-suffix="%">
-              0%
-            </span>
-            <span class="font-mono text-xs md:text-sm text-[#595F5B] uppercase tracking-widest">
-              Thoughtful Design &amp; Quality Craft
-            </span>
+          <!-- Bento Card 1: Main Metric & Performance (Span 7) -->
+          <div class="lg:col-span-7 bg-[#FAF9F6] border border-[#DADDD7] rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-sm hover:border-[#176B5B] transition-colors">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[#176B5B]/10 text-[#176B5B] border border-[#176B5B]/20 mb-6">
+                <span>● Proven Standards</span>
+              </div>
+              <div class="flex items-baseline gap-3 mb-2">
+                <span class="stat-number font-sans font-black text-6xl sm:text-7xl md:text-8xl tracking-tight leading-none text-[#176B5B]" data-target="100" data-decimals="0" data-suffix="%">100%</span>
+                <span class="font-mono text-xs uppercase tracking-widest text-[#595F5B]">Production Quality</span>
+              </div>
+              <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-4 mb-2">
+                Thoughtful Craft &amp; High-Impact Performance
+              </h3>
+              <p class="font-sans text-sm sm:text-base text-[#595F5B] leading-relaxed max-w-xl font-normal">
+                Every website is built with clean semantics, responsive fluid typography, instant load speeds, and intuitive micro-interactions that leave a lasting impression.
+              </p>
+            </div>
+
+            <!-- Mini Metric Bar Chart Visual -->
+            <div class="pt-8 mt-6 border-t border-[#DADDD7]">
+              <div class="grid grid-cols-5 gap-3 items-end h-16">
+                <div class="bg-[#176B5B]/25 rounded-t-lg h-[40%]"></div>
+                <div class="bg-[#176B5B]/40 rounded-t-lg h-[60%]"></div>
+                <div class="bg-[#176B5B]/60 rounded-t-lg h-[75%]"></div>
+                <div class="bg-[#176B5B]/80 rounded-t-lg h-[90%]"></div>
+                <div class="bg-[#176B5B] rounded-t-lg h-[100%] shadow-sm"></div>
+              </div>
+              <div class="flex justify-between text-[11px] font-mono text-[#595F5B] mt-2">
+                <span>Discovery</span>
+                <span>Wireframing</span>
+                <span>Visual UI</span>
+                <span>Clean Code</span>
+                <span class="text-[#176B5B] font-bold">Launch</span>
+              </div>
+            </div>
           </div>
 
-          <div class="reveal flex flex-col items-start">
-            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-[#176B5B] mb-2" data-target="4" data-decimals="0" data-suffix="">
-              0
-            </span>
-            <span class="font-mono text-xs md:text-sm text-[#595F5B] uppercase tracking-widest">
-              Core Capabilities: Design, Dev, Brand &amp; Collaboration
-            </span>
-          </div>
+          <!-- Bento Card 2: Core Stack & Delivery (Span 5) -->
+          <div class="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+            
+            <!-- Top Box: Core Capabilities -->
+            <div class="bg-[#FAF9F6] border border-[#DADDD7] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:border-[#176B5B] transition-colors">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-[#176B5B] font-bold block mb-2">Core Capabilities</span>
+                <h4 class="font-sans font-black text-lg sm:text-xl text-[#202522] tracking-tight mb-3">
+                  Design &amp; Frontend Systems
+                </h4>
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed mb-4 font-normal">
+                  From Figma design to clean Next.js and Tailwind production code without handoff friction.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]">Next.js</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]">React</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]">Tailwind CSS</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]">Vercel</span>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-mono bg-[#F0EFEB] text-[#202522] border border-[#DADDD7]">Figma</span>
+                </div>
+              </div>
+            </div>
 
-          <div class="reveal flex flex-col items-start">
-            <span class="stat-number font-sans font-black text-7xl md:text-8xl tracking-tight leading-none text-[#176B5B] mb-2" data-target="2026" data-decimals="0" data-suffix="">
-              0
-            </span>
-            <span class="font-mono text-xs md:text-sm text-[#595F5B] uppercase tracking-widest">
-              Active Focus &amp; Production Delivery
-            </span>
+            <!-- Bottom Box: Direct Collaboration CTA -->
+            <div class="bg-[#202522] text-[#FAF9F6] border border-[#202522] rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-md hover:border-[#176B5B] transition-all">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-[#176B5B] font-bold block mb-2">● Active Focus</span>
+                <h4 class="font-sans font-black text-xl text-[#FAF9F6] tracking-tight mb-2">
+                  Direct Partnership
+                </h4>
+                <p class="font-sans text-xs sm:text-sm text-[#DADDD7]/80 leading-relaxed mb-6 font-normal">
+                  Work directly with me from day one. Clear timelines, regular updates, and careful attention to every detail.
+                </p>
+              </div>
+              <a href="#contact" class="inline-flex items-center justify-between w-full px-5 py-3 rounded-full bg-[#176B5B] hover:bg-[#105044] text-white text-xs font-mono font-bold uppercase tracking-wider transition-colors">
+                <span>Start a Project</span>
+                <span>↗</span>
+              </a>
+            </div>
+
           </div>
 
         </div>
 
-        <!-- Testimonial Quote Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pt-16">
+      </div>
+    </section>
+
+
+    <!-- ==================== FAQS SECTION: WARM WHITE ==================== -->
+    <section id="faq" class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7]">
+      <div class="max-w-6xl mx-auto">
+        
+        <!-- Header -->
+        <div class="reveal mb-14 text-center max-w-2xl mx-auto">
+          <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
+            <span>&gt;</span>
+            <span>Frequently Asked Questions</span>
+          </span>
+          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight text-[#202522]">
+            Everything You Need to Know.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
           
-          <div class="reveal border border-[#DADDD7] bg-[#FAF9F6] p-8 md:p-10 flex flex-col justify-between hover:border-[#176B5B] transition-colors duration-300 rounded-3xl shadow-sm">
-            <p class="font-sans text-base md:text-lg leading-relaxed text-[#595F5B] mb-8 font-normal">
-              "I combine design, technology, and business thinking to create digital experiences that serve a purpose. From shaping a brand’s identity to designing its interface and building its website, I help turn early concepts into polished work."
-            </p>
-            <div>
-              <p class="font-sans font-bold text-base text-[#202522]">Khushman Singh Gill</p>
-              <p class="font-mono text-xs text-[#595F5B]">About Me · Working Philosophy</p>
+          <!-- Left Column: Editorial Photo Card (Visvora Inspired) -->
+          <div class="lg:col-span-5 faq-card-photo h-[420px] sm:h-[480px] p-6 sm:p-8 flex flex-col justify-between">
+            <img src="assets/khushman.jpg" alt="Khushman Singh Gill" class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+            
+            <div class="relative z-20">
+              <span class="inline-block px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#FAF9F6] border border-white/20">
+                ● 2026 Edition
+              </span>
+            </div>
+
+            <div class="relative z-20 space-y-3">
+              <h3 class="font-sans font-black text-2xl sm:text-3xl text-white tracking-tight leading-snug">
+                Have a project in mind?
+              </h3>
+              <p class="font-sans text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
+                Let's discuss your ideas, scope, and timeline to build something distinctive together.
+              </p>
+              <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#176B5B] hover:bg-[#105044] text-white text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-sm">
+                <span>Get in Touch</span>
+                <span>↗</span>
+              </a>
             </div>
           </div>
 
-          <div class="reveal border border-[#DADDD7] bg-[#FAF9F6] p-8 md:p-10 flex flex-col justify-between hover:border-[#176B5B] transition-colors duration-300 rounded-3xl shadow-sm">
-            <p class="font-sans text-base md:text-lg leading-relaxed text-[#595F5B] mb-8 font-normal">
-              "Frontend Developer, UI/UX Designer &amp; Brand Strategist | Creating thoughtful websites, intuitive interfaces, and distinctive brand identities."
-            </p>
-            <div>
-              <p class="font-sans font-bold text-base text-[#202522]">Khushman Singh Gill</p>
-              <p class="font-mono text-xs text-[#595F5B]">Profile Bio · What I Do</p>
+          <!-- Right Column: Accordion List -->
+          <div class="lg:col-span-7 flex flex-col">
+            
+            <!-- Item 1 -->
+            <div class="faq-accordion-item is-open">
+              <button class="faq-question-btn" aria-expanded="true">
+                <span class="faq-question-text font-sans font-bold text-base sm:text-lg text-[#202522] tracking-tight">
+                  What kind of projects do you take on?
+                </span>
+                <span class="faq-toggle-icon">+</span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  I specialize in portfolio websites, business platforms, responsive landing pages, and visual brand identities. My focus is on clean layouts, thoughtful animations, and fast load speeds for businesses, founders, and creators.
+                </p>
+              </div>
             </div>
+
+            <!-- Item 2 -->
+            <div class="faq-accordion-item">
+              <button class="faq-question-btn" aria-expanded="false">
+                <span class="faq-question-text font-sans font-bold text-base sm:text-lg text-[#202522] tracking-tight">
+                  How does the collaboration process work?
+                </span>
+                <span class="faq-toggle-icon">+</span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  We start with a discovery conversation to understand your goals and audience. Next, I plan and design clear interactive wireframes and visual mockups. Once aligned, I build the website with clean code and keep you updated at every step until deployment.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-accordion-item">
+              <button class="faq-question-btn" aria-expanded="false">
+                <span class="faq-question-text font-sans font-bold text-base sm:text-lg text-[#202522] tracking-tight">
+                  What technologies do you use?
+                </span>
+                <span class="faq-toggle-icon">+</span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  I build primarily with Next.js, React, and Tailwind CSS, hosted on Vercel for high performance and uptime. For design, I use Figma to prototype responsive design systems and motion.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="faq-accordion-item">
+              <button class="faq-question-btn" aria-expanded="false">
+                <span class="faq-question-text font-sans font-bold text-base sm:text-lg text-[#202522] tracking-tight">
+                  How long does a typical project take?
+                </span>
+                <span class="faq-toggle-icon">+</span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  Most custom websites take between 2 to 4 weeks depending on the number of pages, content readiness, and custom animations. I establish clear milestones upfront so there are no surprises.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="faq-accordion-item">
+              <button class="faq-question-btn" aria-expanded="false">
+                <span class="faq-question-text font-sans font-bold text-base sm:text-lg text-[#202522] tracking-tight">
+                  How can we get started?
+                </span>
+                <span class="faq-toggle-icon">+</span>
+              </button>
+              <div class="faq-answer-panel">
+                <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed">
+                  Simply fill out the contact form below or email me directly at <a href="mailto:kgill3662@gmail.com" class="text-[#176B5B] font-semibold underline">kgill3662@gmail.com</a>. Tell me a bit about what you want to build, and I will reply within 24 hours.
+                </p>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -1052,6 +1245,8 @@
   <script src="js/lenis.min.js"></script>
   <!-- Modular Component Controllers -->
   <script src="components/work-timeline/work-timeline.js"></script>
+  <script src="components/services-carousel/services-carousel.js"></script>
+  <script src="components/faq/faq.js"></script>
   <!-- Main JavaScript Controller -->
   <script src="js/main.js"></script>
 </body>
