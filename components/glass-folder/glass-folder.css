@@ -498,32 +498,3 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 .work-timeline-item .gf-root {
   transition: filter 0.4s ease;
 }
-
-/* ---- Curvy Flow Arrow Styles ---- */
-#curvy-arrow-wrap {
-  pointer-events: none;
-  user-select: none;
-  transition: opacity 0.3s ease;
-}
-
-#curvy-arrow-path {
-  transition: stroke-dashoffset 0.05s linear;
-}
-
-#curvy-arrow-head {
-  transition: opacity 0.3s ease;
-  transform-origin: 0 0;
-}
-
-.curvy-nav-arrow {
-  animation: curvyArrowBounce 2.2s ease-in-out infinite;
-}
-
-@keyframes curvyArrowBounce {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-}

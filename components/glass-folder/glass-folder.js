@@ -479,13 +479,6 @@
       this.timelineContainer = document.getElementById('work-timeline');
       this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
 
-      this.curvyWrap = document.getElementById('curvy-arrow-wrap');
-      this.curvySvg = document.getElementById('curvy-arrow-svg');
-      this.curvyGuide = document.getElementById('curvy-arrow-guide');
-      this.curvyPath = document.getElementById('curvy-arrow-path');
-      this.curvyHead = document.getElementById('curvy-arrow-head');
-      this.curvyPathLen = 0;
-
       if (!this.items.length || !this.timelineContainer) return;
 
       this.itemTops = [];
@@ -525,44 +518,6 @@
       const tabOffset = isMobile ? 18 : 28;
 
       this.pinScrolls = this.itemTops.map((top, i) => top - pinTop - (tabOffset * i));
-
-      // Build organic dynamic curvy arrow path extending all the way down till the folder stops
-      if (this.curvySvg && this.curvyPath && this.timelineContainer) {
-        const containerH = this.timelineContainer.offsetHeight;
-        this.curvySvg.setAttribute('viewBox', `0 0 44 ${containerH}`);
-
-        const relTops = this.items.map(it => it.offsetTop);
-        const lastItem = this.items[this.items.length - 1];
-        const lastItemH = lastItem ? lastItem.offsetHeight : 542;
-
-        let d = `M 18 ${Math.max(16, relTops[0] + 30)}`;
-        for (let i = 0; i < relTops.length - 1; i++) {
-          const yA = relTops[i] + 30;
-          const yB = relTops[i + 1] + 30;
-          const midY = (yA + yB) / 2;
-          const wave = (i % 2 === 0) ? 36 : 2;
-          d += ` C ${wave} ${yA + (midY - yA)*0.5}, ${wave} ${midY + (yB - midY)*0.5}, 18 ${yB}`;
-        }
-
-        // Extend the line down along the entire height of the last folder to where it stops
-        const lastTop = relTops[relTops.length - 1] + 30;
-        const lastBottom = relTops[relTops.length - 1] + lastItemH - 24;
-        const lastMid = (lastTop + lastBottom) / 2;
-
-        d += ` C 36 ${lastTop + (lastMid - lastTop)*0.5}, 2 ${lastMid + (lastBottom - lastMid)*0.5}, 18 ${lastBottom}`;
-
-        if (this.curvyGuide) this.curvyGuide.setAttribute('d', d);
-        this.curvyPath.setAttribute('d', d);
-
-        try {
-          this.curvyPathLen = this.curvyPath.getTotalLength();
-          this.curvyPath.style.strokeDasharray = `${this.curvyPathLen}`;
-          this.curvyPath.style.strokeDashoffset = `${this.curvyPathLen}`;
-        } catch (e) {
-          this.curvyPathLen = 0;
-        }
-      }
-
       this.isMeasuring = false;
       this.update(currentScroll);
     }
@@ -588,27 +543,7 @@
         }
       }
 
-      // 2. Animate the Curvy Arrow along with the scroll till the point the folder stops
-      if (this.curvyPath && this.curvyHead && this.curvyPathLen > 0) {
-        const startScroll = this.pinScrolls[0] - 30;
-        const endScroll = Math.min(exitScroll - 40, this.pinScrolls[N - 1] + (L * 0.35));
-        const arrowProg = Math.min(1, Math.max(0, (m - startScroll) / Math.max(1, endScroll - startScroll)));
-
-        this.curvyPath.style.strokeDashoffset = `${(this.curvyPathLen * (1 - arrowProg)).toFixed(1)}`;
-
-        if (arrowProg > 0.005) {
-          this.curvyHead.style.opacity = '1';
-          const dist = this.curvyPathLen * arrowProg;
-          const pt = this.curvyPath.getPointAtLength(dist);
-          const ptAhead = this.curvyPath.getPointAtLength(Math.min(this.curvyPathLen, dist + 2));
-          const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI) + 90;
-          this.curvyHead.setAttribute('transform', `translate(${pt.x.toFixed(1)}, ${pt.y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
-        } else {
-          this.curvyHead.style.opacity = '0';
-        }
-      }
-
-      // 3. Calculate Pinned Translations and 3D Perspective Scaling
+      // 2. Calculate Pinned Translations and 3D Perspective Scaling
       for (let i = 0; i < N; i++) {
         const item = this.items[i];
         const initialTop = this.itemTops[i];
