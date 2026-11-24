@@ -511,3 +511,9 @@ body {
   background-color: var(--bg-main);
   isolation: isolate;
 }
+
+#footer-reveal-wrapper,
+#footer-curtain {
+  background-color: #000000 !important;
+  color: #ffffff;
+}
