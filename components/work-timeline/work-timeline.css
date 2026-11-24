@@ -1,46 +1,8 @@
 /**
- * Work Timeline Component Styles
+ * Work Section Index Navigation Styles
  * Tailored to the Warm White, Light Stone & Deep Teal Editorial Palette.
  */
 
-.work-timeline-track {
-  background: #DADDD7;
-}
-
-.work-timeline-progress {
-  background: #176B5B !important;
-  box-shadow: 0 0 10px rgba(23, 107, 91, 0.4);
-  transition: height 0.08s linear;
-}
-
-/* Timeline Items */
-.work-timeline-item {
-  opacity: 0.92;
-  transition: opacity 0.3s ease;
-}
-
-.work-timeline-item.is-active {
-  opacity: 1;
-}
-
-/* Timeline Node Dots */
-.timeline-node-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  border: 2px solid #DADDD7;
-  background: #FAF9F6;
-  transition: all 0.3s ease;
-}
-
-.work-timeline-item.is-active .timeline-node-dot {
-  background: #176B5B;
-  border-color: #FAF9F6;
-  box-shadow: 0 0 10px rgba(23, 107, 91, 0.5);
-  transform: scale(1.15);
-}
-
-/* Nav Item Active States */
 .timeline-nav-btn {
   transition: all 0.25s ease;
 }

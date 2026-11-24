@@ -477,12 +477,12 @@
     constructor() {
       this.items = Array.from(document.querySelectorAll('.work-timeline-item'));
       this.timelineContainer = document.getElementById('work-timeline');
-      this.progressLine = document.getElementById('work-timeline-progress');
       this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
 
       if (!this.items.length || !this.timelineContainer) return;
 
       this.itemTops = [];
+      this.pinScrolls = [];
       this.isMeasuring = false;
       this.ticking = false;
       this.init();
@@ -495,7 +495,7 @@
         item.style.willChange = 'transform';
         item.style.transformOrigin = 'center top';
         if (idx < this.items.length - 1) {
-          item.style.marginBottom = isMobile ? '160px' : '260px';
+          item.style.marginBottom = isMobile ? '45vh' : '65vh';
         } else {
           item.style.marginBottom = '40px';
         }
@@ -512,6 +512,12 @@
       this.items.forEach(item => { item.style.transform = ''; });
       const currentScroll = window.scrollY;
       this.itemTops = this.items.map(item => item.getBoundingClientRect().top + currentScroll);
+
+      const isMobile = window.innerWidth < 768;
+      const pinTop = isMobile ? 80 : 110;
+      const tabOffset = isMobile ? 18 : 28;
+
+      this.pinScrolls = this.itemTops.map((top, i) => top - pinTop - (tabOffset * i));
       this.isMeasuring = false;
       this.update(currentScroll);
     }
@@ -523,58 +529,76 @@
       const L = window.innerHeight;
       const isMobile = window.innerWidth < 768;
 
-      const pinTop = isMobile ? 95 : 135;
-      const itemStackDistance = isMobile ? 24 : 36;
-      const baseScale = 0.90;
+      const pinTop = isMobile ? 80 : 110;
+      const tabOffset = isMobile ? 18 : 28;
 
-      const stackEndScroll = this.itemTops[N - 1] - pinTop - (itemStackDistance * (N - 1));
-      const exitScroll = stackEndScroll + (L * 0.75);
+      const stackEndScroll = this.pinScrolls[N - 1];
+      const exitScroll = stackEndScroll + (L * 0.70);
 
+      // 1. Determine active index in proper 01 -> 02 -> 03 -> 04 sequence
       let activeIdx = 0;
+      for (let i = 0; i < N; i++) {
+        if (m >= this.pinScrolls[i] - 50) {
+          activeIdx = i;
+        }
+      }
 
+      // 2. Calculate Pinned Translations and 3D Perspective Scaling
       for (let i = 0; i < N; i++) {
         const item = this.items[i];
         const initialTop = this.itemTops[i];
-        const targetPinScroll = initialTop - pinTop - (itemStackDistance * i);
+        const targetPinScroll = this.pinScrolls[i];
 
-        // 1. Calculate Pinned Translation
+        // Pinned Translation (Y-axis)
         let translateY = 0;
         if (m >= targetPinScroll && m <= exitScroll) {
-          translateY = m - initialTop + pinTop + (itemStackDistance * i);
+          translateY = m - initialTop + pinTop + (tabOffset * i);
         } else if (m > exitScroll) {
-          translateY = exitScroll - initialTop + pinTop + (itemStackDistance * i);
+          translateY = exitScroll - initialTop + pinTop + (tabOffset * i);
         }
 
-        // 2. Calculate 3D Scale Compression as subsequent cards stack above
-        let scaleProgress = 0;
+        // 3D Perspective Scale & Depth Dimming
+        let scale = 1.0;
+        let brightness = 1.0;
+
         if (i < N - 1) {
-          const nextCardStart = this.itemTops[i + 1] - pinTop - (itemStackDistance * (i + 1));
-          if (m >= nextCardStart) {
-            scaleProgress = (m - nextCardStart) / Math.max(1, stackEndScroll - nextCardStart);
-            scaleProgress = Math.min(1, Math.max(0, scaleProgress));
+          const nextPin = this.pinScrolls[i + 1];
+          if (m >= targetPinScroll && m < nextPin) {
+            // As next card scrolls up towards its pin, this card gently compresses
+            const progress = (m - targetPinScroll) / Math.max(1, nextPin - targetPinScroll);
+            scale = 1.0 - (progress * 0.06);
+            brightness = 1.0 - (progress * 0.04);
+          } else if (m >= nextPin) {
+            // Subsequent cards are stacking above; continue gradual compression
+            const remainingProgress = Math.min(1, (m - nextPin) / Math.max(1, stackEndScroll - nextPin));
+            const layersAbove = N - 1 - i;
+            scale = 0.94 - (remainingProgress * (0.05 * layersAbove));
+            brightness = 0.96 - (remainingProgress * (0.03 * layersAbove));
           }
         }
 
-        const targetScale = baseScale + (i * ((1 - baseScale) / (N - 1)));
-        const currentScale = 1 - (scaleProgress * (1 - targetScale));
+        scale = Math.max(0.78, Math.min(1.0, scale));
+        brightness = Math.max(0.85, Math.min(1.0, brightness));
 
-        if (scaleProgress > 0.05) {
-          item.classList.add('is-stacked-under');
-        } else {
-          item.classList.remove('is-stacked-under');
+        item.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+
+        const rootEl = item.querySelector('.gf-root');
+        if (rootEl) {
+          if (scale < 0.98) {
+            rootEl.style.filter = `brightness(${brightness.toFixed(3)})`;
+          } else {
+            rootEl.style.filter = '';
+          }
         }
 
-        item.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${currentScale.toFixed(4)})`;
-
-        if (m >= targetPinScroll - 60) {
-          activeIdx = i;
+        if (i === activeIdx) {
           item.classList.add('is-active');
         } else {
           item.classList.remove('is-active');
         }
       }
 
-      // 3. Highlight sidebar nav button
+      // 3. Highlight left sidebar nav button in proper sequence
       this.navBtns.forEach((btn, idx) => {
         if (idx === activeIdx) {
           btn.classList.add('is-active');
@@ -582,14 +606,6 @@
           btn.classList.remove('is-active');
         }
       });
-
-      // 4. Update vertical progress track line
-      if (this.progressLine && this.itemTops.length > 1) {
-        const totalSpan = this.itemTops[N - 1] - this.itemTops[0];
-        const currentProgress = (m - this.itemTops[0] + (L * 0.25)) / Math.max(1, totalSpan);
-        const clamped = Math.min(1, Math.max(0, currentProgress));
-        this.progressLine.style.height = `${(clamped * 100).toFixed(1)}%`;
-      }
     }
 
     bindEvents() {
@@ -612,7 +628,7 @@
         document.fonts.ready.then(() => this.measure());
       }
 
-      // Resilient Lenis hook
+      // Resilient Lenis integration
       const hookLenis = () => {
         if (window.lenis && typeof window.lenis.on === 'function') {
           window.lenis.on('scroll', (e) => {
@@ -631,15 +647,13 @@
         setTimeout(() => clearInterval(checkLenis), 3000);
       }
 
-      // Fast-Nav click handlers
-      const pinTop = window.innerWidth < 768 ? 95 : 135;
-      const itemStackDistance = window.innerWidth < 768 ? 24 : 36;
+      // Fast-Nav click handlers (smooth scroll to selected project stack state)
       this.navBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
-          if (!isNaN(targetIdx) && this.itemTops[targetIdx] !== undefined) {
-            const targetScroll = this.itemTops[targetIdx] - pinTop - (itemStackDistance * targetIdx) + 5;
+          if (!isNaN(targetIdx) && this.pinScrolls[targetIdx] !== undefined) {
+            const targetScroll = this.pinScrolls[targetIdx] + 10;
             if (window.lenis && typeof window.lenis.scrollTo === 'function') {
               window.lenis.scrollTo(targetScroll, { duration: 1.2 });
             } else {

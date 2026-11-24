@@ -487,18 +487,14 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
   position: relative;
   will-change: transform;
   transform-origin: center top;
-  transition: box-shadow 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .work-timeline-item .gf-container {
   padding: 0;
 }
 
-.work-timeline-item.is-stacked-under .gf-root {
-  filter: brightness(0.96);
-  transition: filter 0.3s ease;
-}
-
-.work-timeline-item:hover {
-  z-index: 50 !important;
+.work-timeline-item .gf-root {
+  transition: filter 0.4s ease;
 }

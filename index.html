@@ -531,21 +531,11 @@
           </nav>
         </aside>
 
-        <!-- Timeline Column (Right Column) -->
-        <div id="work-timeline" class="lg:col-span-8 relative pl-6 sm:pl-10 md:pl-12 flex flex-col gap-6 sm:gap-8 md:gap-10">
-          
-          <!-- Continuous Vertical Background Track -->
-          <div class="work-timeline-track absolute left-1 sm:left-2 md:left-3 top-8 bottom-12 w-[2px] rounded-full"></div>
-          
-          <!-- Continuous Vertical Dynamic Glowing Progress Fill -->
-          <div id="work-timeline-progress" class="work-timeline-progress absolute left-1 sm:left-2 md:left-3 top-8 w-[2px] rounded-full" style="height: 0%; will-change: height;"></div>
+        <!-- Folders Column (Right Column) -->
+        <div id="work-timeline" class="lg:col-span-8 relative flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
 
           <!-- CARD 01: Supreme Infosys (Glass Folder) -->
-          <div class="work-timeline-item relative" data-timeline-idx="0">
-            <!-- Node Indicator Dot on the Line -->
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
-              <div class="timeline-node-dot"></div>
-            </div>
+          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="0">
 
             <div class="gf-container">
               <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left" data-width="480">
@@ -677,11 +667,7 @@
           </div>
 
           <!-- CARD 02: Personal Portfolio (Glass Folder) -->
-          <div class="work-timeline-item relative" data-timeline-idx="1">
-            <!-- Node Indicator Dot on the Line -->
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
-              <div class="timeline-node-dot"></div>
-            </div>
+          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="1">
 
             <div class="gf-container">
               <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left" data-width="480">
@@ -813,11 +799,7 @@
           </div>
 
           <!-- CARD 03: Brand Identity & Strategy (Glass Folder) -->
-          <div class="work-timeline-item relative" data-timeline-idx="2">
-            <!-- Node Indicator Dot on the Line -->
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
-              <div class="timeline-node-dot"></div>
-            </div>
+          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="2">
 
             <div class="gf-container">
               <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left" data-width="480">
@@ -949,11 +931,7 @@
           </div>
 
           <!-- CARD 04: Creative Collaboration (Glass Folder) -->
-          <div class="work-timeline-item relative" data-timeline-idx="3">
-            <!-- Node Indicator Dot on the Line -->
-            <div class="timeline-node absolute -left-6 sm:-left-10 md:-left-12 top-10 -translate-x-1/2 flex items-center justify-center">
-              <div class="timeline-node-dot"></div>
-            </div>
+          <div class="work-timeline-item relative w-full flex justify-center" data-timeline-idx="3">
 
             <div class="gf-container">
               <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left" data-width="480">
@@ -1666,7 +1644,6 @@
   <!-- Lenis Smooth Scrolling Engine -->
   <script src="js/lenis.min.js"></script>
   <!-- Modular Component Controllers -->
-  <script src="components/work-timeline/work-timeline.js"></script>
   <script src="components/services-carousel/services-carousel.js"></script>
   <script src="components/faq/faq.js"></script>
   <script src="components/glass-folder/glass-folder.js"></script>
