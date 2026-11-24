@@ -8,7 +8,7 @@ I bring ideas to life through thoughtful design, functional websites, and clear 
 
 ## 🚀 Live Demo & Projects
 
-- **Lally Computers:** [lallycomputers.vercel.app](https://lallycomputers.vercel.app/) — A business website presenting products and services through a clear, accessible interface.
+- **Supreme Infosys:** [lallycomputers.vercel.app](https://lallycomputers.vercel.app/) — A business website presenting products and services through a clear, accessible interface.
 - **Personal Portfolio:** [khushgill.vercel.app](https://khushgill.vercel.app/) — A collection of my work across web development, design, and branding.
 - **GitHub:** [@khush-debug](https://github.com/khush-debug)
 

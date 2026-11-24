@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const projectDetails = {
     supreme: {
-      title: 'Lally Computers',
+      title: 'Supreme Infosys',
       subtitle: 'A business website presenting products and services through a clear, accessible interface.',
       badge: '● Live Website',
       date: '2026',
