@@ -9,9 +9,9 @@
 
   // Configurable physics parameters
   const DEFAULT_CONFIG = {
-    itemDistance: 72,        // Natural flow margin between cards before stack
+    itemDistance: 100,        // Natural flow margin between cards before stack
     itemScale: 0.015,         // Scale increment per card layer in stack
-    itemStackDistance: 24,    // Vertical tab offset visible per stacked card
+    itemStackDistance: 18,    // Vertical tab offset visible per stacked card
     stackPosition: 0.08,      // Viewport pinning target ratio
     scaleEndPosition: 0.05,   // Scaling compression reference ratio
     baseScale: 0.92,          // Scale factor of bottom-most pinned card
@@ -235,22 +235,12 @@
       // Native scroll listener
       window.addEventListener('scroll', () => handleScroll(window.scrollY), { passive: true });
 
-      // Lenis scroll integration with resilient hook
-      const hookLenis = () => {
-        if (window.lenis && typeof window.lenis.on === 'function') {
-          window.lenis.on('scroll', (e) => {
-            const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
-            handleScroll(sy);
-          });
-          return true;
-        }
-        return false;
-      };
-      if (!hookLenis()) {
-        const checkInterval = setInterval(() => {
-          if (hookLenis()) clearInterval(checkInterval);
-        }, 150);
-        setTimeout(() => clearInterval(checkInterval), 3000);
+      // Lenis scroll integration if present
+      if (window.lenis && typeof window.lenis.on === 'function') {
+        window.lenis.on('scroll', (e) => {
+          const sy = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
+          handleScroll(sy);
+        });
       }
 
       // Resize & load re-measurements
