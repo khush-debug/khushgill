@@ -479,6 +479,13 @@
       this.timelineContainer = document.getElementById('work-timeline');
       this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
 
+      this.curvyWrap = document.getElementById('curvy-arrow-wrap');
+      this.curvySvg = document.getElementById('curvy-arrow-svg');
+      this.curvyGuide = document.getElementById('curvy-arrow-guide');
+      this.curvyPath = document.getElementById('curvy-arrow-path');
+      this.curvyHead = document.getElementById('curvy-arrow-head');
+      this.curvyPathLen = 0;
+
       if (!this.items.length || !this.timelineContainer) return;
 
       this.itemTops = [];
@@ -495,9 +502,9 @@
         item.style.willChange = 'transform';
         item.style.transformOrigin = 'center top';
         if (idx < this.items.length - 1) {
-          item.style.marginBottom = isMobile ? '45vh' : '65vh';
+          item.style.marginBottom = isMobile ? '45px' : '75px';
         } else {
-          item.style.marginBottom = '40px';
+          item.style.marginBottom = '30px';
         }
       });
 
@@ -518,6 +525,36 @@
       const tabOffset = isMobile ? 18 : 28;
 
       this.pinScrolls = this.itemTops.map((top, i) => top - pinTop - (tabOffset * i));
+
+      // Build organic dynamic curvy arrow path alongside folders
+      if (this.curvySvg && this.curvyPath && this.timelineContainer) {
+        const containerH = this.timelineContainer.offsetHeight;
+        this.curvySvg.setAttribute('viewBox', `0 0 40 ${containerH}`);
+
+        const relTops = this.items.map(it => it.offsetTop);
+        let d = `M 18 ${Math.max(16, relTops[0] + 45)}`;
+        for (let i = 0; i < relTops.length - 1; i++) {
+          const yA = relTops[i] + 45;
+          const yB = relTops[i + 1] + 45;
+          const midY = (yA + yB) / 2;
+          const wave = (i % 2 === 0) ? 34 : 2;
+          d += ` C ${wave} ${yA + (midY - yA)*0.5}, ${wave} ${midY + (yB - midY)*0.5}, 18 ${yB}`;
+        }
+        const lastY = relTops[relTops.length - 1] + 45;
+        d += ` C 32 ${lastY + 30}, 18 ${lastY + 60}, 18 ${lastY + 95}`;
+
+        if (this.curvyGuide) this.curvyGuide.setAttribute('d', d);
+        this.curvyPath.setAttribute('d', d);
+
+        try {
+          this.curvyPathLen = this.curvyPath.getTotalLength();
+          this.curvyPath.style.strokeDasharray = `${this.curvyPathLen}`;
+          this.curvyPath.style.strokeDashoffset = `${this.curvyPathLen}`;
+        } catch (e) {
+          this.curvyPathLen = 0;
+        }
+      }
+
       this.isMeasuring = false;
       this.update(currentScroll);
     }
@@ -538,12 +575,32 @@
       // 1. Determine active index in proper 01 -> 02 -> 03 -> 04 sequence
       let activeIdx = 0;
       for (let i = 0; i < N; i++) {
-        if (m >= this.pinScrolls[i] - 50) {
+        if (m >= this.pinScrolls[i] - 40) {
           activeIdx = i;
         }
       }
 
-      // 2. Calculate Pinned Translations and 3D Perspective Scaling
+      // 2. Animate the Curvy Arrow along with the scroll
+      if (this.curvyPath && this.curvyHead && this.curvyPathLen > 0) {
+        const startScroll = this.pinScrolls[0] - 40;
+        const endScroll = this.pinScrolls[N - 1];
+        const arrowProg = Math.min(1, Math.max(0, (m - startScroll) / Math.max(1, endScroll - startScroll)));
+
+        this.curvyPath.style.strokeDashoffset = `${(this.curvyPathLen * (1 - arrowProg)).toFixed(1)}`;
+
+        if (arrowProg > 0.005) {
+          this.curvyHead.style.opacity = '1';
+          const dist = this.curvyPathLen * arrowProg;
+          const pt = this.curvyPath.getPointAtLength(dist);
+          const ptAhead = this.curvyPath.getPointAtLength(Math.min(this.curvyPathLen, dist + 2));
+          const angle = Math.atan2(ptAhead.y - pt.y, ptAhead.x - pt.x) * (180 / Math.PI) + 90;
+          this.curvyHead.setAttribute('transform', `translate(${pt.x.toFixed(1)}, ${pt.y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
+        } else {
+          this.curvyHead.style.opacity = '0';
+        }
+      }
+
+      // 3. Calculate Pinned Translations and 3D Perspective Scaling
       for (let i = 0; i < N; i++) {
         const item = this.items[i];
         const initialTop = this.itemTops[i];
@@ -598,7 +655,7 @@
         }
       }
 
-      // 3. Highlight left sidebar nav button in proper sequence
+      // 4. Highlight left sidebar nav button in proper sequence
       this.navBtns.forEach((btn, idx) => {
         if (idx === activeIdx) {
           btn.classList.add('is-active');
