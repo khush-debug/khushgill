@@ -295,38 +295,38 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
       chips: ['Brand Planning', 'Visual Design', 'Website Direction', 'Design Guidelines']
     },
-    creative: {
-      title: 'Creative Collaboration',
-      subtitle: 'Work with businesses and creators to turn ideas into finished projects.',
-      badge: '● Collaboration',
+    graphic: {
+      title: 'Graphic Designing',
+      subtitle: 'Creative visual design, marketing collateral, social media assets, and digital artwork.',
+      badge: '● Visual Arts',
       date: '2026',
       link: 'https://www.instagram.com/kggills',
-      linkText: 'Connect on Instagram ↗',
+      linkText: 'View Visuals on Instagram ↗',
       body: `
-        <p><strong>Overview:</strong> Work with businesses and creators to turn ideas into finished projects.</p>
-        <p class="pt-2"><strong>Approach:</strong></p>
+        <p><strong>Overview:</strong> Creative visual design, marketing collateral, social media assets, and digital artwork crafted with strong attention to typography, layout, and visual hierarchy.</p>
+        <p class="pt-2"><strong>Design Approach:</strong></p>
         <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
-          <li>Understand the goals.</li>
-          <li>Agree on a clear plan.</li>
-          <li>Share progress and gather feedback.</li>
-          <li>Refine the details before launch.</li>
+          <li>Strong composition, contrast, and typographic hierarchy.</li>
+          <li>Custom visual assets tailored to brand voice and audience.</li>
+          <li>Consistent colour harmony across print and digital formats.</li>
+          <li>Export-ready production files for web, social, and print.</li>
         </ul>
-        <p class="pt-2"><strong>Collaboration Areas:</strong></p>
+        <p class="pt-2"><strong>Key Deliverables:</strong></p>
         <ul class="list-disc pl-5 space-y-1.5 text-[#595F5B]">
-          <li>Website design.</li>
-          <li>Website development.</li>
-          <li>Brand identity.</li>
-          <li>Project planning and launch.</li>
+          <li>Digital artwork and bespoke illustrations.</li>
+          <li>Promotional posters, banners, and campaign collateral.</li>
+          <li>Social media visuals and content templates.</li>
+          <li>Typography-led editorial layouts and art direction.</li>
         </ul>
       `,
-      chips: ['Design & Development', 'Brand Direction', 'Creative Planning & Teamwork']
+      chips: ['Digital Art', 'Marketing Collateral', 'Typography', 'Visual Hierarchy']
     }
   };
 
   // Alias folder keys (`portfolio`, `brand`, `collab`) to match HTML `data-open-case-study` attributes
   projectDetails.portfolio = projectDetails.branding;
   projectDetails.brand = projectDetails.ai;
-  projectDetails.collab = projectDetails.creative;
+  projectDetails.collab = projectDetails.graphic;
 
   const modal = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
