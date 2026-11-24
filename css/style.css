@@ -191,144 +191,66 @@ body {
   }
 }
 
-/* --- Star Border Physics Effect (Signature Halo Card) --- */
+/* --- Refined Minimal Project Cards (Monochrome Architectural Styling) --- */
 .star-border-container {
   display: block;
   position: relative;
-  border-radius: 44px;
+  border-radius: 36px;
   overflow: hidden;
-  padding: 2px;
-  background: transparent;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  background: #09090b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-.star-border-container:not(.scroll-stack-card):hover {
-  transform: translateY(-4px);
+.star-border-container:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8);
 }
 
 .border-gradient-full {
-  position: absolute;
-  width: 250%;
-  height: 250%;
-  top: -75%;
-  left: -75%;
-  z-index: 0;
-  animation: star-rotate 8s linear infinite;
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-.border-gradient-cyan {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    #00f2fe 15%,
-    #4facfe 30%,
-    #7000ff 45%,
-    transparent 55%,
-    transparent 70%,
-    #00f2fe 80%,
-    #4facfe 90%,
-    transparent 100%
-  );
-}
-
-.border-gradient-gold {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    #f6d365 20%,
-    #fda085 40%,
-    #f093fb 55%,
-    transparent 65%,
-    transparent 75%,
-    #f6d365 85%,
-    #fda085 95%,
-    transparent 100%
-  );
-}
-
-.border-gradient-emerald {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    #10b981 20%,
-    #34d399 40%,
-    #06b6d4 55%,
-    transparent 65%,
-    transparent 75%,
-    #10b981 85%,
-    #34d399 95%,
-    transparent 100%
-  );
-}
-
-.border-gradient-purple {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    #a855f7 20%,
-    #ec4899 40%,
-    #6366f1 55%,
-    transparent 65%,
-    transparent 75%,
-    #a855f7 85%,
-    #ec4899 95%,
-    transparent 100%
-  );
-}
-
-@keyframes star-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 .inner-content {
   position: relative;
-  background-color: #000000;
-  border-radius: 42px;
+  background-color: transparent;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
 
-/* Star Border Button */
+/* Minimal Live Website Button */
 .live-btn-star {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   border-radius: 9999px;
-  overflow: hidden;
-  padding: 1.5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.live-btn-star:hover {
-  transform: scale(1.05);
-}
-
-.live-btn-star .border-gradient-full {
-  animation-duration: 3s;
-}
-
-.live-btn-star .inner-content {
-  background: #000000;
-  border-radius: 9999px;
-  padding: 0.65rem 1.6rem;
+  padding: 0.55rem 1.35rem;
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+}
+
+.live-btn-star:hover {
+  background: #e4e4e7;
+  transform: translateY(-1px);
+}
+
+.live-btn-star .inner-content {
+  display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  background: transparent;
+  color: #000000;
+  padding: 0;
 }
 
 /* --- Circular Hamburger Menu Button & Morphing X (Exact Manan Replica) --- */

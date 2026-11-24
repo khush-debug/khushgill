@@ -1,6 +1,6 @@
 /**
  * Work Timeline Component Styles
- * Inspired by modern editorial engineering roadmaps (sticky anchor + glowing scroll line).
+ * Clean minimal architectural timeline (monochrome elegance).
  */
 
 .work-timeline-track {
@@ -8,15 +8,16 @@
 }
 
 .work-timeline-progress {
-  box-shadow: 0 0 16px rgba(52, 211, 153, 0.85), 0 0 4px rgba(255, 255, 255, 0.9);
+  background: #ffffff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   transition: height 0.08s linear;
 }
 
 /* Timeline Items */
 .work-timeline-item {
-  opacity: 0.55;
+  opacity: 0.6;
   transform: translateY(0) scale(0.99);
-  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .work-timeline-item.is-active {
@@ -26,19 +27,19 @@
 
 /* Timeline Node Dots */
 .timeline-node-dot {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   background: #09090b;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
 }
 
 .work-timeline-item.is-active .timeline-node-dot {
-  background: #34d399;
+  background: #ffffff;
   border-color: #ffffff;
-  box-shadow: 0 0 18px rgba(52, 211, 153, 0.9), 0 0 4px #ffffff;
-  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  transform: scale(1.15);
 }
 
 /* Nav Item Active States */
@@ -52,7 +53,7 @@
 }
 
 .timeline-nav-btn.is-active span:first-child span:first-child {
-  color: #34d399 !important;
+  color: #ffffff !important;
 }
 
 .timeline-nav-btn.is-active span:first-child span:last-child {
@@ -60,7 +61,7 @@
 }
 
 .timeline-nav-btn.is-active .nav-dot {
-  background: #34d399 !important;
-  box-shadow: 0 0 10px #34d399;
-  transform: scale(1.25);
+  background: #ffffff !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
 }
