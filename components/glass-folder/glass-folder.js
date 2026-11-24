@@ -526,22 +526,30 @@
 
       this.pinScrolls = this.itemTops.map((top, i) => top - pinTop - (tabOffset * i));
 
-      // Build organic dynamic curvy arrow path alongside folders
+      // Build organic dynamic curvy arrow path extending all the way down till the folder stops
       if (this.curvySvg && this.curvyPath && this.timelineContainer) {
         const containerH = this.timelineContainer.offsetHeight;
-        this.curvySvg.setAttribute('viewBox', `0 0 40 ${containerH}`);
+        this.curvySvg.setAttribute('viewBox', `0 0 44 ${containerH}`);
 
         const relTops = this.items.map(it => it.offsetTop);
-        let d = `M 18 ${Math.max(16, relTops[0] + 45)}`;
+        const lastItem = this.items[this.items.length - 1];
+        const lastItemH = lastItem ? lastItem.offsetHeight : 542;
+
+        let d = `M 18 ${Math.max(16, relTops[0] + 30)}`;
         for (let i = 0; i < relTops.length - 1; i++) {
-          const yA = relTops[i] + 45;
-          const yB = relTops[i + 1] + 45;
+          const yA = relTops[i] + 30;
+          const yB = relTops[i + 1] + 30;
           const midY = (yA + yB) / 2;
-          const wave = (i % 2 === 0) ? 34 : 2;
+          const wave = (i % 2 === 0) ? 36 : 2;
           d += ` C ${wave} ${yA + (midY - yA)*0.5}, ${wave} ${midY + (yB - midY)*0.5}, 18 ${yB}`;
         }
-        const lastY = relTops[relTops.length - 1] + 45;
-        d += ` C 32 ${lastY + 30}, 18 ${lastY + 60}, 18 ${lastY + 95}`;
+
+        // Extend the line down along the entire height of the last folder to where it stops
+        const lastTop = relTops[relTops.length - 1] + 30;
+        const lastBottom = relTops[relTops.length - 1] + lastItemH - 24;
+        const lastMid = (lastTop + lastBottom) / 2;
+
+        d += ` C 36 ${lastTop + (lastMid - lastTop)*0.5}, 2 ${lastMid + (lastBottom - lastMid)*0.5}, 18 ${lastBottom}`;
 
         if (this.curvyGuide) this.curvyGuide.setAttribute('d', d);
         this.curvyPath.setAttribute('d', d);
@@ -580,10 +588,10 @@
         }
       }
 
-      // 2. Animate the Curvy Arrow along with the scroll
+      // 2. Animate the Curvy Arrow along with the scroll till the point the folder stops
       if (this.curvyPath && this.curvyHead && this.curvyPathLen > 0) {
-        const startScroll = this.pinScrolls[0] - 40;
-        const endScroll = this.pinScrolls[N - 1];
+        const startScroll = this.pinScrolls[0] - 30;
+        const endScroll = Math.min(exitScroll - 40, this.pinScrolls[N - 1] + (L * 0.35));
         const arrowProg = Math.min(1, Math.max(0, (m - startScroll) / Math.max(1, endScroll - startScroll)));
 
         this.curvyPath.style.strokeDashoffset = `${(this.curvyPathLen * (1 - arrowProg)).toFixed(1)}`;
