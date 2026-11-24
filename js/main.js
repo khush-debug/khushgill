@@ -323,6 +323,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Alias folder keys (`portfolio`, `brand`, `collab`) to match HTML `data-open-case-study` attributes
+  projectDetails.portfolio = projectDetails.branding;
+  projectDetails.brand = projectDetails.ai;
+  projectDetails.collab = projectDetails.creative;
+
   const modal = document.getElementById('project-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const modalDismissBtn = document.getElementById('modal-dismiss-btn');
@@ -369,12 +374,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lenis) lenis.start();
   };
 
-  document.querySelectorAll('[data-open-case-study]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const projectKey = btn.getAttribute('data-open-case-study');
-      openModal(projectKey);
-    });
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-open-case-study]');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const projectKey = btn.getAttribute('data-open-case-study');
+    if (projectKey) openModal(projectKey);
   });
 
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
