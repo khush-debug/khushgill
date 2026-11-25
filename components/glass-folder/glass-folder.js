@@ -312,7 +312,7 @@
       const updateSize = () => {
         const parentW = folder.parentElement ? folder.parentElement.clientWidth : 340;
         const targetW = Math.min(folder.dataset.width ? parseFloat(folder.dataset.width) : 480, parentW - 8);
-        const effectiveW = Math.max(300, targetW);
+        const effectiveW = Math.max(250, targetW);
         const k = effectiveW / W;
 
         folder.style.width = effectiveW + 'px';
@@ -400,7 +400,7 @@
 
       // 3. Pointer Tracking (Paused when off-screen or tab hidden)
       folder.addEventListener('pointermove', (e) => {
-        if (e.pointerType === 'touch' || !isFolderVisible || document.hidden) return;
+        if (e.pointerType === 'touch' || !isFolderVisible || document.hidden || folder.closest('.is-dragging')) return;
         const r = folder.getBoundingClientRect();
         px = ((e.clientX - r.left) / r.width) * 2 - 1;
         py = ((e.clientY - r.top) / r.height) * 2 - 1;
@@ -486,7 +486,7 @@
   }
 
 
-  // --- Folder Carousel (carousel-08 Apple Card Style Architecture) ---
+  // --- Folder Carousel (Apple Card Style with Pointer Drag, Swipe & Snap) ---
   class FolderCarousel {
     constructor() {
       this.viewport = document.getElementById('folder-carousel-viewport');
@@ -497,15 +497,26 @@
       this.counter = document.getElementById('folder-carousel-counter');
       this.navBtns = Array.from(document.querySelectorAll('.timeline-nav-btn'));
 
-      if (!this.viewport || !this.slides.length) return;
+      if (!this.viewport || !this.track || !this.slides.length) return;
 
+      this.DRAG_THRESHOLD = 9; // Start drag after 8-10px movement
       this.currentIndex = 0;
-      this.isDown = false;
+      this.currentOffset = 0;
+      this.maxOffset = 0;
+
+      // Active gesture state
+      this.activePointerId = null;
+      this.pointerType = 'mouse';
       this.startX = 0;
-      this.scrollLeft = 0;
-      this.hasMoved = false;
+      this.startY = 0;
+      this.dragStartOffset = 0;
+      this.dragStartIndex = 0;
+      this.isDragging = false;
+      this.suppressClick = false;
+      this.suppressTimer = null;
+      this.wheelSnapTimer = null;
+      this.samples = [];
       this.isVisible = true;
-      this.rafId = null;
 
       this.init();
     }
@@ -515,56 +526,71 @@
         const io = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             this.isVisible = entry.isIntersecting;
-            if (!this.isVisible && this.rafId) {
-              cancelAnimationFrame(this.rafId);
-              this.rafId = null;
-            }
           });
         }, { rootMargin: '100px 0px', threshold: 0 });
         io.observe(this.viewport);
       }
 
       this.bindEvents();
-      this.updateControls();
+      this.recalculate(false);
     }
 
-    updateControls() {
-      if (!this.viewport) return;
-      const scrollLeft = this.viewport.scrollLeft;
-      const maxScroll = Math.max(0, this.viewport.scrollWidth - this.viewport.clientWidth);
+    getLayoutMetrics() {
+      const firstSlide = this.slides[0];
+      const cardWidth = firstSlide ? firstSlide.getBoundingClientRect().width : 0;
 
-      // Determine active slide index based on viewport position
-      let activeIdx = 0;
-      let minDiff = Infinity;
-      const viewportLeft = this.viewport.getBoundingClientRect().left;
+      const trackStyle = window.getComputedStyle(this.track);
+      let gap = parseFloat(trackStyle.columnGap || trackStyle.gap) || 0;
+      if (!gap && this.slides.length > 1) {
+        gap = Math.max(0, this.slides[1].offsetLeft - firstSlide.offsetLeft - cardWidth);
+      }
 
-      this.slides.forEach((slide, idx) => {
-        const slideRect = slide.getBoundingClientRect();
-        const diff = Math.abs(slideRect.left - viewportLeft);
-        if (diff < minDiff) {
-          minDiff = diff;
-          activeIdx = idx;
-        }
+      const step = Math.max(1, cardWidth + gap);
+      const viewportWidth = this.viewport.clientWidth;
+      const trackWidth = this.track.scrollWidth;
+      const maxOffset = Math.max(0, trackWidth - viewportWidth);
+
+      const targets = this.slides.map((_, idx) => {
+        return Math.min(maxOffset, Math.max(0, idx * step));
       });
 
-      this.currentIndex = activeIdx;
+      return { cardWidth, gap, step, viewportWidth, trackWidth, maxOffset, targets };
+    }
+
+    clampOffset(offset, maxOffset = this.maxOffset) {
+      return Math.min(maxOffset, Math.max(0, offset));
+    }
+
+    applyTransform(offset, animate = true) {
+      this.currentOffset = this.clampOffset(offset);
+      if (animate) {
+        this.track.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+      } else {
+        this.track.style.transition = 'none';
+      }
+      this.track.style.transform = `translate3d(${-this.currentOffset}px, 0, 0)`;
+    }
+
+    syncUI() {
+      const total = this.slides.length;
+      const idx = Math.max(0, Math.min(total - 1, this.currentIndex));
+      this.currentIndex = idx;
 
       if (this.counter) {
-        this.counter.textContent = String(activeIdx + 1).padStart(2, '0');
+        this.counter.textContent = String(idx + 1).padStart(2, '0');
       }
 
       if (this.prevBtn) {
-        this.prevBtn.disabled = scrollLeft <= 8;
+        this.prevBtn.disabled = idx <= 0;
       }
       if (this.nextBtn) {
-        this.nextBtn.disabled = scrollLeft >= maxScroll - 8;
+        this.nextBtn.disabled = idx >= total - 1;
       }
 
-      // Sync left sidebar navigation buttons
       this.navBtns.forEach((btn) => {
         const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
         const dot = btn.querySelector('.nav-dot');
-        if (targetIdx === activeIdx) {
+        if (targetIdx === idx) {
           btn.classList.add('is-active', 'text-[#202522]');
           if (dot) {
             dot.classList.remove('bg-transparent');
@@ -580,36 +606,233 @@
       });
     }
 
-    scrollToSlide(index) {
-      if (index < 0 || index >= this.slides.length) return;
-      const targetSlide = this.slides[index];
-      if (!targetSlide) return;
+    recalculate(animate = false) {
+      const metrics = this.getLayoutMetrics();
+      this.maxOffset = metrics.maxOffset;
+      const target = metrics.targets[this.currentIndex] ?? 0;
+      this.applyTransform(target, animate);
+      this.syncUI();
+      return metrics;
+    }
 
-      const targetScroll = targetSlide.offsetLeft - this.viewport.offsetLeft;
-      this.viewport.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
+    scrollToSlide(index, animate = true) {
+      const total = this.slides.length;
+      const clampedIdx = Math.max(0, Math.min(total - 1, index));
+      const metrics = this.getLayoutMetrics();
+      this.maxOffset = metrics.maxOffset;
+      this.currentIndex = clampedIdx;
+      const targetOffset = metrics.targets[clampedIdx] ?? 0;
+      this.applyTransform(targetOffset, animate);
+      this.syncUI();
+    }
+
+    resolveNearestIndex(offset, velocityX, pointerDeltaX) {
+      const metrics = this.getLayoutMetrics();
+      this.maxOffset = metrics.maxOffset;
+      const { step, targets } = metrics;
+      const total = this.slides.length;
+
+      // Crisp short flick advances/retreats at most one project from drag start
+      if (Math.abs(pointerDeltaX) <= step * 0.65 && Math.abs(velocityX) >= 0.35 && Math.abs(pointerDeltaX) >= 24) {
+        if (velocityX < 0) {
+          return Math.min(total - 1, this.dragStartIndex + 1);
+        }
+        return Math.max(0, this.dragStartIndex - 1);
+      }
+
+      // Snap directly to the nearest project stop based on actual card width + gap
+      let bestIdx = 0;
+      let bestDist = Infinity;
+
+      for (let i = 0; i < targets.length; i++) {
+        const dist = Math.abs(targets[i] - offset);
+        if (dist < bestDist - 0.5) {
+          bestDist = dist;
+          bestIdx = i;
+        } else if (Math.abs(dist - bestDist) <= 0.5 && pointerDeltaX < 0) {
+          bestIdx = i;
+        }
+      }
+
+      return bestIdx;
+    }
+
+    clearSuppressTimer() {
+      if (this.suppressTimer) {
+        clearTimeout(this.suppressTimer);
+        this.suppressTimer = null;
+      }
+    }
+
+    resetPointerTracking() {
+      this.activePointerId = null;
+      this.isDragging = false;
+      this.samples = [];
+      this.viewport.classList.remove('is-dragging');
+      document.body.classList.remove('is-carousel-dragging');
+    }
+
+    computeVelocityX() {
+      if (this.samples.length < 2) return 0;
+      const last = this.samples[this.samples.length - 1];
+      // If pointer paused before release, do not treat as a flick
+      if (performance.now() - last.t > 70) return 0;
+      const first = this.samples[0];
+      const dt = last.t - first.t;
+      if (dt < 12) return 0;
+      return (last.x - first.x) / dt;
+    }
+
+    onPointerDown(e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (this.activePointerId !== null) return;
+      if (e.target.closest('input, textarea, select, .gf-menu')) return;
+
+      const metrics = this.getLayoutMetrics();
+      this.maxOffset = metrics.maxOffset;
+
+      const liveTransform = window.getComputedStyle(this.track).transform;
+      if (liveTransform && liveTransform !== 'none') {
+        try {
+          const matrix = new DOMMatrixReadOnly(liveTransform);
+          this.currentOffset = this.clampOffset(-matrix.m41);
+        } catch (_) {}
+      }
+
+      this.activePointerId = e.pointerId;
+      this.pointerType = e.pointerType || 'mouse';
+      this.startX = e.clientX;
+      this.startY = e.clientY;
+      this.dragStartOffset = this.currentOffset;
+      this.dragStartIndex = this.currentIndex;
+      this.isDragging = false;
+      this.samples = [{ x: e.clientX, t: performance.now() }];
+    }
+
+    onPointerMove(e) {
+      if (e.pointerId !== this.activePointerId) return;
+
+      const dx = e.clientX - this.startX;
+      const dy = e.clientY - this.startY;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      if (!this.isDragging) {
+        // Yield vertical touch gestures to native pan-y scrolling
+        if (this.pointerType === 'touch' && absDy >= this.DRAG_THRESHOLD && absDy > absDx) {
+          this.resetPointerTracking();
+          return;
+        }
+
+        if (absDx < this.DRAG_THRESHOLD) {
+          return;
+        }
+
+        this.isDragging = true;
+        this.suppressClick = true;
+        this.clearSuppressTimer();
+
+        this.viewport.classList.add('is-dragging');
+        document.body.classList.add('is-carousel-dragging');
+
+        const sel = window.getSelection?.();
+        if (sel && sel.rangeCount > 0) sel.removeAllRanges();
+
+        this.applyTransform(this.currentOffset, false);
+      }
+
+      const effectiveDx = dx - Math.sign(dx) * this.DRAG_THRESHOLD;
+      const nextOffset = this.clampOffset(this.dragStartOffset - effectiveDx);
+      this.applyTransform(nextOffset, false);
+
+      const now = performance.now();
+      this.samples.push({ x: e.clientX, t: now });
+      while (this.samples.length > 2 && now - this.samples[0].t > 100) {
+        this.samples.shift();
+      }
+    }
+
+    finishGesture(e, wasCancelled = false) {
+      if (this.activePointerId === null) return;
+      if (e && e.pointerId !== undefined && e.pointerId !== this.activePointerId) return;
+
+      const wasDragging = this.isDragging;
+      const pointerDeltaX = e && typeof e.clientX === 'number'
+        ? (e.clientX - this.startX)
+        : (this.dragStartOffset - this.currentOffset);
+      const velocityX = wasCancelled ? 0 : this.computeVelocityX();
+
+      this.resetPointerTracking();
+
+      if (wasDragging) {
+        this.clearSuppressTimer();
+        this.suppressTimer = setTimeout(() => {
+          this.suppressClick = false;
+          this.suppressTimer = null;
+        }, 80);
+
+        const targetIdx = this.resolveNearestIndex(this.currentOffset, velocityX, pointerDeltaX);
+        this.scrollToSlide(targetIdx, true);
+      }
     }
 
     bindEvents() {
-      // Realtime scroll tracking
-      this.viewport.addEventListener('scroll', () => {
-        if (this.rafId) cancelAnimationFrame(this.rafId);
-        this.rafId = requestAnimationFrame(() => this.updateControls());
-      }, { passive: true });
+      // Prevent native HTML5 link/image drag hijacking mouse drags
+      this.viewport.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+      });
+
+      // Suppress accidental folder opens / link clicks after a drag
+      this.viewport.addEventListener('click', (e) => {
+        if (this.suppressClick) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          this.suppressClick = false;
+          this.clearSuppressTimer();
+        }
+      }, { capture: true });
+
+      // Unified Pointer Events for mouse drag & touch swipe
+      this.viewport.addEventListener('pointerdown', (e) => this.onPointerDown(e));
+      window.addEventListener('pointermove', (e) => this.onPointerMove(e), { passive: true });
+      window.addEventListener('pointerup', (e) => this.finishGesture(e, false));
+      window.addEventListener('pointercancel', (e) => this.finishGesture(e, true));
+
+      // Interrupted gesture fallbacks (window focus loss or tab switch)
+      window.addEventListener('blur', () => this.finishGesture(null, true));
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) this.finishGesture(null, true);
+      });
+
+      // Horizontal trackpad wheel scrolling (without blocking vertical page scroll)
+      this.viewport.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 1) return;
+        e.preventDefault();
+
+        const metrics = this.getLayoutMetrics();
+        this.maxOffset = metrics.maxOffset;
+        this.applyTransform(this.currentOffset + e.deltaX, false);
+
+        if (this.wheelSnapTimer) clearTimeout(this.wheelSnapTimer);
+        this.wheelSnapTimer = setTimeout(() => {
+          this.dragStartIndex = this.currentIndex;
+          const targetIdx = this.resolveNearestIndex(this.currentOffset, 0, -Math.sign(e.deltaX) * 30);
+          this.scrollToSlide(targetIdx, true);
+        }, 120);
+      }, { passive: false });
 
       // Arrow navigation
       if (this.prevBtn) {
         this.prevBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          this.scrollToSlide(Math.max(0, this.currentIndex - 1));
+          this.scrollToSlide(Math.max(0, this.currentIndex - 1), true);
         });
       }
       if (this.nextBtn) {
         this.nextBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1), true);
         });
       }
 
@@ -619,38 +842,9 @@
           e.preventDefault();
           const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
           if (!isNaN(targetIdx)) {
-            this.scrollToSlide(targetIdx);
+            this.scrollToSlide(targetIdx, true);
           }
         });
-      });
-
-      // Mouse dragFree gesture
-      this.viewport.addEventListener('mousedown', (e) => {
-        if (e.target.closest('button, a, input, [role="button"], .gf-hit, .gf-key, .gf-sheet, .gf-menu')) {
-          return;
-        }
-        this.isDown = true;
-        this.hasMoved = false;
-        this.startX = e.pageX - this.viewport.offsetLeft;
-        this.scrollLeft = this.viewport.scrollLeft;
-        this.viewport.classList.add('is-dragging');
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!this.isDown) return;
-        const x = e.pageX - this.viewport.offsetLeft;
-        const walk = x - this.startX;
-        if (Math.abs(walk) > 5) {
-          this.hasMoved = true;
-          this.viewport.scrollLeft = this.scrollLeft - walk;
-        }
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (this.isDown) {
-          this.isDown = false;
-          this.viewport.classList.remove('is-dragging');
-        }
       });
 
       // Keyboard arrow keys (only when carousel is visible)
@@ -661,14 +855,14 @@
         if (!inView) return;
 
         if (e.key === 'ArrowLeft') {
-          this.scrollToSlide(Math.max(0, this.currentIndex - 1));
+          this.scrollToSlide(Math.max(0, this.currentIndex - 1), true);
         } else if (e.key === 'ArrowRight') {
-          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1));
+          this.scrollToSlide(Math.min(this.slides.length - 1, this.currentIndex + 1), true);
         }
       });
 
       window.addEventListener('resize', () => {
-        if (this.isVisible) this.updateControls();
+        this.recalculate(false);
       }, { passive: true });
     }
   }

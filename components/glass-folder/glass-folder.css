@@ -502,13 +502,12 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 /* ---- Apple Card Folder Carousel (carousel-08 style) ---- */
 .folder-carousel-viewport {
   width: calc(100% + 1.5rem);
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  touch-action: pan-y;
+  cursor: grab;
+  -webkit-user-select: none;
+  user-select: none;
 }
 @media (min-width: 768px) {
   .folder-carousel-viewport {
@@ -520,21 +519,23 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
     width: calc(100% + max(4rem, 50vw - 36rem));
   }
 }
-.folder-carousel-viewport::-webkit-scrollbar {
-  display: none;
+
+.folder-carousel-track {
+  width: max-content;
+  will-change: transform;
 }
 
-.folder-carousel-viewport.is-dragging {
+.folder-carousel-viewport.is-dragging,
+.folder-carousel-viewport.is-dragging *,
+body.is-carousel-dragging,
+body.is-carousel-dragging * {
   cursor: grabbing !important;
-  user-select: none;
-  scroll-behavior: auto;
-  scroll-snap-type: none;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 .folder-carousel-slide {
   contain: layout style;
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
