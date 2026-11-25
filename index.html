@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -74,7 +74,7 @@
   <!-- ==================== FIXED ARCHITECTURAL FRAME ==================== -->
 
   <!-- Top Navigation Bar (Editorial Reference Layout) -->
-  <header class="sticky top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#DADDD7]/60 px-6 md:px-12 lg:px-16 py-4">
+  <header class="sticky top-0 left-0 w-full z-50 bg-[#FAF9F6]/98 border-b border-[#DADDD7]/60 px-6 md:px-12 lg:px-16 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
       
       <!-- Left: Identity -->
@@ -171,10 +171,7 @@
          ========================================== -->
     <section id="hero" class="relative bg-[#FAF9F6] text-[#202522] pt-10 pb-14 md:pt-14 md:pb-20 px-6 md:px-12 lg:px-16 overflow-hidden">
       
-      <!-- Hidden canvas (kept for fallback script compatibility) -->
-      <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden hidden">
-        <canvas id="portal-field-canvas" class="w-full h-full block"></canvas>
-      </div>
+
 
       <div class="max-w-7xl mx-auto relative z-10">
 
@@ -560,7 +557,7 @@
           <div id="folder-carousel-viewport" class="folder-carousel-viewport overflow-x-auto select-none py-2 cursor-grab active:cursor-grabbing" style="-webkit-overflow-scrolling: touch;">
             <div id="folder-carousel-track" class="folder-carousel-track flex gap-6 sm:gap-8 pl-1 pr-6 md:pr-12 lg:pr-16 pb-4">
               <!-- Slide 1: Supreme Infosys -->
-              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="0">
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="0">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
@@ -713,7 +710,7 @@
                 </div>
               </div>
               <!-- Slide 2: Personal Portfolio -->
-              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="1">
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="1">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
@@ -866,7 +863,7 @@
                 </div>
               </div>
               <!-- Slide 3: Brand Identity & Strategy -->
-              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="2">
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="2">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
@@ -1019,7 +1016,7 @@
                 </div>
               </div>
               <!-- Slide 4: Graphic Design -->
-              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6]/90 backdrop-blur-sm shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="3">
+              <div class="folder-carousel-slide flex-none w-[320px] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="3">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
@@ -1348,8 +1345,8 @@
     <!-- ==================== FAQS SECTION: WORKSPACE BACKGROUND ==================== -->
     <section id="faq" class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7] overflow-hidden">
       <!-- Workspace Background Image & Warm Frosted Veil -->
-      <img src="assets/faq-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
-      <div class="absolute inset-0 bg-[#FAF9F6]/70 backdrop-blur-[1.5px] z-0 pointer-events-none"></div>
+      <img src="assets/faq-bg.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover blur-[1.5px] scale-[1.01] z-0 pointer-events-none">
+      <div class="absolute inset-0 bg-[#FAF9F6]/75 z-0 pointer-events-none"></div>
 
       <div class="max-w-6xl mx-auto relative z-10">
         
@@ -1386,7 +1383,7 @@
           </div>
 
           <!-- Right Column: Frosted Accordion List -->
-          <div class="lg:col-span-7 flex flex-col bg-[#FAF9F6]/88 backdrop-blur-md border border-[#DADDD7] rounded-3xl px-6 sm:px-8 py-2 shadow-sm">
+          <div class="lg:col-span-7 flex flex-col bg-[#FAF9F6]/95 border border-[#DADDD7] rounded-3xl px-6 sm:px-8 py-2 shadow-sm">
             
             <!-- Item 1 -->
             <div class="faq-accordion-item is-open">
@@ -1828,8 +1825,6 @@
   </div>
 
 
-  <!-- Three.js Engine for Ambient Portal Field -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <!-- Lenis Smooth Scrolling Engine -->
   <script src="js/lenis.min.js"></script>
   <!-- Modular Component Controllers -->

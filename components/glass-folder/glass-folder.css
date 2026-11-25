@@ -155,7 +155,7 @@ canvas.gf-art[data-ready] { opacity: 1; filter: none; }
   object-fit: cover;
   transition: opacity .9s var(--gf-ease), filter .9s var(--gf-ease);
 }
-canvas.gf-sheet-art { opacity: 0; filter: blur(10px); }
+canvas.gf-sheet-art { opacity: 0; filter: blur(6px); }
 canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 .gf-sheet--art::after {
   content: "";
@@ -230,8 +230,8 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
   width: 340px;
   height: 198px;
   z-index: 10;
-  -webkit-backdrop-filter: blur(22px) saturate(1.5);
-  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(6px) saturate(1.3);
+  backdrop-filter: blur(6px) saturate(1.3);
   transform-origin: 50% 100%;
   transform: perspective(760px) rotateX(var(--gf-hinge));
   transition: transform .8s var(--gf-spring), translate 1s var(--gf-ease), opacity 1s var(--gf-ease);
@@ -348,8 +348,8 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 .gf-key--more {
   color: #111113;
   background: linear-gradient(180deg, rgba(255, 255, 255, .92) 0%, rgba(226, 226, 230, .82) 100%);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   box-shadow:
     inset 0 1px 0 #fff,
     inset 0 -2px 4px rgba(0, 0, 0, .06),
@@ -379,8 +379,8 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
   display: flex;
   flex-direction: column;
   background: rgba(252, 252, 253, .72);
-  -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 0 0 .5px rgba(0, 0, 0, .14), 0 24px 48px -16px rgba(10, 12, 20, .4);
   transform-origin: 100% 100%;
   opacity: 0;
@@ -532,6 +532,7 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 }
 
 .folder-carousel-slide {
+  contain: layout style;
   scroll-snap-align: start;
   scroll-snap-stop: normal;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;

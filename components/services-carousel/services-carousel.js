@@ -142,12 +142,10 @@
         const scale = Math.max(0.72, 1 - absOffset * 0.12);
         const opacity = absOffset > 2 ? 0 : Math.max(0.2, 1 - absOffset * 0.35);
         const zIndex = 20 - absOffset * 2;
-        const brightness = absOffset === 0 ? 1 : 0.65;
-
+        
         card.style.transform = `translate3d(${translateX}px, 0, ${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
         card.style.zIndex = zIndex;
         card.style.opacity = opacity;
-        card.style.filter = `brightness(${brightness})`;
         card.style.pointerEvents = absOffset > 2 ? 'none' : 'auto';
 
         if (absOffset === 0) {
