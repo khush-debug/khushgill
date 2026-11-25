@@ -501,6 +501,7 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 
 /* ---- Apple Card Folder Carousel (carousel-08 style) ---- */
 .folder-carousel-viewport {
+  width: calc(100% + 1.5rem);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -508,6 +509,16 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+@media (min-width: 768px) {
+  .folder-carousel-viewport {
+    width: calc(100% + 3rem);
+  }
+}
+@media (min-width: 1024px) {
+  .folder-carousel-viewport {
+    width: calc(100% + max(4rem, 50vw - 36rem));
+  }
 }
 .folder-carousel-viewport::-webkit-scrollbar {
   display: none;
