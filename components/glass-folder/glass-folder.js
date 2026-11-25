@@ -565,13 +565,13 @@
         const targetIdx = parseInt(btn.getAttribute('data-nav-target'), 10);
         const dot = btn.querySelector('.nav-dot');
         if (targetIdx === activeIdx) {
-          btn.classList.add('is-active', 'bg-[#F0EFEB]', 'text-[#202522]');
+          btn.classList.add('is-active', 'text-[#202522]');
           if (dot) {
             dot.classList.remove('bg-transparent');
             dot.classList.add('bg-[#176B5B]');
           }
         } else {
-          btn.classList.remove('is-active', 'bg-[#F0EFEB]', 'text-[#202522]');
+          btn.classList.remove('is-active', 'text-[#202522]');
           if (dot) {
             dot.classList.add('bg-transparent');
             dot.classList.remove('bg-[#176B5B]');

@@ -495,7 +495,7 @@ body {
 #work {
   position: relative;
   z-index: 20;
-  background-color: var(--bg-main);
+  background-color: #EFE8DA;
 }
 
 #philosophy {

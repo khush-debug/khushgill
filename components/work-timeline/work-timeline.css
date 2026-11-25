@@ -8,12 +8,12 @@
 }
 
 .timeline-nav-btn:hover {
-  background: #F0EFEB;
+  background: rgba(250, 249, 246, 0.78);
   color: #202522;
 }
 
 .timeline-nav-btn.is-active {
-  background: #F0EFEB;
+  background: rgba(250, 249, 246, 0.92);
   color: #202522;
 }
 
