@@ -1328,9 +1328,13 @@
     </section>
 
 
-    <!-- ==================== FAQS SECTION: WARM WHITE ==================== -->
-    <section id="faq" class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7]">
-      <div class="max-w-6xl mx-auto">
+    <!-- ==================== FAQS SECTION: WORKSPACE BACKGROUND ==================== -->
+    <section id="faq" class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7] overflow-hidden">
+      <!-- Workspace Background Image & Warm Frosted Veil -->
+      <img src="assets/faq-bg.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
+      <div class="absolute inset-0 bg-[#FAF9F6]/70 backdrop-blur-[1.5px] z-0 pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
         
         <!-- Header -->
         <div class="reveal mb-14 text-center max-w-2xl mx-auto">
@@ -1345,18 +1349,15 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
           
-          <!-- Left Column: Editorial Photo Card (Visvora Inspired) -->
-          <div class="lg:col-span-5 lg:sticky lg:top-28 faq-card-photo h-[420px] sm:h-[480px] p-6 sm:p-8 flex flex-col justify-between">
-            <img src="assets/faq-workspace.jpg" alt="Creative Studio Workspace" class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
-            
-            <div class="relative z-20">
-              <span class="inline-block px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase bg-black/60 backdrop-blur-md text-[#FAF9F6] border border-white/20">
+          <!-- Left Column: Frosted CTA Card (No Photo) -->
+          <div class="lg:col-span-5 lg:sticky lg:top-28 rounded-[28px] bg-[#202522]/85 backdrop-blur-md border border-white/15 shadow-xl min-h-[340px] sm:min-h-[400px] p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <span class="inline-block px-3 py-1 rounded-full text-[11px] font-mono font-bold tracking-wider uppercase bg-black/50 backdrop-blur-md text-[#FAF9F6] border border-white/20">
                 ● 2026 Edition
               </span>
             </div>
 
-            <div class="relative z-20 space-y-3">
+            <div class="space-y-3">
               <h3 class="font-sans font-black text-2xl sm:text-3xl text-white tracking-tight leading-snug">
                 Have a project in mind?
               </h3>
@@ -1370,8 +1371,8 @@
             </div>
           </div>
 
-          <!-- Right Column: Accordion List -->
-          <div class="lg:col-span-7 flex flex-col">
+          <!-- Right Column: Frosted Accordion List -->
+          <div class="lg:col-span-7 flex flex-col bg-[#FAF9F6]/88 backdrop-blur-md border border-[#DADDD7] rounded-3xl px-6 sm:px-8 py-2 shadow-sm">
             
             <!-- Item 1 -->
             <div class="faq-accordion-item is-open">
