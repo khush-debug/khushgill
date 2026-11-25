@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
       chips: ['Brand Planning', 'Visual Design', 'Website Direction', 'Design Guidelines']
     },
     graphic: {
-      title: 'Graphic Designing',
+      title: 'Graphic Design',
       subtitle: 'Creative visual design, marketing collateral, social media assets, and digital artwork.',
       badge: '● Visual Arts',
       date: '2026',
