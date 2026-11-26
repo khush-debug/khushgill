@@ -523,6 +523,7 @@ body {
 .is-offscreen *,
 .is-offscreen *::before,
 .is-offscreen *::after,
+.is-page-hidden,
 .is-page-hidden *,
 .is-page-hidden *::before,
 .is-page-hidden *::after {
@@ -534,8 +535,16 @@ body {
 .is-offscreen .services-card-3d,
 .is-offscreen .gf-root,
 .is-offscreen .gf-sheet,
+.is-offscreen .folder-carousel-track,
+.is-offscreen #footer-parallax,
+.is-offscreen #footer-big-name-box,
+.is-offscreen#footer-reveal-wrapper #footer-parallax,
+.is-offscreen#footer-reveal-wrapper #footer-big-name-box,
 .is-page-hidden .marquee-selected-works__track,
 .is-page-hidden .animate-spin-slow,
-.is-page-hidden .services-card-3d {
+.is-page-hidden .services-card-3d,
+.is-page-hidden .folder-carousel-track,
+.is-page-hidden #footer-parallax,
+.is-page-hidden #footer-big-name-box {
   will-change: auto !important;
 }

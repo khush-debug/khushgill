@@ -22,8 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         autoRaf: false
       });
 
+      let isPageFrozen = false;
+      const isPageInactive = () => document.hidden || isPageFrozen;
+
       const raf = (time) => {
-        if (document.hidden) {
+        if (isPageInactive()) {
           lenisRafId = null;
           return;
         }
@@ -32,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const startLenisRaf = () => {
-        if (lenisRafId === null && !document.hidden) {
+        if (lenisRafId === null && !isPageInactive()) {
           lenisRafId = requestAnimationFrame(raf);
         }
       };
@@ -49,8 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.hidden) {
           stopLenisRaf();
         } else {
+          isPageFrozen = false;
           startLenisRaf();
         }
+      });
+      window.addEventListener('pagehide', () => {
+        isPageFrozen = true;
+        stopLenisRaf();
+      });
+      window.addEventListener('pageshow', () => {
+        isPageFrozen = false;
+        startLenisRaf();
+      });
+      document.addEventListener('freeze', () => {
+        isPageFrozen = true;
+        stopLenisRaf();
+      });
+      document.addEventListener('resume', () => {
+        isPageFrozen = false;
+        startLenisRaf();
       });
     }
   } catch (e) {
@@ -509,23 +529,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
   // 7B. VIEWPORT ANIMATION PAUSE CONTROLLER
-  // Pauses CSS keyframe animations and frees GPU layers when sections scroll off-screen or tab is hidden
+  // Pauses CSS keyframe animations and frees GPU layers when sections/pages are swiped away or tab is hidden
   // ==========================================
+  let isPageSwipedAway = false;
+
   function initViewportAnimationManager() {
-    const syncPageVisibility = () => {
-      document.documentElement.classList.toggle('is-page-hidden', document.hidden);
+    const syncPageVisibility = (hiddenOverride) => {
+      if (typeof hiddenOverride === 'boolean') {
+        isPageSwipedAway = hiddenOverride;
+      }
+      const isHidden = document.hidden || isPageSwipedAway;
+      document.documentElement.classList.toggle('is-page-hidden', isHidden);
     };
-    syncPageVisibility();
-    document.addEventListener('visibilitychange', syncPageVisibility);
+
+    syncPageVisibility(false);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) isPageSwipedAway = false;
+      syncPageVisibility();
+    });
+    window.addEventListener('pagehide', () => syncPageVisibility(true));
+    window.addEventListener('pageshow', () => syncPageVisibility(false));
+    document.addEventListener('freeze', () => syncPageVisibility(true));
+    document.addEventListener('resume', () => syncPageVisibility(false));
 
     if (typeof IntersectionObserver === 'undefined') return;
 
-    const targets = document.querySelectorAll('section, footer, .marquee-selected-works, .cta-stamp-btn, [class*="animate-"]');
+    const targets = document.querySelectorAll('section, footer, #footer-reveal-wrapper, .marquee-selected-works, .cta-stamp-btn, [class*="animate-"]');
     const animObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
       });
-    }, { rootMargin: '80px 0px', threshold: 0 });
+    }, { rootMargin: '0px', threshold: 0 });
 
     targets.forEach((el) => animObserver.observe(el));
   }
@@ -618,7 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof updateFooterTransform === 'function') {
     let footerTicking = false;
     const handleFooterScroll = (customY) => {
-      if (!isFooterVisible || document.hidden) return;
+      if (!isFooterVisible || document.hidden || isPageSwipedAway) return;
       if (!footerTicking) {
         requestAnimationFrame(() => {
           const sy = typeof customY === 'number' ? customY : window.scrollY;

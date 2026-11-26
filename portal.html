@@ -146,14 +146,84 @@
       }
     });
 
-    const clock = new THREE.Clock();
-    function animate() {
-      requestAnimationFrame(animate);
-      material.uniforms.u_time.value = clock.getElapsedTime() * 1.0;
+    let rafId = null;
+    let isPagePaused = document.hidden;
+    let isViewportVisible = true;
+    let elapsedTime = 0;
+    let lastTimestamp = null;
+
+    function shouldAnimate() {
+      return !isPagePaused && isViewportVisible;
+    }
+
+    function animate(now) {
+      if (!shouldAnimate()) {
+        rafId = null;
+        lastTimestamp = null;
+        return;
+      }
+      if (lastTimestamp === null) {
+        lastTimestamp = now;
+      }
+      const delta = (now - lastTimestamp) / 1000;
+      lastTimestamp = now;
+      elapsedTime += Math.min(delta, 0.1);
+
+      material.uniforms.u_time.value = elapsedTime;
       material.uniforms.u_mouse.value.lerp(targetMouse, 0.05);
       renderer.render(scene, camera);
+      rafId = requestAnimationFrame(animate);
     }
-    animate();
+
+    function startAnimation() {
+      if (rafId === null && shouldAnimate()) {
+        lastTimestamp = null;
+        rafId = requestAnimationFrame(animate);
+      }
+    }
+
+    function stopAnimation() {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      lastTimestamp = null;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      isPagePaused = document.hidden;
+      if (isPagePaused) stopAnimation();
+      else startAnimation();
+    });
+    window.addEventListener('pagehide', () => {
+      isPagePaused = true;
+      stopAnimation();
+    });
+    window.addEventListener('pageshow', () => {
+      isPagePaused = document.hidden;
+      if (!isPagePaused) startAnimation();
+    });
+    document.addEventListener('freeze', () => {
+      isPagePaused = true;
+      stopAnimation();
+    });
+    document.addEventListener('resume', () => {
+      isPagePaused = document.hidden;
+      if (!isPagePaused) startAnimation();
+    });
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isViewportVisible = entry.isIntersecting;
+          if (isViewportVisible) startAnimation();
+          else stopAnimation();
+        });
+      }, { rootMargin: '0px', threshold: 0 });
+      io.observe(container);
+    }
+
+    startAnimation();
 
     window.addEventListener('resize', () => {
       const width = window.innerWidth;

@@ -266,9 +266,13 @@
   let pumping = false;
 
   function pump() {
-    if (pumping) return;
+    if (pumping || document.hidden) return;
     pumping = true;
     const tick = () => {
+      if (document.hidden) {
+        pumping = false;
+        return;
+      }
       const until = performance.now() + 7;
       while (queue.length && performance.now() < until) {
         const head = queue[0];
@@ -286,6 +290,13 @@
     };
     requestAnimationFrame(tick);
   }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && queue.length) pump();
+  });
+  window.addEventListener('pageshow', () => {
+    if (!document.hidden && queue.length) pump();
+  });
 
   function paint(recipe, seed, w, h, priority) {
     const key = JSON.stringify([recipe, seed, w, h]);
@@ -395,12 +406,12 @@
             }
           }
         });
-      }, { rootMargin: '100px 0px', threshold: 0 });
+      }, { rootMargin: '0px', threshold: 0 });
       io.observe(folder);
 
-      // 3. Pointer Tracking (Paused when off-screen or tab hidden)
+      // 3. Pointer Tracking (Paused when off-screen, swiped away, or tab hidden)
       folder.addEventListener('pointermove', (e) => {
-        if (e.pointerType === 'touch' || !isFolderVisible || document.hidden || folder.closest('.is-dragging')) return;
+        if (e.pointerType === 'touch' || !isFolderVisible || document.hidden || folder.closest('.is-dragging, .is-offscreen')) return;
         const r = folder.getBoundingClientRect();
         px = ((e.clientX - r.left) / r.width) * 2 - 1;
         py = ((e.clientY - r.top) / r.height) * 2 - 1;
@@ -526,9 +537,18 @@
         const io = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             this.isVisible = entry.isIntersecting;
+            this.viewport.classList.toggle('is-offscreen', !entry.isIntersecting);
           });
-        }, { rootMargin: '100px 0px', threshold: 0 });
+        }, { rootMargin: '0px', threshold: 0 });
         io.observe(this.viewport);
+
+        // Pause individual slides & folders when swiped horizontally out of the carousel viewport
+        const slideObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+          });
+        }, { root: this.viewport, rootMargin: '0px', threshold: 0.01 });
+        this.slides.forEach((slide) => slideObserver.observe(slide));
       }
 
       this.bindEvents();
@@ -799,8 +819,10 @@
       window.addEventListener('pointerup', (e) => this.finishGesture(e, false));
       window.addEventListener('pointercancel', (e) => this.finishGesture(e, true));
 
-      // Interrupted gesture fallbacks (window focus loss or tab switch)
+      // Interrupted gesture fallbacks (window focus loss, tab switch, or swipe-away navigation)
       window.addEventListener('blur', () => this.finishGesture(null, true));
+      window.addEventListener('pagehide', () => this.finishGesture(null, true));
+      document.addEventListener('freeze', () => this.finishGesture(null, true));
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) this.finishGesture(null, true);
       });

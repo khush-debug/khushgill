@@ -28,14 +28,14 @@
     }
 
     init() {
-      // Pause carousel listeners/layers when scrolled off-screen
+      // Pause carousel listeners/layers when scrolled or swiped off-screen
       if (typeof IntersectionObserver !== 'undefined') {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             this.isVisible = entry.isIntersecting;
             this.wrapper.classList.toggle('is-offscreen', !entry.isIntersecting);
           });
-        }, { rootMargin: '100px 0px', threshold: 0 });
+        }, { rootMargin: '0px', threshold: 0 });
         io.observe(this.wrapper);
       }
 
@@ -79,8 +79,18 @@
       window.addEventListener('touchend', () => this.dragEnd());
 
       window.addEventListener('resize', () => {
-        if (this.isVisible) this.updateLayout();
+        if (this.isVisible && !document.hidden) this.updateLayout();
       }, { passive: true });
+
+      const cancelActiveDrag = () => {
+        this.isDragging = false;
+      };
+      window.addEventListener('blur', cancelActiveDrag);
+      window.addEventListener('pagehide', cancelActiveDrag);
+      document.addEventListener('freeze', cancelActiveDrag);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelActiveDrag();
+      });
 
       this.updateLayout();
     }
@@ -147,6 +157,7 @@
         card.style.zIndex = zIndex;
         card.style.opacity = opacity;
         card.style.pointerEvents = absOffset > 2 ? 'none' : 'auto';
+        card.classList.toggle('is-offscreen', absOffset > (isMobile ? 1 : 2));
 
         if (absOffset === 0) {
           card.classList.add('is-active');

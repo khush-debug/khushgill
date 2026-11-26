@@ -14,7 +14,8 @@
   <meta name="author" content="Khushman Singh Gill">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Khushman Singh Gill — Frontend Developer · UI/UX Designer · Brand Strategist · Graphic Designer">
+  <meta property="og:title"
+    content="Khushman Singh Gill — Frontend Developer · UI/UX Designer · Brand Strategist · Graphic Designer">
   <meta property="og:description"
     content="I bring ideas to life through thoughtful design, functional websites, and clear brand direction.">
   <meta property="og:type" content="website">
@@ -69,23 +70,27 @@
   <link rel="stylesheet" href="components/glass-folder/glass-folder.css">
 </head>
 
-<body class="bg-[#FAF9F6] text-[#202522] font-sans antialiased selection:bg-[#176B5B] selection:text-white min-h-screen relative">
+<body
+  class="bg-[#FAF9F6] text-[#202522] font-sans antialiased selection:bg-[#176B5B] selection:text-white min-h-screen relative">
 
   <!-- ==================== FIXED ARCHITECTURAL FRAME ==================== -->
 
   <!-- Top Navigation Bar (Editorial Reference Layout) -->
-  <header class="sticky top-0 left-0 w-full z-50 bg-[#FAF9F6]/98 border-b border-[#DADDD7]/60 px-6 md:px-12 lg:px-16 py-4">
+  <header
+    class="sticky top-0 left-0 w-full z-50 bg-[#FAF9F6]/98 border-b border-[#DADDD7]/60 px-6 md:px-12 lg:px-16 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
-      
+
       <!-- Left: Identity -->
       <a href="#hero" class="flex items-center group select-none">
-        <span class="font-sans font-bold text-lg md:text-xl tracking-tight text-[#202522] group-hover:text-[#176B5B] transition-colors">
+        <span
+          class="font-serif font-medium text-xl md:text-2xl tracking-tight text-[#202522] group-hover:text-[#176B5B] transition-colors">
           Khushman Gill
         </span>
       </a>
 
       <!-- Center: Clean Nav Links (Desktop & Tablet) -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-sans font-medium text-[#595F5B]" aria-label="Primary Navigation">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-sans font-medium text-[#595F5B]"
+        aria-label="Primary Navigation">
         <a href="#work" class="hover:text-[#176B5B] transition-colors">Work</a>
         <a href="#about" class="hover:text-[#176B5B] transition-colors">Services</a>
         <a href="#philosophy" class="hover:text-[#176B5B] transition-colors">My approach</a>
@@ -93,7 +98,8 @@
 
       <!-- Right: CTA Button + Mobile Menu Toggle -->
       <div class="flex items-center gap-3">
-        <a href="#contact" class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-lg bg-[#176B5B] hover:bg-[#105044] text-white font-sans font-medium text-xs sm:text-sm transition-all shadow-xs">
+        <a href="#contact"
+          class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-lg bg-[#176B5B] hover:bg-[#105044] text-white font-sans font-medium text-xs sm:text-sm transition-all shadow-xs">
           <span>Let's talk</span>
           <span>↗</span>
         </a>
@@ -115,9 +121,11 @@
     <div class="flex items-center justify-between pb-6 border-b border-[#FAF9F6]/15">
       <div class="flex flex-col">
         <span class="font-sans font-black text-2xl tracking-tighter text-[#FAF9F6]">Khushman Singh Gill</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/60 uppercase tracking-widest mt-0.5">Frontend Developer · UI/UX Designer · Brand Strategist · Graphic Designer</span>
+        <span class="text-xs font-mono text-[#FAF9F6]/60 uppercase tracking-widest mt-0.5">Frontend Developer · UI/UX
+          Designer · Brand Strategist · Graphic Designer</span>
       </div>
-      <button id="menu-close" class="px-5 py-2 rounded-full border border-[#FAF9F6]/20 hover:bg-[#176B5B] hover:border-[#176B5B] hover:text-white text-[#FAF9F6] text-xs font-mono font-bold tracking-widest uppercase transition-all">
+      <button id="menu-close"
+        class="px-5 py-2 rounded-full border border-[#FAF9F6]/20 hover:bg-[#176B5B] hover:border-[#176B5B] hover:text-white text-[#FAF9F6] text-xs font-mono font-bold tracking-widest uppercase transition-all">
         Close [✕]
       </button>
     </div>
@@ -127,35 +135,43 @@
       <a href="#about" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">01</span>
         <span class="menu-link-name">Services</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
+        <span
+          class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
       <a href="#work" class="menu-link-item group gap-4 sm:gap-6">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold shrink-0 mr-2 sm:mr-4">02</span>
         <span class="menu-link-name leading-[0.95]">Selected Works</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform shrink-0">↗</span>
+        <span
+          class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform shrink-0">↗</span>
       </a>
       <a href="#philosophy" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">03</span>
         <span class="menu-link-name">My approach</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
+        <span
+          class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
       <a href="#faq" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">04</span>
         <span class="menu-link-name">FAQs</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
+        <span
+          class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
       <a href="#contact" class="menu-link-item group">
         <span class="text-xs font-mono text-[#176B5B] tracking-widest font-bold">05</span>
         <span class="menu-link-name">Contact</span>
-        <span class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
+        <span
+          class="text-xs font-mono text-[#FAF9F6]/50 group-hover:text-[#176B5B] group-hover:translate-x-2 transition-transform">↗</span>
       </a>
     </div>
 
     <!-- Menu Bottom Bar -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between pt-6 border-t border-[#FAF9F6]/15 text-xs font-mono text-[#FAF9F6]/60 gap-4">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center justify-between pt-6 border-t border-[#FAF9F6]/15 text-xs font-mono text-[#FAF9F6]/60 gap-4">
       <div class="flex items-center gap-6">
-        <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="hover:text-[#176B5B] underline transition-colors">Instagram @kggills ↗</a>
-        <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="hover:text-[#176B5B] underline transition-colors">GitHub @khush-debug ↗</a>
+        <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
+          class="hover:text-[#176B5B] underline transition-colors">Instagram @kggills ↗</a>
+        <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer"
+          class="hover:text-[#176B5B] underline transition-colors">GitHub @khush-debug ↗</a>
         <button data-copy-email class="hover:text-[#176B5B] underline transition-colors text-left">Copy Email ↗</button>
       </div>
       <div>Punjab, India • Global Scope</div>
@@ -169,79 +185,87 @@
     <!-- ==========================================
          HERO SECTION: EDITORIAL REFERENCE EDITION (WARM WHITE)
          ========================================== -->
-    <section id="hero" class="relative bg-[#FAF9F6] text-[#202522] pt-10 pb-14 md:pt-14 md:pb-20 px-6 md:px-12 lg:px-16 overflow-hidden">
-      
+    <section id="hero"
+      class="relative bg-[#FAF9F6] text-[#202522] pt-10 pb-14 md:pt-14 md:pb-20 px-6 md:px-12 lg:px-16 overflow-hidden">
+
 
 
       <div class="max-w-7xl mx-auto relative z-10">
 
-        <!-- Hero Split: Left Serif Copy + CTAs | Right OG Portrait Card -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          
-          <!-- Left Column -->
-          <div class="lg:col-span-7 flex flex-col items-start">
-            <h1 class="font-serif font-medium text-4xl sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[74px] leading-[1.04] tracking-[-0.02em] text-[#202522]">
-              <span class="block">Thoughtful design.</span>
-              <span class="block text-[#176B5B]">Purposeful websites.</span>
-              <span class="block">Distinctive brands.</span>
+        <!-- Hero Banner Card: Editorial Workspace & Brand Mark -->
+        <div class="w-full rounded-2xl md:rounded-[28px] overflow-hidden border border-[#DADDD7] bg-[#F0EFEB] shadow-xs">
+          <img src="assets/hero-banner.jpg" srcset="assets/hero-banner.jpg 1x, assets/hero-banner@2x.jpg 2x"
+            alt="Khushman Gill — Graphic Designer &amp; UI/UX Designer" class="w-full h-auto object-cover block"
+            loading="eager" fetchpriority="high">
+        </div>
+
+        <!-- Value Proposition Headline & Action Row -->
+        <div class="mt-8 md:mt-10 flex flex-col xl:flex-row xl:items-center justify-between gap-6 lg:gap-6 xl:gap-8">
+
+          <!-- Headline: Websites, graphics & identities. -->
+          <div class="shrink-0">
+            <h1
+              class="font-serif font-medium text-3xl sm:text-4xl md:text-4xl lg:text-[42px] xl:text-[46px] leading-[1.08] tracking-[-0.02em] text-[#202522]">
+              <span>Websites, </span><span class="italic text-[#176B5B] font-normal">graphics</span><span> &amp; identities.</span>
             </h1>
-
-            <p class="font-sans text-sm sm:text-base md:text-[17px] text-[#595F5B] leading-relaxed max-w-xl mt-6 mb-8 font-normal">
-              I’m Khushman Singh Gill, a designer and frontend developer creating websites, graphics, and brand identities for businesses and creators.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3.5">
-              <a href="#work" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#176B5B] hover:bg-[#105044] text-white font-sans font-medium text-sm transition-all shadow-sm">
-                <span>View my work</span>
-                <span>↗</span>
-              </a>
-              <a href="#contact" class="inline-flex items-center px-6 py-3 rounded-lg border border-[#202522]/30 hover:border-[#202522] hover:bg-[#F0EFEB] text-[#202522] font-sans font-medium text-sm transition-all">
-                <span>Start a project</span>
-              </a>
-            </div>
           </div>
 
-          <!-- Right Column: OG Photo Card -->
-          <div class="lg:col-span-5 flex flex-col">
-            <div class="w-full aspect-[4/3.6] sm:aspect-[5/4] rounded-2xl overflow-hidden border border-[#DADDD7] bg-[#F0EFEB] shadow-sm">
-              <img src="assets/khushman.jpg" alt="Khushman Singh Gill" class="w-full h-full object-cover" style="object-position: center 22%;">
-            </div>
-            <div class="mt-3.5">
-              <p class="font-sans font-bold text-base text-[#202522] leading-snug">Khushman Singh Gill</p>
-              <p class="font-sans text-xs sm:text-sm text-[#595F5B] mt-0.5">Designer &amp; Frontend Developer · Punjab, India</p>
-            </div>
+          <!-- Middle divider & subtitle -->
+          <div class="hidden xl:block w-[1px] h-10 bg-[#DADDD7] shrink-0"></div>
+
+          <p class="font-sans text-xs sm:text-sm md:text-base text-[#595F5B] leading-relaxed max-w-xs md:max-w-sm font-normal">
+            Design and frontend development for businesses and creators.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-3 shrink-0">
+            <a href="#work"
+              class="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-lg bg-[#176B5B] hover:bg-[#105044] text-white font-sans font-medium text-xs sm:text-sm transition-all shadow-xs">
+              <span>View my work</span>
+              <span>↗</span>
+            </a>
+            <a href="#contact"
+              class="inline-flex items-center px-4 sm:px-5 py-2.5 rounded-lg border border-[#202522]/30 hover:border-[#202522] hover:bg-[#F0EFEB] text-[#202522] font-sans font-medium text-xs sm:text-sm transition-all">
+              <span>Start a project</span>
+            </a>
           </div>
 
         </div>
 
         <!-- 4-Column Service Strip -->
-        <div class="mt-12 md:mt-14 border-y border-[#DADDD7] grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#DADDD7]">
+        <div
+          class="mt-8 md:mt-10 border-y border-[#DADDD7] grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#DADDD7]">
           <div class="py-4 px-4 flex items-center justify-center gap-2.5 text-[#202522]">
-            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <path d="M8 21h8M12 17v4"/>
+            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
             </svg>
             <span class="font-sans text-xs sm:text-sm font-medium">Website Design</span>
           </div>
 
           <div class="py-4 px-4 flex items-center justify-center gap-2.5 text-[#202522]">
-            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6M14.5 4l-5 16"/>
+            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6M14.5 4l-5 16" />
             </svg>
             <span class="font-sans text-xs sm:text-sm font-medium">Web Development</span>
           </div>
 
           <div class="py-4 px-4 flex items-center justify-center gap-2.5 text-[#202522]">
-            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l7-7 3 3-7 7-3-3z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l7-7 3 3-7 7-3-3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
             </svg>
             <span class="font-sans text-xs sm:text-sm font-medium">Graphic Design</span>
           </div>
 
           <div class="py-4 px-4 flex items-center justify-center gap-2.5 text-[#202522]">
-            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="1.8"
+              viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
             <span class="font-sans text-xs sm:text-sm font-medium">Brand Identity</span>
           </div>
@@ -253,38 +277,46 @@
             <h2 class="font-serif font-medium text-2xl sm:text-3xl text-[#202522] tracking-tight">
               Selected work
             </h2>
-            <a href="#work" class="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-medium text-[#176B5B] hover:text-[#105044] transition-colors group">
+            <a href="#work"
+              class="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-medium text-[#176B5B] hover:text-[#105044] transition-colors group">
               <span>Explore projects</span>
               <span class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
             </a>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+
             <!-- Preview Card 1: Supreme Infosys (Laptop Screen with Uploaded Photo) -->
             <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="group block">
-              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#F2EFE8] via-[#E8E2D6] to-[#DAD2C3] relative flex items-end justify-center pt-5 px-6 sm:px-10 shadow-xs">
+              <div
+                class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#F2EFE8] via-[#E8E2D6] to-[#DAD2C3] relative flex items-end justify-center pt-5 px-6 sm:px-10 shadow-xs">
                 <!-- Laptop Mockup -->
                 <div class="w-full max-w-[440px] flex flex-col items-center">
                   <!-- Screen Frame -->
-                  <div class="w-full aspect-[16/9.6] bg-[#141519] rounded-t-xl p-1.5 sm:p-2 border border-white/15 shadow-2xl flex flex-col overflow-hidden relative">
+                  <div
+                    class="w-full aspect-[16/9.6] bg-[#141519] rounded-t-xl p-1.5 sm:p-2 border border-white/15 shadow-2xl flex flex-col overflow-hidden relative">
                     <!-- Top Webcam Notch -->
                     <div class="w-1.5 h-1.5 rounded-full bg-white/20 mx-auto mb-1 shrink-0"></div>
                     <!-- Screen Content: Uploaded Supreme Infosys Photo -->
-                    <div class="w-full flex-1 bg-[#081730] rounded-[4px] overflow-hidden flex items-center justify-center">
-                      <img src="assets/supreme-infosys-screen.jpg" alt="Supreme Infosys Storefront" class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500">
+                    <div
+                      class="w-full flex-1 bg-[#081730] rounded-[4px] overflow-hidden flex items-center justify-center">
+                      <img src="assets/supreme-infosys-screen.jpg" alt="Supreme Infosys Storefront"
+                        class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500">
                     </div>
                   </div>
                   <!-- Laptop Base Lip -->
-                  <div class="w-[108%] h-2.5 sm:h-3 bg-gradient-to-b from-[#D4D4D8] to-[#A1A1AA] rounded-b-lg shadow-md flex justify-center items-start">
+                  <div
+                    class="w-[108%] h-2.5 sm:h-3 bg-gradient-to-b from-[#D4D4D8] to-[#A1A1AA] rounded-b-lg shadow-md flex justify-center items-start">
                     <div class="w-12 h-1 bg-[#52525B]/35 rounded-b-sm"></div>
                   </div>
                 </div>
               </div>
               <div class="mt-3">
-                <h3 class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
+                <h3
+                  class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
                   <span>Supreme Infosys</span>
-                  <span class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                  <span
+                    class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
                 </h3>
                 <p class="font-sans text-xs sm:text-sm text-[#595F5B]">Business website</p>
               </div>
@@ -292,14 +324,21 @@
 
             <!-- Preview Card 2: Slyphe (Brand & Visual Design -> slyphe.vercel.app) -->
             <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer" class="group block">
-              <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#1B3A30] via-[#122B23] to-[#0B1C16] relative flex items-center justify-center p-6 shadow-xs">
+              <div
+                class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#1B3A30] via-[#122B23] to-[#0B1C16] relative flex items-center justify-center p-6 shadow-xs">
                 <!-- Soft architectural light overlay -->
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.12),transparent_55%)] pointer-events-none"></div>
+                <div
+                  class="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.12),transparent_55%)] pointer-events-none">
+                </div>
                 <!-- Secondary angled dark card -->
-                <div class="w-[58%] h-[78%] bg-[#0F241D] border border-white/10 rounded-[2px] -rotate-12 -translate-x-4 translate-y-2 shadow-2xl"></div>
+                <div
+                  class="w-[58%] h-[78%] bg-[#0F241D] border border-white/10 rounded-[2px] -rotate-12 -translate-x-4 translate-y-2 shadow-2xl">
+                </div>
                 <!-- Primary textured cream brand identity card -->
-                <div class="relative w-[70%] h-[72%] bg-gradient-to-br from-[#F4F0E8] to-[#E6DFD1] -rotate-6 group-hover:-rotate-3 group-hover:scale-[1.02] transition-all duration-500 rounded-[2px] shadow-2xl flex flex-col items-center justify-center text-center px-6 py-4 border border-black/5">
-                  <span class="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#202522] tracking-tight leading-none">
+                <div
+                  class="relative w-[70%] h-[72%] bg-gradient-to-br from-[#F4F0E8] to-[#E6DFD1] -rotate-6 group-hover:-rotate-3 group-hover:scale-[1.02] transition-all duration-500 rounded-[2px] shadow-2xl flex flex-col items-center justify-center text-center px-6 py-4 border border-black/5">
+                  <span
+                    class="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#202522] tracking-tight leading-none">
                     Slyphe
                   </span>
                   <span class="font-mono text-[9px] sm:text-[10px] tracking-[0.35em] text-[#595F5B] uppercase mt-2.5">
@@ -308,9 +347,11 @@
                 </div>
               </div>
               <div class="mt-3">
-                <h3 class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
+                <h3
+                  class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
                   <span>Slyphe — Brand &amp; Visual Design</span>
-                  <span class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                  <span
+                    class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
                 </h3>
                 <p class="font-sans text-xs sm:text-sm text-[#595F5B]">Creative exploration · slyphe.vercel.app</p>
               </div>
@@ -327,32 +368,37 @@
     <!-- ==================== ABOUT & SERVICES SECTION ==================== -->
     <section id="about" class="w-full relative z-20 bg-[#F0EFEB] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24">
       <div class="max-w-6xl mx-auto">
-        
+
         <!-- Header -->
         <div class="reveal mb-12 md:mb-16 text-center max-w-3xl mx-auto">
-          <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
+          <span
+            class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
             <span>&gt;</span>
             <span>01 / Core Services</span>
           </span>
-          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] mb-5 text-[#202522]">
+          <h2
+            class="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] mb-5 text-[#202522]">
             Where Thoughtful Design Meets Clean Code.
           </h2>
           <p class="font-sans text-sm sm:text-base md:text-lg text-[#595F5B] leading-relaxed">
-            Combining user-centered design, modern frontend development, graphic design, and brand strategy to build digital experiences that perform seamlessly.
+            Combining user-centered design, modern frontend development, graphic design, and brand strategy to build
+            digital experiences that perform seamlessly.
           </p>
         </div>
 
         <!-- 3D Curved Services Carousel (Visvora-Inspired 3D Perspective Track) -->
         <div class="services-carousel-wrapper">
           <div class="services-carousel-track">
-            
+
             <!-- Card 1: UI/UX Design -->
             <div class="services-card-3d" data-service-idx="0">
               <div class="space-y-3">
-                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">01 / Experience Design</div>
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">01 / Experience
+                  Design</div>
                 <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">UI/UX Design</h3>
                 <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
-                  Every great project starts with detailed research. I design clear user journeys, intuitive interfaces, and scalable design systems for effortless navigation.
+                  Every great project starts with detailed research. I design clear user journeys, intuitive interfaces,
+                  and scalable design systems for effortless navigation.
                 </p>
               </div>
               <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
@@ -370,10 +416,12 @@
             <!-- Card 2: Web Development -->
             <div class="services-card-3d" data-service-idx="1">
               <div class="space-y-3">
-                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">02 / Engineering</div>
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">02 / Engineering
+                </div>
                 <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Web Development</h3>
                 <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
-                  High-performance websites built with clean code and subtle motion. Fluid layouts engineered to look sharp and built for fast loading on every screen.
+                  High-performance websites built with clean code and subtle motion. Fluid layouts engineered to look
+                  sharp and built for fast loading on every screen.
                 </p>
               </div>
               <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
@@ -391,10 +439,12 @@
             <!-- Card 3: Graphic Design -->
             <div class="services-card-3d" data-service-idx="2">
               <div class="space-y-3">
-                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">03 / Visual Arts</div>
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">03 / Visual Arts
+                </div>
                 <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Graphic Design</h3>
                 <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
-                  Creative visual design, marketing collateral, social media assets, and digital artwork crafted with strong attention to typography, layout, and visual hierarchy.
+                  Creative visual design, marketing collateral, social media assets, and digital artwork crafted with
+                  strong attention to typography, layout, and visual hierarchy.
                 </p>
               </div>
               <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
@@ -412,10 +462,12 @@
             <!-- Card 4: Brand Identity & Strategy -->
             <div class="services-card-3d" data-service-idx="3">
               <div class="space-y-3">
-                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">04 / Brand Identity</div>
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">04 / Brand
+                  Identity</div>
                 <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Brand Strategy</h3>
                 <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
-                  Shape a distinctive visual style that reflects your purpose. Consistent colors, typography, and clear design guidelines that make brands memorable.
+                  Shape a distinctive visual style that reflects your purpose. Consistent colors, typography, and clear
+                  design guidelines that make brands memorable.
                 </p>
               </div>
               <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
@@ -433,10 +485,12 @@
             <!-- Card 5: Creative Collaboration -->
             <div class="services-card-3d" data-service-idx="4">
               <div class="space-y-3">
-                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">05 / Partnership</div>
+                <div class="font-mono text-[11px] font-bold text-[#176B5B] uppercase tracking-widest">05 / Partnership
+                </div>
                 <h3 class="font-sans font-black text-2xl md:text-3xl tracking-tight text-[#FAF9F6]">Collaboration</h3>
                 <p class="font-sans text-xs md:text-sm text-[#DADDD7]/80 leading-relaxed font-normal">
-                  Partner directly with creators and businesses to turn ideas into finished products. Transparent communication, rapid feedback, and care from plan to launch.
+                  Partner directly with creators and businesses to turn ideas into finished products. Transparent
+                  communication, rapid feedback, and care from plan to launch.
                 </p>
               </div>
               <div class="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
@@ -469,7 +523,7 @@
          SELECTED WORKS: LIGHT BEIGE WITH FROSTED FOLDER CARDS
          ========================================== -->
     <section id="work" class="min-h-screen relative z-20 bg-[#EFE8DA] text-[#202522] font-sans overflow-x-clip">
-      
+
       <!-- Infinite Marquee Header -->
       <div class="marquee-selected-works mb-12 md:mb-16">
         <div class="marquee-selected-works__track">
@@ -493,8 +547,9 @@
       </div>
 
       <!-- Main Container: Consistent Side Margins for Intro Text, Full Right-Bleed Carousel -->
-      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pb-16 md:pb-24">
-        
+      <div
+        class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pb-16 md:pb-24">
+
         <!-- Sticky Sidebar (Left Column) -->
         <aside class="lg:col-span-4 lg:sticky lg:top-32 flex flex-col gap-6 z-10">
           <div class="flex items-center gap-2">
@@ -503,205 +558,256 @@
               02 / Selected Works
             </span>
           </div>
-          
-          <h2 class="font-sans font-black text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.08] text-[#202522]">
+
+          <h2
+            class="font-sans font-black text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.08] text-[#202522]">
             Crafted with purpose, engineered with precision.
           </h2>
-          
+
           <p class="font-sans text-sm md:text-base text-[#595F5B] leading-relaxed max-w-sm">
-            A curated selection of digital products, responsive web platforms, and brand systems built for real-world performance.
+            A curated selection of digital products, responsive web platforms, and brand systems built for real-world
+            performance.
           </p>
 
           <!-- Interactive Timeline Index / Fast Nav -->
-          <nav class="hidden lg:flex flex-col gap-2.5 pt-6 border-t border-[#DADDD7] mt-2" aria-label="Projects Navigation">
+          <nav class="hidden lg:flex flex-col gap-2.5 pt-6 border-t border-[#DADDD7] mt-2"
+            aria-label="Projects Navigation">
             <span class="font-mono text-[10px] uppercase tracking-widest text-[#595F5B] mb-1">Index &amp; Stages</span>
-            
-            <button data-nav-target="0" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
+
+            <button data-nav-target="0"
+              class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
               <span class="flex items-center gap-3">
                 <span class="text-xs text-[#595F5B] group-hover:text-[#176B5B] transition-colors font-bold">01</span>
-                <span class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Supreme Infosys</span>
+                <span
+                  class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Supreme
+                  Infosys</span>
               </span>
-              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
             </button>
 
-            <button data-nav-target="1" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
+            <button data-nav-target="1"
+              class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
               <span class="flex items-center gap-3">
                 <span class="text-xs text-[#595F5B] group-hover:text-[#176B5B] transition-colors font-bold">02</span>
-                <span class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Personal Portfolio</span>
+                <span
+                  class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Personal
+                  Portfolio</span>
               </span>
-              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
             </button>
 
-            <button data-nav-target="2" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
+            <button data-nav-target="2"
+              class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
               <span class="flex items-center gap-3">
                 <span class="text-xs text-[#595F5B] group-hover:text-[#176B5B] transition-colors font-bold">03</span>
-                <span class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Brand Identity &amp; Strategy</span>
+                <span class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Brand
+                  Identity &amp; Strategy</span>
               </span>
-              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
             </button>
 
-            <button data-nav-target="3" class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
+            <button data-nav-target="3"
+              class="timeline-nav-btn group flex items-center justify-between text-left py-2.5 px-3 rounded-lg hover:bg-[#FAF9F6]/80 transition-all text-sm font-mono text-[#595F5B] hover:text-[#202522]">
               <span class="flex items-center gap-3">
                 <span class="text-xs text-[#595F5B] group-hover:text-[#176B5B] transition-colors font-bold">04</span>
-                <span class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Graphic Design</span>
+                <span
+                  class="font-sans font-semibold text-[#202522] group-hover:text-[#176B5B] transition-colors">Graphic
+                  Design</span>
               </span>
-              <span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#176B5B] transition-all nav-dot"></span>
             </button>
           </nav>
         </aside>
 
         <!-- Apple Card Carousel for Glass Folders (Right Column extends past right margin) -->
         <div class="lg:col-span-8 relative w-full min-w-0">
-          
+
           <!-- Viewport & Drag-free Horizontal Track (bleeds to viewport right edge) -->
           <div id="folder-carousel-viewport" class="folder-carousel-viewport select-none py-3 cursor-grab">
-            <div id="folder-carousel-track" class="folder-carousel-track flex gap-6 sm:gap-8 pl-1 pr-6 md:pr-12 lg:pr-16 pb-4">
+            <div id="folder-carousel-track"
+              class="folder-carousel-track flex gap-6 sm:gap-8 pl-1 pr-6 md:pr-12 lg:pr-16 pb-4">
               <!-- Slide 1: Supreme Infosys -->
-              <div class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="0">
+              <div
+                class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group"
+                data-slide-idx="0">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">01 / Active Platform</span>
-                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Supreme Infosys</h3>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">01 / Active
+                      Platform</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Supreme
+                      Infosys</h3>
                   </div>
-                  <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="Open Live Website">
-                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer"
+                    title="Open Live Website">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none"
+                      stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
                   </a>
                 </div>
 
                 <!-- Glass Folder Container -->
                 <div class="py-2 my-auto">
                   <div class="gf-container">
-              <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left" data-width="400">
-                <div class="gf-stage">
-                  <div class="gf-tilt">
-                    <div class="gf-shadow" aria-hidden="true"></div>
+                    <div class="gf-root" data-tone="light" data-art="ember" data-seed="3" data-place="bottom-left"
+                      data-width="400">
+                      <div class="gf-stage">
+                        <div class="gf-tilt">
+                          <div class="gf-shadow" aria-hidden="true"></div>
 
-                    <!-- Back panel with liquid artwork canvas -->
-                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
-                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
-                      <div class="gf-back-sheen"></div>
-                    </div>
-                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
-                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
-                    </svg>
+                          <!-- Back panel with liquid artwork canvas -->
+                          <div class="gf-back"
+                            style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');"
+                            aria-hidden="true">
+                            <canvas class="gf-art" width="364" height="296"
+                              style="width: 364px; height: 296px; max-width: none;"></canvas>
+                            <div class="gf-back-sheen"></div>
+                          </div>
+                          <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                            <path
+                              d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z">
+                            </path>
+                          </svg>
 
-                    <!-- Frosted glass front panel, hinged at bottom edge -->
-                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
-                      <div class="gf-tint" aria-hidden="true"></div>
-                      <div class="gf-spec" aria-hidden="true"></div>
-                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="gf-rim-supreme" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
-                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
-                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-supreme)"></path>
-                      </svg>
-                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Supreme Infosys, 4 items"></button>
-                      <div class="gf-label">
-                        <span class="gf-title">01 Supreme Infosys</span>
-                        <span class="gf-meta">Accessible Platform · 4 Files</span>
-                      </div>
-                    </div>
-
-                    <!-- Files inside: fanning out when open -->
-                    <div class="gf-files" role="list" aria-label="Supreme Infosys files" inert>
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.2px; --gf-jr: -1.8deg; z-index: 1;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Product Showcase</span>
-                            <span class="gf-sheet-meta">E-Commerce</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>A business website showcasing computers, products, and services.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Hardware</span>
-                              <span class="gf-badge-chip">Retail</span>
+                          <!-- Frosted glass front panel, hinged at bottom edge -->
+                          <div class="gf-front"
+                            style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                            <div class="gf-tint" aria-hidden="true"></div>
+                            <div class="gf-spec" aria-hidden="true"></div>
+                            <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                              <defs>
+                                <linearGradient id="gf-rim-supreme" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                                  <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                                  <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                                </linearGradient>
+                              </defs>
+                              <path
+                                d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
+                                stroke="url(#gf-rim-supreme)"></path>
+                            </svg>
+                            <button type="button" class="gf-hit" aria-expanded="false"
+                              aria-label="Open Supreme Infosys, 4 items"></button>
+                            <div class="gf-label">
+                              <span class="gf-title">01 Supreme Infosys</span>
+                              <span class="gf-meta">Accessible Platform · 4 Files</span>
                             </div>
+                          </div>
+
+                          <!-- Files inside: fanning out when open -->
+                          <div class="gf-files" role="list" aria-label="Supreme Infosys files" inert>
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.2px; --gf-jr: -1.8deg; z-index: 1;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Product Showcase</span>
+                                  <span class="gf-sheet-meta">E-Commerce</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>A business website showcasing computers, products, and services.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Hardware</span>
+                                    <span class="gf-badge-chip">Retail</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.8px; --gf-jr: 0.9deg; z-index: 2;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Catalog Specs</span>
+                                  <span class="gf-sheet-meta">Architecture</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Organized product categories and clear specifications.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Next.js</span>
+                                    <span class="gf-badge-chip">React</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.5px; --gf-jr: -0.7deg; z-index: 3;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Responsive Platform</span>
+                                  <span class="gf-sheet-meta">Multi-Device</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Easy browsing across mobile, tablet, and desktop.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Tailwind CSS</span>
+                                    <span class="gf-badge-chip">Vercel</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.6deg; z-index: 4;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Launch &amp; Contact</span>
+                                  <span class="gf-sheet-meta">Live Production</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Simple ways for customers to contact the business.</p>
+                                  <div class="flex items-center gap-2 pt-2">
+                                    <button type="button" data-open-case-study="supreme"
+                                      class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                      Case Study
+                                    </button>
+                                    <a href="https://lallycomputers.vercel.app/" target="_blank"
+                                      rel="noopener noreferrer"
+                                      class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                      <span>Live Site</span>
+                                      <span>↗</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Action Key: More Options (···) -->
+                          <button type="button" class="gf-key gf-key--more"
+                            aria-label="More options for Supreme Infosys" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                              <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                            </svg>
+                          </button>
+
+                          <!-- Options Dropdown Menu -->
+                          <div role="menu" aria-label="Supreme Infosys options" class="gf-menu">
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close
+                              Folder</button>
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              data-open-case-study="supreme">View Case Study</button>
+                            <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer"
+                              role="menuitem" class="gf-menu-item">Live Website ↗</a>
                           </div>
                         </div>
                       </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.8px; --gf-jr: 0.9deg; z-index: 2;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Catalog Specs</span>
-                            <span class="gf-sheet-meta">Architecture</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Organized product categories and clear specifications.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Next.js</span>
-                              <span class="gf-badge-chip">React</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.5px; --gf-jr: -0.7deg; z-index: 3;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Responsive Platform</span>
-                            <span class="gf-sheet-meta">Multi-Device</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Easy browsing across mobile, tablet, and desktop.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Tailwind CSS</span>
-                              <span class="gf-badge-chip">Vercel</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.6deg; z-index: 4;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Launch &amp; Contact</span>
-                            <span class="gf-sheet-meta">Live Production</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Simple ways for customers to contact the business.</p>
-                            <div class="flex items-center gap-2 pt-2">
-                              <button type="button" data-open-case-study="supreme" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
-                                Case Study
-                              </button>
-                              <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
-                                <span>Live Site</span>
-                                <span>↗</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Action Key: More Options (···) -->
-                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Supreme Infosys" aria-haspopup="menu" aria-expanded="false">
-                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
-                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
-                      </svg>
-                    </button>
-
-                    <!-- Options Dropdown Menu -->
-                    <div role="menu" aria-label="Supreme Infosys options" class="gf-menu">
-                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
-                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="supreme">View Case Study</button>
-                      <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" role="menuitem" class="gf-menu-item">Live Website ↗</a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-                </div>
 
                 <!-- Bottom Footer Meta (carousel-08 style) -->
-                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                <div
+                  class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
                   <div class="flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
                     <span>Accessible Platform</span>
@@ -710,151 +816,183 @@
                 </div>
               </div>
               <!-- Slide 2: Personal Portfolio -->
-              <div class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="1">
+              <div
+                class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group"
+                data-slide-idx="1">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">02 / Portfolio & Motion</span>
-                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Personal Portfolio</h3>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">02 / Portfolio &
+                      Motion</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Personal
+                      Portfolio</h3>
                   </div>
-                  <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="View Portfolio Source">
-                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer"
+                    class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer"
+                    title="View Portfolio Source">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none"
+                      stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
                   </a>
                 </div>
 
                 <!-- Glass Folder Container -->
                 <div class="py-2 my-auto">
                   <div class="gf-container">
-              <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left" data-width="400">
-                <div class="gf-stage">
-                  <div class="gf-tilt">
-                    <div class="gf-shadow" aria-hidden="true"></div>
+                    <div class="gf-root" data-tone="dark" data-art="aurora" data-seed="7" data-place="bottom-left"
+                      data-width="400">
+                      <div class="gf-stage">
+                        <div class="gf-tilt">
+                          <div class="gf-shadow" aria-hidden="true"></div>
 
-                    <!-- Back panel with liquid artwork canvas -->
-                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
-                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
-                      <div class="gf-back-sheen"></div>
-                    </div>
-                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
-                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
-                    </svg>
+                          <!-- Back panel with liquid artwork canvas -->
+                          <div class="gf-back"
+                            style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');"
+                            aria-hidden="true">
+                            <canvas class="gf-art" width="364" height="296"
+                              style="width: 364px; height: 296px; max-width: none;"></canvas>
+                            <div class="gf-back-sheen"></div>
+                          </div>
+                          <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                            <path
+                              d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z">
+                            </path>
+                          </svg>
 
-                    <!-- Frosted glass front panel, hinged at bottom edge -->
-                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
-                      <div class="gf-tint" aria-hidden="true"></div>
-                      <div class="gf-spec" aria-hidden="true"></div>
-                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="gf-rim-portfolio" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
-                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
-                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-portfolio)"></path>
-                      </svg>
-                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Personal Portfolio, 4 items"></button>
-                      <div class="gf-label">
-                        <span class="gf-title">02 Personal Portfolio</span>
-                        <span class="gf-meta">Design &amp; Code · 4 Files</span>
-                      </div>
-                    </div>
-
-                    <!-- Files inside: fanning out when open -->
-                    <div class="gf-files" role="list" aria-label="Personal Portfolio files" inert>
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.9px; --gf-jr: -1.5deg; z-index: 1;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Design &amp; Work</span>
-                            <span class="gf-sheet-meta">Showcase</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>A collection of my website, design, and branding work.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Editorial</span>
-                              <span class="gf-badge-chip">Brutalism</span>
+                          <!-- Frosted glass front panel, hinged at bottom edge -->
+                          <div class="gf-front"
+                            style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                            <div class="gf-tint" aria-hidden="true"></div>
+                            <div class="gf-spec" aria-hidden="true"></div>
+                            <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                              <defs>
+                                <linearGradient id="gf-rim-portfolio" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                                  <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                                  <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                                </linearGradient>
+                              </defs>
+                              <path
+                                d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
+                                stroke="url(#gf-rim-portfolio)"></path>
+                            </svg>
+                            <button type="button" class="gf-hit" aria-expanded="false"
+                              aria-label="Open Personal Portfolio, 4 items"></button>
+                            <div class="gf-label">
+                              <span class="gf-title">02 Personal Portfolio</span>
+                              <span class="gf-meta">Design &amp; Code · 4 Files</span>
                             </div>
+                          </div>
+
+                          <!-- Files inside: fanning out when open -->
+                          <div class="gf-files" role="list" aria-label="Personal Portfolio files" inert>
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.9px; --gf-jr: -1.5deg; z-index: 1;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Design &amp; Work</span>
+                                  <span class="gf-sheet-meta">Showcase</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>A collection of my website, design, and branding work.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Editorial</span>
+                                    <span class="gf-badge-chip">Brutalism</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 1.2px; --gf-jr: 0.8deg; z-index: 2;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Summaries &amp; Demos</span>
+                                  <span class="gf-sheet-meta">Case Studies</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Clear project summaries and interactive live examples.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Next.js</span>
+                                    <span class="gf-badge-chip">Tailwind</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.0px; --gf-jr: -0.9deg; z-index: 3;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Thoughtful Motion</span>
+                                  <span class="gf-sheet-meta">Interactions</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Clean layouts with thoughtful animations and subtle movement.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Three.js</span>
+                                    <span class="gf-badge-chip">Lenis</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 0.8px; --gf-jr: 1.4deg; z-index: 4;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Skills &amp; Source</span>
+                                  <span class="gf-sheet-meta">Production Build</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>An introduction to my skills and creative approach.</p>
+                                  <div class="flex items-center gap-2 pt-2">
+                                    <button type="button" data-open-case-study="portfolio"
+                                      class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                      Case Study
+                                    </button>
+                                    <a href="https://github.com/khush-debug/khushgill" target="_blank"
+                                      rel="noopener noreferrer"
+                                      class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                      <span>Source</span>
+                                      <span>↗</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Action Key: More Options (···) -->
+                          <button type="button" class="gf-key gf-key--more"
+                            aria-label="More options for Personal Portfolio" aria-haspopup="menu" aria-expanded="false">
+                            <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                              <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                            </svg>
+                          </button>
+
+                          <!-- Options Dropdown Menu -->
+                          <div role="menu" aria-label="Personal Portfolio options" class="gf-menu">
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close
+                              Folder</button>
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              data-open-case-study="portfolio">View Case Study</button>
+                            <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer"
+                              role="menuitem" class="gf-menu-item">View Source ↗</a>
                           </div>
                         </div>
                       </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 1.2px; --gf-jr: 0.8deg; z-index: 2;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Summaries &amp; Demos</span>
-                            <span class="gf-sheet-meta">Case Studies</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Clear project summaries and interactive live examples.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Next.js</span>
-                              <span class="gf-badge-chip">Tailwind</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.0px; --gf-jr: -0.9deg; z-index: 3;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Thoughtful Motion</span>
-                            <span class="gf-sheet-meta">Interactions</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Clean layouts with thoughtful animations and subtle movement.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Three.js</span>
-                              <span class="gf-badge-chip">Lenis</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 0.8px; --gf-jr: 1.4deg; z-index: 4;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Skills &amp; Source</span>
-                            <span class="gf-sheet-meta">Production Build</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>An introduction to my skills and creative approach.</p>
-                            <div class="flex items-center gap-2 pt-2">
-                              <button type="button" data-open-case-study="portfolio" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
-                                Case Study
-                              </button>
-                              <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
-                                <span>Source</span>
-                                <span>↗</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Action Key: More Options (···) -->
-                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Personal Portfolio" aria-haspopup="menu" aria-expanded="false">
-                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
-                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
-                      </svg>
-                    </button>
-
-                    <!-- Options Dropdown Menu -->
-                    <div role="menu" aria-label="Personal Portfolio options" class="gf-menu">
-                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
-                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="portfolio">View Case Study</button>
-                      <a href="https://github.com/khush-debug/khushgill" target="_blank" rel="noopener noreferrer" role="menuitem" class="gf-menu-item">View Source ↗</a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-                </div>
 
                 <!-- Bottom Footer Meta (carousel-08 style) -->
-                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                <div
+                  class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
                   <div class="flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
                     <span>Curated Digital Products</span>
@@ -863,151 +1001,183 @@
                 </div>
               </div>
               <!-- Slide 3: Brand Identity & Strategy -->
-              <div class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="2">
+              <div
+                class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group"
+                data-slide-idx="2">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">03 / Visual Identity</span>
-                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Slyphe — Brand Identity</h3>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">03 / Visual
+                      Identity</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Slyphe —
+                      Brand Identity</h3>
                   </div>
-                  <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="Open Slyphe Live Site">
-                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer"
+                    title="Open Slyphe Live Site">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none"
+                      stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
                   </a>
                 </div>
 
                 <!-- Glass Folder Container -->
                 <div class="py-2 my-auto">
                   <div class="gf-container">
-              <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left" data-width="400">
-                <div class="gf-stage">
-                  <div class="gf-tilt">
-                    <div class="gf-shadow" aria-hidden="true"></div>
+                    <div class="gf-root" data-tone="light" data-art="dusk" data-seed="11" data-place="bottom-left"
+                      data-width="400">
+                      <div class="gf-stage">
+                        <div class="gf-tilt">
+                          <div class="gf-shadow" aria-hidden="true"></div>
 
-                    <!-- Back panel with liquid artwork canvas -->
-                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
-                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
-                      <div class="gf-back-sheen"></div>
-                    </div>
-                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
-                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
-                    </svg>
+                          <!-- Back panel with liquid artwork canvas -->
+                          <div class="gf-back"
+                            style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');"
+                            aria-hidden="true">
+                            <canvas class="gf-art" width="364" height="296"
+                              style="width: 364px; height: 296px; max-width: none;"></canvas>
+                            <div class="gf-back-sheen"></div>
+                          </div>
+                          <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                            <path
+                              d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z">
+                            </path>
+                          </svg>
 
-                    <!-- Frosted glass front panel, hinged at bottom edge -->
-                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
-                      <div class="gf-tint" aria-hidden="true"></div>
-                      <div class="gf-spec" aria-hidden="true"></div>
-                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="gf-rim-brand" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
-                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
-                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-brand)"></path>
-                      </svg>
-                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Slyphe Brand Identity, 4 items"></button>
-                      <div class="gf-label">
-                        <span class="gf-title">03 Slyphe Brand</span>
-                        <span class="gf-meta">Visual Systems · 4 Files</span>
-                      </div>
-                    </div>
-
-                    <!-- Files inside: fanning out when open -->
-                    <div class="gf-files" role="list" aria-label="Brand Identity files" inert>
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.1px; --gf-jr: -1.7deg; z-index: 1;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Visual Style</span>
-                            <span class="gf-sheet-meta">Identity</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Create a visual style that reflects the business.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Brand Voice</span>
-                              <span class="gf-badge-chip">Positioning</span>
+                          <!-- Frosted glass front panel, hinged at bottom edge -->
+                          <div class="gf-front"
+                            style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                            <div class="gf-tint" aria-hidden="true"></div>
+                            <div class="gf-spec" aria-hidden="true"></div>
+                            <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                              <defs>
+                                <linearGradient id="gf-rim-brand" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                                  <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                                  <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                                </linearGradient>
+                              </defs>
+                              <path
+                                d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
+                                stroke="url(#gf-rim-brand)"></path>
+                            </svg>
+                            <button type="button" class="gf-hit" aria-expanded="false"
+                              aria-label="Open Slyphe Brand Identity, 4 items"></button>
+                            <div class="gf-label">
+                              <span class="gf-title">03 Slyphe Brand</span>
+                              <span class="gf-meta">Visual Systems · 4 Files</span>
                             </div>
+                          </div>
+
+                          <!-- Files inside: fanning out when open -->
+                          <div class="gf-files" role="list" aria-label="Brand Identity files" inert>
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -1.1px; --gf-jr: -1.7deg; z-index: 1;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Visual Style</span>
+                                  <span class="gf-sheet-meta">Identity</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Create a visual style that reflects the business.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Brand Voice</span>
+                                    <span class="gf-badge-chip">Positioning</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.7px; --gf-jr: 0.6deg; z-index: 2;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Colors &amp; Fonts</span>
+                                  <span class="gf-sheet-meta">Design Tokens</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Choose consistent colours, fonts, and design elements.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Typography</span>
+                                    <span class="gf-badge-chip">Color Palette</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.8px; --gf-jr: -0.8deg; z-index: 3;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Digital Presence</span>
+                                  <span class="gf-sheet-meta">Online Strategy</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Give the brand a clear direction online.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Web Strategy</span>
+                                    <span class="gf-badge-chip">Guidelines</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.0px; --gf-jr: 1.5deg; z-index: 4;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Communication</span>
+                                  <span class="gf-sheet-meta">Audience Impact</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Help businesses communicate with their audience.</p>
+                                  <div class="flex items-center gap-2 pt-2">
+                                    <button type="button" data-open-case-study="brand"
+                                      class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                      Case Study
+                                    </button>
+                                    <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                      class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                      <span>Live Site</span>
+                                      <span>↗</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Action Key: More Options (···) -->
+                          <button type="button" class="gf-key gf-key--more"
+                            aria-label="More options for Brand Identity & Strategy" aria-haspopup="menu"
+                            aria-expanded="false">
+                            <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                              <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                            </svg>
+                          </button>
+
+                          <!-- Options Dropdown Menu -->
+                          <div role="menu" aria-label="Brand Identity options" class="gf-menu">
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close
+                              Folder</button>
+                            <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="brand">View
+                              Case Study</button>
+                            <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer"
+                              role="menuitem" class="gf-menu-item">Live Website ↗</a>
                           </div>
                         </div>
                       </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.7px; --gf-jr: 0.6deg; z-index: 2;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Colors &amp; Fonts</span>
-                            <span class="gf-sheet-meta">Design Tokens</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Choose consistent colours, fonts, and design elements.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Typography</span>
-                              <span class="gf-badge-chip">Color Palette</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -0.8px; --gf-jr: -0.8deg; z-index: 3;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Digital Presence</span>
-                            <span class="gf-sheet-meta">Online Strategy</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Give the brand a clear direction online.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Web Strategy</span>
-                              <span class="gf-badge-chip">Guidelines</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.0px; --gf-jr: 1.5deg; z-index: 4;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Communication</span>
-                            <span class="gf-sheet-meta">Audience Impact</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Help businesses communicate with their audience.</p>
-                            <div class="flex items-center gap-2 pt-2">
-                              <button type="button" data-open-case-study="brand" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
-                                Case Study
-                              </button>
-                              <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
-                                <span>Live Site</span>
-                                <span>↗</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Action Key: More Options (···) -->
-                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Brand Identity & Strategy" aria-haspopup="menu" aria-expanded="false">
-                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
-                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
-                      </svg>
-                    </button>
-
-                    <!-- Options Dropdown Menu -->
-                    <div role="menu" aria-label="Brand Identity options" class="gf-menu">
-                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
-                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="brand">View Case Study</button>
-                      <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer" role="menuitem" class="gf-menu-item">Live Website ↗</a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-                </div>
 
                 <!-- Bottom Footer Meta (carousel-08 style) -->
-                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                <div
+                  class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
                   <div class="flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
                     <span>Design Systems & Direction</span>
@@ -1016,151 +1186,181 @@
                 </div>
               </div>
               <!-- Slide 4: Graphic Design -->
-              <div class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group" data-slide-idx="3">
+              <div
+                class="folder-carousel-slide flex-none w-[min(320px,calc(100vw-3rem))] sm:w-[390px] md:w-[440px] flex flex-col justify-between p-5 sm:p-6 rounded-2xl border border-[#DADDD7] bg-[#FAF9F6] shadow-xs transition-all hover:border-[#176B5B]/40 hover:shadow-md group"
+                data-slide-idx="3">
                 <!-- Top Header: Category, Title, Action Button (carousel-08 style) -->
                 <div class="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">04 / Visual Arts</span>
-                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Graphic Design</h3>
+                    <span class="font-mono text-xs font-bold text-[#176B5B] uppercase tracking-wider">04 / Visual
+                      Arts</span>
+                    <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mt-0.5">Graphic
+                      Design</h3>
                   </div>
-                  <button type="button" data-open-case-study="graphic" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer" title="View Case Study">
-                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                  <button type="button" data-open-case-study="graphic"
+                    class="h-10 w-10 rounded-full border border-[#DADDD7] bg-white hover:bg-[#176B5B] text-[#202522] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 cursor-pointer"
+                    title="View Case Study">
+                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:rotate-45" fill="none"
+                      stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                    </svg>
                   </button>
                 </div>
 
                 <!-- Glass Folder Container -->
                 <div class="py-2 my-auto">
                   <div class="gf-container">
-              <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left" data-width="400">
-                <div class="gf-stage">
-                  <div class="gf-tilt">
-                    <div class="gf-shadow" aria-hidden="true"></div>
+                    <div class="gf-root" data-tone="dark" data-art="verdant" data-seed="15" data-place="bottom-left"
+                      data-width="400">
+                      <div class="gf-stage">
+                        <div class="gf-tilt">
+                          <div class="gf-shadow" aria-hidden="true"></div>
 
-                    <!-- Back panel with liquid artwork canvas -->
-                    <div class="gf-back" style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');" aria-hidden="true">
-                      <canvas class="gf-art" width="364" height="296" style="width: 364px; height: 296px; max-width: none;"></canvas>
-                      <div class="gf-back-sheen"></div>
-                    </div>
-                    <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
-                      <path d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z"></path>
-                    </svg>
+                          <!-- Back panel with liquid artwork canvas -->
+                          <div class="gf-back"
+                            style="clip-path: path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');"
+                            aria-hidden="true">
+                            <canvas class="gf-art" width="364" height="296"
+                              style="width: 364px; height: 296px; max-width: none;"></canvas>
+                            <div class="gf-back-sheen"></div>
+                          </div>
+                          <svg class="gf-rim gf-back-rim" viewBox="0 0 340 272" aria-hidden="true">
+                            <path
+                              d="M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z">
+                            </path>
+                          </svg>
 
-                    <!-- Frosted glass front panel, hinged at bottom edge -->
-                    <div class="gf-front" style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
-                      <div class="gf-tint" aria-hidden="true"></div>
-                      <div class="gf-spec" aria-hidden="true"></div>
-                      <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
-                        <defs>
-                          <linearGradient id="gf-rim-collab" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
-                            <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
-                            <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z" stroke="url(#gf-rim-collab)"></path>
-                      </svg>
-                      <button type="button" class="gf-hit" aria-expanded="false" aria-label="Open Graphic Design, 4 items"></button>
-                      <div class="gf-label">
-                        <span class="gf-title">04 Graphic Design</span>
-                        <span class="gf-meta">Visual Arts · 4 Files</span>
-                      </div>
-                    </div>
-
-                    <!-- Files inside: fanning out when open -->
-                    <div class="gf-files" role="list" aria-label="Graphic Design files" inert>
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.8px; --gf-jr: -1.6deg; z-index: 1;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Digital Artwork</span>
-                            <span class="gf-sheet-meta">Illustration</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Custom digital artwork and distinctive editorial visuals.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Digital Art</span>
-                              <span class="gf-badge-chip">Illustration</span>
+                          <!-- Frosted glass front panel, hinged at bottom edge -->
+                          <div class="gf-front"
+                            style="clip-path: path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');">
+                            <div class="gf-tint" aria-hidden="true"></div>
+                            <div class="gf-spec" aria-hidden="true"></div>
+                            <svg class="gf-rim gf-front-rim" viewBox="0 0 340 198" aria-hidden="true">
+                              <defs>
+                                <linearGradient id="gf-rim-collab" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="0" stop-color="#fff" stop-opacity="0.95"></stop>
+                                  <stop offset="0.35" stop-color="#fff" stop-opacity="0.35"></stop>
+                                  <stop offset="1" stop-color="#fff" stop-opacity="0.12"></stop>
+                                </linearGradient>
+                              </defs>
+                              <path
+                                d="M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z"
+                                stroke="url(#gf-rim-collab)"></path>
+                            </svg>
+                            <button type="button" class="gf-hit" aria-expanded="false"
+                              aria-label="Open Graphic Design, 4 items"></button>
+                            <div class="gf-label">
+                              <span class="gf-title">04 Graphic Design</span>
+                              <span class="gf-meta">Visual Arts · 4 Files</span>
                             </div>
+                          </div>
+
+                          <!-- Files inside: fanning out when open -->
+                          <div class="gf-files" role="list" aria-label="Graphic Design files" inert>
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -1; --gf-depth: 3; --gf-jx: -0.8px; --gf-jr: -1.6deg; z-index: 1;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Digital Artwork</span>
+                                  <span class="gf-sheet-meta">Illustration</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Custom digital artwork and distinctive editorial visuals.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Digital Art</span>
+                                    <span class="gf-badge-chip">Illustration</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.9px; --gf-jr: 0.7deg; z-index: 2;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Campaign Collateral</span>
+                                  <span class="gf-sheet-meta">Marketing</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>High-impact posters, banners, and promotional graphics.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Posters</span>
+                                    <span class="gf-badge-chip">Print &amp; Web</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.2px; --gf-jr: -1.0deg; z-index: 3;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Social Media Kits</span>
+                                  <span class="gf-sheet-meta">Brand Assets</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Cohesive social media visuals and reusable launch templates.</p>
+                                  <div class="flex gap-1.5 pt-1">
+                                    <span class="gf-badge-chip">Social Kits</span>
+                                    <span class="gf-badge-chip">Layouts</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div role="listitem" class="gf-sheet-slot">
+                              <div class="gf-sheet"
+                                style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.5deg; z-index: 4;">
+                                <span class="gf-sheet-head">
+                                  <span class="gf-sheet-name">Visual Hierarchy</span>
+                                  <span class="gf-sheet-meta">Typography</span>
+                                </span>
+                                <div class="gf-sheet-content-preview">
+                                  <p>Strong typography, colour balance, and crisp composition.</p>
+                                  <div class="flex items-center gap-2 pt-2">
+                                    <button type="button" data-open-case-study="graphic"
+                                      class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
+                                      Case Study
+                                    </button>
+                                    <a href="#contact"
+                                      class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
+                                      <span>Inquire</span>
+                                      <span>↗</span>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Action Key: More Options (···) -->
+                          <button type="button" class="gf-key gf-key--more" aria-label="More options for Graphic Design"
+                            aria-haspopup="menu" aria-expanded="false">
+                            <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
+                              <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
+                              <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
+                            </svg>
+                          </button>
+
+                          <!-- Options Dropdown Menu -->
+                          <div role="menu" aria-label="Graphic Design options" class="gf-menu">
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close
+                              Folder</button>
+                            <button type="button" role="menuitem" class="gf-menu-item"
+                              data-open-case-study="graphic">View Case Study</button>
+                            <a href="#contact" role="menuitem" class="gf-menu-item">Inquire Studio ↗</a>
                           </div>
                         </div>
                       </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: -0.333; --gf-depth: 2; --gf-jx: 0.9px; --gf-jr: 0.7deg; z-index: 2;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Campaign Collateral</span>
-                            <span class="gf-sheet-meta">Marketing</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>High-impact posters, banners, and promotional graphics.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Posters</span>
-                              <span class="gf-badge-chip">Print &amp; Web</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 0.333; --gf-depth: 1; --gf-jx: -1.2px; --gf-jr: -1.0deg; z-index: 3;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Social Media Kits</span>
-                            <span class="gf-sheet-meta">Brand Assets</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Cohesive social media visuals and reusable launch templates.</p>
-                            <div class="flex gap-1.5 pt-1">
-                              <span class="gf-badge-chip">Social Kits</span>
-                              <span class="gf-badge-chip">Layouts</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div role="listitem" class="gf-sheet-slot">
-                        <div class="gf-sheet" style="--gf-slot: 1; --gf-depth: 0; --gf-jx: 1.1px; --gf-jr: 1.5deg; z-index: 4;">
-                          <span class="gf-sheet-head">
-                            <span class="gf-sheet-name">Visual Hierarchy</span>
-                            <span class="gf-sheet-meta">Typography</span>
-                          </span>
-                          <div class="gf-sheet-content-preview">
-                            <p>Strong typography, colour balance, and crisp composition.</p>
-                            <div class="flex items-center gap-2 pt-2">
-                              <button type="button" data-open-case-study="graphic" class="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#202522] hover:text-[#176B5B] px-3 py-1 rounded-full border border-[#DADDD7] bg-[#FAF9F6] transition-colors">
-                                Case Study
-                              </button>
-                              <a href="#contact" class="text-[11px] font-mono font-bold uppercase tracking-wider text-white bg-[#176B5B] hover:bg-[#105044] px-3 py-1 rounded-full flex items-center gap-1 transition-colors">
-                                <span>Inquire</span>
-                                <span>↗</span>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Action Key: More Options (···) -->
-                    <button type="button" class="gf-key gf-key--more" aria-label="More options for Graphic Design" aria-haspopup="menu" aria-expanded="false">
-                      <svg class="gf-glyph gf-glyph--more" viewBox="0 0 30 12" aria-hidden="true">
-                        <rect x="1" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="11" y="1.5" width="8" height="9" rx="3.4"></rect>
-                        <rect x="21" y="1.5" width="8" height="9" rx="3.4"></rect>
-                      </svg>
-                    </button>
-
-                    <!-- Options Dropdown Menu -->
-                    <div role="menu" aria-label="Graphic Design options" class="gf-menu">
-                      <button type="button" role="menuitem" class="gf-menu-item" onclick="this.closest('.gf-root').querySelector('.gf-hit').click()">Open / Close Folder</button>
-                      <button type="button" role="menuitem" class="gf-menu-item" data-open-case-study="graphic">View Case Study</button>
-                      <a href="#contact" role="menuitem" class="gf-menu-item">Inquire Studio ↗</a>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-                </div>
 
                 <!-- Bottom Footer Meta (carousel-08 style) -->
-                <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
+                <div
+                  class="flex items-center justify-between mt-3 pt-3 border-t border-[#DADDD7]/70 font-mono text-xs text-[#595F5B]">
                   <div class="flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
                     <span>Visual Design &amp; Art Direction</span>
@@ -1182,11 +1382,19 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <button id="folder-carousel-prev" type="button" aria-label="Previous folder" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
-                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+              <button id="folder-carousel-prev" type="button" aria-label="Previous folder"
+                class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
+                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
               </button>
-              <button id="folder-carousel-next" type="button" aria-label="Next folder" class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
-                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+              <button id="folder-carousel-next" type="button" aria-label="Next folder"
+                class="h-10 w-10 rounded-full border border-[#DADDD7] bg-[#FAF9F6] hover:bg-[#F0EFEB] active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all cursor-pointer shadow-xs">
+                <svg class="h-4 w-4 text-[#202522]" fill="none" stroke="currentColor" stroke-width="2"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
               </button>
             </div>
           </div>
@@ -1199,9 +1407,10 @@
 
 
     <!-- ==================== WHY WORK WITH ME: CLEAR PROCESS & PERSONAL ATTENTION ==================== -->
-    <section id="philosophy" class="w-full relative z-30 bg-[#F0EFEB] text-[#202522] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+    <section id="philosophy"
+      class="w-full relative z-30 bg-[#F0EFEB] text-[#202522] py-20 md:py-28 px-6 md:px-16 lg:px-24">
       <div class="max-w-6xl mx-auto">
-        
+
         <!-- Header -->
         <div class="reveal mb-10 max-w-3xl">
           <span class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#176B5B] block mb-3">
@@ -1212,15 +1421,17 @@
             <span class="text-[#176B5B] block">Reliable Projects.</span>
           </h2>
           <p class="font-sans text-sm sm:text-base text-[#595F5B] leading-relaxed mt-4 max-w-2xl font-normal">
-            From the first conversation to the final delivery, I keep your goals in focus and make each step easy to follow.
+            From the first conversation to the final delivery, I keep your goals in focus and make each step easy to
+            follow.
           </p>
         </div>
 
         <!-- Bento Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
-          
+
           <!-- Left Card: Designed around your goals (Span 7) -->
-          <div class="lg:col-span-7 bg-[#FAF9F6] border-[1.5px] border-[#176B5B]/75 rounded-2xl p-7 sm:p-9 flex flex-col justify-center shadow-xs">
+          <div
+            class="lg:col-span-7 bg-[#FAF9F6] border-[1.5px] border-[#176B5B]/75 rounded-2xl p-7 sm:p-9 flex flex-col justify-center shadow-xs">
             <h3 class="font-sans font-bold text-xl sm:text-2xl text-[#202522] tracking-tight mb-3">
               Designed around your goals
             </h3>
@@ -1229,19 +1440,31 @@
             </p>
             <ul class="space-y-3 font-sans text-sm sm:text-base text-[#202522]/90">
               <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
                 <span>Design that reflects your brand.</span>
               </li>
               <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
                 <span>Practical choices explained simply.</span>
               </li>
               <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
                 <span>Consistency across websites, graphics, and branding.</span>
               </li>
               <li class="flex items-center gap-3">
-                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
                 <span>Work reviewed and refined before delivery.</span>
               </li>
             </ul>
@@ -1249,9 +1472,10 @@
 
           <!-- Right Column (Span 5) -->
           <div class="lg:col-span-5 flex flex-col gap-5 sm:gap-6">
-            
+
             <!-- Top Card: One point of contact -->
-            <div class="bg-[#FAF9F6] border border-[#DADDD7] rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#176B5B]/50 transition-colors">
+            <div
+              class="bg-[#FAF9F6] border border-[#DADDD7] rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-xs hover:border-[#176B5B]/50 transition-colors">
               <h4 class="font-sans font-bold text-lg sm:text-xl text-[#202522] tracking-tight mb-1.5">
                 One point of contact
               </h4>
@@ -1275,7 +1499,8 @@
             </div>
 
             <!-- Bottom Card: Care through completion -->
-            <div class="bg-[#202522] text-[#FAF9F6] border border-[#202522] rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-md">
+            <div
+              class="bg-[#202522] text-[#FAF9F6] border border-[#202522] rounded-2xl p-6 sm:p-7 flex flex-col justify-between shadow-md">
               <div>
                 <h4 class="font-sans font-bold text-lg sm:text-xl text-white tracking-tight mb-3">
                   Care through completion
@@ -1295,7 +1520,8 @@
                   </li>
                 </ul>
               </div>
-              <a href="#contact" class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#176B5B] hover:bg-[#105044] text-white text-sm font-sans font-semibold transition-colors shadow-xs">
+              <a href="#contact"
+                class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#176B5B] hover:bg-[#105044] text-white text-sm font-sans font-semibold transition-colors shadow-xs">
                 <span>Let's discuss your project</span>
                 <span>↗</span>
               </a>
@@ -1343,16 +1569,19 @@
 
 
     <!-- ==================== FAQS SECTION: WORKSPACE BACKGROUND ==================== -->
-    <section id="faq" class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7] overflow-hidden">
+    <section id="faq"
+      class="w-full relative z-30 bg-[#FAF9F6] text-[#202522] py-24 md:py-32 px-6 md:px-16 lg:px-24 border-t border-[#DADDD7] overflow-hidden">
       <!-- Workspace Background Image & Warm Frosted Veil -->
-      <img src="assets/faq-bg.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover blur-[1.5px] scale-[1.01] z-0 pointer-events-none">
+      <img src="assets/faq-bg.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"
+        class="absolute inset-0 w-full h-full object-cover blur-[1.5px] scale-[1.01] z-0 pointer-events-none">
       <div class="absolute inset-0 bg-[#FAF9F6]/75 z-0 pointer-events-none"></div>
 
       <div class="max-w-6xl mx-auto relative z-10">
-        
+
         <!-- Header -->
         <div class="reveal mb-14 text-center max-w-2xl mx-auto">
-          <span class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
+          <span
+            class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#176B5B] mb-3">
             <span>&gt;</span>
             <span>Frequently Asked Questions</span>
           </span>
@@ -1362,11 +1591,14 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
-          
+
           <!-- Left Column: Workspace Photo Card (Borderless, No Edition Badge) -->
-          <div class="lg:col-span-5 lg:sticky lg:top-28 relative overflow-hidden rounded-[28px] bg-[#202522] shadow-xl h-[400px] sm:h-[440px] p-6 sm:p-8 flex flex-col justify-end">
+          <div
+            class="lg:col-span-5 lg:sticky lg:top-28 relative overflow-hidden rounded-[28px] bg-[#202522] shadow-xl h-[400px] sm:h-[440px] p-6 sm:p-8 flex flex-col justify-end">
             <img src="assets/faq-bg.jpg" alt="Studio Workspace" class="absolute inset-0 w-full h-full object-cover z-0">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none">
+            </div>
 
             <div class="relative z-20 space-y-3">
               <h3 class="font-sans font-black text-2xl sm:text-3xl text-white tracking-tight leading-snug">
@@ -1375,7 +1607,8 @@
               <p class="font-sans text-xs sm:text-sm text-white/80 leading-relaxed font-normal">
                 Let's discuss your ideas, scope, and timeline to build something distinctive together.
               </p>
-              <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#176B5B] hover:bg-[#105044] text-white text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-sm">
+              <a href="#contact"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#176B5B] hover:bg-[#105044] text-white text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-sm">
                 <span>Get in Touch</span>
                 <span>↗</span>
               </a>
@@ -1383,8 +1616,9 @@
           </div>
 
           <!-- Right Column: Frosted Accordion List -->
-          <div class="lg:col-span-7 flex flex-col bg-[#FAF9F6]/95 border border-[#DADDD7] rounded-3xl px-6 sm:px-8 py-2 shadow-sm">
-            
+          <div
+            class="lg:col-span-7 flex flex-col bg-[#FAF9F6]/95 border border-[#DADDD7] rounded-3xl px-6 sm:px-8 py-2 shadow-sm">
+
             <!-- Item 1 -->
             <div class="faq-accordion-item is-open">
               <button class="faq-question-btn" aria-expanded="true">
@@ -1395,24 +1629,32 @@
               </button>
               <div class="faq-answer-panel">
                 <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed mb-3">
-                  I specialize in tailored digital solutions for businesses, founders, and creators across several core disciplines:
+                  I specialize in tailored digital solutions for businesses, founders, and creators across several core
+                  disciplines:
                 </p>
                 <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Portfolio & Showcase Websites:</strong> Custom portfolios, editorial layouts, and interactive experiences designed to highlight creative and professional work.</span>
+                    <span><strong class="text-[#202522]">Portfolio & Showcase Websites:</strong> Custom portfolios,
+                      editorial layouts, and interactive experiences designed to highlight creative and professional
+                      work.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Business Platforms & Landing Pages:</strong> Structured commercial websites, product catalogs, and high-converting pages built for speed and clarity.</span>
+                    <span><strong class="text-[#202522]">Business Platforms & Landing Pages:</strong> Structured
+                      commercial websites, product catalogs, and high-converting pages built for speed and
+                      clarity.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Visual Brand Identities:</strong> Distinctive logomarks, typography scales, color palettes, and brand guidelines.</span>
+                    <span><strong class="text-[#202522]">Visual Brand Identities:</strong> Distinctive logomarks,
+                      typography scales, color palettes, and brand guidelines.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Graphic Design & Marketing Assets:</strong> Promotional graphics, presentation collateral, and high-impact digital artwork tailored for web and social.</span>
+                    <span><strong class="text-[#202522]">Graphic Design & Marketing Assets:</strong> Promotional
+                      graphics, presentation collateral, and high-impact digital artwork tailored for web and
+                      social.</span>
                   </li>
                 </ul>
               </div>
@@ -1428,28 +1670,34 @@
               </button>
               <div class="faq-answer-panel">
                 <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed mb-3">
-                  Every engagement follows a structured five-step process to ensure clarity, collaboration, and high-quality results:
+                  Every engagement follows a structured five-step process to ensure clarity, collaboration, and
+                  high-quality results:
                 </p>
                 <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">1. Understand:</strong> We discuss your business goals, target audience, brand direction, and core project requirements.</span>
+                    <span><strong class="text-[#202522]">1. Understand:</strong> We discuss your business goals, target
+                      audience, brand direction, and core project requirements.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">2. Plan:</strong> We map out page structure, project milestones, and agreed delivery timelines.</span>
+                    <span><strong class="text-[#202522]">2. Plan:</strong> We map out page structure, project
+                      milestones, and agreed delivery timelines.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">3. Create:</strong> I design clean layouts and build responsive interfaces with regular progress updates.</span>
+                    <span><strong class="text-[#202522]">3. Create:</strong> I design clean layouts and build responsive
+                      interfaces with regular progress updates.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">4. Review:</strong> We test across screen sizes, incorporate your feedback, and refine every detail.</span>
+                    <span><strong class="text-[#202522]">4. Review:</strong> We test across screen sizes, incorporate
+                      your feedback, and refine every detail.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">5. Deliver:</strong> Final production files, code, and assets are handed over ready for launch.</span>
+                    <span><strong class="text-[#202522]">5. Deliver:</strong> Final production files, code, and assets
+                      are handed over ready for launch.</span>
                   </li>
                 </ul>
               </div>
@@ -1465,24 +1713,29 @@
               </button>
               <div class="faq-answer-panel">
                 <p class="font-sans text-xs sm:text-sm text-[#595F5B] leading-relaxed mb-3">
-                  I work with a modern, production-tested technology stack designed for performance, scalability, and design fidelity:
+                  I work with a modern, production-tested technology stack designed for performance, scalability, and
+                  design fidelity:
                 </p>
                 <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Frontend Core:</strong> Next.js, React, JavaScript (ES6+), TypeScript, Tailwind CSS, and HTML5 semantic markup.</span>
+                    <span><strong class="text-[#202522]">Frontend Core:</strong> Next.js, React, JavaScript (ES6+),
+                      TypeScript, Tailwind CSS, and HTML5 semantic markup.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Motion & Canvas:</strong> Lenis Smooth Scroll, Three.js WebGL shaders, and CSS GPU-accelerated micro-interactions.</span>
+                    <span><strong class="text-[#202522]">Motion & Canvas:</strong> Lenis Smooth Scroll, Three.js WebGL
+                      shaders, and CSS GPU-accelerated micro-interactions.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Design & Creative Suite:</strong> Figma for design systems and wireframes; Adobe Illustrator and Photoshop for visual assets.</span>
+                    <span><strong class="text-[#202522]">Design & Creative Suite:</strong> Figma for design systems and
+                      wireframes; Adobe Illustrator and Photoshop for visual assets.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Hosting & Infrastructure:</strong> Vercel cloud hosting with global edge network, custom DNS routing, SSL certificates, and GitHub CI/CD workflows.</span>
+                    <span><strong class="text-[#202522]">Hosting & Infrastructure:</strong> Vercel cloud hosting with
+                      global edge network, custom DNS routing, SSL certificates, and GitHub CI/CD workflows.</span>
                   </li>
                 </ul>
               </div>
@@ -1503,15 +1756,18 @@
                 <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Landing Pages & Portfolios:</strong> Typically 1 to 2 weeks from kickoff to final live deployment.</span>
+                    <span><strong class="text-[#202522]">Landing Pages & Portfolios:</strong> Typically 1 to 2 weeks
+                      from kickoff to final live deployment.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Business Platforms & Catalogs:</strong> 2 to 4 weeks for multi-page architectures, product category databases, and custom interactions.</span>
+                    <span><strong class="text-[#202522]">Business Platforms & Catalogs:</strong> 2 to 4 weeks for
+                      multi-page architectures, product category databases, and custom interactions.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">Transparent Delivery:</strong> Weekly scheduled milestone check-ins, live staging links, and direct communication ensure we launch on schedule.</span>
+                    <span><strong class="text-[#202522]">Transparent Delivery:</strong> Weekly scheduled milestone
+                      check-ins, live staging links, and direct communication ensure we launch on schedule.</span>
                   </li>
                 </ul>
               </div>
@@ -1532,15 +1788,20 @@
                 <ul class="space-y-2 font-sans text-xs sm:text-sm text-[#595F5B]">
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">1. Send an Inquiry:</strong> Fill out the contact form below or reach out directly at <a href="mailto:kgill3662@gmail.com" class="text-[#176B5B] font-semibold underline underline-offset-2">kgill3662@gmail.com</a>.</span>
+                    <span><strong class="text-[#202522]">1. Send an Inquiry:</strong> Fill out the contact form below or
+                      reach out directly at <a href="mailto:kgill3662@gmail.com"
+                        class="text-[#176B5B] font-semibold underline underline-offset-2">kgill3662@gmail.com</a>.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">2. Share Project Details:</strong> Provide a brief summary of your project, target launch date, required features, and any reference designs.</span>
+                    <span><strong class="text-[#202522]">2. Share Project Details:</strong> Provide a brief summary of
+                      your project, target launch date, required features, and any reference designs.</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <span class="text-[#176B5B] font-bold mt-0.5">•</span>
-                    <span><strong class="text-[#202522]">3. Proposal & Timeline:</strong> I will review your requirements and provide a tailored proposal, timeline estimate, and next steps within 24 hours.</span>
+                    <span><strong class="text-[#202522]">3. Proposal & Timeline:</strong> I will review your
+                      requirements and provide a tailored proposal, timeline estimate, and next steps within 24
+                      hours.</span>
                   </li>
                 </ul>
               </div>
@@ -1555,19 +1816,23 @@
 
 
     <!-- ==================== CONTACT SECTION: WARM WHITE ==================== -->
-    <section id="contact" class="min-h-screen w-full relative z-30 bg-[#FAF9F6] text-[#202522] font-sans px-6 md:px-12 lg:px-16 py-20 md:py-28 flex flex-col justify-center overflow-hidden">
+    <section id="contact"
+      class="min-h-screen w-full relative z-30 bg-[#FAF9F6] text-[#202522] font-sans px-6 md:px-12 lg:px-16 py-20 md:py-28 flex flex-col justify-center overflow-hidden">
       <div class="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        
+
         <!-- Left Column: Portrait, Title & Services -->
         <div class="lg:col-span-7 flex flex-col justify-between h-full py-2">
           <div>
-            
+
             <!-- Header: Portrait thumbnail & Giant Contact Title -->
             <div class="mb-8 lg:mb-10 flex flex-col md:flex-row md:items-end gap-6 md:gap-8">
-              <div class="overflow-hidden rounded-xl w-28 h-28 md:w-36 md:h-36 shrink-0 border border-[#DADDD7] shadow-sm bg-[#F0EFEB]">
-                <img src="assets/khushman.jpg" alt="Khushman Singh Gill" class="w-full h-full object-cover" style="object-position: center 22%;">
+              <div
+                class="overflow-hidden rounded-xl w-28 h-28 md:w-36 md:h-36 shrink-0 border border-[#DADDD7] shadow-sm bg-[#F0EFEB]">
+                <img src="assets/khushman.jpg" alt="Khushman Singh Gill" class="w-full h-full object-cover"
+                  style="object-position: center 22%;">
               </div>
-              <h2 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight uppercase flex items-center gap-3 flex-wrap text-[#202522]">
+              <h2
+                class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight uppercase flex items-center gap-3 flex-wrap text-[#202522]">
                 <span>Contact</span>
                 <span>Me</span>
                 <span class="inline-block text-[#176B5B]">→</span>
@@ -1583,45 +1848,61 @@
               <div class="flex flex-col gap-6">
                 <div class="border-l-2 border-[#176B5B] pl-4">
                   <h3 class="text-base md:text-lg font-bold text-[#202522] flex items-center gap-2">
-                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                      viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
                     <span>UI/UX Design</span>
                   </h3>
                   <p class="text-xs font-semibold text-[#176B5B] mb-1.5">User Journeys &amp; Intuitive Interfaces</p>
                   <p class="text-xs md:text-sm font-normal leading-relaxed text-[#595F5B] max-w-lg">
-                    Plan user journeys and create intuitive interfaces, from wireframes to final designs that help people find what they need.
+                    Plan user journeys and create intuitive interfaces, from wireframes to final designs that help
+                    people find what they need.
                   </p>
                 </div>
 
                 <div class="border-l-2 border-[#176B5B] pl-4">
                   <h3 class="text-base md:text-lg font-bold text-[#202522] flex items-center gap-2">
-                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                      viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
                     <span>Frontend Development</span>
                   </h3>
                   <p class="text-xs font-semibold text-[#176B5B] mb-1.5">Responsive &amp; Smooth Websites</p>
                   <p class="text-xs md:text-sm font-normal leading-relaxed text-[#595F5B] max-w-lg">
-                    Build responsive websites with clean layouts, smooth interactions, and attention to detail across every screen.
+                    Build responsive websites with clean layouts, smooth interactions, and attention to detail across
+                    every screen.
                   </p>
                 </div>
 
                 <div class="border-l-2 border-[#176B5B] pl-4">
                   <h3 class="text-base md:text-lg font-bold text-[#202522] flex items-center gap-2">
-                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                      viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
                     <span>Brand Identity &amp; Strategy</span>
                   </h3>
                   <p class="text-xs font-semibold text-[#176B5B] mb-1.5">Distinctive Direction &amp; Visual Systems</p>
                   <p class="text-xs md:text-sm font-normal leading-relaxed text-[#595F5B] max-w-lg">
-                    Develop visual identities and digital direction that reflect a business’s goals and create lasting commercial value.
+                    Develop visual identities and digital direction that reflect a business’s goals and create lasting
+                    commercial value.
                   </p>
                 </div>
 
                 <div class="border-l-2 border-[#176B5B] pl-4">
                   <h3 class="text-base md:text-lg font-bold text-[#202522] flex items-center gap-2">
-                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <svg class="w-4 h-4 text-[#176B5B] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5"
+                      viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
                     <span>Graphic Design</span>
                   </h3>
                   <p class="text-xs font-semibold text-[#176B5B] mb-1.5">Visual Arts &amp; Campaign Collateral</p>
                   <p class="text-xs md:text-sm font-normal leading-relaxed text-[#595F5B] max-w-lg">
-                    Craft digital artwork, promotional collateral, social media visuals, and typographic layouts with clear visual hierarchy.
+                    Craft digital artwork, promotional collateral, social media visuals, and typographic layouts with
+                    clear visual hierarchy.
                   </p>
                 </div>
               </div>
@@ -1631,7 +1912,8 @@
                   Direct Inquiries
                 </span>
                 <p class="text-xs md:text-sm font-normal leading-relaxed text-[#595F5B] max-w-lg">
-                  Have a project in mind, an interface to design, or a website to build? Send a message below or email directly. Let's create something meaningful together.
+                  Have a project in mind, an interface to design, or a website to build? Send a message below or email
+                  directly. Let's create something meaningful together.
                 </p>
               </div>
 
@@ -1641,10 +1923,12 @@
 
           <!-- Bottom Action Buttons -->
           <div class="pt-8 flex flex-wrap items-center gap-4 text-xs font-mono">
-            <button data-copy-email class="px-5 py-2.5 rounded-full bg-[#176B5B] text-white hover:bg-[#105044] transition-colors font-bold shadow-sm">
+            <button data-copy-email
+              class="px-5 py-2.5 rounded-full bg-[#176B5B] text-white hover:bg-[#105044] transition-colors font-bold shadow-sm">
               Copy Email: kgill3662@gmail.com ↗
             </button>
-            <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="underline font-bold text-[#176B5B] hover:text-[#105044] transition-colors">
+            <a href="https://instagram.com/kggills" target="_blank" rel="noopener noreferrer"
+              class="underline font-bold text-[#176B5B] hover:text-[#105044] transition-colors">
               Instagram @kggills ↗
             </a>
           </div>
@@ -1653,18 +1937,22 @@
 
         <!-- Right Column: Minimalist Underline Form -->
         <div class="lg:col-span-5 flex flex-col justify-center pt-4 lg:pt-8">
-          
-          <form id="contact-form" action="https://formsubmit.co/kgill3662@gmail.com" method="POST" class="flex flex-col gap-6">
+
+          <form id="contact-form" action="https://formsubmit.co/kgill3662@gmail.com" method="POST"
+            class="flex flex-col gap-6">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div class="flex flex-col gap-1">
-                <label for="firstName" class="text-xs font-bold uppercase tracking-wider text-[#202522]">First Name *</label>
-                <input type="text" id="firstName" name="firstName" required placeholder="Khushman" class="input-underline">
+                <label for="firstName" class="text-xs font-bold uppercase tracking-wider text-[#202522]">First Name
+                  *</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Khushman"
+                  class="input-underline">
               </div>
               <div class="flex flex-col gap-1">
-                <label for="lastName" class="text-xs font-bold uppercase tracking-wider text-[#202522]">Last Name *</label>
+                <label for="lastName" class="text-xs font-bold uppercase tracking-wider text-[#202522]">Last Name
+                  *</label>
                 <input type="text" id="lastName" name="lastName" placeholder="Gill" class="input-underline">
               </div>
             </div>
@@ -1672,21 +1960,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div class="flex flex-col gap-1">
                 <label for="email" class="text-xs font-bold uppercase tracking-wider text-[#202522]">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="partner@enterprise.com" class="input-underline">
+                <input type="email" id="email" name="email" required placeholder="partner@enterprise.com"
+                  class="input-underline">
               </div>
               <div class="flex flex-col gap-1">
                 <label for="subject" class="text-xs font-bold uppercase tracking-wider text-[#202522]">Subject *</label>
-                <input type="text" id="subject" name="subject" required placeholder="Project Inquiry" class="input-underline">
+                <input type="text" id="subject" name="subject" required placeholder="Project Inquiry"
+                  class="input-underline">
               </div>
             </div>
 
             <div class="flex flex-col gap-1">
               <label for="message" class="text-xs font-bold uppercase tracking-wider text-[#202522]">Message *</label>
-              <textarea id="message" name="message" rows="3" required placeholder="Describe your project, timeline, or scope..." class="input-underline resize-none"></textarea>
+              <textarea id="message" name="message" rows="3" required
+                placeholder="Describe your project, timeline, or scope..."
+                class="input-underline resize-none"></textarea>
             </div>
 
             <div class="pt-4 flex flex-col gap-3">
-              <button type="submit" class="w-full py-4 rounded-full bg-[#176B5B] text-white font-sans font-bold text-xs uppercase tracking-widest hover:bg-[#105044] transition-all flex items-center justify-center gap-2 shadow-sm group">
+              <button type="submit"
+                class="w-full py-4 rounded-full bg-[#176B5B] text-white font-sans font-bold text-xs uppercase tracking-widest hover:bg-[#105044] transition-all flex items-center justify-center gap-2 shadow-sm group">
                 <span>Send Message</span>
                 <span class="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
               </button>
@@ -1711,11 +2004,13 @@
        ========================================== -->
   <div id="footer-reveal-wrapper" class="relative z-0 h-screen w-full overflow-hidden bg-black text-white">
     <div id="footer-parallax" class="h-full w-full" style="transform: translateY(-50%); will-change: transform;">
-      <footer id="footer-curtain" class="bg-black text-white font-sans pt-12 md:pt-20 border-t border-white/15 h-screen flex flex-col justify-between">
-        
+      <footer id="footer-curtain"
+        class="bg-black text-white font-sans pt-12 md:pt-20 border-t border-white/15 h-screen flex flex-col justify-between">
+
         <!-- Top Metadata Grid (Identification & Channels) -->
-        <div id="footer-meta-grid" class="px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 shrink-0">
-          
+        <div id="footer-meta-grid"
+          class="px-6 md:px-12 lg:px-16 max-w-[1600px] mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 shrink-0">
+
           <!-- Column 1: Identification -->
           <div class="flex flex-col gap-1">
             <h3 class="font-sans text-xs font-bold uppercase tracking-widest mb-4 text-white/70">
@@ -1738,13 +2033,17 @@
               Channels
             </h3>
             <div class="flex flex-col gap-2">
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kgill3662@gmail.com" target="_blank" rel="noopener noreferrer" class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kgill3662@gmail.com" target="_blank"
+                rel="noopener noreferrer"
+                class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
                 Email ↗
               </a>
-              <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer" class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
+              <a href="https://www.instagram.com/kggills" target="_blank" rel="noopener noreferrer"
+                class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
                 Instagram ↗
               </a>
-              <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer" class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
+              <a href="https://github.com/khush-debug" target="_blank" rel="noopener noreferrer"
+                class="font-sans text-xs md:text-sm font-medium uppercase tracking-wide underline underline-offset-4 decoration-[#176B5B] text-white hover:text-[#176B5B] transition-colors w-fit flex items-center gap-1">
                 GitHub ↗
               </a>
             </div>
@@ -1756,8 +2055,11 @@
         </div>
 
         <!-- Giant Animated Name Container -->
-        <div id="footer-big-name-box" class="w-full flex-1 flex flex-col justify-center items-center overflow-hidden select-none pb-4" style="transform: scale(0.8); opacity: 0; will-change: transform, opacity;">
-          <h1 id="footer-big-name" class="font-sans font-black text-[16vw] sm:text-[16.8vw] md:text-[17.5vw] lg:text-[18vw] leading-[0.8] text-white uppercase tracking-tighter flex items-start justify-center whitespace-nowrap select-none">
+        <div id="footer-big-name-box"
+          class="w-full flex-1 flex flex-col justify-center items-center overflow-hidden select-none pb-4"
+          style="transform: scale(0.8); opacity: 0; will-change: transform, opacity;">
+          <h1 id="footer-big-name"
+            class="font-sans font-black text-[16vw] sm:text-[16.8vw] md:text-[17.5vw] lg:text-[18vw] leading-[0.8] text-white uppercase tracking-tighter flex items-start justify-center whitespace-nowrap select-none">
             Khushman
           </h1>
         </div>
@@ -1768,11 +2070,14 @@
 
 
   <!-- ==================== INTERACTIVE CASE STUDY MODAL ==================== -->
-  <div id="project-modal" class="fixed inset-0 z-[300] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-xl">
-    <div class="relative w-full max-w-2xl rounded-3xl border border-[#DADDD7] bg-[#FAF9F6] p-6 sm:p-10 shadow-2xl space-y-6 text-[#202522] max-h-[90vh] overflow-y-auto">
-      
+  <div id="project-modal"
+    class="fixed inset-0 z-[300] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-xl">
+    <div
+      class="relative w-full max-w-2xl rounded-3xl border border-[#DADDD7] bg-[#FAF9F6] p-6 sm:p-10 shadow-2xl space-y-6 text-[#202522] max-h-[90vh] overflow-y-auto">
+
       <!-- Close Button -->
-      <button id="modal-close-btn" class="absolute top-6 right-6 p-2 rounded-full border border-[#DADDD7] bg-[#F0EFEB] hover:bg-[#DADDD7] text-[#595F5B] hover:text-[#202522] transition-all">
+      <button id="modal-close-btn"
+        class="absolute top-6 right-6 p-2 rounded-full border border-[#DADDD7] bg-[#F0EFEB] hover:bg-[#DADDD7] text-[#595F5B] hover:text-[#202522] transition-all">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -1780,24 +2085,29 @@
 
       <!-- Badge & Date -->
       <div class="flex items-center gap-3 text-xs font-mono text-[#595F5B]">
-        <span id="modal-badge" class="px-2.5 py-0.5 rounded-full bg-[#F0EFEB] text-[#176B5B] font-semibold border border-[#DADDD7]">Production Live</span>
+        <span id="modal-badge"
+          class="px-2.5 py-0.5 rounded-full bg-[#F0EFEB] text-[#176B5B] font-semibold border border-[#DADDD7]">Production
+          Live</span>
         <span id="modal-date" class="text-[#595F5B]">2026</span>
       </div>
 
       <!-- Title & Subtitle -->
       <div>
         <h3 id="modal-title" class="text-2xl sm:text-3xl font-black text-[#202522] tracking-tight">Supreme Infosys</h3>
-        <p id="modal-subtitle" class="text-sm font-mono text-[#595F5B] mt-1">A business website presenting products and services through a clear, accessible interface.</p>
+        <p id="modal-subtitle" class="text-sm font-mono text-[#595F5B] mt-1">A business website presenting products and
+          services through a clear, accessible interface.</p>
       </div>
 
       <!-- Body Content -->
-      <div id="modal-body" class="space-y-4 text-sm text-[#595F5B] leading-relaxed border-t border-b border-[#DADDD7] py-5">
+      <div id="modal-body"
+        class="space-y-4 text-sm text-[#595F5B] leading-relaxed border-t border-b border-[#DADDD7] py-5">
         <!-- Injected dynamically -->
       </div>
 
       <!-- Tech Stack Chips -->
       <div>
-        <div class="text-[11px] font-mono text-[#595F5B] uppercase tracking-wider mb-2">Technologies &amp; Architecture</div>
+        <div class="text-[11px] font-mono text-[#595F5B] uppercase tracking-wider mb-2">Technologies &amp; Architecture
+        </div>
         <div id="modal-chips" class="flex flex-wrap gap-1.5">
           <!-- Injected dynamically -->
         </div>
@@ -1805,7 +2115,8 @@
 
       <!-- Modal Action Buttons -->
       <div class="flex items-center justify-between pt-2">
-        <a id="modal-link-btn" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#176B5B] text-white font-semibold text-xs hover:bg-[#105044] transition-all shadow-sm">
+        <a id="modal-link-btn" href="#" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#176B5B] text-white font-semibold text-xs hover:bg-[#105044] transition-all shadow-sm">
           <span>Visit Live Website</span>
           <span>↗</span>
         </a>
@@ -1819,7 +2130,8 @@
 
 
   <!-- ==================== TOAST NOTIFICATION ==================== -->
-  <div id="toast" class="bg-[#202522] border border-[#DADDD7] text-[#FAF9F6] text-xs font-mono px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2">
+  <div id="toast"
+    class="bg-[#202522] border border-[#DADDD7] text-[#FAF9F6] text-xs font-mono px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2">
     <span class="w-2 h-2 rounded-full bg-[#176B5B]"></span>
     <span id="toast-text">Notification</span>
   </div>
