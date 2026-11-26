@@ -514,8 +514,8 @@ body {
 
 #footer-reveal-wrapper,
 #footer-curtain {
-  background-color: #000000 !important;
-  color: #ffffff;
+  background-color: var(--text-charcoal) !important;
+  color: var(--bg-main);
 }
 
 /* --- Viewport & Tab-Visibility Animation Pausing --- */
