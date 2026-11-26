@@ -508,7 +508,7 @@ body {
 #contact {
   position: relative;
   z-index: 30;
-  background-color: var(--bg-main);
+  background-color: var(--bg-stone);
   isolation: isolate;
 }
 

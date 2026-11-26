@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (formSuccess) {
             formSuccess.textContent = '✓ Message dispatched successfully. Khushman will be in touch soon.';
             formSuccess.classList.remove('hidden', 'text-amber-600', 'text-red-500');
-            formSuccess.classList.add('text-emerald-600');
+            formSuccess.classList.add('text-[#176B5B]');
           }
           contactForm.reset();
           if (submitBtn) {
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (data.message && data.message.includes('Activation')) {
           if (formSuccess) {
             formSuccess.textContent = '✓ Form submitted! Please click "Activate Form" in your email (kgill3662@gmail.com) to complete setup.';
-            formSuccess.classList.remove('hidden', 'text-emerald-600', 'text-red-500');
+            formSuccess.classList.remove('hidden', 'text-[#176B5B]', 'text-red-500');
             formSuccess.classList.add('text-amber-600');
           }
           contactForm.reset();
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Form submission fallback:', err);
         if (formSuccess) {
           formSuccess.textContent = 'Notice: opening your email client to send message directly...';
-          formSuccess.classList.remove('hidden', 'text-emerald-600');
+          formSuccess.classList.remove('hidden', 'text-[#176B5B]');
           formSuccess.classList.add('text-amber-600');
         }
         const mailtoUrl = `mailto:kgill3662@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${firstName} ${lastName} (${email})\n\n${message}`)}`;
