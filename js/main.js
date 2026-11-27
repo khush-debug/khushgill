@@ -684,16 +684,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cards.forEach((card) => {
       const target = card.querySelector('[data-macbook-target]');
-      const screen = card.querySelector('.macbook-screen');
+      const glare = card.querySelector('.macbook-glare');
       if (!target) return;
 
       const tiltDir = parseFloat(card.getAttribute('data-tilt-dir') || '1');
       let hovered = false;
       let rafId = null;
 
-      // Animated current vs target state
-      const cur = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 30, gy: 20 };
-      const dst = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 30, gy: 20 };
+      // Animated current vs target state (repixelx.com rotate: 3deg, scale: 1.1 + subtle 3D cursor tilt)
+      const cur = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 50, gy: 40 };
+      const dst = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 50, gy: 40 };
 
       const tick = () => {
         if (document.hidden || isPageSwipedAway) {
@@ -701,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        const ease = hovered ? 0.14 : 0.1;
+        const ease = hovered ? 0.14 : 0.11;
         cur.rx += (dst.rx - cur.rx) * ease;
         cur.ry += (dst.ry - cur.ry) * ease;
         cur.rz += (dst.rz - cur.rz) * ease;
@@ -713,9 +713,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         target.style.transform = `translate3d(${cur.tx.toFixed(2)}px, ${cur.ty.toFixed(2)}px, 0) rotateX(${cur.rx.toFixed(2)}deg) rotateY(${cur.ry.toFixed(2)}deg) rotateZ(${cur.rz.toFixed(2)}deg) scale(${cur.scale.toFixed(4)})`;
 
-        if (screen) {
-          screen.style.setProperty('--glare-x', `${cur.gx.toFixed(1)}%`);
-          screen.style.setProperty('--glare-y', `${cur.gy.toFixed(1)}%`);
+        if (glare) {
+          glare.style.setProperty('--glare-x', `${cur.gx.toFixed(1)}%`);
+          glare.style.setProperty('--glare-y', `${cur.gy.toFixed(1)}%`);
         }
 
         const settled =
@@ -745,8 +745,8 @@ document.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('pointerenter', (e) => {
         if (e.pointerType === 'touch') return;
         hovered = true;
-        dst.scale = 1.075;
-        dst.rz = 2.6 * tiltDir;
+        dst.scale = 1.1;
+        dst.rz = 3 * tiltDir;
         startLoop();
       });
 
@@ -758,14 +758,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1..1
         const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1..1
 
-        dst.rx = -ny * 7.5;
-        dst.ry = nx * 10.5;
-        dst.rz = 2.6 * tiltDir + nx * 1.4;
-        dst.scale = 1.075;
-        dst.tx = nx * 10;
-        dst.ty = ny * 7;
-        dst.gx = 50 + nx * 35;
-        dst.gy = 35 + ny * 30;
+        dst.rx = -ny * 3.5;
+        dst.ry = nx * 4.5;
+        dst.rz = 3 * tiltDir + nx * 0.8;
+        dst.scale = 1.1;
+        dst.tx = -nx * 6;
+        dst.ty = -ny * 5;
+        dst.gx = 50 + nx * 38;
+        dst.gy = 40 + ny * 32;
         startLoop();
       }, { passive: true });
 
@@ -777,8 +777,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dst.scale = 1;
         dst.tx = 0;
         dst.ty = 0;
-        dst.gx = 30;
-        dst.gy = 20;
+        dst.gx = 50;
+        dst.gy = 40;
         startLoop();
       };
 
