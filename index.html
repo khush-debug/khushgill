@@ -284,76 +284,218 @@
             </a>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <div class="flex flex-col gap-12 md:gap-16">
 
-            <!-- Preview Card 1: Supreme Infosys (Laptop Screen with Uploaded Photo) -->
-            <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer" class="group block">
+            <!-- Project 1: Supreme Infosys — Light Architectural Studio + Interactive 3D MacBook -->
+            <a href="https://lallycomputers.vercel.app/" target="_blank" rel="noopener noreferrer"
+              class="macbook-card group block w-full" data-macbook-card data-tilt-dir="1">
               <div
-                class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#F2EFE8] via-[#E8E2D6] to-[#DAD2C3] relative flex items-end justify-center pt-5 px-6 sm:px-10 shadow-xs">
-                <!-- Laptop Mockup -->
-                <div class="w-[80%] max-w-[600px] flex flex-col items-center">
-                  <!-- Screen Frame -->
+                class="relative w-full aspect-[16/10] sm:aspect-[2/1] lg:aspect-[2.08/1] rounded-[24px] md:rounded-[32px] overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#F3F4F6] via-[#E9EAED] to-[#DFE1E6] shadow-xs flex items-center justify-center">
+
+                <!-- Bright Architectural Studio Plinth & Shadow Planes -->
+                <div class="absolute inset-0 pointer-events-none">
                   <div
-                    class="w-full aspect-[16/9.6] bg-[#141519] rounded-t-xl p-1.5 sm:p-2 border border-white/15 shadow-2xl flex flex-col overflow-hidden relative">
-                    <!-- Top Webcam Notch -->
-                    <div class="w-1.5 h-1.5 rounded-full bg-white/20 mx-auto mb-1 shrink-0"></div>
-                    <!-- Screen Content: Uploaded Supreme Infosys Photo -->
-                    <div
-                      class="w-full flex-1 bg-[#081730] rounded-[4px] overflow-hidden flex items-center justify-center">
-                      <img src="assets/supreme-infosys-screen.jpg" alt="Supreme Infosys Storefront"
-                        class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500">
-                    </div>
+                    class="absolute -bottom-[28%] -left-[12%] w-[72%] h-[78%] bg-gradient-to-tr from-[#D2D5DB]/75 via-[#E4E6EB]/55 to-transparent -rotate-[22deg] border-t border-white/80">
                   </div>
-                  <!-- Laptop Base Lip -->
                   <div
-                    class="w-[108%] h-2.5 sm:h-3 bg-gradient-to-b from-[#D4D4D8] to-[#A1A1AA] rounded-b-lg shadow-md flex justify-center items-start">
-                    <div class="w-12 h-1 bg-[#52525B]/35 rounded-b-sm"></div>
+                    class="absolute inset-0 bg-[radial-gradient(circle_at_68%_22%,rgba(255,255,255,0.9),transparent_58%)]">
+                  </div>
+                  <div
+                    class="absolute left-1/2 top-[62%] -translate-x-1/2 w-[56%] h-[28%] bg-black/20 blur-2xl rounded-full transition-transform duration-500 group-hover:scale-105">
                   </div>
                 </div>
-              </div>
-              <div class="mt-3">
-                <h3
-                  class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
-                  <span>Supreme Infosys</span>
+
+                <!-- Interactive 3D MacBook Pro Stage -->
+                <div class="macbook-stage relative z-10 w-[76%] sm:w-[58%] md:w-[52%] lg:w-[46%] py-6">
+                  <div class="macbook-motion-layer" data-macbook-target>
+                    <div class="macbook-assembly macbook-assembly--light">
+                      <div class="macbook-lid">
+                        <div class="macbook-notch"></div>
+                        <div class="macbook-screen">
+                          <img src="assets/supreme-infosys-screen.jpg" alt="Supreme Infosys Storefront"
+                            class="w-full h-full object-cover object-top block">
+                          <div class="macbook-glare"></div>
+                        </div>
+                      </div>
+                      <div class="macbook-deck">
+                        <div class="macbook-keyboard">
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                        </div>
+                        <div class="macbook-trackpad"></div>
+                        <div class="macbook-lip"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Floating CTA Pill (RepixelX Style, Portfolio Palette) -->
+                <div
+                  class="macbook-cta-pill absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-full bg-[#176B5B] text-white border border-white/25 shadow-lg opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                  <span class="font-sans text-xs sm:text-sm font-medium tracking-tight">View Project</span>
                   <span
-                    class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
-                </h3>
-                <p class="font-sans text-xs sm:text-sm text-[#595F5B]">Business website</p>
+                    class="macbook-cta-arrow w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#202522] text-white flex items-center justify-center text-xs">
+                    →
+                  </span>
+                </div>
+              </div>
+
+              <!-- Editorial Details Row -->
+              <div
+                class="mt-4 sm:mt-5 px-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <p class="font-sans text-xs sm:text-sm text-[#595F5B]">
+                    Transforming an enterprise hardware catalog into a high-conversion digital storefront
+                  </p>
+                  <h3
+                    class="font-sans font-bold text-lg sm:text-xl text-[#202522] group-hover:text-[#176B5B] transition-colors mt-0.5 flex items-center gap-2">
+                    <span>Supreme Infosys — Commercial Web Platform</span>
+                    <span class="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 shrink-0">
+                  <span
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#202522]/15 bg-[#FAF9F6] text-xs font-sans font-medium text-[#202522]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>E-Commerce</span>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#202522]/15 bg-[#FAF9F6] text-xs font-sans font-medium text-[#202522]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Frontend Architecture</span>
+                  </span>
+                </div>
               </div>
             </a>
 
-            <!-- Preview Card 2: Slyphe (Brand & Visual Design -> slyphe.vercel.app) -->
-            <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer" class="group block">
+            <!-- Project 2: Slyphe — Dark Architectural Concrete Studio + Interactive 3D MacBook -->
+            <a href="https://slyphe.vercel.app/" target="_blank" rel="noopener noreferrer"
+              class="macbook-card group block w-full" data-macbook-card data-tilt-dir="-1">
               <div
-                class="aspect-[16/9] rounded-2xl overflow-hidden border border-[#DADDD7] bg-gradient-to-br from-[#1B3A30] via-[#122B23] to-[#0B1C16] relative flex items-center justify-center p-6 shadow-xs">
-                <!-- Soft architectural light overlay -->
-                <div
-                  class="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,255,255,0.12),transparent_55%)] pointer-events-none">
+                class="relative w-full aspect-[16/10] sm:aspect-[2/1] lg:aspect-[2.08/1] rounded-[24px] md:rounded-[32px] overflow-hidden border border-[#202522]/20 bg-[#0d0e10] shadow-sm flex items-center justify-center">
+
+                <!-- Dark Dramatic Concrete Architectural Studio Planes -->
+                <div class="absolute inset-0 pointer-events-none">
+                  <div
+                    class="absolute inset-0 bg-[linear-gradient(125deg,#25282c_0%,#16181a_50%,#070809_50.3%,#0b0c0e_100%)]">
+                  </div>
+                  <div
+                    class="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-t from-[#050506] via-[#121416]/85 to-transparent border-t border-white/5">
+                  </div>
+                  <div
+                    class="absolute inset-0 bg-[radial-gradient(circle_at_38%_38%,rgba(255,255,255,0.09),transparent_58%)]">
+                  </div>
+                  <div
+                    class="absolute left-1/2 top-[72%] -translate-x-1/2 w-[66%] h-[20%] bg-black/80 blur-2xl rounded-full transition-transform duration-500 group-hover:scale-105">
+                  </div>
                 </div>
-                <!-- Secondary angled dark card -->
-                <div
-                  class="w-[58%] h-[78%] bg-[#0F241D] border border-white/10 rounded-[2px] -rotate-12 -translate-x-4 translate-y-2 shadow-2xl">
+
+                <!-- Interactive 3D MacBook Pro Stage -->
+                <div class="macbook-stage relative z-10 w-[82%] sm:w-[66%] md:w-[58%] lg:w-[52%] py-6">
+                  <div class="macbook-motion-layer" data-macbook-target>
+                    <div class="macbook-assembly macbook-assembly--dark">
+                      <div class="macbook-lid macbook-lid--dark">
+                        <div class="macbook-notch"></div>
+                        <div class="macbook-screen bg-[#F6F7F2]">
+                          <!-- Crisp Live Storefront UI Inside Dark Studio MacBook -->
+                          <div class="w-full h-full flex flex-col justify-between bg-[#F6F7F2] text-[#1A1A18] p-[4.5%] relative overflow-hidden">
+                            <!-- Top Mini Navbar -->
+                            <div class="flex items-center justify-between text-[7px] sm:text-[9px] md:text-[10px] pb-2 border-b border-black/10 relative z-10">
+                              <span class="font-serif font-semibold tracking-[0.22em] text-[#1A1A18]">CELESTIA</span>
+                              <div class="hidden sm:flex items-center gap-3 text-[#6B6C67]">
+                                <span>Clothing</span>
+                                <span>Fragrance</span>
+                                <span>Lookbook</span>
+                              </div>
+                              <span class="px-2 py-0.5 rounded-full bg-[#11100F] text-[#F7F7F5] text-[6px] sm:text-[8px]">Book a call</span>
+                            </div>
+
+                            <!-- Split Screen Content -->
+                            <div class="flex-1 grid grid-cols-12 gap-3 items-center pt-2 relative z-10 min-h-0">
+                              <div class="col-span-6 flex flex-col items-start justify-center pr-1">
+                                <span class="font-mono text-[6px] sm:text-[8px] uppercase tracking-[0.2em] text-[#176B5B] mb-1">
+                                  Atelier Collection · 2026
+                                </span>
+                                <div class="font-serif text-sm sm:text-xl md:text-2xl lg:text-[26px] leading-[1.02] text-[#1A1A18] tracking-tight">
+                                  A wardrobe for every sense.
+                                </div>
+                                <p class="hidden sm:block font-sans text-[8px] md:text-[9px] text-[#6B6C67] mt-1.5 leading-snug max-w-[90%]">
+                                  Tailoring, haute parfumerie, and minimal digital direction.
+                                </p>
+                                <div class="mt-2 sm:mt-3 flex items-center gap-1.5">
+                                  <span class="px-2.5 py-1 bg-[#11100F] text-white text-[6px] sm:text-[8px] uppercase tracking-wider font-medium">
+                                    Explore →
+                                  </span>
+                                  <span class="px-2 py-1 border border-black/20 text-[#1A1A18] text-[6px] sm:text-[8px] uppercase tracking-wider">
+                                    Lookbook
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="col-span-6 h-full rounded-sm overflow-hidden border border-black/10 shadow-sm">
+                                <img src="assets/slyphe-hero.jpg" alt="Slyphe / Celestia Editorial Interface"
+                                  class="w-full h-full object-cover object-top block">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="macbook-glare"></div>
+                        </div>
+                      </div>
+                      <div class="macbook-deck macbook-deck--dark">
+                        <div class="macbook-keyboard">
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                          <div class="macbook-key-row"></div>
+                        </div>
+                        <div class="macbook-trackpad"></div>
+                        <div class="macbook-lip"></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <!-- Primary textured cream brand identity card -->
+
+                <!-- Interactive Floating CTA Pill (RepixelX Style, Portfolio Palette) -->
                 <div
-                  class="relative w-[70%] h-[72%] bg-gradient-to-br from-[#F4F0E8] to-[#E6DFD1] -rotate-6 group-hover:-rotate-3 group-hover:scale-[1.02] transition-all duration-500 rounded-[2px] shadow-2xl flex flex-col items-center justify-center text-center px-6 py-4 border border-black/5">
+                  class="macbook-cta-pill absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 inline-flex items-center gap-3 pl-5 pr-2 py-2 rounded-full bg-[#176B5B] text-white border border-white/25 shadow-lg opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                  <span class="font-sans text-xs sm:text-sm font-medium tracking-tight">View Project</span>
                   <span
-                    class="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#202522] tracking-tight leading-none">
-                    Slyphe
-                  </span>
-                  <span class="font-mono text-[9px] sm:text-[10px] tracking-[0.35em] text-[#595F5B] uppercase mt-2.5">
-                    Brand Identity
+                    class="macbook-cta-arrow w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#202522] text-white flex items-center justify-center text-xs">
+                    →
                   </span>
                 </div>
               </div>
-              <div class="mt-3">
-                <h3
-                  class="font-sans font-bold text-base text-[#202522] group-hover:text-[#176B5B] transition-colors flex items-center gap-1.5">
-                  <span>Slyphe — Brand &amp; Visual Design</span>
+
+              <!-- Editorial Details Row -->
+              <div
+                class="mt-4 sm:mt-5 px-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <p class="font-sans text-xs sm:text-sm text-[#595F5B]">
+                    Branding · Editorial Experience · Luxury Storefront
+                  </p>
+                  <h3
+                    class="font-sans font-bold text-lg sm:text-xl text-[#202522] group-hover:text-[#176B5B] transition-colors mt-0.5 flex items-center gap-2">
+                    <span>Slyphe — Brand &amp; Visual Design</span>
+                    <span class="text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 shrink-0">
                   <span
-                    class="text-xs opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">↗</span>
-                </h3>
-                <p class="font-sans text-xs sm:text-sm text-[#595F5B]">Creative exploration · slyphe.vercel.app</p>
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#202522]/15 bg-[#FAF9F6] text-xs font-sans font-medium text-[#202522]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>Identity</span>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#202522]/15 bg-[#FAF9F6] text-xs font-sans font-medium text-[#202522]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#176B5B]"></span>
+                    <span>UI/UX Design</span>
+                  </span>
+                </div>
               </div>
             </a>
 

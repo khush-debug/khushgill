@@ -671,4 +671,121 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ==========================================
+  // 10. INTERACTIVE 3D MACBOOK SHOWCASE CONTROLLER
+  // Springs smoothly on hover (repixelx.com scale + rotate) + live cursor 3D tilt & sheen
+  // ==========================================
+  function initInteractiveMacbooks() {
+    const cards = document.querySelectorAll('[data-macbook-card]');
+    if (!cards.length) return;
+
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    cards.forEach((card) => {
+      const target = card.querySelector('[data-macbook-target]');
+      const screen = card.querySelector('.macbook-screen');
+      if (!target) return;
+
+      const tiltDir = parseFloat(card.getAttribute('data-tilt-dir') || '1');
+      let hovered = false;
+      let rafId = null;
+
+      // Animated current vs target state
+      const cur = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 30, gy: 20 };
+      const dst = { rx: 0, ry: 0, rz: 0, scale: 1, tx: 0, ty: 0, gx: 30, gy: 20 };
+
+      const tick = () => {
+        if (document.hidden || isPageSwipedAway) {
+          rafId = null;
+          return;
+        }
+
+        const ease = hovered ? 0.14 : 0.1;
+        cur.rx += (dst.rx - cur.rx) * ease;
+        cur.ry += (dst.ry - cur.ry) * ease;
+        cur.rz += (dst.rz - cur.rz) * ease;
+        cur.scale += (dst.scale - cur.scale) * ease;
+        cur.tx += (dst.tx - cur.tx) * ease;
+        cur.ty += (dst.ty - cur.ty) * ease;
+        cur.gx += (dst.gx - cur.gx) * ease;
+        cur.gy += (dst.gy - cur.gy) * ease;
+
+        target.style.transform = `translate3d(${cur.tx.toFixed(2)}px, ${cur.ty.toFixed(2)}px, 0) rotateX(${cur.rx.toFixed(2)}deg) rotateY(${cur.ry.toFixed(2)}deg) rotateZ(${cur.rz.toFixed(2)}deg) scale(${cur.scale.toFixed(4)})`;
+
+        if (screen) {
+          screen.style.setProperty('--glare-x', `${cur.gx.toFixed(1)}%`);
+          screen.style.setProperty('--glare-y', `${cur.gy.toFixed(1)}%`);
+        }
+
+        const settled =
+          !hovered &&
+          Math.abs(cur.rx) < 0.02 &&
+          Math.abs(cur.ry) < 0.02 &&
+          Math.abs(cur.rz) < 0.02 &&
+          Math.abs(cur.scale - 1) < 0.0005 &&
+          Math.abs(cur.tx) < 0.05 &&
+          Math.abs(cur.ty) < 0.05;
+
+        if (settled) {
+          target.style.transform = 'translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1)';
+          rafId = null;
+          return;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      };
+
+      const startLoop = () => {
+        if (rafId === null && !document.hidden && !isPageSwipedAway) {
+          rafId = requestAnimationFrame(tick);
+        }
+      };
+
+      card.addEventListener('pointerenter', (e) => {
+        if (e.pointerType === 'touch') return;
+        hovered = true;
+        dst.scale = 1.075;
+        dst.rz = 2.6 * tiltDir;
+        startLoop();
+      });
+
+      card.addEventListener('pointermove', (e) => {
+        if (e.pointerType === 'touch') return;
+        hovered = true;
+        const rect = card.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1..1
+        const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1..1
+
+        dst.rx = -ny * 7.5;
+        dst.ry = nx * 10.5;
+        dst.rz = 2.6 * tiltDir + nx * 1.4;
+        dst.scale = 1.075;
+        dst.tx = nx * 10;
+        dst.ty = ny * 7;
+        dst.gx = 50 + nx * 35;
+        dst.gy = 35 + ny * 30;
+        startLoop();
+      }, { passive: true });
+
+      const resetTilt = () => {
+        hovered = false;
+        dst.rx = 0;
+        dst.ry = 0;
+        dst.rz = 0;
+        dst.scale = 1;
+        dst.tx = 0;
+        dst.ty = 0;
+        dst.gx = 30;
+        dst.gy = 20;
+        startLoop();
+      };
+
+      card.addEventListener('pointerleave', resetTilt);
+      card.addEventListener('pointercancel', resetTilt);
+    });
+  }
+  initInteractiveMacbooks();
+
 });
